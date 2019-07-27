@@ -1,0 +1,95 @@
+<div class="manage-scheduled-payments wide-content">
+    <div class="page-heading-row">
+        <h2>Scheduled Payments</h2>
+        <div>
+            <a class="secondary btn right margin-right" href="#/beneficiaries/list" data-dtmid="link_content_content link" data-dtmtext="Pay beneficiary button click">Pay beneficiary</a>
+        </div>
+    </div>
+
+    <div class="notification info">
+        Go to Pay Beneficiary to set up a scheduled payment
+    </div>
+
+    <div class="filter-controls">
+        <form>
+            <filter-box ng-model="query" placeholder="Search for payment"></filter-box>
+        </form>
+    </div>
+
+    <div class="panel action-table">
+        <ul class="header">
+            <li>
+                <div class="information">
+                    <div>
+                        <a id="beneficiary-name" ng-click="sortBy(&apos;beneficiaryName&apos;)">Beneficiary name <i ng-class="sortArrowClass(&apos;beneficiaryName&apos;)"></i></a>
+                    </div>
+                    <div>
+                        <a id="next-payment-date" ng-click="sortBy(&apos;nextPaymentDate&apos;)">First payment date <i ng-class="sortArrowClass(&apos;nextPaymentDate&apos;)"></i></a>
+                    </div>
+                    <div>
+                        <a id="final-payment-date" ng-click="sortBy(&apos;finalPaymentDate&apos;)">Final payment date <i ng-class="sortArrowClass(&apos;finalPaymentDate&apos;)"></i></a>
+                    </div>
+                    <div>
+                        <a id="payment-amount" ng-click="sortBy(&apos;amount&apos;)">Amount<i ng-class="sortArrowClass(&apos;amount&apos;)"></i></a>
+                    </div>
+                    <div>
+                        <a id="frequency" ng-click="sortBy(&apos;frequency&apos;)">Frequency<i ng-class="sortArrowClass(&apos;frequency&apos;)"></i></a>
+                    </div>
+                    <div>
+                        <a id="remaining-payments" ng-click="sortBy(&apos;remainingPayments&apos;)">Remaining payments<i ng-class="sortArrowClass(&apos;remainingPayments&apos;)"></i></a>
+                    </div>
+                </div>
+                <div class="actions">
+                    <div class="action">Delete</div>
+                    <div class="action">Modify</div>
+                </div>
+            </li>
+        </ul>
+
+        <ul class="data not-clickable">
+            <li ng-repeat="scheduledPayment in scheduledPayments  | scheduledPaymentFilter: query | orderBy: sort.criteria:!sort.descending" ng-class="{&apos;highlight&apos;: scheduledPayment.highlightClass}">
+                <div class="information">
+                    <div class="beneficiary-name" data-header="Beneficiary name">
+                        <div class="cell-data">{{scheduledPayment.beneficiaryName}}</div>
+                    </div>
+                    <div class="next-payment-date" data-header="Next payment date">
+                        <div class="cell-data">{{scheduledPayment.nextPaymentDate|dateFormat}}</div>
+                    </div>
+                    <div class="final-payment-date" data-header="Final payment date">
+                        <div class="cell-data">{{scheduledPayment.finalPaymentDate|dateFormat}}</div>
+                    </div>
+                    <div class="payment-amount" data-header="Amount">
+                        <div class="cell-data">{{scheduledPayment.amount|randAmount}}</div>
+                    </div>
+                    <div class="frequency" data-header="Frequency">
+                        <div class="cell-data">{{scheduledPayment.frequency}}</div>
+                    </div>
+                    <div class="remaining-payments" data-header="Remaining payments">
+                        <div class="cell-data">{{scheduledPayment.remainingPayments}}</div>
+                    </div>
+
+                </div>
+                <div class="actions">
+                    <a inline-action="delete" ng-click="markForDeletion(scheduledPayment)" action-message="confirmDeleteMessage(scheduledPayment)" error-message="errorDeleteMessage(scheduledPayment)" show-when="isBeingDeleted(scheduledPayment)" confirm-fn="delete(scheduledPayment)">
+                    </a>
+                    <a title="modify" class="action modify" ng-click="modify(scheduledPayment)">
+                        <span class="title">Modify</span>
+                        <i class="icon icomoon-edit"></i>
+                    </a>
+                </div>
+            </li>
+        </ul>
+
+        <span class="information message" ng-show="scheduledPayments.length &gt; 0 &amp;&amp; (scheduledPayments | filter: query).length == 0">
+            No matches found.
+        </span>
+
+        <span class="information message" ng-show="noScheduledPayments()">
+            There are no payments scheduled.
+        </span>
+    </div>
+    <div class="btn-container">
+        <button go-back="" id="back-button" class="secondary">Back</button>
+    </div>
+
+</div>

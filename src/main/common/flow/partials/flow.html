@@ -1,0 +1,3 @@
+<ol class="steps" data-progtrckr-steps="{{flow.steps.length}}" ng-if="flow.steps.length > 1">
+    <li ng-class="{'step-done': step.complete && !step.current, 'step-todo': !step.complete, 'step-current': !step.complete && step.current}" ng-repeat="step in flow.steps"><span>{{ step.name }}</span></li>
+</ol>

@@ -1,0 +1,7 @@
+.dropdown-button-link {
+  button:focus {outline:0;}
+  .dropdown-menu {
+    right: inherit;
+    min-width: 100px;
+  }
+}

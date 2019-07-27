@@ -1,0 +1,78 @@
+<h2>Form</h2>
+<div class="example">
+    <h3>Form sections</h3>
+    <p>Wrap each row on a form in a &lt;section&gt; element so that they are evenly spaced.</p>
+    <div class="demo">
+        <form>
+            <section>
+                <label>Something</label>
+                <input type="text"/>
+            </section>
+            <section>
+                <label>Which option will you pick?</label>
+                <ul class="radio-button-group">
+                    <li>
+                        <input type="radio" id="rb1" ng-model="rb1" ng-value="true">
+                        <label for="rb1">One option</label>
+                    </li>
+
+                    <li>
+                        <input type="radio" id="rb2" ng-model="rb2" ng-value="false">
+                        <label for="rb2">Another option</label>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <label>Some options</label>
+                <div class="styled-select">
+                    <select ng-model="selectedItem" ng-options="item.label for item in selectItems"></select>
+                </div>
+            </section>
+        </form>
+        <show-code></show-code>
+    </div>
+</div>
+
+<div class="example">
+    <h3>Form spans</h3>
+    <div class="demo">
+        <form>
+            <span>I'm a span in a form</span>
+        </form>
+        <show-code></show-code>
+    </div>
+</div>
+
+<div class="example">
+    <h3>Form error</h3>
+    <p>
+        Form errors only work inside divs, because divs in forms have relative positioning.
+        The <strong>sb-input</strong> directive wraps everything in a div.
+    </p>
+    <div class="demo">
+        <form>
+            <section>
+                <div>
+                    <label>Something</label>
+                    <span class="form-error">I'm a form error</span>
+                    <input type="text"/>
+                </div>
+            </section>
+        </form>
+        <show-code></show-code>
+    </div>
+</div>
+
+<div class="example">
+    <h3>Inline form</h3>
+    <p>An inline form lets the error message appear next to an input instead of above it on medium and larger screens.</p>
+    <div class="demo">
+        <form class="inline-form">
+            <section>
+                <input type="text"/>
+                <span class="form-error">I'm a form error</span>
+            </section>
+        </form>
+        <show-code></show-code>
+    </div>
+</div>

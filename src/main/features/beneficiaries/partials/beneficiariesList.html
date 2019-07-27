@@ -1,0 +1,43 @@
+<div class="selectable-header">
+    <h4>Beneficiaries</h4>
+
+     <div class="filter-controls">
+        <form>
+            <filter-box ng-model="query" placeholder="Search beneficiaries"></filter-box>
+        </form>
+    </div>
+</div>
+
+<ul class="selectable" ng-init="initialize()">
+    <li class="selectable-beneficiary"
+        ng-class="{'disabled': !beneficiary.canSelect, 'enabled': beneficiary.canSelect, 'selected': beneficiary.selectedClass}"
+        ng-disabled="!beneficiary.canSelect"
+        ng-repeat="beneficiary in beneficiaryWithoutGroups | beneficiaryFilter: query: !addingGroup | orderBy: sort.criteria:!sort.descending"
+        ng-click="!beneficiary.canSelect || onSelect({beneficiary: beneficiary})">
+        <span ng-hide="isBeingDeleted(beneficiary)" ng-class="{'highlight': beneficiary.highlightClass}">
+            {{beneficiary.name}}
+            <span class="reference">{{beneficiary.customerReference}}</span>
+        </span>
+        <span class="right members" ng-hide="isBeingDeleted(beneficiary)" ng-class="{'highlight': beneficiary.highlightClass}">
+            {{beneficiary.recipientGroupName}}
+        </span>
+    </li>
+
+     <li class="not-selectable-beneficiary"
+         ng-class="{'disabled': !beneficiary.canSelect, 'enabled': beneficiary.canSelect, 'selected': beneficiary.selectedClass}"
+         ng-disabled="!beneficiary.canSelect"
+         ng-repeat="beneficiary in beneficiaryWithGroups | beneficiaryFilter: query: !addingGroup | orderBy: sort.criteria:!sort.descending"
+         ng-click="!beneficiary.canSelect || onSelect({beneficiary: beneficiary})">
+        <span ng-hide="isBeingDeleted(beneficiary)" ng-class="{'highlight': beneficiary.highlightClass}">
+            {{beneficiary.name}}
+            <span class="reference">{{beneficiary.customerReference}}</span>
+        </span>
+        <span class="right members" ng-hide="isBeingDeleted(beneficiary)" ng-class="{'highlight': beneficiary.highlightClass}">
+            {{beneficiary.recipientGroupName}}
+        </span>
+    </li>
+</ul>
+<span class="information message" ng-show="beneficiaries.length > 0 && (beneficiaries | beneficiaryFilter: query: !addingGroup).length == 0">
+    No matches found.
+</span>
+<span class="information message" ng-show="beneficiaries.length == 0">There are no beneficiaries linked to your profile.</span>

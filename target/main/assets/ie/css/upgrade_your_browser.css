@@ -1,0 +1,43 @@
+/* PBB primary colour palette */
+/* PBB secondary colour palette */
+/* PBB tertiary colour palette */
+/* action buttons */
+/* Custom colors */
+/* Custom widths */
+/* Custom heights */
+/* New SBG Brand Primary Colors */
+/* New SBG Brand Secondary Colors */
+/* New SBG Brand Greys (Used for background, highlighted areas and divider lines) */
+/* New SBG Brand Font Greys (Used for header, body copy and navigation lists) */
+.upgrade-your-browser {
+  position: absolute;
+  background: #fafafa;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 999999; }
+  .upgrade-your-browser .browsers {
+    max-width: 405px;
+    margin: 2em auto; }
+    .upgrade-your-browser .browsers .browser {
+      width: 125px;
+      text-align: center;
+      margin-right: 10px; }
+      .upgrade-your-browser .browsers .browser .icon {
+        width: 125px;
+        height: 135px;
+        background: url("../../../assets/images/browsehappy-sprite.png") no-repeat; }
+      .upgrade-your-browser .browsers .browser:hover {
+        -webkit-transform: scale(1.05, 1.05);
+        -moz-transform: scale(1.05, 1.05);
+        -o-transform: scale(1.05, 1.05);
+        transform: scale(1.05, 1.05); }
+      .upgrade-your-browser .browsers .browser.ie .icon {
+        background-position: -500px 0; }
+      .upgrade-your-browser .browsers .browser.chrome .icon {
+        background-position: 0 0; }
+      .upgrade-your-browser .browsers .browser.firefox .icon {
+        background-position: -125px 0; }
+
+/*# sourceMappingURL=upgrade_your_browser.css.map */

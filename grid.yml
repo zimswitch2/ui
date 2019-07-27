@@ -1,0 +1,41 @@
+version: '2'
+
+services:
+    hub:
+        container_name: hub
+        image: selenium/hub:2.53.0
+        ports:
+            - "4444"
+        environment:
+            - SE_OPTS=-timeout 240 -browserTimeout 360
+            - TZ=Africa/Johannesburg
+
+    firefox:
+        image: selenium/node-firefox:2.53.0
+        environment:
+            - HUB_PORT_4444_TCP_ADDR=hub
+            - TZ=Africa/Johannesburg
+            - SCREEN_WIDTH=1920
+            - SCREEN_HEIGHT=1080
+        tmpfs:
+            - /tmp
+
+    chrome:
+        image: selenium/node-chrome:2.53.0
+        environment:
+            - HUB_PORT_4444_TCP_ADDR=hub
+            - TZ=Africa/Johannesburg
+            - SCREEN_WIDTH=1920
+            - SCREEN_HEIGHT=1080
+            - DBUS_SESSION_BUS_ADDRESS=/dev/null
+#        ports:
+#            - "5800:5900"
+        tmpfs:
+            - /tmp:size=512m
+        volumes:
+            - /dev/shm:/dev/shm
+
+networks:
+    default:
+        external:
+            name: ${docker_network}

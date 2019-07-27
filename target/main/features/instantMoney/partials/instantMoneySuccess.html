@@ -1,0 +1,48 @@
+<h2>Instant Money</h2>
+<div class="form-layout-top">
+
+<div success="" notification="" ng-show="isSuccessful">Instant Money transfer successful</div>
+</div>
+<div class="form-layout-main">
+    <div class="panel"> 
+        <div class="summary">
+            <div class="summary-split-row hide-on-print">
+                <div>
+                    <span>From Account</span>
+                    <span id="fromAccount">{{voucher.account.productName}} - {{voucher.account.formattedNumber}}</span>
+                </div>
+                <div>
+                    <span>Available balance</span>
+                    <span id="availableBalance" name="confirm-fromBalance">{{voucher.availableBalance | randAmount}}</span>
+                </div>
+            </div>
+            <div class="summary-row">
+                <div>
+                    <span>Cell phone number </span><span id="cellPhoneNumber">{{voucher.cellNumber}}</span>
+                </div>
+            </div>
+            <div class="summary-row">
+                <div>
+                    <span>Amount</span><span id="amount">{{voucher.amount | randAmountNoCents}}</span>
+                </div>
+            </div>
+            <div class="summary-row">
+                <div>
+                    <span>Voucher number</span><span id="voucherNumber">{{voucher.voucherNumber}}</span>
+                </div>
+            </div>
+            <div class="summary-row">
+                <div>
+                    <span>Transaction date</span><span id="transactionDate">{{latestTimestampFromServer | dateFormat}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button ng-click="backToTransact()" class="secondary" data-dtmid="link_content_content link" data-dtmtext="Back to Instant Money button click">Back to Instant Money</button>
+    <button ng-click="makeAnotherTransfer()" class="secondary" data-dtmid="link_content_content link" data-dtmtext="Make another transfer button click">Make another transfer</button>
+</div>
+
+<div class="form-layout-right">
+    <monthly-payment-limits watcher="watcher"></monthly-payment-limits>
+</div>

@@ -1,0 +1,46 @@
+.account-sharing {
+  .panel {
+    h3 {
+      color: $slate-grey;
+    }
+
+    .reference-number {
+      color: $gunmetal;
+      font-size: 2em;
+    }
+
+    .box {
+      background: $white;
+      color :$slate-grey;
+      margin-top: 1em;
+      margin-bottom: 2em;
+
+      h3 {
+        padding-bottom: 0.6em;
+        color: $gunmetal;
+      }
+
+      p {
+        padding-bottom: 0.6em;
+      }
+
+      ol {
+        padding-left: 2.4rem;
+
+        li {
+          color: $slate-grey;
+        }
+      }
+    }
+
+    .share-reference {
+      span {
+        padding-top: 2em;
+        color: $gunmetal;
+      }
+      .styled-select {
+        width: 20em;
+      }
+    }
+  }
+}

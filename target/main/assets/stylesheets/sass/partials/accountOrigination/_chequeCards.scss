@@ -1,0 +1,11 @@
+.cheque-cards {
+  @include separated-sections;
+
+  label {
+    display: inline;
+  }
+
+  .cheque-card-option {
+    padding: 0.5em 0;
+  }
+}

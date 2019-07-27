@@ -1,0 +1,27 @@
+<button id="edit-contact-button" class="btn icon-button action edit" title="modify" ng-click="edit(&apos;contact&apos;)" ng-show="customerInformationData.canModifyContactInformation()">
+    <i class="icon icomoon-edit"></i>
+    <span class="title">Modify</span>
+</button>
+
+<div>
+    <div>
+        <h3 title-for="contactInformationSection">Contact Information</h3>
+    </div>
+    <ul class="data">
+
+        <row-field label="{{contact.communicationTypeCode | map:&apos;contactType&apos;}}" ng-repeat="contact in customerInformationData.communicationInformation">
+            {{contact.communicationDetails}}
+        </row-field>
+
+        <row-field label="Preferred communication language">
+            {{customerInformationData.preferredLanguageCode | map:'language'}}
+        </row-field>
+
+        <div id="addressPage" class="nav-arrow">
+            <a ng-click="next()">
+                <i class="icon icon-angle-down"></i>
+                <span>Next section</span>
+            </a>
+        </div>
+    </ul>
+</div>

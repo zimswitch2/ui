@@ -1,0 +1,53 @@
+<div class="centered-action-table hide-on-print">
+    <ul class="header">
+        <li>
+            <div class="information">
+                <div><span>Latest</span></div>
+                <div class="currency"><span>Amount (R)</span></div>
+            </div>
+        </li>
+    </ul>
+
+    <ul class="data not-clickable">
+        <div class="Description">
+            <li ng-show="spinnerActive" class="loading hide-on-print">
+                <div class="center"><span class="centered-spinner"></span><span
+                        class="loading-text">Loading...</span>
+                </div>
+            </li>
+        </div>
+        <li ng-show="ctrl.historyList.length <= 0 && !spinnerActive">
+            <span class="information">
+                <div data-header="Latest">
+                    <div class="cell-data">No payments during this period</div>
+                </div>
+                <div data-header="Amount (R)"></div>
+            </span>
+        </li>
+
+        <li ng-repeat="line in ctrl.historyList | filter:ctrl.filterText | orderBy:'date':ctrl.isReverseSortOrder" class="transactionMobile" ng-hide="spinnerActive">
+
+            <span class="information">
+                <div data-header="Latest">
+                    <div class="cell-data narrative">{{line.dayOfPayment}} {{line.monthName}}</div>
+                    <div class="cell-data narrative">{{line.recipient.name}}
+                    </div>
+                    <div class="type month"><small>{{line.recipientReference}}</small>
+                    </div>
+                </div>
+                <div data-header="Amount (R)"
+                     class="currency">
+                    <div class="cell-data">{{line.amount | amount}}</div>
+                </div>
+                </span>
+        </li>
+
+        <li ng-show="!loading && statement && (statement | statementFilter : query).length == 0"
+            class="no-match-search">
+            <span class="information">
+                <div></div>
+                <div id="no-matches-message" class="information message">No matches found</div>
+            </span>
+        </li>
+    </ul>
+</div>

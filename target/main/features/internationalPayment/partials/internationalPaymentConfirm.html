@@ -1,0 +1,251 @@
+<h2>International Payment</h2>
+
+<div class="international-payment-summary">
+    <flow class="wide hide-on-print"></flow>
+
+    <div class="notification info hide-on-print">
+        Please ensure you have entered all the details correctly.
+    </div>
+    <div class="panel">
+        <div class="summary">
+            <h4>To</h4>
+
+            <div class="summary-row-one-line" ng-if="beneficiary.isIndividual()">
+                <div>
+                    <span>Beneficiary name</span>
+                    <span id="beneficiaryName">{{beneficiary.firstName}} {{beneficiary.lastName}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line" ng-if="!beneficiary.isIndividual()">
+                <div>
+                    <span>Entity name</span>
+                    <span id="entityName">{{beneficiary.entityName}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line" ng-if="beneficiary.bank.iban">
+                <div>
+                    <span>IBAN</span>
+                    <span id="iban">{{beneficiary.bank.iban}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line" ng-if="beneficiary.bank.accountNumber">
+                <div>
+                    <span>Account Number</span>
+                    <span id="accountNumber">{{beneficiary.bank.accountNumber}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line">
+                <div>
+                    <span>SWIFT/BIC</span>
+                    <span id="swiftBIC">{{beneficiary.bank.swift}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line" ng-if="beneficiary.bank.routingCode">
+                <div>
+                    <span>{{beneficiary.bank.routingName}}</span>
+                    <span id="routingCode">{{beneficiary.bank.routingCode}}</span>
+                </div>
+            </div>
+
+            <h4>From</h4>
+
+            <div class="summary-row-one-line">
+                <div>
+                    <span>Account</span>
+                    <span id="fromAccount">{{beneficiary.pay.fromAccount.productName}} {{beneficiary.pay.fromAccount.formattedNumber}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line">
+                <div>
+                    <span>Available balance</span>
+                    <span id="availableBalance">{{beneficiary.pay.fromAccount.availableBalance.amount | nonNegativeRandAmount}}</span>
+                </div>
+            </div>
+
+            <h4>Reason for payment</h4>
+
+            <div class="summary-row-one-line">
+                <div>
+                    <span>Reason for payment (BoP code)</span>
+                    <span id="bopCode">{{beneficiary.reasonForPayment.bopCode}} - {{beneficiary.reasonForPayment.categoryDescription}}</span>
+                </div>
+            </div>
+
+            <h4>References</h4>
+
+            <div class="summary-row-one-line">
+                <div>
+                    <span>Your reference</span>
+                    <span id="yourReference">{{beneficiary.preferences.yourReference}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line">
+                <div>
+                    <span>Their reference</span>
+                    <span id="theirReference">{{beneficiary.preferences.theirReference}}</span>
+                </div>
+            </div>
+
+            <h4>Payment details</h4>
+            <div class="summary-row-one-line print-only">
+                <div>
+                    <span>Payment reference</span>
+                    <span id="referenceCode">{{beneficiary.paymentResult.referenceCode}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line">
+                <div>
+                    <span>Payment fees</span>
+                    <span id="paymentFees">{{beneficiary.preferences.fee.description}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line">
+                <div>
+                    <span>Payment date</span>
+                    <span id="paymentDate">{{latestTimestampFromServer | dateFormat}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line" ng-if="beneficiary.pay.customsClientNumber">
+                <div>
+                    <span>Customs client number</span>
+                    <span id="customsClientNumber">{{beneficiary.pay.customsClientNumber}}</span>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="summary-row-one-line">
+                <div>
+                    <span>Payment amount ({{beneficiary.bank.currency.code}})</span>
+                    <span id="paymentAmount">{{beneficiary.bank.currency.code}} {{beneficiary.rates.internationalAmount | amount}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line">
+                <div>
+                    <span>Exchange rate</span>
+                    <span id="exchangeRate">{{beneficiary.rates.exchangeRate | amount}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line">
+                <div>
+                    <span>Payment amount (ZAR)</span>
+                    <span id="paymentAmountEquivalent">R {{beneficiary.rates.zarAmount | amount}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line">
+                <div>
+                    <span>Commission fee</span>
+                    <span id="commissionFee"> {{beneficiary.rates.conversionRateFee.communicationFee.currency}} {{beneficiary.rates.conversionRateFee.communicationFee.amount | amount}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line">
+                <div>
+                    <span>SWIFT fee</span>
+                    <span id="swiftFee">{{beneficiary.rates.conversionRateFee.paymentCharge.currency}} {{beneficiary.rates.conversionRateFee.paymentCharge.amount | amount}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line total">
+                <div>
+                    <span>Total amount</span>
+                    <span id="totalAmount">{{beneficiary.rates.totalAmount.amount | nonNegativeRandAmount}}</span>
+                </div>
+            </div>
+
+        </div>
+        <section class="navigation-buttons">
+            <button id="confirm" class="primary" ng-click="confirm()" track-click="">Confirm
+            </button>
+            <button id="back" class="secondary" ng-click="back()">
+                Back
+            </button>
+        </section>
+    </div>
+
+    <div class="print-only one-page">
+        <ng-include src="&apos;common/print/partials/printFooter.html&apos;"></ng-include>
+    </div>
+</div>
+
+<div class="modal-overlay hide-on-print" ng-show="offerElapsedPopup.isVisible">
+    <div class="modal-container action-modal">
+        <div class="modal-header">
+            <h3>Exchange rate</h3>
+        </div>
+        <div class="modal-content">
+            Your exchange rate is out of date. Please refresh to get the latest rate
+        </div>
+        <div class="actions">
+            <button class="primary" ng-click="getNewRates()" data-dtmid="link_content_international payment" data-dtmtext="confirm payment | refresh rates button click">Refresh
+            </button>
+            &nbsp;
+            <button go-home="" class="secondary" data-dtmid="link_content_international payment" data-dtmtext="confirm payment | cancel payment button click">Cancel payment
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay  hide-on-print" ng-show="paymentSubmitted">
+    <div class="modal-container success-modal">
+        <div class="modal-header">
+            <i class="icomoon-tick"></i>
+            <h3>Payment request submitted</h3>
+        </div>
+        <div class="modal-content">
+            <p>This will take at least 2 business days.</p>
+            <p class="reference">
+                <span>Reference:</span>
+                <span class="reference-code">{{beneficiary.paymentResult.referenceCode}}</span>
+            </p>
+            <p>We've sent you a confirmation email.</p>
+
+            <hr>
+        </div>
+        <div class="actions">
+            <button go-home="" class="primary" data-dtmid="link_content_international payment" data-dtmtext="payment submitted | done button click">Done
+            </button>
+            &nbsp;
+            <print-button></print-button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay  hide-on-print" ng-show="paymentError">
+    <div class="modal-container error-modal">
+        <div class="modal-header">
+            <i class="icomoon-alert"></i>
+            <h3>We're experiencing technical problems</h3>
+        </div>
+        <div class="modal-content">
+            <p>Your payment request was not submitted.</p>
+        </div>
+        <div class="actions">
+            <button go-home="" class="primary" data-dtmid="link_content_international payment" data-dtmtext="payment not submitted | done button click">Done
+            </button>
+        </div>
+        <div class="help-section">
+            <div class="row telephone-row">
+                <div class=" customer-care-column">
+                    <div class="telephone-icon">
+                        <i class="icomoon-call"></i>
+                    </div>
+                    <div class="telephone-text">
+                        <div class="telephone-text-label">Customer Care</div>
+
+                        <a href="tel:0860 123 000">0860 123 000</a>
+                    </div>
+                </div>
+                <div class="customer-care-column">
+                    <div class="telephone-icon">
+                        <i class="icomoon-call"></i>
+                    </div>
+
+                    <div class="telephone-text">
+                        <div class="telephone-text-label">International</div>
+
+                        <a href="tel:+27 11 299 4701">+27 11 299 4701</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

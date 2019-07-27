@@ -1,0 +1,19 @@
+<p>{{templateData.description}}</p>
+<br/>
+
+<div class='row divider-container'>
+    <div class='show-for-large-up'>
+        <div class='medium-offset-4 divider vertical'></div>
+        <div class='medium-offset-8 divider vertical'></div>
+    </div>
+    <div class='medium-4 columns'><span class='grey-text'>{{templateData.qualifyingAmountText}}</span><span class='offerValue'>{{ templateData.qualifyingAmount | randAmountNoCents}}</span>
+    </div>
+    <div class='medium-4 columns'><span class='grey-text'>{{templateData.valueText}}</span><span
+            class='offerValue'>{{templateData.value}}</span></div>
+    <div class='medium-4 columns left'><span class='grey-text'>{{templateData.interestRateText}}</span><span
+            class='offerValue'>{{templateData.interestRate | formatProductInterestRate}}% {{templateData.interestRateSuffix}}</span></div>
+</div>
+<div ng-if="templateData.pdfLink">
+    <br/><a ng-href='{{templateData.pdfLink}}'
+            target='_blank'>More details (PDF)</a>
+</div>

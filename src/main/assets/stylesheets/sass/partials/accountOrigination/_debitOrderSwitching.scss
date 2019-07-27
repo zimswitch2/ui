@@ -1,0 +1,40 @@
+.debit-order-switching {
+  .sections {
+    @include separated-sections;
+
+    div.row{
+      max-width: 100%;
+    }
+
+
+  }
+
+  .no-wrap{
+    white-space: nowrap;
+  }
+
+  .margin-top-large{
+    margin-top: 2em;
+  }
+
+
+
+  ul {
+    padding: 0.5em;
+
+    li {
+      @include bullet-list;
+      @extend .columns;
+    }
+  }
+
+  div.columns {
+    @media #{$small-only} {
+      padding-bottom: 2em;
+    }
+
+    @media #{$medium-only}{
+      padding-bottom: 2em;
+    }
+  }
+}

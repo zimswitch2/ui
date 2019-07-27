@@ -1,0 +1,52 @@
+<div class="view-operator">
+    <div class="panel">
+        <h3>Personal details</h3>
+
+        <div class="summary account-sharing-summary">
+            <div class="summary-row" ng-hide="hide.firstName">
+                <div>
+                    <span>First name</span>
+                    <span>{{ user.firstName }}</span>
+                </div>
+            </div>
+
+            <div class="summary-row" ng-hide="hide.surname">
+                <div>
+                    <span>Surname</span>
+                    <span>{{ user.surname }}</span>
+                </div>
+            </div>
+
+            <div class="summary-row" ng-hide="hide.idNumber">
+                <div>
+                    <span>South African ID</span>
+                    <span>{{ user.idNumber }}</span>
+                </div>
+            </div>
+
+            <div class="summary-row" ng-hide="hide.email">
+                <div>
+                    <span>Email address</span>
+                    <span>{{ user.email }}</span>
+                </div>
+            </div>
+
+            <div class="summary-row" ng-hide="hide.cellPhone">
+                <div>
+                    <span>Cell phone number</span>
+                    <span>{{ user.cellPhone.cellPhoneNumber }}</span>
+                </div>
+            </div>
+
+            <div class="account-summary-action">
+                <a href=""
+                   ng-click="editUser()"
+                   data-dtmid="obb_content edit user link"
+                   data-dtmtext="Edit link click">
+                    Edit
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>

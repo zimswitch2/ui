@@ -1,0 +1,65 @@
+<form name="loginForm" id="login-form" novalidate
+      autocomplete="off" ng-submit="login(username, password)">
+    <h3 class="small-only-text-center">Sign in</h3>
+    <section>
+        <div class="small-only-text-center grey-text">
+            <span>Already using our App? Use the same sign in details</span>
+        </div>
+    </section>
+    <section id="login-details" class="no-padding" ng-class="{'hide-for-small-only': !showLogin}">
+        <section>
+            <div>
+                <label for="username">Email address</label>
+                <input type="text" id="username" name="username" ng-model="username" required
+                       ng-class="{'show-validation-styles': loginForm.username.$touched || loginForm.username.$dirty || loginForm.$submitted}"
+                       ng-model-options="{updateOn:'default blur', debounce: { 'default': 1000, 'blur': 0 }}"
+                       ng-pattern="'{{configuration.email.pattern}}'" input-leading-icon="icomoon-email"/>
+                <ng-messages for="loginForm.username.$error" ng-show="loginForm.username.$touched || loginForm.username.$dirty || loginForm.$submitted">
+                    <ng-message class="form-error" when="pattern">Please enter a valid email address</ng-message>
+                    <ng-message class="form-error" when="required">Required</ng-message>
+                </ng-messages>
+            </div>
+        </section>
+        <section>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" ng-model="password"
+                       required ng-class="{'show-validation-styles': loginForm.password.$touched || loginForm.$submitted}"
+                       show-hide-password="{{isMobileDevice}}" input-leading-icon="icomoon-security"/>
+                <ng-messages for="loginForm.password.$error" ng-show="loginForm.password.$touched || loginForm.$submitted">
+                    <ng-message class="form-error" when="required">Required</ng-message>
+                </ng-messages>
+            </div>
+        </section>
+        <section class="no-padding">
+            <button id="login" type="submit" class="left" ng-disabled="!loginForm.$valid"
+                    data-dtmid="link_content_content link" data-dtmtext="Sign in button click">
+                Sign in
+            </button>
+            <span class="cancel-button">
+                <button id="cancelLogin" class="button secondary left margin-left" ng-if="!showWidgets()"
+                        ng-click="redirectToSignIn()" data-dtmid="link_content_content link"
+                        data-dtmtext="Cancel button click">Cancel
+                </button>
+            </span>
+
+            <div class="terms-text small-only-text-center">
+                <span>By signing in you accept the <user-terms-link>
+                    terms & conditions
+                </user-terms-link>
+                </span>
+            </div>
+            <div class="small-only-text-center hide-for-small">
+                <span class="terms-text">|</span>
+            </div>
+            <div class="small-only-text-center small-12">
+                <span class="terms-text">Forgot password?
+                    <a href="#/reset-password" id="resetPassword"
+                       data-dtmid="link_content_content link"
+                       data-dtmtext="Reset password link click"
+                       ng-click="validateEmail(username)">Reset here</a>
+                </span>
+            </div>
+        </section>
+    </section>
+</form>

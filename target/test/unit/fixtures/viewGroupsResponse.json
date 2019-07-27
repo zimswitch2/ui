@@ -1,0 +1,26 @@
+{
+  "groups": [
+    {
+      "name": "Alegtest",
+      "oldName": "Alegtest",
+      "orderIndex": 0
+    },
+    {
+      "name": "Groups Test",
+      "oldName": "Groups Test",
+      "orderIndex": 0
+    },
+    {
+      "name": "Test 3",
+      "oldName": "Test 3",
+      "orderIndex": 0
+    },
+    {
+      "name": "No members",
+      "oldName": "No members",
+      "orderIndex": 0
+    }
+  ],
+  "keyValueMetadata": [],
+  "stepUp": null
+}

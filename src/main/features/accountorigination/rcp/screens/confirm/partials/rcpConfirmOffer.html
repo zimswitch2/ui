@@ -1,0 +1,96 @@
+<div class="accept-offer">
+    <h2 id="acceptRcpOfferTitle" class="clear">Confirm</h2>
+
+    <flow class="wide"></flow>
+    <div class="accept-offer well wide">
+        <h3>Your Revolving Credit Plan</h3>
+
+        <div class="summary-ao">
+
+            <div class="summary-ao-row">
+                <span class="summary-ao-label">Account type</span>
+            <span id="accountType"
+                  class="summary-ao-value">{{offerDetails.productName | capitalize}}</span>
+            </div>
+
+            <div class="summary-ao-row">
+                <span class="summary-ao-label">Revolving Credit Plan amount</span>
+            <span id="acceptOfferRcpAmount"
+                  class="summary-ao-value">{{ requestedLimit | randAmount}}</span>
+            </div>
+
+            <div class="summary-ao-row">
+                <span class="summary-ao-label">Interest rate</span>
+                <span id="acceptOfferInterestRate" class="summary-ao-value">{{offerDetails.interestRate}}%</span>
+            </div>
+
+            <div class="summary-ao-row">
+                <span class="summary-ao-label">Loan disbursement account</span>
+                <span id="disbursementAccount"
+                      class="summary-ao-value">{{debitOrder.account.formattedNumber}}</span>
+            </div>
+
+            <div class="summary-ao-row">
+                <span class="summary-ao-label">Repayment account</span>
+                <span id="repaymentAccount"
+                      class="summary-ao-value">{{debitOrder.account.formattedNumber}}</span>
+            </div>
+
+            <div class="summary-ao-row">
+                <span class="summary-ao-label">Repayment term</span>
+                <span id="repaymentTerm" class="summary-ao-value">{{offerDetails.loanTermInMonths}} months</span>
+            </div>
+
+            <div class="summary-ao-row">
+                <span class="summary-ao-label">Repayment date</span>
+                <span id="repaymentDate" class="summary-ao-value">{{debitOrder.repayment.day | dayNumberSuffix}} day of every month</span>
+            </div>
+
+            <div class="summary-ao-row">
+                <span class="summary-ao-label">Monthly repayment amount</span>
+                <span id="acceptOfferMonthlyRepayment"
+                      class="summary-ao-value">{{debitOrder.repayment.amount | randAmount}}</span>
+            </div>
+
+        </div>
+        <div class="box">
+            <div class="inner">
+                <form id="downloadRcpCostOfCredit" name="costOfCreditDownloadForm" action="{{downloadRcpCostOfCreditAgreement}}" method="GET" target="_blank" class="inline">
+                    <label for="termsAndConditions">
+                    <input type="checkbox" id="termsAndConditions" ng-model="agreed" name="Agree_to_Terms_and_Conditions_Check"/>You have read, understood and accept the</label>
+
+                    <input id="systemPrincipalIdParam" type="hidden" name="systemPrincipalId"
+                           value="{{principal.systemPrincipalId}}"/>
+                    <input id="systemPrincipalKeyParam" type="hidden" name="systemPrincipalKey"
+                           value="{{principal.systemPrincipalKey}}"/>
+
+                    <input id="debitOrderMonthlyRepaymentParam" type="hidden" name="debitOrderMonthlyRepayment"
+                           value="{{debitOrderDetails.debitOrderRepaymentAmount}}"/>
+                    <input id="debitOrderAccountNumberParam" type="hidden" name="debitOrderAccountNumber"
+                           value="{{debitOrderDetails.debitOrderAccountNumber}}"/>
+                    <input id="debitOrderIbtNumberParam" type="hidden" name="debitOrderIbtNumber"
+                           value="{{debitOrderDetails.debitOrderIbtNumber}}"/>
+                    <input id="debitOrderRepaymentCycleParam" type="hidden" name="debitOrderRepaymentCycle"
+                           value="{{debitOrderDetails.debitOrderCycleCode}}"/>
+
+                    <input id="applicationNumberParam" type="hidden" name="applicationNumber"
+                           value="{{applicationNumber}}"/>
+                    <input id="requestedLimitParam" type="hidden" name="requestedLimit"
+                           value="{{requestedLimit}}"/>
+                    <input id="productNumberParam" type="hidden" name="productNumber"
+                           value="{{offerDetails.productNumber}}"/>
+
+                     <a data-dtmid="link_content_Your RCP" data-dtmtext="Loan agreement, debit order and disbursement instruction mandates link" track-click="Apply.RCP.Confirm.Loan and debit order and disbursement agreement link" id="downloadAgreement" href="javascript:;" target="_blank" onclick="costOfCreditDownloadForm.submit()">loan agreement, debit order and disbursement instruction mandates</a>
+                </form>
+           </div>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+    <button track-click="Apply.RCP.Confirm.Confirm" ng-click="confirm()" ng-disabled="!agreed"
+            class="btn primary margin-top" id="rcpConfirm" data-dtmid="link_content_Your RCP"
+            data-dtmtext="Confirm button click">Confirm
+    </button>
+    <button ng-click="backToRevolvingCreditPlan()" class="btn secondary margin-top" id="rcpGoToRevolvingCreditPlan">Back</button>
+
+</div>

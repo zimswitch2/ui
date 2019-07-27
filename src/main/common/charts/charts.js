@@ -1,0 +1,1 @@
+angular.module('refresh.charts', ['refresh.charts.doughnut', 'refresh.charts.chartService', 'refresh.charts.chartColours']);

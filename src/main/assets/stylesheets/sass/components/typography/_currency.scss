@@ -1,0 +1,9 @@
+.currency {
+  @media #{$medium-up} {
+    text-align: right;
+  }
+
+  &.negative {
+    color: red !important;
+  }
+}

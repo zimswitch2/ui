@@ -1,0 +1,42 @@
+.manage-scheduled-payments {
+  .action-table {
+    ul {
+      .actions {
+        .action {
+          &[title="delete"] {
+            top: 4.5rem;
+          }
+        }
+      }
+    }
+    @media #{$large-up} {
+      ul {
+        .information {
+          > div {
+            &:nth-child(1){
+              width: 16%;
+            }
+            &:nth-child(2){
+              width: 16%;
+            }
+            &:nth-child(3){
+              width: 16%;
+            }
+            &:nth-child(4){
+              width: 13%;
+            }
+            &:nth-child(5){
+              width: 10%;
+            }
+            &:nth-child(6){
+              width: 19%;
+            }
+          }
+        }
+        .actions {
+          width: 8em;
+        }
+      }
+    }
+  }
+}

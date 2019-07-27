@@ -1,0 +1,33 @@
+<form novalidate="novalidate" name="transferBetweenAccountsForm" id="transferForm" class="panel">
+
+    <section>
+        <sb-account-dropdown name="transferFrom" label="From account" ng-model="transfer.from" items="transferFromAccounts()" highlight-balance="highlightBalance()" autofocus>
+        </sb-account-dropdown>
+    </section>
+
+    <section>
+        <sb-account-dropdown name="transferTo" label="To account" ng-model="transfer.to" items="transferToAccounts()">
+        </sb-account-dropdown>
+
+        <div class="error block message" ng-show="sameAccountChosen()"><i class="icon icon-times-circle"></i>{{sameAccountChosenMessage}}
+        </div>
+    </section>
+
+    <section>
+        <sb-input name="reference" label="Statement reference" ng-model="transfer.reference" ng-required="false" ng-maxlength="15" text-validation="" pattern-message="Please enter a valid statement reference">
+        </sb-input>
+    </section>
+
+    <section>
+        <label>Transfer date</label>
+        <span id="transferDate" class="display-block">{{latestTimestampFromServer | dateFormat}}</span>
+    </section>
+
+    <section>
+        <sb-amount ng-model="transfer.amount" enforcer="enforcer" hinter="hinter" hint-watcher="hintWatcher" label="Amount">
+        </sb-amount>
+    </section>
+
+    <button id="proceed" ng-disabled="!transferBetweenAccountsForm.$valid || sameAccountChosen()" ng-click="proceed()" data-dtmid="link_content_transfer between accounts" data-dtmtext="step 1 | next button click">Next</button>
+    <button go-back="" id="cancel" class="secondary" data-dtmid="link_content_transfer between accounts" data-dtmtext="step 1 | cancel button click">Cancel</button>
+</form>

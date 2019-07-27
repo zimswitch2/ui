@@ -1,0 +1,27 @@
+<ul id="print-receipt-table" class="data">
+    <li>
+        <div class="information print-only">
+            <div data-header="Purchase date">
+                <div class="cell-data">{{ctrl.selectedTransaction.rechargeDate | dateFormat}}</div>
+            </div>
+            <div data-header="Purchase time" class="print-only">
+                <div class="cell-data">{{ctrl.selectedTransaction.rechargeDate | timeFormat}}</div>
+            </div>
+            <div data-header="Service provider">
+                <div class="cell-data">{{ctrl.selectedTransaction.prepaidProviderType}}</div>
+            </div>
+            <div data-header="Voucher type" ng-class="(ctrl.printHasInvoiceTransactionType ? &apos;&apos; : &apos;hide-on-print&apos;) + &apos; &apos; + (!ctrl.selectedTransaction.rechargeType ? &apos;hide-empty&apos; : &apos;&apos;)">
+                <div class="cell-data">{{ctrl.selectedTransaction.rechargeType || '&nbsp;'}}</div>
+            </div>
+            <div data-header="Purchased for">
+                <div class="cell-data">{{ctrl.selectedTransaction.rechargeNumber}}</div>
+            </div>
+            <div data-header="Invoice number">
+                <div class="cell-data">{{ctrl.selectedTransaction.invoiceNumber}}</div>
+            </div>
+            <div data-header="Amount (incl. VAT)" class="currency">
+                <div class="cell-data">{{ctrl.selectedTransaction.amount.amount | randAmount}}</div>
+            </div>
+        </div>
+    </li>
+</ul>

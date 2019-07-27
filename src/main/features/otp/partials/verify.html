@@ -1,0 +1,48 @@
+<script type="text/javascript">
+    (function() {
+        var scriptUrl = ["cdn.standardbank.co.za", "811652", "div-fol12.js"].join("/");
+        window.loadTrusteerScript(scriptUrl);
+    })();
+</script>
+
+<script type="text/javascript">
+    (function() {
+        var scriptUrl = ["cdn.standardbank.co.za","811652","waveForm3.js"].join("/");
+        window.loadTrusteerScript(scriptUrl);
+    })();
+</script>
+
+<div ng-init="initialize()" class="otpPage">
+    <h2>{{headerName}}</h2>
+    <div ng-hide="otpMessage == undefined" class="{{notificationType}} notification">{{otpMessage}}</div>
+    <div class="form-layout-top" flow></div>
+
+    <div class="form-layout-main">
+        <form class="panel" name="otpForm" autocomplete="off" ng-submit="send(otp)">
+            <section>
+                <h3 id="verificationHeader" ng-show="isVerificationCode">We need to verify your email address</h3>
+            </section>
+
+            <section>
+                <p id="messageAddress">{{entryMessage}}. {{closingMessage}}</p>
+            </section>
+
+            <section ng-show="isVerificationCode">
+                <span id="spam-or-junk-folder" class="text-notification information">Can't see your email? Check your spam or junk folder</span>
+            </section>
+
+            <section class="otp">
+                <label id="email-verification-label" for="otp" ng-show="isVerificationCode">Email verification code</label>
+                <input id="otp" name="otp" ng-model="otp" exact-lengths="5" ng-pattern="'[0-9]*'" focus-on />
+                <ng-messages for="otpForm.otp.$error" ng-hide="otpForm.otp.$pristine && !otpForm.otp.$touched && !otpForm.$submitted">
+                    <ng-message class="form-error" when="pattern">Please enter a valid OTP</ng-message>
+                    <ng-message class="form-error" when="exactLengths">Must be 5 numbers long</ng-message>
+                </ng-messages>
+            </section>
+            <button id="submit-otp" type="submit" ng-disabled="!otpForm.$valid || otpForm.$pristine" data-dtmid="link_content_otp" data-dtmtext="submit button click">Submit</button>
+            <a id="resend-otp" class="btn secondary" ng-click="resend()" data-dtmid="link_content_otp" data-dtmtext="resend button click">Resend</a>
+            <a id="cancel" class="btn secondary" ng-hide="showSignOut()" ng-click="cancel()" data-dtmid="link_content_otp" data-dtmtext="cancel button click">Cancel</a>
+            <a id="signout-otp" class="btn secondary" ng-show="showSignOut()" ng-click="signout()" data-dtmid="link_content_otp" data-dtmtext="signout button click">Sign out</a>
+        </form>
+    </div>
+</div>

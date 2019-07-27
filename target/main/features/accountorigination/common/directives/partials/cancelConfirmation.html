@@ -1,0 +1,14 @@
+<div class="modal-overlay" ng-if="showModal()" id="confirm-save-modal">
+    <div id="cant-find-modal" class="modal-container action-modal">
+        <div class="modal-header">
+            <h3>Cancel changes?</h3>
+        </div>
+
+        <div class="modal-content">All unsaved changes will be lost.</div>
+
+        <div class="actions">
+            <button ng-click="confirm()" id="modal-confirm" class="primary">Confirm</button>
+            <button ng-click="back()" id="modal-cancel" class="secondary">Back</button>
+        </div>
+    </div>
+</div>

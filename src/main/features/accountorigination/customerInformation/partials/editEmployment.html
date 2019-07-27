@@ -1,0 +1,290 @@
+<h2>Your Details</h2>
+
+<flow class="wide"></flow>
+
+<div class="notification error wide" ng-show="serverErrorMessage !== undefined">
+    {{serverErrorMessage}}
+</div>
+
+<div class="customer-info-container">
+    <customer-information-navigation editing="true" current-page="'employment'"></customer-information-navigation>
+    <div class="customer-info-form">
+        <form name="customerInformationForm" data-frmcontainer="edit employment form" novalidate>
+            <div class="customer-info-scroll">
+                <div class="employment">
+                    <ng-form name="employmentForm">
+                        <div class="edit-section">
+                            <div class="notification margin-top info"
+                                 ng-show="canBeWithoutPreviousEmployment() && !isFirstEmployment">Please enter your previous employment details, because you have been at your current job for less than a year</div>
+                            <div ng-show="getValidationNotification() && employmentForm.$pristine"
+                                 id="employment-notification" class="wide notification error">
+                                {{getValidationNotification()}}
+                            </div>
+                            <section id="currentEmploymentSection" class="current-employment">
+                                <h3 title-for="currentEmploymentSection">Current Employment</h3>
+
+                                <ul class="data edit-mode">
+                                    <row-field label="Are you currently employed?"
+                                               ng-show="!isAdding && canToggleEmploymentStatus()">
+                                        <input id="employed-yes" type="radio" name="Currently_employed_Yes"
+                                               ng-value="true"
+                                               ng-model="isEmployed"
+                                               ng-click="addEmployment()"
+                                               track-click="{{unemploymentAnalyticsPrefix}}-To-Employed">
+                                        <label class="inline-label" for="employed-yes">Yes</label>
+                                        <input id="employed-no" type="radio" name="Currently_employed_No"
+                                               ng-value="false"
+                                               ng-model="isEmployed"
+                                               ng-click="removeEmployment()"
+                                               track-click="{{unemploymentAnalyticsPrefix}}-To-UnEmployed">
+                                        <label class="inline-label" for="employed-no">No</label>
+                                    </row-field>
+
+                                    <row-field label="Employed *" ng-show="!isAdding && !canToggleEmploymentStatus()">
+                                        No
+                                    </row-field>
+
+                                    <row-field label="Reason for unemployment *" label-for="editUnemploymentReason"
+                                               ng-if="!isAdding && isEmployed === false" feature="customerManagementV4">
+                                        <div class="styled-select medium-width">
+                                            <select ng-model="unemploymentReason.code"
+                                                    id="editUnemploymentReason"
+                                                    name="Reason_for_unemployment"
+                                                    ng-required="true"
+                                                    fix-ie-select
+                                                    ng-options="reason.code as reason.description for reason in unemploymentReasons">
+                                                <option value="" ng-hide="unemploymentReason.code"></option>
+                                            </select>
+                                        </div>
+                                    </row-field>
+
+                                    <row-field label="Employer name *" label-for="editEmployerName" ng-if="isEmployed">
+                                        <sb-input ng-model="currentEmployment().employerName"
+                                                  input-id="editEmployerName"
+                                                  name="Current_Employer_name"
+                                                  ng-maxlength="30"
+                                                  ng-required="true" class="medium-width"></sb-input>
+                                    </row-field>
+
+                                    <row-field id="editEmploymentStartDate" label="Start date *" ng-if="isEmployed">
+                                        <sb-datepicker ng-model="currentEmployment().startDate"
+                                                       name="Current_Employment_start_date"
+                                                       ng-required="true"
+                                                       view-default-date-format="true"
+                                                       date-format="YYYY-MM-DD"
+                                                       skip-year="true"
+                                                       on-select="cleanPreviousEmployment()"
+                                                       earliest-date="{{getEarliestDateForCurrentEmployment()}}"
+                                                       latest-date="{{latestEmploymentStartDate}}">
+                                        </sb-datepicker>
+                                    </row-field>
+
+                                    <row-field label="Industry *" label-for="editOccupationIndustry" ng-if="isEmployed">
+                                        <div class="styled-select medium-width">
+                                            <select ng-model="currentEmployment().occupationIndustryCode"
+                                                    id="editOccupationIndustry"
+                                                    name="Current_Employment_Industry"
+                                                    ng-required="true"
+                                                    fix-ie-select
+                                                    ng-options="industry.code as industry.description for industry in occupationIndustries">
+                                                <option value=""
+                                                        ng-hide="currentEmployment().occupationIndustryCode"></option>
+                                            </select>
+                                        </div>
+                                    </row-field>
+
+                                    <row-field label="Occupation level *" label-for="editOccupationLevel" ng-if="isEmployed">
+                                        <div class="styled-select medium-width">
+                                            <select ng-model="currentEmployment().occupationLevelCode"
+                                                    id="editOccupationLevel"
+                                                    name="Current_Employment_Occupation_level"
+                                                    ng-required="true"
+                                                    fix-ie-select
+                                                    ng-options="level.code as level.description for level in occupationLevels">
+                                                <option value=""
+                                                        ng-hide="currentEmployment().occupationLevelCode"></option>
+                                            </select>
+                                        </div>
+                                    </row-field>
+
+                                    <row-field label="Status *" label-for="editEmploymentType" ng-if="isEmployed">
+                                        <div class="styled-select medium-width">
+                                            <select ng-model="currentEmployment().employmentStatusCode"
+                                                    id="editEmploymentType"
+                                                    name="Current_Employment_status"
+                                                    ng-required="true"
+                                                    fix-ie-select
+                                                    ng-options="type.code as type.description for type in employmentTypes">
+                                                <option value=""
+                                                        ng-hide="currentEmployment().employmentStatusCode"></option>
+                                            </select>
+                                        </div>
+                                    </row-field>
+                                </ul>
+                            </section>
+
+                            <section id="previousEmploymentSection" class="previous-employment">
+
+                                <h3 ng-show="needPreviousEmployment() || canBeWithoutPreviousEmployment()"
+                                    title-for="previousEmploymentSection">
+                                    Previous Employment
+                                </h3>
+
+                                <ul class="data edit-mode">
+
+                                    <row-field ng-if="canBeWithoutPreviousEmployment()">
+                                        <input type="checkbox" id="editNoPreviousEmployer"
+                                               name="Not_previously_employed"
+                                               ng-click="toggleFirstEmployment()"/>
+                                        <label for="editNoPreviousEmployer">I have not been previously employed</label>
+                                    </row-field>
+                                    <row-field label="{{getLabelFor('Employer name')}}"
+                                               label-for="editPreviousEmployerName"
+                                               ng-if="needPreviousEmployment()">
+                                        <sb-input ng-model="previousEmployment().employerName"
+                                                  name="Previous_Employer_name"
+                                                  input-id="editPreviousEmployerName"
+                                                  ng-maxlength="30"
+                                                  ng-required="true"
+                                                  class="medium-width"
+                                                  ng-hide="customerInformationData.hasPreviousEmployment()">
+                                        </sb-input>
+                                        <span ng-show="customerInformationData.hasPreviousEmployment()">{{previousEmployment().employerName}}</span>
+                                    </row-field>
+                                    <row-field id="editPreviousStartDate" label="{{getLabelFor('Start date')}}"
+                                               ng-if="needPreviousEmployment()">
+                                        <sb-datepicker ng-model="previousEmployment().startDate"
+                                                       ng-required="true"
+                                                       name="Previous_Employment_start_date"
+                                                       ng-hide="customerInformationData.hasPreviousEmployment()"
+                                                       view-default-date-format="true"
+                                                       date-format="YYYY-MM-DD"
+                                                       skip-year="true"
+                                                       earliest-date="01 January 1900"
+                                                       latest-date="{{getLatestDateForPreviousEmployment()}}">
+                                        </sb-datepicker>
+                                        <span ng-show="customerInformationData.hasPreviousEmployment()">{{previousEmployment().startDate | dateFormat}}</span>
+                                    </row-field>
+
+                                    <row-field id="editPreviousEndDate" label="End date *"
+                                               ng-if="needPreviousEmployment()">
+                                        <sb-datepicker ng-model="previousEmployment().endDate"
+                                                       name="Previous_Employment_end_date"
+                                                       ng-required="true"
+                                                       view-default-date-format="true"
+                                                       date-format="YYYY-MM-DD"
+                                                       skip-year="true"
+                                                       earliest-date="{{previousEmployment().startDate}}"
+                                                       latest-date="{{getLatestDateForPreviousEmployment()}}">
+                                        </sb-datepicker>
+                                    </row-field>
+
+                                    <row-field label="{{getLabelFor('Industry')}}" label-for="editPreviousOccupationIndustry"
+                                               ng-if="needPreviousEmployment()">
+                                        <div class="styled-select medium-width"
+                                             ng-hide="customerInformationData.hasPreviousEmployment()">
+                                            <select ng-model="previousEmployment().occupationIndustryCode"
+                                                    id="editPreviousOccupationIndustry"
+                                                    name="Previous_Employment_Industry"
+                                                    ng-required="true"
+                                                    fix-ie-select
+                                                    ng-options="industry.code as industry.description for industry in occupationIndustries">
+                                                <option value=""
+                                                        ng-hide="previousEmployment().occupationIndustryCode"></option>
+                                            </select>
+                                        </div>
+                                        <span ng-show="customerInformationData.hasPreviousEmployment()">{{previousEmployment().occupationIndustryCode | map:'occupationIndustry'}}</span>
+                                    </row-field>
+
+                                    <row-field label="{{getLabelFor('Occupation level')}}" label-for="editPreviousOccupationLevel"
+                                               ng-if="needPreviousEmployment()">
+                                        <div class="styled-select medium-width"
+                                             ng-hide="customerInformationData.hasPreviousEmployment()">
+                                            <select ng-model="previousEmployment().occupationLevelCode"
+                                                    id="editPreviousOccupationLevel"
+                                                    name="Previous_Employment_Occupation_level"
+                                                    ng-required="true"
+                                                    fix-ie-select
+                                                    ng-options="level.code as level.description for level in occupationLevels">
+                                                <option value=""
+                                                        ng-hide="previousEmployment().occupationLevelCode"></option>
+                                            </select>
+                                        </div>
+                                        <span ng-show="customerInformationData.hasPreviousEmployment()">{{previousEmployment().occupationLevelCode | map:'occupationLevel'}}</span>
+                                    </row-field>
+
+                                    <row-field label="{{getLabelFor('Status')}}" label-for="editPreviousEmploymentType"
+                                               ng-if="needPreviousEmployment()">
+                                        <div class="styled-select medium-width"
+                                             ng-hide="customerInformationData.hasPreviousEmployment()">
+                                            <select ng-model="previousEmployment().employmentStatusCode"
+                                                    id="editPreviousEmploymentType"
+                                                    name="Previous_Employment_status"
+                                                    ng-required="true"
+                                                    fix-ie-select
+                                                    ng-options="type.code as type.description for type in employmentTypes">
+                                                <option value=""
+                                                        ng-hide="previousEmployment().employmentStatusCode"></option>
+                                            </select>
+                                        </div>
+                                        <span ng-show="customerInformationData.hasPreviousEmployment()">{{previousEmployment().employmentStatusCode | map:'employmentType'}}</span>
+                                    </row-field>
+                                </ul>
+                            </section>
+
+                            <section class="education">
+                                <h3>Education</h3>
+                                <ul class="data edit-mode">
+                                    <row-field label="Qualification level" label-for="editQualificationLevel">
+                                        <div class="styled-select medium-width">
+                                            <select ng-model="studyType"
+                                                    id="editQualificationLevel"
+                                                    name="Qualification_level"
+                                                    ng-change="updateLevelOfEducation(studyType); fixIeDynamicOption();"
+                                                    fix-ie-select
+                                                    ng-options="type as type for type in studyTypes">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </row-field>
+
+                                    <row-field label="Qualification type" label-for="editQualificationType">
+                                        <div class="styled-select medium-width">
+                                            <select ng-model="customerInformationData.tertiaryQualificationCode"
+                                                    id="editQualificationType"
+                                                    name="Qualification_type"
+                                                    fix-ie-select
+                                                    ng-options="level.code as level.description for level in levelsOfEducation">
+                                            </select>
+                                        </div>
+                                    </row-field>
+                                </ul>
+                            </section>
+
+                            <div>
+                                <button id="save-employer" class="primary" ng-click="save()"
+                                        ng-disabled="!employmentForm.$valid || !canSave()">
+                                    Save
+                                </button>
+                                <button id="cancel-employer" class="secondary" ng-click="cancel()">
+                                    {{cancelButtonText}}
+                                </button>
+                            </div>
+
+                            <ul class="data">
+                                <div class="nav-arrow hide-for-medium-up">
+                                    <a ng-click="next()">
+                                        <i class="icon icon-angle-down"></i>
+                                        <span>Next section</span>
+                                    </a>
+                                </div>
+                            </ul>
+                        </div>
+                    </ng-form>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<cancel-confirmation edit-form="employmentForm"></cancel-confirmation>
+<ng-include src="'features/accountorigination/customerInformation/partials/existingCustomerModal.html'"></ng-include>

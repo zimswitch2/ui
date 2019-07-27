@@ -1,0 +1,9 @@
+source "https://supermarket.chef.io"
+
+
+cookbook "logrotate", path: '~/chop/logrotate'
+cookbook "java", path: '~/chop/java'
+cookbook "java-wrapper", path: '~/chop/java-wrapper'
+cookbook "jboss-eap", path: '~/chop/jboss-eap'
+cookbook "ibrapp", path: '~/chop/ibrapp'
+cookbook "logstash-sbsa", path: '~/chop/logstash-sbsa'

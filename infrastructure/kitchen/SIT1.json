@@ -1,0 +1,25 @@
+{
+  "id": "SIT1",
+  "sbgds": {
+    "jndiname": "java:/jdbc/SBG_DS",
+    "servername": "spbbdb21v.standardbank.co.za",
+    "portnumber": "60033",
+    "databasename": "mcadb",
+    "schema": "DBMCASBG",
+    "drivername": "ibmdb2",
+    "username": "smcaib",
+    "password": "3qX4cRAss",
+    "maxpoolsize": "400"
+  }, 
+  "sbglogds": {
+    "jndiname": "java:/jdbc/SBG_LOGDS",
+    "servername": "spbbdb21v.standardbank.co.za",
+    "portnumber": "60073",
+    "databasename": "mcalogdb",
+    "schema": "SBGLOG",
+    "drivername": "ibmdb2",
+    "username": "sbglog",
+    "password": "WAS7iVUBc7",
+    "maxpoolsize": "400"
+  }
+}

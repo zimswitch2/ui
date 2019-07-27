@@ -1,0 +1,59 @@
+<div ng-if="account" class="summary-split-row hide-on-print">
+    <div>
+        <span>From account</span>
+        <span id="fromAccount">{{account | accountLabel}}</span>
+    </div>
+    <div require-permission="viewAccountBalance">
+        <span>Available balance</span>
+        <span id="availableBalance" name="confirm-fromBalance">{{account.availableBalance.amount | randAmount}}</span>
+    </div>
+</div>
+<div class="summary-row">
+    <div>
+        <span>Beneficiary name</span><span id="beneficiaryName">{{beneficiary.name}}</span>
+    </div>
+</div>
+<div ng-if="beneficiary.accountNumber &amp;&amp; !isListedBeneficiary()" class="summary-row print-only">
+    <div><span>Account number</span><span>{{beneficiary.accountNumber}}</span></div>
+</div>
+<div ng-if="beneficiary.bank.name &amp;&amp; !isListedBeneficiary()" class="summary-row print-only">
+    <div><span>Bank</span><span>{{beneficiary.bank.name}}</span></div>
+</div>
+<div ng-if="beneficiary.bank.branch &amp;&amp; !isListedBeneficiary()" class="summary-row print-only">
+    <div><span>Branch</span><span>{{beneficiary.bank.branch["name"]}} ({{beneficiary.bank.branch["code"]}})</span>
+    </div>
+</div>
+<div ng-if="beneficiary.recipientReference" class="summary-row">
+    <div>
+        <span>Beneficiary reference</span><span id="beneficiaryReference">{{beneficiary.recipientReference}}</span>
+    </div>
+</div>
+<div ng-if="beneficiary.customerReference" class="summary-row">
+    <div><span>Your reference</span><span id="yourReference">{{beneficiary.customerReference}}</span></div>
+</div>
+<div class="summary-row" ng-if="paymentConfirmation">
+    <div>
+        <span id="confirmationDetails">
+            {{paymentConfirmationMessage()}}
+            {{beneficiary.paymentConfirmation.recipientName}} will receive payment notifications by
+            {{beneficiary.paymentConfirmation.confirmationType | sentenceCaseForNotificationTypeFilter}}
+            {{beneficiary.paymentConfirmation.confirmationType | prepositionForNotificationTypeFilter}}
+        </span>
+        <span id="confirmationAddress">{{beneficiary.paymentConfirmation.address}}</span>
+    </div>
+</div>
+<div ng-if="beneficiary.reasonForPayment" class="summary-row">
+    <div><span>Reason for payment</span><span id="reasonForPayment">{{beneficiary.reasonForPayment}}</span></div>
+</div>
+<div class="summary-row">
+    <div id="paymentDateLabelConfirmation"><span>{{paymentDetail.getFromDateLabel()}}</span><span id="paymentDate">{{paymentDetail.fromDate | dateFormat}}</span></div>
+</div>
+<div class="summary-row" id="repeatPaymentDescription" ng-show="paymentDetail.isRecurringPayment()">
+    <div><span>Repeat Payment</span><span>{{paymentDetail.getPaymentDescription()}}</span></div>
+</div>
+<div class="summary-row" id="lastPaymentDate" ng-show="paymentDetail.isRecurringPayment()">
+    <div><span>Final payment date</span><span>{{paymentDetail.getToDate(latestTimestampFromServer) | dateFormat}}</span></div>
+</div>
+<div class="summary-row">
+    <div id="amount"><span>Amount</span><span class="amount">{{amount | randAmount}}</span></div>
+</div>

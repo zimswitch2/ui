@@ -1,0 +1,90 @@
+header {
+  background-color: $primary-blue;
+  img {
+    max-width: 42px;
+    padding: 0.5em 0;
+    @media #{$medium-up} {
+      margin-left: 2em;
+    }
+    @media #{$small-only} {
+      margin-left: 0.5em;
+    }
+  }
+}
+
+.profile-dropdown-container {
+  color: white;
+  position: absolute;
+  right: 0px;
+  top: 18px;
+  margin-right: 15px;
+  z-index: 99;
+  min-height: 3em;
+  text-align: right;
+
+  #choose-dashboard {
+    color: #fff;
+    margin-right: 0.5em;
+    text-decoration: none;
+
+    &:after {
+      content: '|';
+      margin-left: 0.8em;
+    }
+
+    .switch-icon {
+      font-size: 1em;
+      margin-right: 0.3em;
+      display: inline;
+      position: relative;
+      top: 2px;
+    }
+  }
+
+  #signedinas {
+    line-height: 1em;
+    text-align: right;
+    cursor: pointer;
+    display: inline-block;
+
+    i {
+      font-size: 1.2em;
+      position: relative;
+      top: 0;
+      margin: 0 5px;
+      left: -4px;
+
+      &.icon-caret-down {
+        font-size: 1.4em;
+        margin-left: 8px;
+        top: 2px;
+        left: 0;
+      }
+    }
+  }
+
+  #link-to-full-site {
+
+    a {
+      color: #779db4;
+      position: absolute;
+      top: 62px;
+      min-width: 226px;
+      right: -2px;
+      text-decoration: none;
+      z-index: -1;
+
+      &:hover {
+        cursor: pointer;
+        color: #5c8197;
+      }
+    }
+  }
+}
+
+@media #{$small-only} {
+  .profile-dropdown-container {
+    top: 16px;
+    right: 0px;
+  }
+}

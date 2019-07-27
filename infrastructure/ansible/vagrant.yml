@@ -1,0 +1,7 @@
+---
+-
+
+  hosts: vagrant
+  roles:
+    - base
+    - dev_workstation

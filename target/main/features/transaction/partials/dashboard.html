@@ -1,0 +1,25 @@
+<div class="dashboard">
+    <h2>Chitaitai</h2>
+
+    <div class="show-for-small-only">
+        <sb-accordion items="filteredItems" partial="common/accordion/partials/dashboardAccordion.html"></sb-accordion>
+    </div>
+
+    <div class="hide-for-small-only panel">
+        <div class="row">
+            <div ng-repeat="section in filteredItems">
+              <div class="large-4 columns">
+              <div class="header">{{section.title}}</div>
+                <ul class="clearfix">
+                    <li class="left" ng-repeat="i in section.items">
+                           <a id="{{i.id}}" href="{{i.url}}" ng-click="i.beforeNavigate &amp;&amp; i.beforeNavigate()" class="{{i.class}}" track-click="transact-{{i.id}}" data-dtmid="link_content_transact dashboard" data-dtmtext="{{i.title}} button click">
+                            {{i.title}}
+                            <i class="icon icomoon-{{i.icon}}"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

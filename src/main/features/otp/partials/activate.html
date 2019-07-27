@@ -1,0 +1,67 @@
+<h2>Activate Your One-time Password (OTP)</h2>
+<div class="form-layout-top">
+    <div flow></div>
+
+    <div info notification ng-hide="errorMessage">
+        Your OTP service has been disabled. To continue, please reactivate this service
+    </div>
+    <div notification error ng-show="errorMessage">{{otpPreferences.error}}</div>
+    <div class="panel">
+        <ng-form name="reactivateOtpForm" class="display-block">
+            <section>
+                <label class="display-inline">Preferred method</label>
+                <ul class="radio-button-group">
+                    <li>
+                        <input id="sms-otp" type="radio" name="preferredMethod" ng-required="true" value="SMS"
+                               ng-model="otpPreferences.preferredMethod"
+                               ng-checked="otpPreferences.preferredMethod === 'SMS'">
+                        <label for="sms-otp">SMS</label>
+                    </li>
+                    <li>
+                        <input id="email-otp" name="preferredMethod" ng-required="true" value="Email" type="radio"
+                               ng-model="otpPreferences.preferredMethod"
+                               ng-checked="otpPreferences.preferredMethod === 'Email'">
+                        <label for="email-otp">Email</label>
+                    </li>
+                </ul>
+            </section>
+
+            <section ng-if="otpPreferences.preferredMethod === 'SMS'" feature="caterForInternationalOnActivateOtp">
+                <div>
+                    <international-phone-number
+                            ng-model="$parent.otpPreferences.contactDetails"></international-phone-number>
+                </div>
+            </section>
+
+            <section ng-if="otpPreferences.preferredMethod === 'SMS'" not-feature="caterForInternationalOnActivateOtp">
+                <sb-input name="phone-number"
+                          label="Please enter cell phone number"
+                          ng-model="$parent.otpPreferences.cellPhoneNumber"
+                          ng-required="$parent.otpPreferences.preferredMethod === 'SMS'"
+                          ng-maxlength="10"
+                          ng-minlength="10"
+                          ng-pattern="'(0)[6-8][0-9]{8}'"
+                          pattern-message="Please enter a 10-digit cell phone number"
+                          focus-on
+                        >
+                </sb-input>
+            </section>
+
+            <section ng-if="otpPreferences.preferredMethod === 'Email'">
+                <sb-input name="email-address"
+                          label="Please enter email address"
+                          ng-model="$parent.otpPreferences.emailAddress"
+                          ng-required="$parent.otpPreferences.preferredMethod === 'Email'"
+                          ng-maxlength="40"
+                          ng-pattern="'{{configuration.email.pattern}}'"
+                          pattern-message="Please enter a valid email address"
+                          focus-on
+                        >
+                </sb-input>
+            </section>
+
+            <button id="proceed" class="primary" ng-disabled="!reactivateOtpForm.$valid" ng-click="next()">Next</button>
+            <a id="logout" class="btn secondary" ng-click="signOut()">Sign out</a>
+        </ng-form>
+    </div>
+</div>

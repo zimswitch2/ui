@@ -1,0 +1,95 @@
+<div class="account-sharing">
+    <h2>Accept / Decline Invitation</h2>
+    <flow></flow>
+
+
+    <div class="panel grey-text">
+
+        <div class="invitation-heading grey-text">
+            <span>You have been added to {{operatorInvitation.invitationDetails.business.name}} internet banking profile. </span>
+
+            <div>
+                <span>If you accept:</span>
+            </div>
+
+        </div>
+        <div class="summary account-sharing-summary">
+            <div ng-repeat="permission in operatorInvitation.invitationDetails.permissions">
+
+                <div class="invitation-permissions">
+                    <span>On the {{permission.account.type}} Account you can:</span>
+                </div>
+                <div class="permissions-box">
+                    <div class="permission">
+                        <span>{{permission.role.name}}</span>
+                    </div>
+                    <div>
+                        <span>{{permission.role.description}}</span>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div>
+            <section>
+                <label for="accept-invitation">
+                    <input required type="checkbox" id="accept-invitation" ng-model="operatorInvitation.agree">
+                    You accept the <a ng-click="showDisclaimer()">terms and conditions</a>
+                </label>
+            </section>
+
+        </div>
+
+
+        <div class="button-box">
+            <button ng-disabled="!operatorInvitation.agree" ng-click="operatorInvitation.acceptInvitation()" data-dtmid="obb_content accept button" data-dtmtext="Accept button click">Accept</button>
+            <button class="btn secondary" ng-click="operatorInvitation.declineInvitation()" data-dtmid="obb_content decline button" data-dtmtext="Decline button">Decline</button>
+        </div>
+
+        <div class="medium-6 columns">
+            <div class="modal-overlay " ng-show="operatorInvitation.showModal">
+                <div class="modal-container modal-box sed-modal action-modal ">
+                        <div class="row">
+                            <div class="modal-close close-btn">
+                                <div class="close-button" ng-click="operatorInvitation.showModal = false">
+                                    <i class="icon icomoon-close-circle"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="large-1 columns">
+
+                            </div>
+                            <div class="columns">
+                                <div class="show-for-large-up text-center margin-bottom">
+                                </div>
+                                <div class="text-center" margin-top="">
+
+
+                                    <div class="grey-text text-narrow modal-text">
+                                        Are you sure you would like to decline the invitation?
+                                    </div>
+                                </div>
+                                <div class="text-center  button-box">
+
+                                    <button class="button secondary" ng-click="operatorInvitation.declineInvitationOnModal()">
+                                        Yes
+                                    </button>
+                                    <button class="button secondary" ng-click="operatorInvitation.goBackToDetails()">
+                                        No
+                                    </button>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

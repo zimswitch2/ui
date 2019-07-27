@@ -1,0 +1,95 @@
+<div class="beneficiaries-table wide-content">
+  <div class="filter-controls">
+    <form>
+      <div class="filter">
+        <input type="text" id="filter" name="filter" ng-model="query" ng-change="cancelDeletion()" placeholder="{{placeHolderMessage}}">
+        <i class="icon icomoon-search"></i>
+        <i class="icon icomoon-close close" ng-click="resetFilter()" ng-show="query != &apos;&apos;"></i>
+      </div>
+    </form>
+  </div>
+
+  <div ng-if="beneficiaries &amp;&amp; beneficiaries.length &gt; 5" ng-include="&apos;features/goToAnchor/partials/scrollOnClick.html&apos;"></div>
+  <div class="panel">
+    <div class="action-table">
+      <ul ng-init="initialize()" class="header">
+        <li>
+          <div class="information">
+            <div>
+              <a id="name-heading" ng-click="sortBy(&apos;name&apos;)">Beneficiary name <i ng-class="sortArrowClass(&apos;name&apos;)"></i></a>
+            </div>
+            <div>
+              <a id="customer-reference-heading" ng-click="sortBy(&apos;customerReference&apos;)">Your reference
+                <i ng-class="sortArrowClass(&apos;customerReference&apos;);"></i>
+              </a>
+            </div>
+            <div>
+              <a id="recipient-group-name-heading" ng-click="hasGroup &amp;&amp; sortBy(&apos;recipientGroupName&apos;)">Group
+                <i ng-show="hasGroup" ng-class="sortArrowClass(&apos;recipientGroupName&apos;)"></i>
+              </a>
+            </div>
+            <div ng-show="!addingGroup" class="padding-left">
+              <a id="last-payment-date-heading" ng-click="hasPayment &amp;&amp; sortBy(&apos;lastPaymentDate&apos;)" require-permission="viewLastPaymentDate">Last payment date
+                <i ng-show="hasPayment" ng-class="sortArrowClass(&apos;lastPaymentDate&apos;)"></i>
+              </a>
+            </div>
+            <div ng-show="!addingGroup" require-permission="viewLastAmountPaid">
+              <span>Last amount paid</span>
+            </div>
+          </div>
+
+          <div ng-show="!addingGroup &amp;&amp; actionable" class="actions">
+            <div class="action" require-permission="deleteBeneficiary">Delete</div>
+            <div class="action" require-permission="modifyBeneficiary">Modify</div>
+            <div class="action">Pay</div>
+          </div>
+        </li>
+      </ul>
+
+      <ul class="data">
+        <li ng-repeat="beneficiary in beneficiaries | beneficiaryFilter: query: !addingGroup | orderBy: sort.criteria:!sort.descending" class="beneficiary" ng-class="{&apos;highlight&apos;: beneficiary.highlightClass}">
+
+          <div class="information" ng-click="viewBeneficiary(beneficiary.recipientId)">
+            <div data-header="Beneficiary Name">
+              <div>{{beneficiary.name}}</div>
+            </div>
+            <div data-header="Your Reference">
+              <div>{{beneficiary.customerReference}}</div>
+            </div>
+            <div data-header="Group">
+              <div>{{beneficiary.recipientGroupName}}</div>
+            </div>
+            <div data-header="Last Payment Date" class="padding-left" require-permission="viewLastPaymentDate">
+              <div>{{beneficiary.lastPaymentDate|dateFormat}}</div>
+            </div>
+            <div data-header="Last Amount Paid" require-permission="viewLastAmountPaid">
+              <div class="cell-data">{{beneficiary.amountPaid | randAmount}}</div>
+            </div>
+          </div>
+
+          <div ng-hide="!actionable" class="actions">
+            <a inline-action="delete" ng-click="markForDeletion(beneficiary)" action-message="confirmDeleteMessage(beneficiary)" error-message="errorDeleteMessage(beneficiary)" show-when="isBeingDeleted(beneficiary)" confirm-fn="delete(beneficiary)" require-permission="deleteBeneficiary">
+            </a>
+            <a class="action" title="modify" ng-click="edit(beneficiary.originalBeneficiary)" require-permission="modifyBeneficiary">
+              <span class="title">Modify</span>
+              <i class="icon icomoon-edit"></i>
+            </a>
+            <a class="action" title="pay" ng-click="payBeneficiary(beneficiary)">
+              <span class="title">Pay</span>
+              <i class="icon icomoon-pay"></i>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+        <span class="information message" ng-show="beneficiaries.length &gt; 0 &amp;&amp; (beneficiaries | beneficiaryFilter: query: !addingGroup).length == 0">
+        No matches found.
+        </span>
+    <span class="information message" ng-show="beneficiaries.length == 0">{{noBeneficiariesMessage}}</span>
+  </div>
+  <beneficiary-validation-modal title="Deleted beneficiary" show-modal="showInvalidBeneficiaryModal" on-confirm="onceOffPayment()" on-cancel="refreshBeneficiaryList()" confirm-text="Once-off" cancel-text="Cancel">
+    <div>
+      <p>This beneficiary was deleted. No further payments can be made to this beneficiary. Would you like to make a once-off payment?</p>
+    </div>
+  </beneficiary-validation-modal>
+</div>

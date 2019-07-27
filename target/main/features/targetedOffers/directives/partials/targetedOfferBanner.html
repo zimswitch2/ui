@@ -1,0 +1,20 @@
+<div ng-show="offerAndTemplateExist" class="targeted-offer">
+    <div class="offer-container">
+        <h3 class="account-offer-header">A banking solution for you</h3>
+        <h4 class="offerSubject">{{templateData.qualifyingText}}</h4>
+    </div>
+    <div class="panel product {{productClass}}">
+        <h3>{{offer.productName | capitalize:true }}</h3>
+        <div class="offerBody">
+            <div ng-include="offer.templateUrl"></div>
+        </div>
+        <div class="actions">
+            <button class="primary accept-offer" ng-click="acceptOffer()" track-click="{{offer.productName}}_{{offer.acceptButtonText}}" data-dtmid="link_content_targeted offer banner" data-dtmtext="{{offer.productName}} | {{offer.acceptButtonText}} button click">
+                {{offer.acceptButtonText}}
+            </button>
+            <button class="secondary decline-offer" track-click="{{offer.productName}}_Declined offer" data-dtmid="link_content_targeted offer banner" data-dtmtext="{{offer.productName}} | No thanks button click">
+                No thanks
+            </button>
+        </div>
+    </div>
+</div>

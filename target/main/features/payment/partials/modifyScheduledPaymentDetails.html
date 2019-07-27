@@ -1,0 +1,88 @@
+<h2>Modify Scheduled Payment</h2>
+
+<div class="form-layout-top" flow=""></div>
+
+<div class="form-layout-main">
+    <div class="info notification" ng-show="displayNotification.hasInfo">{{displayNotification.message}}</div>
+    <div ng-show="errorMessage" error="" notification="">{{errorMessage}}</div>
+
+    
+
+    <form name="scheduledPaymentForm" class="panel pay-beneficiary" ng-submit="proceed()" novalidate="novalidate">
+        <div id="modifyScheduledPayment">
+            <section>
+                <label>Beneficiary name</label>
+                <span class="display-block">{{beneficiary.name}}</span>
+            </section>
+
+            <section>
+                <label>Account number</label>
+                <span class="display-block">{{beneficiary.accountNumber}}</span>
+            </section>
+
+            <section>
+                <label>Beneficiary reference</label>
+                <span class="display-block">{{beneficiary.recipientReference}}</span>
+
+            </section>
+
+            <section>
+                <label>Your reference</label>
+                <span class="display-block">{{beneficiary.customerReference}}</span>
+            </section>
+
+            <section>
+                <sb-amount ng-model="amount" enforcer="enforcer" label="Amount">
+                </sb-amount>
+            </section>
+
+            <section>
+                <label id="fromDateLabel">{{paymentDetail.getFromDateLabel()}}</label>
+                <div>
+                    <sb-datepicker ng-model="paymentDetail.fromDate" date-format="YYYY-MM-DDTHH:mm:ss.SSSZZ" view-default-date-format="true" earliest-date="{{paymentDetail.getEarliestPaymentDate(latestTimestampFromServer)}}" latest-date="{{paymentDetail.getLatestPaymentDate(latestTimestampFromServer)}}" class="small-6 medium-4 columns" name="payment_date"></sb-datepicker>
+                </div>
+            </section>
+
+            <section class="repeat-payment-options" ng-show="isRecurringPayment">
+                <div class="repeat-payment-option">
+                    <label for="repeatInterval">Every</label>
+
+                    <div class="styled-select">
+                        <select id="repeatInterval" name="repeatInterval" ng-model="paymentDetail.repeatInterval" ng-options="option.repeatInterval as option.intervalName for option in paymentDetail.getIntervals()" ng-change="paymentDetail.defaultRepeatNumber()">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="repeat-payment-option" ng-form="subForm">
+                    <label for="repeatNumber">For</label>
+                    <input type="text" id="repeatNumber" name="repeatNumber" ng-show="isRecurringPayment" ng-model="paymentDetail.repeatNumber" sb-min="paymentDetail.getMinimumRepeats()" sb-max="paymentDetail.getMaximumRepeats()" ng-required="paymentDetail.isRecurringPayment()" sb-integer="">
+                </div>
+
+                <div id="intervalName" class="repeat-payment-option inline-label" ng-show="isRecurringPayment">
+                    <span>{{paymentDetail.getIntervalName()}}{{paymentDetail.repeatNumber !== '1' ? 's' : ''}}</span>
+                </div>
+
+                <div id="repeatNumberErrorMin" class="message error repeat-number-error" ng-if="subForm.repeatNumber.$error.sbMin">Please schedule
+                    {{paymentDetail.getMinimumRepeatsInWords()}} or more repeat payments
+                </div>
+                <div id="repeatNumberErrorMax" class="message error repeat-number-error" ng-if="subForm.repeatNumber.$error.sbMax">Repeat payments cannot be scheduled more than a year in
+                    advance
+                </div>
+                <div id="repeatNumberErrorInteger" class="message error repeat-number-error" ng-if="subForm.repeatNumber.$error.sbInteger">Please enter a valid number
+                </div>
+                <div id="repeatNumberErrorRequired" class="message error repeat-number-error" ng-if="subForm.repeatNumber.$error.required">Please enter the number of times you would like the
+                    payment to repeat
+                </div>
+            </section>
+
+            <section ng-show="isRecurringPayment">
+                <label>Final payment date</label>
+                <span id="finalPaymentDate" class="display-block">{{paymentDetail.getToDate() | dateFormat}}</span>
+            </section>
+
+            <button id="proceed" class="primary" ng-disabled="!scheduledPaymentForm.$valid" ng-click="proceed()">Next
+            </button>
+            <button go-back="" id="cancel" class="secondary">Cancel</button>
+        </div>
+    </form>
+</div>

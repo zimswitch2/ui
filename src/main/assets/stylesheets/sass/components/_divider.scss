@@ -1,0 +1,69 @@
+.divider-container {
+  position: relative;
+}
+
+/*
+.t = The bubble text
+*/
+
+$textBubbleMinSize: 3em;
+$textBubbleMaxSize: 6em;
+
+.divider {
+  left: 0;
+  top: 0;
+
+  > .t {
+    box-sizing: border-box;
+    position: absolute;
+    min-width: $textBubbleMinSize;
+    min-height: $textBubbleMinSize;
+    max-width: $textBubbleMaxSize;
+    max-height: $textBubbleMaxSize;
+    width: auto;
+    height: $textBubbleMinSize;
+    margin-top: ($textBubbleMinSize * 0.96);
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    color: $silver-grey;
+    background: #fff;
+    border: 1px solid $silver-grey;
+    border-radius: ($textBubbleMinSize / 2);
+    text-align: center;
+    font-size: 1em;
+    line-height: ($textBubbleMinSize * 0.96);
+    overflow: hidden;
+    z-index: 2;
+  }
+  
+  &.vertical {
+    position: absolute;
+    width: ($textBubbleMinSize / 2);
+    height: 100%;
+    border-left: 1px solid $silver-grey;
+    overflow: visible;
+
+    > .t {
+      top: 50%;
+      left: -($textBubbleMinSize / 2);
+      margin: -($textBubbleMinSize / 2) 0 0 0;
+    }
+  }
+  
+  &.horizontal {
+    position: relative;
+    max-width: $content-max-width;
+    width: 100%;
+    height: ($textBubbleMinSize / 2);
+    margin: 1em 0 (($textBubbleMinSize / 2) + 1) 0;
+    border-bottom: 1px solid $silver-grey;
+    overflow: visible;
+    
+    > .t {
+      top: 0;
+      left: 50%;
+      margin: 0 0 0 ($textBubbleMinSize / -2);
+    }
+  }
+  
+}

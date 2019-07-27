@@ -1,0 +1,82 @@
+<div class="centered-action-table hide-on-print">
+    <ul class="header">
+        <li>
+            <div class="information">
+                <div><span>Latest</span></div>
+                <div class="currency"><span>Amount (R)</span></div>
+            </div>
+        </li>
+    </ul>
+
+    <ul class="data not-clickable">
+        <div class="Description">
+            <li ng-show="spinnerActive" class="loading hide-on-print">
+                <div class="center"><span class="centered-spinner"></span><span
+                        class="loading-text">Loading...</span>
+                </div>
+            </li>
+        </div>
+        <li ng-show="transactions.length <= 0 && !spinnerActive">
+            <span class="information">
+                <div data-header="Latest">
+                    <div class="cell-data">No transactions during this period</div>
+                </div>
+                <div data-header="Amount (R)"></div>
+            </span>
+        </li>
+
+        <li ng-repeat="line in transactions | statementFilter: query | orderBy: transactionDate"
+            class="transactionMobile" ng-hide="spinnerActive">
+
+            <span class="information yearHeader" ng-if="line.transactionYearAsHeader">
+                <div data-header="Latest">
+                    <div class="cell-data">{{line.transactionYearAsHeader}}</div>
+                </div>
+                <div data-header="Description"></div>
+                <div data-header="Amount (R)"></div>
+            </span>
+
+            <span class="information">
+                <div data-header="Latest">
+                    <div class="cell-data narrative">{{line.transactionDayDate}} {{line.transactionMonthDate}}</div>
+                    <div class="cell-data narrative">{{line.transactionStatementNarrative}}
+                    </div>
+                    <div class="type month"><small>{{line.description | capitalize}}</small>
+                    </div>
+                </div>
+                <div data-header="Amount (R)"
+                     class="{{amountClass(line.amount.amount)}}">
+                    <div class="cell-data">{{line.amount.amount | amountNegativePositive}}</div>
+                </div>
+                </span>
+        </li>
+        <li ng-if="loadingPaginated" class="loading hide-on-print">
+            <div class="center"><span class="centered-spinner"></span><span
+                    class="loading-text">Loading...</span>
+            </div>
+        </li>
+
+        <li ng-if="!spinnerActive && !retryToLoadTransaction && (transactions | statementTransactionFilter : query).length == 0" class="no-match-search">
+                    <span class="information">
+                        <div data-header="Date">
+                            <div class="cell-data">There are no matches to your search criteria</div>
+                        </div>
+                        <div data-header="Amount (R)"></div>
+                    </span>
+        </li>
+
+        <li ng-show="loadMore" ng-click="loadMoreTransactions()" class="bottom-text load-next hide-on-print">
+            <div><span>Load more transactions</span></div>
+        </li>
+        <li ng-if="retryToLoadTransaction" ng-click="retry()" class="bottom-text retry hide-on-print">
+            <div>Error loading transactions. <span>Retry?</span></div>
+        </li>
+        <li ng-show="!loading && statement && (statement | statementFilter : query).length == 0"
+            class="no-match-search">
+            <span class="information">
+                <div></div>
+                <div id="no-matches-message" class="information message">No matches found</div>
+            </span>
+        </li>
+    </ul>
+</div>

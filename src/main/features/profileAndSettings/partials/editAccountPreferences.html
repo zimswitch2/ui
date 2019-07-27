@@ -1,0 +1,73 @@
+<h2>Profile and Settings</h2>
+<div notification error class="wide" ng-show="error">{{error}}</div>
+
+<div class="row">
+    <sb-accordion items="menuItems" partial="common/accordion/partials/profileAccordion.html"></sb-accordion>
+
+    <div class="edit-account-preferences panel medium-12 large-9 columns">
+
+        <h2>Product preference</h2>
+
+        <h3>{{accountDetails}}</h3>
+
+        <form name="addressForm" autocomplete="off" data-frmcontainer="Formal statement delivery form" novalidate >
+            <h3 id="product-preferences-account-details">Formal statement delivery</h3>
+
+            <div class="text-notification">Please visit your nearest branch if you want your statements delivered by
+                post, or to update your postal address
+            </div>
+
+            <section id="deliveryMethodSection" ng-hide="emailDelivery">
+                <label>How would you like to receive your formal statement?</label>
+
+                <ul class="radio-button-group inline-radio-button-group">
+                    <li>
+                        <input name="deliveryMethod" id="email" type="radio" ng-model="deliveryMethod"
+                               value="email"/>
+                        <label for="email">Email</label>
+                    </li>
+                    <li ng-if="deliveryMethod != 'email'">
+                        <input name="deliveryMethod" id="postal" type="radio" ng-model="deliveryMethod"
+                               value="postal" disabled/>
+                        <label for="postal">Post</label>
+                    </li>
+
+                </ul>
+            </section>
+
+            <section ng-show="deliveryMethod === 'email'" class="margin-top">
+
+                <div class="summary" ng-show="emailDelivery">
+                    <div class="summary-row">
+                        <div>
+                            <span id="product-preferences-delivery-description">Formal statements are being delivered to your</span>
+                            <span id="product-preferences-delivery-method">{{emailDelivery}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <sb-input
+                        name="deliveryAddress"
+                        label="Change email address"
+                        ng-model="statementPreferences.emailAddress"
+                        ng-maxlength="configuration.email.maxLength"
+                        ng-required="true"
+                        ng-pattern="'{{configuration.email.pattern}}'"
+                        pattern-message="Please enter a valid email address"
+                        focus-on>
+                </sb-input>
+
+            </section>
+
+            <div class="actions">
+                <button id="save-button" class="primary" ng-click="save()" ng-disabled="!addressForm.$valid" data-dtmid="link_content_Product preference" data-dtmtext="save button click">
+                    Save
+                </button>
+                <button id="cancel-button" class="secondary" ng-click="cancel()" data-dtmid="link_content_Product preference" data-dtmtext="cancel button click">
+                    Cancel
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>

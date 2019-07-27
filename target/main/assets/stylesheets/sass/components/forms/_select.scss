@@ -1,0 +1,70 @@
+$select-height: 38px;
+
+.styled-select {
+  width: 100%;
+  border: 1px solid #cccccc;
+  display: inline-block;
+  padding:0;
+  overflow: hidden;
+  height: $select-height;
+
+  select {
+    width: 105%;
+    background-position: 95% center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    -webkit-border-radius: 0px;
+    background-color: #FFF;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMzBweCIgaGVpZ2h0PSIzOHB4IiB2aWV3Qm94PSIwIDAgMzAgMzgiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMwIDM4IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxyZWN0IHk9Ii0wLjA3MiIgZmlsbD0iI0YzRjNGMyIgd2lkdGg9IjMwIiBoZWlnaHQ9IjM4LjE0NSIvPg0KPHBhdGggZmlsbD0iIzZBODg5RCIgZD0iTTE1LjUyOSwyMS4zNjZMMTksMTYuNjMzaC02Ljk0MUwxNS41MjksMjEuMzY2eiIvPg0KPC9zdmc+DQo=);
+    background-repeat: no-repeat;
+    border: none;
+    padding: $input-padding;
+    padding-right: 3em;
+    font-size: $input-font-size;
+    line-height: normal;
+    border-radius: 0;
+    height: $select-height;
+    outline: 0;
+
+    &:-moz-focusring {
+      color: transparent;
+      text-shadow: 0 0 0 #000;
+    }
+
+    @media #{$large-up} {
+      width: 110%;
+      background-position: 91% center;
+      padding-right: 4em;
+    }
+
+    &:focus {
+      background-color: #fff;
+      outline: 0;
+    }
+  }
+
+  select::-ms-expand {
+    display: none;
+  }
+  &.disabled {
+    background-color: #E2E2E2;
+  }
+}
+
+.inline-select {
+  width: 100%;
+  @media #{$medium-up} {
+    margin: 0;
+    width: 65%;
+  }
+}
+
+.inline-info  {
+  @media #{$medium-up} {
+    width: 30%;
+    margin-top: 1.5em;
+    margin-left: 1em;
+  }
+}

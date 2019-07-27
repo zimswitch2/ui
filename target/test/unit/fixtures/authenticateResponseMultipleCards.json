@@ -1,0 +1,70 @@
+{
+  "userProfile": {
+    "channelProfiles": [
+      {
+        "profileId": "59758",
+        "profileName": "Glynn",
+        "profileStyle": "PERSONAL",
+        "systemPrincipalIdentifiers": [
+          {
+            "locale": null,
+            "systemPrincipalId": "34193",
+            "systemPrincipalKey": "OST"
+          },
+          {
+            "locale": null,
+            "systemPrincipalId": "956",
+            "systemPrincipalKey": "SBSA_BANKING"
+          }
+        ]
+      },
+      {
+        "profileId": "43657",
+        "profileName": "My Personal Dashboard",
+        "profileStyle": "PERSONAL",
+        "systemPrincipalIdentifiers": [
+          {
+            "locale": null,
+            "systemPrincipalId": "34193",
+            "systemPrincipalKey": "OST"
+          },
+          {
+            "systemPrincipalId": "956",
+            "systemPrincipalKey": "SBSA_BANKING"
+          }
+        ]
+      },
+      {
+        "profileId": "98456",
+        "profileName": "Hot carded",
+        "profileStyle": "PERSONAL",
+        "systemPrincipalIdentifiers": [
+          {
+            "systemPrincipalId": "2004",
+            "systemPrincipalKey": "SBSA_BANKING"
+          }
+        ]
+      },
+      {
+        "profileId": "406",
+        "profileName": "Activate OTP (7515)",
+        "profileStyle": "PERSONAL",
+        "systemPrincipalIdentifiers": [
+          {
+            "systemPrincipalId": "911",
+            "systemPrincipalKey": "SBSA_BANKING"
+          }
+        ]
+      }
+    ],
+    "channelSettings": [],
+    "defaultProfileId": "43657",
+    "digitalId": {
+      "username": "ibrefresh@standardbank.co.za"
+    },
+    "lastLoggedIn": "2014-01-27T08:14:35.000+0000",
+    "preferredName": "Internet Banking User"
+  },
+  "keyValueMetadata": [],
+  "stepUp": null
+}

@@ -1,0 +1,176 @@
+.international-payment {
+  .panel {
+    @media #{$small-only} {
+      form {
+        padding-top: 2.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      i.icomoon-call {
+        font-size: 2.8rem;
+        padding-right: 0.1rem;
+      }
+
+      i.icomoon-tick {
+        font-size: 1.5em;
+      }
+
+      .customer-care-column {
+        padding-left: 1rem;
+        padding-right: 0rem;
+      }
+
+      .telephone-text a {
+        font-size: 0.85rem;
+      }
+
+      .telephone-number-link a {
+        font-size: inherit;
+        color: $font-grey-dark;
+      }
+    }
+
+    @media #{$medium-up}{
+      button.primary {
+        width: 11rem;
+      }
+
+      form {
+        padding-left: 3.5rem;
+        padding-top: 3.5rem;
+      }
+
+      i.icomoon-call {
+        font-size: 2.5em;
+      }
+
+      i.icomoon-tick {
+        font-size: 2.5em;
+      }
+
+      .large-text {
+        font-size: 1.3em;
+      }
+
+      .telephone-text {
+        position: absolute;
+        margin-top: 0.5rem;
+
+        a {
+          color: $slate-grey;
+          text-decoration: none;
+          padding-left: 0.5rem;
+        }
+
+        .telephone-text-label {
+          display: inline-block;
+        }
+      }
+
+      .customer-care-column {
+        padding-left: 3.5rem;
+      }
+    }
+
+    .customer-care-column {
+      border-right: 1px solid $primary-grey;
+    }
+
+    i.icomoon-tick {
+      color: $grass-green;
+    }
+
+    i.icomoon-call {
+      color: #999999;
+
+      &.icomoon-call-large {
+        font-size: 3.5em;
+        padding-right: 0.5rem;
+      }
+    }
+
+    .panel {
+      padding: 0em;
+    }
+
+    section {
+      .telephone-text {
+        display: inline-block;
+      }
+    }
+
+    .telephone-icon {
+      display: inline-block;
+    }
+
+    .telephone-number-link a {
+      padding-left: 0rem;
+      color: $font-grey-dark;
+    }
+
+    .telephone-text {
+      color: $slate-grey;
+      display: inline-block;
+    }
+
+    .telephone-row {
+      border-top: 1px solid $primary-grey;
+    }
+  }
+
+  ul {
+    margin-left: 2.1rem;
+
+    li {
+      color: $gunmetal;
+      list-style: disc;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+    }
+  }
+}
+
+.international-payment-summary {
+  .panel {
+    width: 100%;
+    float: left;
+  }
+
+  span.incomplete-field {
+    color: $error-text;
+  }
+
+  .wide {
+    float: none;
+  }
+}
+
+.international-payment-pay {
+  @media #{$small-up} {
+    input.currency {
+      width: 100%;
+    }
+  }
+
+  @media #{$large-up} {
+    input.currency {
+      width: 50%;
+    }
+  }
+
+  .notification.info {
+    max-width: 67em;
+
+    @media #{$small-only} {
+      width: 95%;
+      padding-right: 1em;
+      margin: 0 auto;
+      margin-bottom: 0.5em;
+    }
+  }
+
+  .wide {
+    float: none;
+  }
+}

@@ -1,0 +1,61 @@
+<script type="text/javascript">
+    (function () {
+        var scriptUrl = ["trk.standardbank.co.za", "811652", "horKlox.js"].join("/");
+        window.loadTrusteerScript(scriptUrl);
+    })();
+</script>
+
+<script type="text/javascript">
+    (function () {
+        var scriptUrl = ["cdn.standardbank.co.za", "811652", "waveForm3.js"].join("/");
+        window.loadTrusteerScript(scriptUrl);
+    })();
+</script>
+
+<div class="overview">
+    <h2 id="overviewTitle">Overview</h2>
+    <h3 id="overviewSinceDateSubTitle" class="show-for-medium-up">Since {{ActivitySince | date:'d MMMM yyyy'}}</h3>
+    <h4 class="grey-text show-for-medium-up">Consolidated view of all your accounts</h4>
+    <div info notification ng-show="hasInfo" ng-init="initialize()">
+        {{greeting()}}
+    </div>
+    <div class="info notification" ng-show="infoMessage">
+        {{infoMessage}}
+    </div>
+
+    <div class="row products" ng-init="availableProducts()">
+        <div class=" large-3 columns" ng-if="transactionalBalance.hasAmount">
+            <div class="product transaction ">
+                <h3>Transaction</h3>
+
+                <h2 ng-click="navigateToAccountSummary()">{{transactionalBalance.amount | randAmount}}</h2>
+            </div>
+        </div>
+        <div class=" large-3 columns" ng-if="creditBalance.hasAmount">
+            <div class="product creditcard ">
+                <h3>Credit</h3>
+
+                <h2 ng-click="navigateToAccountSummary()">{{creditBalance.amount | randAmount}}</h2>
+            </div>
+        </div>
+        <div class=" large-3 columns" ng-if="loanBalance.hasAmount">
+            <div class="product loan ">
+                <h3>Loans</h3>
+
+                <h2 ng-click="navigateToAccountSummary()">{{loanBalance.amount | randAmount}}</h2>
+            </div>
+        </div>
+        <div class=" large-3 columns end" ng-if="investmentBalance.hasAmount">
+            <div class="product investment ">
+                <h3>Investments</h3>
+
+                <h2 ng-click="navigateToAccountSummary()">{{investmentBalance.amount | randAmount}}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row products" feature="personalFinanceManagement" ng-show="ShowNetIncomeChart">
+        <div class="large-4 columns">
+            <sb-net-income-chart parent-page-description="overview page" accounts="menigaProfile.accounts" personal-finance-management-id="menigaProfile.personalFinanceManagementId"></sb-net-income-chart>
+        </div>
+    </div>
+</div>

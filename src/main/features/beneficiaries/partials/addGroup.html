@@ -1,0 +1,56 @@
+<div class="add-beneficiary-to-group">
+<div error notification ng-show="errorMessage">{{errorMessage}}</div>
+<div success notification ng-show="isSuccessful">{{successMessage}}</div>
+<h2>Add Beneficiary to Group</h2>
+
+<div class="well-container">
+    <beneficiaries-list class="well-style" ng-class="{'show-page' : shouldDisplayBeneficiariesPage }"
+                        on-select="selectBeneficiary(beneficiary)">
+    </beneficiaries-list>
+    <div class="btn-container back-beneficiaries margin-top show-for-large-up">
+        <button go-back class="secondary">Back</button>
+    </div>
+</div>
+
+<div class="group-list" ng-class="{'show-page' : shouldDisplayGroupPage }">
+    <div class="well">
+        <div class="status" ng-show="canClick">
+            {{selectedBeneficiaries.length}} {{selectedBeneficiaries.length > 1 ? 'beneficiaries' : 'beneficiary'}} selected
+        </div>
+        <h4>Beneficiary groups</h4>
+        <ul class="addable">
+            <li ng-class="{'highlight': beneficiaryGroup.highlightClass}" ng-repeat="beneficiaryGroup in beneficiaryGroups | orderBy: sort.criteria:!sort.descending"
+                class="{{displayClass}}" ng-click="!canClick || amendBeneficiariesGroup(beneficiaryGroup)">
+               <span data-th="Group Name">
+                   <span class="groupName">{{beneficiaryGroup.name}}</span>
+                <inline-spinner ng-show="beneficiaryGroup == currentGroup"></inline-spinner>
+                   <span class="right members">{{beneficiaryGroup.numberOfMembers}}
+                       <span ng-show="beneficiaryGroup.numberOfMembers > 1"> members </span>
+                       <span ng-show="beneficiaryGroup.numberOfMembers <= 1"> member</span>
+                   </span>
+                </span>
+            </li>
+        </ul>
+        <form name="addGroupForm" style="width: auto">
+            <div class="input-group-button">
+                <input type="text" id="name" name="name" size="30" ng-model="groupName" ng-focus="clearNotifications()"
+                       placeholder="New group" ng-maxlength="25" ng-pattern="'[A-Za-z0-9 ]*'" required/>
+                <button id="addGroup" ng-click="addGroup()" ng-disabled="!addGroupForm.$valid" class="primary" data-dtmid="link_content_content link" data-dtmtext="Create group button click">Create
+                </button>
+                <inline-spinner ng-show="!currentGroup"></inline-spinner>
+                <span class="small form-error" ng-show="addGroupForm.name.$error.pattern">Please enter a valid beneficiary group name</span>
+                <span class="small form-error" ng-show="addGroupForm.name.$error.maxlength">Cannot be longer than 25 characters</span>
+            </div>
+        </form>
+    </div>
+</div>
+<span class="actions-mobile">
+    <button ng-click="showGroupPage()" ng-show="shouldDisplayBeneficiariesPage" class="primary" ng-disabled="!canClick">
+        Add to group
+    </button>
+    <span ng-show="shouldDisplayBeneficiariesPage" class="btn-container">
+        <button go-back class="secondary">Back</button>
+    </span>
+    <button ng-click="showBeneficiariesPage()" ng-show="shouldDisplayGroupPage" class="secondary">Back</button>
+</span>
+</div>

@@ -1,0 +1,78 @@
+<h2>International Payment</h2>
+
+<flow class="international-payment-beneficiary-flow wide"></flow>
+
+<div class="international-payment-beneficiary-container">
+    <international-payment-beneficiary-navigation current-page="&apos;details&apos;"></international-payment-beneficiary-navigation>
+    <div class="international-payment-beneficiary-form">
+        <form class="xbp-beneficiary-details" name="xbpBeneficiaryDetailsForm" novalidate="">
+            <div class="international-payment-beneficiary-scroll">
+                <div class="row wide-content">
+                    <div class="large-7 medium-12 small-12 columns">
+                        <ng-form name="xbpBeneficiaryDetailsForm">
+                            <section ng-if="customerDetails.isResident()" id="beneficiaryTypeSelector">
+                                <label for="beneficiaryType">Beneficiary type</label>
+                                <div class="styled-select medium-width">
+                                    <select id="beneficiaryType" ng-model="beneficiary.type" ng-required="true" ng-change="beneficiaryTypeChanged()" fix-ie-select="" ng-options="beneficiaryType.code as beneficiaryType.description for beneficiaryType in beneficiaryTypes">
+                                    </select>
+                                </div>
+                            </section>
+                            <section ng-if="beneficiary.isIndividual()" class="medium-width">
+                                <sb-input name="firstName" label="First name" ng-model="beneficiary.firstName" ng-required="true" ng-minlength="1" ng-maxlength="20" ng-pattern="&apos;^[a-zA-Z]+[a-zA-Z\&apos; -]*&apos;" pattern-message="Please enter a valid beneficiary first name">
+                                </sb-input>
+                            </section>
+                            <section ng-if="beneficiary.isIndividual()" class="medium-width">
+                                <sb-input name="lastName" label="Last name" ng-model="beneficiary.lastName" ng-required="true" ng-minlength="1" ng-maxlength="20" ng-pattern="&apos;^[a-zA-Z]+[a-zA-Z\&apos; -]*&apos;" pattern-message="Please enter a valid beneficiary last name">
+                                </sb-input>
+                            </section>
+                            <section ng-if="beneficiary.isIndividual()">
+                                <h4>Gender</h4>
+                                <input id="beneficiaryMale" type="radio" name="gender" value="MALE" ng-required="true" ng-model="beneficiary.gender" ng-checked="beneficiary.gender === &apos;MALE&apos;">
+                                <label class="inline-label" for="beneficiaryMale">Male</label>
+                                <input id="beneficiaryFemale" type="radio" name="gender" value="FEMALE" ng-required="true" ng-model="beneficiary.gender" ng-checked="beneficiary.gender === &apos;FEMALE&apos;">
+                                <label class="inline-label" for="beneficiaryFemale">Female</label>
+                            </section>
+                            <section ng-if="!beneficiary.isIndividual()" class="medium-width">
+                                <sb-input name="entityName" label="Entity name" ng-model="beneficiary.entityName" ng-required="true" ng-minlength="1" ng-maxlength="20" ng-pattern="&apos;^[a-zA-Z]+[a-zA-Z\&apos; -]*&apos;" pattern-message="Please enter a valid beneficiary entity name">
+                                </sb-input>
+                            </section>
+                            <section class="medium-width">
+                                <sb-input name="addressLineOne" label="Address line 1" ng-model="beneficiary.addressLineOne" ng-required="true" ng-minlength="1" ng-maxlength="35" ng-pattern="&apos;^[0-9a-zA-Z\&apos; -]*&apos;" pattern-message="Please enter a valid beneficiary address line one">
+                                </sb-input>
+                            </section>
+
+                            <section class="medium-width">
+                                <sb-input name="addressLineTwo" label="Address line 2 (optional)" ng-model="beneficiary.addressLineTwo" ng-minlength="1" ng-maxlength="35" ng-pattern="&apos;^[0-9a-zA-Z\&apos; -]*&apos;" pattern-message="Please enter a valid beneficiary address line two">
+                                </sb-input>
+                            </section>
+
+                            <section class="medium-width">
+                                <sb-input name="city" label="City" ng-model="beneficiary.city" ng-required="true" ng-minlength="1" ng-maxlength="20" ng-pattern="&apos;^[a-zA-Z]+[a-zA-Z -]*&apos;" pattern-message="Please enter a valid beneficiary city">
+                                </sb-input>
+                            </section>
+
+                            <section>
+                                <label for="beneficiaryCountry-input">Country</label>
+
+                                <div class="medium-width">
+                                    <sb-typeahead id="beneficiaryCountry" placeholder="Select a country" items="countries" ng-model="beneficiary.country" sort-by="name" ng-required="true">
+                                    </sb-typeahead>
+                                </div>
+                            </section>
+
+                            <div>
+                                <button id="next" class="primary" ng-click="next()" ng-disabled="!xbpBeneficiaryDetailsForm.$valid">
+                                    Next
+                                </button>
+                                <button id="back" class="secondary" ng-click="back()">
+                                    Back
+                                </button>
+                            </div>
+                        </ng-form>
+                    </div>
+                    <div class="large-5 columns show-for-large-up"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

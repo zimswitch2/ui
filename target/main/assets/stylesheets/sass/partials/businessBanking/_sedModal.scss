@@ -1,0 +1,21 @@
+.modal-container {
+  &.sed-modal {
+
+    @media #{$large-up} {
+      width: 65em;
+    }
+
+    h2 {
+      color: $denim-blue;
+      margin-top: 1em;
+    }
+
+    .text-narrow{
+      margin-left: 4em;
+      margin-right: 4em;
+      margin-top: 2em;
+      margin-bottom: 2em;
+    }
+
+  }
+}

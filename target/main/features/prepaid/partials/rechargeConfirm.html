@@ -1,0 +1,14 @@
+<h2>Buy Prepaid</h2>
+<div class="form-layout-top" flow=""></div>
+<div class="panel form-layout-main prepaid-recharge">
+    <ng-include src="&apos;features/prepaid/partials/summary/enteredValues.html&apos;"></ng-include>
+
+    <div>
+        <button id="confirm" ng-click="confirm()">Confirm</button>
+        <button go-back="" ng-click="modify()" class="secondary">Modify</button>
+        <button go-back="" id="cancel" class="tertiary" ng-click="cancel()" number-of-pages="2">Cancel</button>
+    </div>
+</div>
+<div class="form-layout-right">
+    <ng-include src="&apos;features/prepaid/partials/rechargeBalances.html&apos;"></ng-include>
+</div>

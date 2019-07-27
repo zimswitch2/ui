@@ -1,0 +1,145 @@
+.payment-history {
+
+  .filter-container {
+    background-color: white;
+    padding: 0.5em;
+    border-bottom: 1px solid $silver-grey-light;
+
+    @media #{$medium-up} {
+      padding: 1.5em;
+    }
+
+    @media #{$small-only} {
+      width: 95%;
+      margin: 0 auto;
+    }
+
+    form {
+      width: 100%;
+
+      @media #{large-up} {
+        width: 80%;
+      }
+    }
+  }
+
+  form {
+    display: inline-block;
+  }
+
+  .date-picker {
+    display: none;
+
+    @media #{$large-up} {
+      display: inherit;
+    }
+
+    .datepicker-input {
+      display: inline-block;
+      background-color:white;
+    }
+  }
+
+
+
+  @media #{$small-only} {
+    .centered-action-table {
+      ul {
+        .information {
+          .month {
+            margin-top: -0.5rem;
+          }
+          width: 100%;
+          > div {
+            &:nth-child(1) {
+              width: 60%;
+            }
+            &:nth-child(2) {
+              width: 40%;
+            }
+          }
+        }
+      }
+
+    }
+  }
+
+  @media #{$medium-up} {
+    .centered-action-table {
+      ul {
+        .information {
+          > div {
+            &:nth-child(1) {
+              width: 20%;
+            }
+            &:nth-child(2) {
+              display:none;
+            }
+            &:nth-child(3) {
+              width: 60%;
+            }
+            &:nth-child(4) {
+              display:none;
+            }
+            &:nth-child(5) {
+              width: 20%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  @media #{$large-up} {
+    .centered-action-table {
+      ul {
+        .information {
+          > div {
+            &:nth-child(1) {
+              width: 10%;
+            }
+            &:nth-child(2) {
+              width: 30%;
+              display:block;
+            }
+            &:nth-child(3) {
+              width: 30%;
+            }
+            &:nth-child(4) {
+              width: 20%;
+              display:block;
+            }
+            &:nth-child(5) {
+              width: 10%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .balance {
+    div[data-header="Transaction date"] {
+      display: none;
+    }
+    div[data-header="Amount (R)"] {
+      display: none;
+    }
+  }
+
+  @media #{$large-up}, print {
+    .balance {
+      div[data-header="Transaction date"] {
+        display: block;
+      }
+      div[data-header="Amount (R)"] {
+        display: block;
+      }
+    }
+  }
+
+  .back-button-container {
+    padding-top: 1.5em;
+  }
+}

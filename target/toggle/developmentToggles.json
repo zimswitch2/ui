@@ -1,0 +1,3 @@
+{
+  "routingForAllowedFrom": { "default": true, "overrideOption": "no-routing-rules" }
+}

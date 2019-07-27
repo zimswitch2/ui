@@ -1,0 +1,36 @@
+@-webkit-keyframes fadeOut {
+  0% {
+    background-color: white;
+  }
+
+  66% {
+    background-color: lighten($headerColor, 10%);
+    color: white;
+  }
+
+  100% {
+    background-color: white;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    background-color: white;
+  }
+
+  66% {
+    background-color: lighten($headerColor, 10%);
+    color: white;
+  }
+
+  100% {
+    background-color: white;
+  }
+}
+
+@mixin ease-in-out {
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}

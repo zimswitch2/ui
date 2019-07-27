@@ -1,0 +1,30 @@
+<h2>Activate Your One-time Password (OTP)</h2>
+<div class="form-layout-top">
+<div class="success notification">OTP service successfully activated</div>
+</div>
+<div class="panel">
+    <div class="summary">
+        <div class="summary-row"><div><span>Preferred method</span><span id="confirm-type">{{otpPreferences.preferredMethod}}</span></div></div>
+        <div class="summary-row">
+            <div>
+                <span ng-show="otpPreferences.preferredMethod === 'SMS'">Cell phone number</span>
+                <span ng-show="otpPreferences.preferredMethod === 'Email'">Email address</span>
+                <span
+                        not-feature="caterForInternationalOnActivateOtp"
+                        ng-show="otpPreferences.preferredMethod === 'SMS'"
+                        id="confirm-phone-number">{{otpPreferences.cellPhoneNumber}}
+                </span>
+                <span
+                        feature="caterForInternationalOnActivateOtp"
+                        ng-show="otpPreferences.preferredMethod === 'SMS'"
+                        id="confirm-phone-number-international">+{{otpPreferences.internationalDialingCode}}-{{otpPreferences.cellPhoneNumber | cellPhoneNumber}}
+                </span>
+                <span ng-show="otpPreferences.preferredMethod === 'Email'" id="confirm-email-address">{{otpPreferences.emailAddress}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <button ng-click="startBanking()" title="Start banking" id="start-banking" data-dtmid="link_content_content link" data-dtmtext="activate otp | Start banking button click">Start banking</button>
+    </div>
+</div>

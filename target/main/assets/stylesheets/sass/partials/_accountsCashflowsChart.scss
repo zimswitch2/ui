@@ -1,0 +1,58 @@
+.accounts-cashflows-doughnut-chart {
+  @include product-panel;
+  @include clearfix;
+
+  border-left: 2px solid $silver-grey-light;
+  border-right: 2px solid $silver-grey-light;
+  border-bottom: 2px solid $silver-grey-light;
+  background-color: $white;
+
+  h3 {
+    background-color: $silver-grey-light;
+    font-weight: normal;
+    font-size: 1.5em;
+    padding: 0.5em;
+    margin: 0;
+    color: #5f88df;
+  }
+
+  div {
+    div {
+      .chart-container {
+        margin: 1em 0;
+        height: 272px;
+      }
+    }
+
+    .summary {
+      .summary-row {
+        h2.chart-legend-header-value {
+          &:hover {
+            background-color: transparent;
+            cursor: default;
+          }
+        }
+      }
+    }
+
+    .chart-legend {
+      padding: 0;
+    }
+  }
+
+  span.chart-legend-header-label {
+    margin-left: 0.1em;
+  }
+
+  h2.chart-legend-header-value {
+    &:hover {
+      background-color: transparent;
+      cursor: default;
+    }
+  }
+
+  .button-bar {
+    border-top: 2px solid $silver-grey-light;
+    padding: 1em;
+  }
+}

@@ -1,0 +1,35 @@
+/*
+  wrap element only on mobile
+  use margin-top to distinguish first element
+*/
+@mixin wrap-on-mobile($margin-top: 1em) {
+  @media #{$small-only} {
+    @include fill-parent;
+    margin-top: $margin-top;
+  }
+}
+
+/*
+  bullet style lists
+*/
+@mixin bullet-list {
+  margin-top: .5em;
+  color: $gunmetal-light;
+  list-style: disc outside;
+  padding-left: 0;
+  margin-left: $list-side-margin;
+}
+
+/*
+  inlines content within ul < li to see tabular data
+*/
+@mixin inline-list($min-width) {
+  li {
+    * {
+      display: inline-block;
+      &:first-child {
+        min-width: $min-width;
+      }
+    }
+  }
+}

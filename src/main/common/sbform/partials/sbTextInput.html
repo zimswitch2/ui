@@ -1,0 +1,65 @@
+<div class="text-input-container">
+    <label for="{{id}}" ng-if="label">{{label}}</label>
+    <a href="javascript:void(0)" name="{{tooltip}}" aria-label="{{tooltip}}" class="sb-tooltip" tabindex="-1" ng-if="tooltip">
+        <i class="icon icon-question-circle"></i>
+    </a>
+    <span ng-switch="tag">
+        <span ng-switch-when="textarea">
+            <span class="right characters-left" ng-show="leftChars>0">Characters left:{{leftChars}}</span>
+            <textarea
+                    id="{{id}}"
+                    name="{{name}}"
+                    placeholder="{{placeholder}}"
+                    autocapitalize="off"
+                    ng-model="model.value"
+                    ng-required="ngRequired"
+                    ng-trim="{{shouldBeTrimmed()}}"
+                    ng-maxlength="{{ngMaxlength}}"
+                    ng-minlength="{{ngMinlength}}"
+                    ng-change="modelChanged()"></textarea>
+        </span>
+
+        <span ng-switch-default>
+            <input type="{{type || 'text'}}"
+                   id="{{id}}"
+                   name="{{name}}"
+                   placeholder="{{placeholder}}"
+                   autocapitalize="off"
+                   ng-model="model.value"
+                   ng-required="ngRequired"
+                   ng-trim="{{shouldBeTrimmed()}}"
+                   ng-maxlength="{{ngMaxlength}}"
+                   ng-minlength="{{ngMinlength}}"
+                   ng-pattern="{{ngPattern}}"
+                   ng-change="modelChanged()"
+                   ng-focus="ngFocus()"
+                   ng-blur="ngBlur()"
+                   exact-lengths="{{exactLength}}"
+                   input-confirm
+                   confirm-input-name="{{confirmInputName}}"
+                   show-hide-password="{{showPasswordButton}}"
+                   input-leading-icon="{{iconClassName}}"
+                   prevent-consecutive-numbers="{{preventConsecutiveNumbers}}"
+                   prevent-repetitive-numbers="{{preventRepetitiveNumbers}}" />
+        </span>
+    </span>
+
+    <ng-messages for="form[name].$error" ng-hide="form[name].$pristine && !form[name].$touched && !validateOnLoad">
+        <ng-message class="form-error" when="required">{{requiredMessage || 'Required'}}</ng-message>
+        <ng-message class="form-error" when="maxlength">{{maxLengthMessage || 'Cannot be longer than ' + ngMaxlength + ' characters'}}</ng-message>
+        <ng-message class="form-error" when="minlength">{{minLengthMessage || 'Must be longer than ' + ngMinlength + ' characters'}}</ng-message>
+        <ng-message class="form-error" when="pattern">{{patternMessage}}</ng-message>
+
+        <ng-message class="form-error" when="preventConsecutiveNumbers">{{preventConsecutiveNumbersMessage}}</ng-message>
+        <ng-message class="form-error" when="preventRepetitiveNumbers">{{preventRepetitiveNumbersMessage}}</ng-message>
+
+        <ng-message class="form-error input-confirm-error" when="inputConfirm">{{confirmationMessage}}</ng-message>
+        <ng-message class="form-error" when="idNumber">Please enter a valid 13-digit South African ID number</ng-message>
+        <ng-message class="form-error" when="exactLengths">{{exactLengthMessage()}}</ng-message>
+    </ng-messages>
+
+    <span ng-transclude></span>
+
+    <!--<div ng-show="description" class="description" ng-class="{ 'invalid-input': invalid('pattern') }">{{description}}</div>-->
+
+</div>

@@ -1,0 +1,19 @@
+.recharge-balances {
+  .recharge-balances-header {
+    padding-bottom: 1em;
+    font-size: 1.2rem;
+  }
+  .recharge-balances-body {
+    span {
+      display: inline-block;
+      width: 100%;
+      text-align: left;
+    }
+
+    span.withdrawal-limit {
+      font-size: 1.5em;
+      font-weight: lighter;
+      color: $slate-grey;
+    }
+  }
+}

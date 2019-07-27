@@ -1,0 +1,1 @@
+angular.module('refresh.meniga', ['refresh.meniga.netIncomeService', 'refresh.menigaTransactionsPage.controller']);

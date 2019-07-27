@@ -1,0 +1,57 @@
+<h2>Pay a Beneficiary</h2>
+<div class="form-layout-main">
+    <div class="panel">
+        <div class="summary" id="paymentDetailsConfirmation">
+            <div ng-if="account" class="summary-split-row hide-on-print">
+                <div>
+                    <span>From account</span>
+                    <span id="fromAccount">{{account | accountLabel}}</span>
+                </div>
+                <div require-permission="viewAccountBalance">
+                    <span>Available balance</span>
+                    <span id="availableBalance" name="confirm-fromBalance">{{account.availableBalance.amount | randAmount}}</span>
+                </div>
+            </div>
+            <div class="summary-row">
+                <div>
+                    <span>Beneficiary name</span><span id="beneficiaryName">{{payment.beneficiaryName}}</span>
+                </div>
+            </div>
+            <div ng-if="payment.beneficiaryReference" class="summary-row">
+                <div>
+                    <span>Beneficiary reference</span><span id="beneficiaryReference">{{payment.beneficiaryReference}}</span>
+                </div>
+            </div>
+            <div ng-if="payment.customerReference" class="summary-row">
+                <div><span>Your reference</span><span id="yourReference">{{payment.customerReference}}</span>
+                </div>
+            </div>
+            <div class="summary-row" ng-if="payment.paymentNotification">
+                <div>
+                        <span id="confirmationDetails">
+                            {{payment.beneficiaryName}} will receive payment notifications by
+                            {{payment.paymentNotificationMethod | sentenceCaseForNotificationTypeFilter}}
+                            {{payment.paymentNotificationMethod | prepositionForNotificationTypeFilter}}
+                        </span>
+                    <span id="confirmationAddress">{{payment.paymentNotificationAddress}}</span>
+                </div>
+            </div>
+            <div ng-if="payment.reasonForPayment" class="summary-row">
+                <div><span>Reason for payment</span><span id="reasonForPayment">{{payment.reasonForPayment}}</span></div>
+            </div>
+            <div ng-if="payment.reasonForRejection" class="summary-row">
+                <div><span>Reason for rejection</span><span id="reasonForRejection">{{payment.reasonForRejection}}</span></div>
+            </div>
+            <div class="summary-row" id="paymentDate" ng-show="payment.paymentDate">
+                <div><span>Payment date</span><span>{{latestTimestampFromServer | dateFormat}}</span>
+                </div>
+            </div>
+            <div class="summary-row">
+                <div id="amount"><span>Amount</span><span class="amount">{{ payment.amount | randAmount }}</span></div>
+            </div>
+        </div>
+        <span>
+            <button go-back="" class="secondary">Back</button>
+        </span>
+    </div>
+</div>

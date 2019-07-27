@@ -1,0 +1,128 @@
+<h2>Your Details</h2>
+
+<flow class="wide"></flow>
+
+<div class="notification error wide" ng-show="serverErrorMessage !== undefined">
+    {{serverErrorMessage}}
+</div>
+
+<div class="customer-info-container">
+    <customer-information-navigation current-page="'employment'"></customer-information-navigation>
+    <div class="customer-info-form">
+        <form name="customerInformationForm" data-frmcontainer="edit employment form" novalidate>
+            <div class="customer-info-scroll">
+                <div class="employment">
+                    <button id="edit-employer-button" class="btn icon-button action edit" title="modify"
+                            ng-click="edit()"
+                            ng-show="customerInformationData.hasEmploymentDetails() || customerInformationData.unemploymentReason !== undefined">
+                        <i class="icon icomoon-edit"></i>
+                        <span class="title">Modify</span>
+                    </button>
+
+
+                    <div id="currentEmploymentSection">
+                        <h3 title-for="currentEmploymentSection">Current Employment</h3>
+
+                        <ul class="data">
+                            <row-field label="Employed"
+                                       ng-show="customerInformationData.hasEmploymentDetails() || customerInformationData.unemploymentReason !== undefined">
+                                {{customerInformationData.isEmployed() | map:'boolean'}}
+                            </row-field>
+                            <row-field id="noEmployment"
+                                       ng-hide="customerInformationData.hasEmploymentDetails() || customerInformationData.unemploymentReason !== undefined">
+                                No employment record.
+                            </row-field>
+
+                            <row-field id="unemploymentReason" label="Reason for unemployment"
+                                       ng-show="customerInformationData.unemploymentReason !== undefined"
+                                       feature="customerManagementV4">
+                                {{customerInformationData.unemploymentReason | map: 'unemploymentReason'}}
+                            </row-field>
+                            <row-field id="employer" label="Employer name"
+                                       ng-show="customerInformationData.isEmployed()">
+                                {{customerInformationData.getCurrentEmploymentDetails().employerName}}
+                            </row-field>
+                            </row-field>
+                            <row-field id="startDate" label="Start date"
+                                       ng-show="customerInformationData.isEmployed()">
+                                {{customerInformationData.getCurrentEmploymentDetails().startDate | dateFormat}}
+                            </row-field>
+                            <row-field id="occupationIndustry" label="Industry"
+                                       ng-show="customerInformationData.isEmployed()">
+                                {{customerInformationData.getCurrentEmploymentDetails().occupationIndustryCode |
+                                map:'occupationIndustry'}}
+                            </row-field>
+                            <row-field id="occupationLevel" label="Occupation level"
+                                       ng-show="customerInformationData.isEmployed()">
+                                {{customerInformationData.getCurrentEmploymentDetails().occupationLevelCode |
+                                map:'occupationLevel'}}
+                            </row-field>
+                            <row-field id="employmentType" label="Status"
+                                       ng-show="customerInformationData.isEmployed()">
+                                {{customerInformationData.getCurrentEmploymentDetails().employmentStatusCode |
+                                map:'employmentType'}}
+                            </row-field>
+                            <row-field>
+                                <a href="" id="add-employer-link" ng-click="edit('add')"
+                                   class="notification-preference add-detail">
+                                    + Add new employer
+                                </a>
+                            </row-field>
+                        </ul>
+
+                        <ul id="previousEmployer" class="data"
+                            ng-show="customerInformationData.hasPreviousEmployment()">
+                            <h3>Previous Employer</h3>
+                            <row-field id="previousEmployerName" label="Previous employer name">
+                                {{customerInformationData.getPreviousEmploymentDetails().employerName}}
+                            </row-field>
+                            <row-field id="startDatePreviousEmployer" label="Start date">
+                                {{customerInformationData.getPreviousEmploymentDetails().startDate |
+                                dateFormat}}
+                            </row-field>
+                            <row-field id="endDatePreviousEmployer" label="End date">
+                                {{customerInformationData.getPreviousEmploymentDetails().endDate | dateFormat}}
+                            </row-field>
+                            <row-field id="previousOccupationIndustry" label="Industry">
+                                {{customerInformationData.getPreviousEmploymentDetails().occupationIndustryCode
+                                |
+                                map:'occupationIndustry'}}
+                            </row-field>
+                            <row-field id="previousOccupationLevel" label="Occupation level">
+                                {{customerInformationData.getPreviousEmploymentDetails().occupationLevelCode |
+                                map:'occupationLevel'}}
+                            </row-field>
+                            <row-field id="previousEmploymentType" label="Status">
+                                {{customerInformationData.getPreviousEmploymentDetails().employmentStatusCode |
+                                map:'employmentType'}}
+                            </row-field>
+                        </ul>
+
+                        <ul class="data">
+                            <h3>Education</h3>
+                            <row-field id="levelOfEducation" label="Level of education"
+                                       ng-show="customerInformationData.tertiaryQualificationCode">
+                                {{customerInformationData.tertiaryQualificationCode | map:'levelOfEducation'}}
+                            </row-field>
+                            <row-field id="noLevelOfEducation"
+                                       ng-hide="customerInformationData.tertiaryQualificationCode">
+                                No details saved yet.
+                            </row-field>
+                        </ul>
+
+                        <ul class="data">
+                            <div id="incomePage" class="nav-arrow">
+                                <a ng-click="gotoIncomePage()">
+                                    <i class="icon icon-angle-down"></i>
+                                    <span>Next section</span>
+                                </a>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

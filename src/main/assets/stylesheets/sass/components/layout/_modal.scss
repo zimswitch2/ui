@@ -1,0 +1,282 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 888888;
+}
+
+.modal-close {
+  float: right;
+
+  &.fixed {
+    margin-right: 2em;
+
+    .close-button {
+      position: fixed;
+    }
+  }
+
+  .close-button {
+    cursor: pointer;
+    margin: 0 auto;
+    color: $sb-blue;
+    font-size: 1.5em;
+
+    &.transparent {
+      background: none;
+    }
+
+    @media only screen and (max-width: 384px) {
+      padding-left: 0;
+      top: 2em;
+      right: 2em;
+    }
+  }
+}
+
+.modal-container {
+  width: 30em;
+  height: auto;
+  max-height: 90%;
+  border: 1px solid #787878;
+  padding: 2.5em;
+  background-color: #fff;
+  overflow: auto;
+  text-align: center;
+  color: #787878;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 5em;
+
+  #countdown-seconds {
+    color: #0496FD;
+    white-space: nowrap;
+  }
+
+  #countdown {
+    font-size: 2em;
+    color: #0496FD;
+    position: relative;
+    top: -125px;
+    display: block;
+    left: 3px;
+  }
+
+  .primary {
+
+    @media #{$small-only} {
+      width: 100%;
+      margin-bottom: 1em;
+      text-align: center;
+    }
+
+  }
+
+  .secondary {
+
+    @media #{$small-only} {
+      width: 100%;
+    }
+
+  }
+
+  h3 {
+    color: #787878;
+    float: none !important;
+  }
+
+  @media #{$large-up} {
+    width: 30em;
+  }
+
+  @media #{$xlarge-up} {
+    width: 45em;
+
+    #countdown {
+      left: 0;
+    }
+  }
+
+  @media #{$small-only} {
+    width: 30em;
+  }
+
+  #countdown {
+    color: #0496FD;
+  }
+
+  #continue-banking {
+    margin-bottom: 1em;
+    font-size: 1.5em;
+  }
+
+  &.action-modal {
+    width: 40em;
+    padding: 0;
+    padding-bottom: 2em;
+    text-align: left;
+
+    .actions {
+      margin-left: 2em;
+      margin-top: 1em;
+
+      button.primary, .primary.btn, a.primary, button.secondary, .secondary.btn {
+        float: none !important;
+        margin-top: 0 !important;
+        @media #{$small-only} {
+          margin-left: 0.7em !important;
+          margin-bottom: 1em !important;
+        }
+      }
+
+      @media #{$small-only} {
+        margin: 1em 2em;
+      }
+    }
+
+    .modal-header {
+      border-bottom: 1px solid #e2e2e2;
+      background-color: #f3f3f3;
+      padding: 1em;
+
+      h3 {
+        padding: 0;
+        text-align: left;
+        padding-left: 0.5em;
+        color: #787878;
+        margin: 0;
+      }
+    }
+
+    .deleted-error {
+      padding-top: 1.9em;
+    }
+
+    .paragraph-header {
+      font-weight: bold;
+    }
+    p {
+      padding: 1em 2em 0;
+    }
+  }
+}
+
+.big .modal-container {
+  margin-top: 2em;
+  width: 65%;
+  height: auto;
+  text-align: left;
+  padding: 1.8em;
+
+  @media #{$small-only} {
+    width: 95%;
+  }
+
+  @media #{$medium-only} {
+    width: 85%;
+  }
+
+  @media #{$xlarge-up} {
+    width: 50%;
+  }
+}
+
+#full-terms {
+  margin-top: 1em;
+}
+
+.modal-overlay.ng-hide-start .modal-container{
+  @include animation(5s closeModal);
+}
+
+@include keyframes(openModal) {
+  from {
+    opacity: 0;
+    @include transform(scale(0.7));
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+@include keyframes(closeModal) {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    @include transform(scale(0.7));
+  }
+}
+
+.countdown-container {
+  width: 55%;
+  margin: 0 auto;
+  height: 200px;
+
+  #countdown-circle {
+    position: relative;
+    z-index: 999;
+    background-image: url("../../../assets/images/countdown_bg.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+
+@media #{$small-only} {
+  .modal-container.action-modal {
+    width: auto;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 2em;
+  }
+
+  .offline-ui .offline-ui-content {
+    width: auto;
+  }
+
+  #view-full {
+    font-size: 0.9em;
+  }
+
+  .timeout-modal {
+    width: auto;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 2em;
+
+    h3, #continue-banking {
+      font-size: 1.3em;
+      padding-bottom: 0;
+    }
+
+    .countdown-container {
+      width: auto;
+
+      #countdown {
+        left: 0;
+      }
+    }
+  }
+}
+
+.modal-content {
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 1em;
+
+  ul {
+    padding-top: 0.5em;
+    li {
+      padding-top: 1em;
+      margin-left: 2em;
+      color: $slate-grey;
+      list-style: disc;
+      list-style-position: outside;
+    }
+  }
+}

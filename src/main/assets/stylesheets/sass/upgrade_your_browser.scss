@@ -1,0 +1,44 @@
+@import "global";
+
+$browser-margin: 10px;
+$browser-width: 125px;
+
+.upgrade-your-browser {
+  position: absolute;
+  background: $background-color;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 999999;
+
+  .browsers {
+    max-width: 3 * ($browser-width + $browser-margin);
+    margin: 2em auto;
+    .browser {
+      width: $browser-width;
+      text-align: center;
+      margin-right: $browser-margin;
+      .icon {
+        width: $browser-width;
+        height: 135px;
+        background: url("../../../assets/images/browsehappy-sprite.png") no-repeat;
+      }
+      &:hover {
+        -webkit-transform: scale(1.05,1.05);
+        -moz-transform: scale(1.05,1.05);
+        -o-transform: scale(1.05,1.05);
+        transform: scale(1.05,1.05);
+      }
+      &.ie .icon {
+        background-position: -500px 0;
+      }
+      &.chrome .icon {
+        background-position: 0 0;
+      }
+      &.firefox .icon {
+        background-position: -125px 0;
+      }
+    }
+  }
+}

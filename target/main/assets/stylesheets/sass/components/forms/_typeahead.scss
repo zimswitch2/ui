@@ -1,0 +1,52 @@
+.typeahead-container {
+  position: relative;
+  padding: 0;
+  input {
+    height: $input-height;
+  }
+  .form-error {
+    top: -1.8em;
+  }
+}
+
+.typeahead {
+  background-color: #fff;
+  border: 1px solid #D2D2D2;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  border-top: none;
+  box-shadow: 0px 0px 2px 1px #aaa;
+
+  li {
+    padding: 0.5em 0.7em;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    color: $gunmetal-light;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover, &.current {
+      background: $denim-blue;
+      color: white;
+    }
+  }
+}
+
+.display-number-items {
+  li {
+    &:last-child {
+      padding: 0.5em;
+      border-top: 2px solid #eee  ;
+      color: #A0A0A0;
+      cursor: default;
+
+      &:hover {
+        background-color: white;
+      }
+    }
+  }
+}

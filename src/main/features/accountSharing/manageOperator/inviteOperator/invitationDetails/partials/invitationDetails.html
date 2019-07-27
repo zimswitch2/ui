@@ -1,0 +1,148 @@
+<div class="form-layout-top">
+    <h2 id="AddInvitationDetails"
+        class="clear">{{operatorInvitationDetails.headerName}}</h2>
+    <flow></flow>
+    <div notification error
+         ng-show="errorMessage">
+        {{errorMessage}}
+    </div>
+    <div notification error
+         ng-show="serverErrorMessage !== undefined">
+        {{userDetails.serverErrorMessage}}
+    </div>
+</div>
+
+<div class="form-layout-main">
+    <form class="panel"
+          name="invitationDetailsForm"
+          id="invitation-details-form"
+          novalidate
+          autocomplete="off">
+        <section>
+            <div class="small-only-text-center grey-text">
+                <span>Please enter these details as they appear in your invite.</span>
+            </div>
+        </section>
+        <section>
+            <sb-input name="identification"
+                      label="South African ID"
+                      ng-model="operatorInvitationDetails.invite.idNumber"
+                      ng-required="true"
+                      ng-pattern="'[0-9]{13}'"
+                      pattern-message="Please enter a valid 13-digit South African ID number"
+                      id-number
+            >
+            </sb-input>
+        </section>
+        <section>
+            <sb-input name="referenceNumber"
+                      label="Reference code"
+                      ng-model="operatorInvitationDetails.invite.referenceNumber"
+                      ng-required="true"
+                      ng-pattern="'[A-Za-z0-9]{10}'"
+                      pattern-message="Please enter a reference code of 10 characters in length"
+            >
+            </sb-input>
+        </section>
+        <div class="btn-container">
+            <button id="next-basic"
+                    class="primary"
+                    ng-click="operatorInvitationDetails.next()"
+                    ng-disabled="! invitationDetailsForm.$valid"
+                    data-dtmid="obb_form accept/decline invite details next button"
+                    data-dtmtext="Next button click">
+                Next
+            </button>
+
+            <button id="cancel-basic"
+                    class="secondary"
+                    ng-click="operatorInvitationDetails.cancel()"
+                    data-dtmid="obb_form accept/decline invite details cancel button"
+                    data-dtmtext="Cancel button click">
+                Cancel
+            </button>
+        </div>
+
+        <div class="medium-6 columns">
+            <div class="modal-overlay " ng-show="operatorInvitationDetails.showModal">
+                <div class="modal-container sed-modal action-modal  modal-box">
+                    <div class="center margin-top margin-left margin-right">
+                        <div class="row ">
+                            <div class="modal-close close-modal">
+                                <div class="close-button " ng-click="operatorInvitationDetails.showModal = false">
+                                    <i class="icon icon-close-circle"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="large-1 columns">
+
+                            </div>
+                            <div class="large-5 columns">
+                                <div class="show-for-large-up text-center margin-bottom">
+                                    <img id="existing-reg-icon-modal"
+                                         src="assets/images/icon-user-blue-big.png"
+                                         alt="Existing Internet banking User"/>
+                                </div>
+                                <div class=text-center margin-top>
+                                    <h2>Existing Internet banking User?</h2>
+
+
+                                    <div class="small-only-text-center grey-text text-narrow">
+                                        Start here if you already use our
+                                        new Internet banking website or
+                                        any of our mobile Apps.
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button ng-click="operatorInvitationDetails.redirectToSignIn()"
+                                            data-dtmid="obb_modal sign in button"
+                                            data-dtmtext="Sign in button click">Sign in
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="large-2 columns">
+
+                                <div class="large-6 columns panel-break-vertical show-for-large-up">
+                                    <span>or</span>
+                                </div>
+                                <div class="large-6 columns">
+                                </div>
+
+                            </div>
+                            <div class="large-5 columns">
+                                <div class="show-for-large-up text-center margin-bottom">
+                                    <img id="new-reg-icon-modal"
+                                         src="assets/images/Icon-new-user.png"
+                                         alt="New Internet banking banking User"/>
+                                </div>
+                                <div class="text-center margin-top">
+                                    <h2>New to Internet banking?</h2>
+
+                                    <div class="small-only-text-center grey-text text-narrow">
+                                        Start here if you have never used
+                                        Standard Bank Internet banking
+                                        but have a reference number
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button class="button secondary"
+                                            ng-click="operatorInvitationDetails.redirectToRegister()"
+                                            data-dtmid="obb_modal register button"
+                                            data-dtmtext="Register button click">Register
+                                    </button>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--end modal -->
+            </div>
+        </div>
+    </form>
+</div>

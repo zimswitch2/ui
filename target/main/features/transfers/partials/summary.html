@@ -1,0 +1,44 @@
+<div class="summary" id="confirmation-details">
+    <div class="summary-split-row">
+        <div>
+            <span>From account </span>
+            <span>{{transfer.from | accountLabel}}</span>
+        </div>
+        <div>
+            <span>Available balance</span>
+            <span id="available-from-balance">{{fromAvailableBalance | randAmount}}</span>
+        </div>
+    </div>
+
+    <div class="summary-split-row">
+        <div>
+            <span>To account </span>
+            <span>{{transfer.to | accountLabel}}</span>
+        </div>
+        <div>
+            <span>Available balance</span>
+            <span id="available-to-balance">{{toAvailableBalance | randAmount}}</span>
+        </div>
+    </div>
+
+    <div class="summary-row" ng-hide="(transfer.reference === undefined || transfer.reference === &apos;&apos; )">
+        <div>
+            <span>Statement reference </span>
+            <span>{{transfer.reference}}</span>
+        </div>
+    </div>
+
+    <div class="summary-row">
+        <div>
+            <span>Transfer date</span>
+            <span>{{latestTimestampFromServer | dateFormat}}</span>
+        </div>
+    </div>
+
+    <div class="summary-row">
+        <div>
+            <span>Amount </span>
+            <span class="amount">{{transfer.amount | randAmount}}</span>
+        </div>
+    </div>
+</div>

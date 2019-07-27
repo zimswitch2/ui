@@ -1,0 +1,210 @@
+.quote-logo {
+  width: 200px;
+  float: left;
+}
+
+.quote {
+  padding: 1em;
+
+  .loan-agreement {
+
+    color: $sb-blue;
+
+    h3 {
+      color: $sb-blue;
+    }
+
+    table {
+
+      border-collapse: collapse;
+
+      td {
+        padding: 0 0.5em;
+        vertical-align: top;
+        border-right: 1px solid $sb-blue;
+
+        &:first-child {
+          border-left: 1px solid $sb-blue;
+        }
+      }
+
+      tr {
+        border-bottom: 1px solid $sb-blue;
+
+        background: white;
+
+        &:first-child {
+          border-top: 1px solid $sb-blue;
+        }
+      }
+
+      tr {
+        td {
+          color: $sb-blue;
+        }
+      }
+    }
+
+    form.inline {
+      display: inline;
+    }
+
+    section {
+      @extend .clearfix;
+      margin-bottom: 1em;
+    }
+
+    .loan-agreement-header {
+      text-align: right;
+      padding-right: 3em;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .bank-logo {
+      display: none;
+    }
+
+    .bank-contact-details, .customer-contact-details {
+      @extend .columns;
+      padding-bottom: 1.5em;
+
+      p:first-child {
+        font-weight: bold;
+        padding-bottom: 0.5em;
+      }
+
+      p {
+        line-height: 1;
+      }
+    }
+
+    .bank-contact-details, .agreement-date {
+      @extend .medium-7;
+
+      p:last-child {
+        padding-top: 1.5em;
+      }
+    }
+
+    .agreement-date, .account-number {
+      @extend .columns;
+    }
+
+    .customer-contact-details, .account-number {
+      @extend .medium-5;
+    }
+
+    ol {
+      list-style: none;
+    }
+
+    h3 {
+      font-size: medium;
+      font-weight: bold;
+      padding-bottom: 0.5em;
+
+    }
+
+    p {
+      margin-bottom: 0.5em;
+    }
+
+    .loan-agreement-quotation {
+      table tbody tr {
+        td {
+          vertical-align: top;
+        }
+        td:nth-child(3) {
+          text-align: right;
+        }
+      }
+
+    }
+
+    .loan-agreement-acceptance {
+      h3 {
+        padding: 10px;
+        color: white;
+        background-color: $sb-blue;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        margin-top: 0;
+      }
+
+      border-radius: 12px;
+      border: solid 1px $sb-blue;
+
+      border-top: none;
+
+      padding-bottom: 0.5em;
+
+      .highlight-content {
+        padding: 10px;
+      }
+    }
+
+    .loan-agreement-information {
+
+      .definitions {
+
+        .definition {
+          @extend .columns;
+          &:last-child {
+            margin-bottom: 1.5em;
+          }
+        }
+
+        .definition:nth-of-type(even) {
+          background-color: $silver-grey-light;
+        }
+
+        .definition-term, .definition-description {
+          @extend .columns;
+        }
+
+        .definition-term {
+          @extend .medium-4;
+          font-weight: bold;
+          padding-top: 0.5em;
+
+          @media #{$medium-up} {
+            padding: 0.5em 0;
+          }
+        }
+
+        .definition-description {
+          @extend .medium-8;
+          padding-bottom: 0.5em;
+
+          @media #{$medium-up} {
+            padding: 0.5em 0;
+          }
+        }
+      }
+
+      > ol > li {
+        padding-bottom: 1em;
+      }
+    }
+
+    .loan-agreement-signature {
+      border: 1px solid #EEE;
+      background-color: #fafafa;
+      padding: 1em;
+
+      .accept-agreement {
+        display: none;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+
+    line-height: 110%;
+  }
+}
+

@@ -1,0 +1,26 @@
+html {
+  font-size: 14px;
+}
+
+body {
+  background-color: $primary-grey;
+  font-family: $helvetica;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+h2 {
+  color: $font-grey-medium;
+  @media #{$small-only} {
+    margin: 0.5em;
+  }
+}
+
+h3 {
+  color: $font-grey-dark;
+}
+
+small {
+  font-size: 80%;
+}

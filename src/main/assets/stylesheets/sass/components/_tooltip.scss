@@ -1,0 +1,65 @@
+.sb-tooltip {
+  display: inline-block;
+  position: relative;
+  color: #555;
+  margin-left: 0.4em;
+  width: 6em;
+
+  i {
+    font-size: 1.2rem;
+  }
+
+  &:hover {
+    color: #555;
+    cursor: default;
+
+    &:hover {
+      &:after {
+        background: #333;
+        background: rgba(0,0,0,.8);
+        border-radius: 5px;
+        bottom: 26px;
+        color: #fff;
+        content: attr(name);
+        left: -1em;
+        padding: 5px 15px;
+        position: absolute;
+        z-index: 98;
+        width: 220px;
+        @media #{$small-only} {
+          width: 200px;
+        }
+      }
+
+      &:before {
+        border: solid;
+        border-color: #333 transparent;
+        border-width: 6px 6px 0 6px;
+        bottom: 20px;
+        content: "";
+        left: 0.1em;
+        position: absolute;
+        z-index: 99;
+      }
+    }
+  }
+
+  &.bottom {
+    &:hover {
+      &:hover {
+        &:after {
+          bottom: -106px;
+          font-size: 1rem;
+          @media #{$small-only} {
+            width: 200px;
+          }
+        }
+
+        &:before {
+          border-width: 0 6px 6px 6px;
+          bottom: -1px;
+        }
+      }
+    }
+  }
+}

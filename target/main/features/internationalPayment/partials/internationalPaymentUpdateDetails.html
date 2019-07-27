@@ -1,0 +1,29 @@
+<h2>International Payment</h2>
+
+<div class="international-payment">
+    <div class="panel">
+        <h3>Update your details</h3>
+        <span class="padding-top">Please visit your nearest branch to update your details</span>
+
+        <div class="padding-top">What you'll need:</div>
+
+        <section>
+            <ul>
+                <li ng-if="!isResident">Your Passport</li>
+                <li ng-if="!isResident">Proof of identification</li>
+                <li ng-if="!isResident">Valid permit/Visa</li>
+                <li ng-if="isResident">Your ID book</li>
+                <li>Proof of address (no older than 3 months)</li>
+            </ul>
+        </section>
+
+        <section class="padding-top padding-bottom">
+            <a href="http://locator.standardbank.co.za/" target="_blank">Find your nearest branch</a>
+        </section>
+
+        <section class="padding-top">
+            <a id="confirm" class="btn primary" go-home="" track-click="">Done</a>
+            <a go-back="" id="cancel" class="btn secondary">Back</a>
+        </section>
+    </div>
+</div>

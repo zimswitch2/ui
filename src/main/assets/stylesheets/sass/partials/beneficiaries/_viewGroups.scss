@@ -1,0 +1,43 @@
+.view-groups {
+  .action-table {
+    ul {
+      .actions {
+        .action {
+          &[title="delete"] {
+            top: 3.5rem;
+          }
+        }
+      }
+    }
+
+    @media #{$medium-only} {
+      ul.data {
+        > li {
+          .actions {
+            .action {
+              .title {
+                margin-bottom: 0;
+              }
+              i {
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media #{$large-up} {
+      ul {
+        .information {
+          > div {
+            width: 50%;
+          }
+        }
+        .actions {
+          width: 8em;
+        }
+      }
+    }
+  }
+}

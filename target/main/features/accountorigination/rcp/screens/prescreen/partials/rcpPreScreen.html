@@ -1,0 +1,90 @@
+<h2 id="prescreen-heading">Before You Start Your Application</h2>
+
+<div class="pre-screening well wide">
+    <form class="form-layout-main" name="preScreenForm" novalidate="novalidate">
+
+        <section id="debtReviewQuestion">
+            <label>Are you under debt review?</label>
+            <ul class="radio-button-group">
+                <li>
+                    <input required id="debtReviewYes" name="Debt_Review_Yes" type="radio" ng-value="true" ng-model="preScreen.debtReview">
+                    <label for="debtReviewYes">Yes</label>
+                </li>
+
+                <li>
+                    <input required id="debtReviewNo" name="Debt_Review_No" type="radio" ng-value="false" ng-model="preScreen.debtReview">
+                    <label for="debtReviewNo">No</label>
+                </li>
+            </ul>
+        </section>
+
+        <section id="insolventQuestion">
+            <label>Are you currently insolvent?</label>
+            <ul class="radio-button-group">
+                <li>
+                    <input required id="insolventYes" name="Insolvent_Yes" type="radio" ng-value="true" ng-model="preScreen.insolvent">
+                    <label for="insolventYes">Yes</label>
+                </li>
+
+                <li>
+                    <input required id="insolventNo" name="Insolvent_No" type="radio" ng-value="false" ng-model="preScreen.insolvent">
+                    <label for="insolventNo">No</label>
+                </li>
+            </ul>
+        </section>
+
+        <section id="sequestrationQuestion">
+            <label>
+                Are you under sequestration?
+                <a href="javascript:void(0)" name="Sequestration means that your assets have been legally taken to repay your debts" aria-label="sequestration-tooltip" class="sb-tooltip" tabindex="-1">
+                    <i class="icon icon-question-circle"></i>
+                </a>
+            </label>
+            <ul class="radio-button-group">
+                <li>
+                    <input required id="sequestrationYes" name="Sequestration_Yes" type="radio" ng-value="true" ng-model="preScreen.sequestration">
+                    <label for="sequestrationYes">Yes</label>
+                </li>
+
+                <li>
+                    <input required id="sequestrationNo" name="Sequestration_No" type="radio" ng-value="false" ng-model="preScreen.sequestration">
+
+                    <label for="sequestrationNo">No</label>
+                </li>
+            </ul>
+        </section>
+
+        <section id="creditAndFraudCheckQuestion">
+            <label for="creditAndFraudCheckConsent">
+            <input required type="checkbox" id="creditAndFraudCheckConsent" name="Agree_to_Credit_and_Fraud_Check" ng-model="preScreen.creditAndFraudCheckConsent">
+                You agree to a credit and fraud check
+            </label>
+        </section>
+
+        <button id="next" class="primary" ng-click="next()" ng-disabled="!preScreen.creditAndFraudCheckConsent" track-click="Apply.RCP.Prescreen.Next">Next</button>
+        <a go-back="" id="cancel" class="btn secondary" track-click="Apply.RCP.Prescreen.Cancel">Cancel</a>
+    </form>
+</div>
+
+<div class="modal-overlay" ng-show="showCannotProceedModal">
+    <div class="modal-container action-modal">
+        <div class="modal-header">
+            <h3>Sorry, we cannot offer you an account</h3>
+        </div>
+
+        <div class="modal-content">
+            We cannot proceed because:
+            <ul>
+                <li id="debtReview-error" ng-hide="!preScreen.debtReview">You are under debt review</li>
+                <li id="insolvent-error" ng-hide="!preScreen.insolvent">You are currently insolvent</li>
+                <li id="sequestration-error" ng-hide="!preScreen.sequestration">You are under sequestration</li>
+            </ul>
+        </div>
+
+        <div class="actions">
+            <button ng-click="showCannotProceedModal = false" track-click="Apply.RCP.Prescreen.CannotOfferAnAccount.Close" class="btn primary" id="closeModal">Close
+            </button>
+        </div>
+    </div>
+</div>
+

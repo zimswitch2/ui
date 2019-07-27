@@ -1,0 +1,71 @@
+.net-income-doughnut-chart {
+  border: 2px solid $silver-grey-light;
+  background-color: $white;
+
+  h3 {
+    background-color: $silver-grey-light;
+    font-weight: normal;
+    font-size: 1.5em;
+    padding: 0.5em;
+    margin: 0;
+    color: #5f88df;
+  }
+
+  div {
+    div {
+      .chart-container {
+        margin: 1em 0;
+        height: 272px;
+      }
+    }
+
+    .summary {
+      .chart-legend-item {
+        &:hover {
+          background-color: $azure-blue-light;
+          cursor: pointer;
+        }
+      }
+
+      .summary-row {
+
+        h2.chart-legend-header-value {
+          &:hover {
+            background-color: transparent;
+            cursor: default;
+          }
+        }
+      }
+    }
+  }
+
+  span.chart-legend-header-label {
+    margin-left: 0.1em;
+  }
+
+  h2.chart-legend-header-value {
+    &:hover {
+      background-color: transparent;
+      cursor: default;
+    }
+  }
+
+  h2.chart-legend-header-value {
+    &:hover {
+      background-color: transparent;
+      cursor: default;
+    }
+  }
+
+  .notification.info {
+    margin-bottom: 0;
+
+    .icon-times-circle {
+      display: none;
+    }
+  }
+
+  .divider-item {
+    padding: 1em 1em 4em 1em;
+  }
+}

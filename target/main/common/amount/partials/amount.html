@@ -1,0 +1,5 @@
+<label for="amount" ng-if="label">{{label}}</label>
+<div class="input-group">
+    <i class="icon icon-rand">{{currencyCode || 'R'}} </i>
+    <input id="amount" type="tel" name="amount" input-name="{{inputName}}" size="12" ng-model="ngModel" placeholder="{{placeholder === undefined ? &apos;0.00&apos; : placeholder}}" class="currency" limits="" enforcer="enforcer" hinter="hinter" hint-watcher="hintWatcher" ng-disabled="ngDisabled" ng-change="timeoutChange(ngChange)" required>
+</div>

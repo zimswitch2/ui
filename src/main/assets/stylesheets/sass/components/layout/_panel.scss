@@ -1,0 +1,15 @@
+.panel {
+  max-width: $content-max-width;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  border: 0;
+  @media #{$small-only} {
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    padding: 1em;
+  }
+
+  .description {
+    color: grey;
+  }
+}

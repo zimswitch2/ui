@@ -1,0 +1,82 @@
+<div class="accept-offer">
+    <h2 class="clear">Confirm</h2>
+
+    <flow class="wide"></flow>
+
+    <div class="error notification wide" ng-show="error">{{error}}</div>
+
+    <div class="accept-offer well wide">
+        <div class="sections">
+            <section>
+                <h3>Your current account</h3>
+                <div class="summary-ao">
+                    <div class="summary-ao-row">
+                        <span class="summary-ao-label">Product name</span>
+                        <span class="summary-ao-value" id="acceptedProductName">{{product.name | capitalize}}</span>
+                    </div>
+                    <div class="summary-ao-row">
+                        <span class="summary-ao-label">Fee structure</span>
+                        <span class="summary-ao-value">{{product.feeStructure.name}} <small>({{product.feeStructure.description}})</small></span>
+                    </div>
+                    <div class="summary-ao-row" ng-hide="isPrivateBankingProduct">
+                        <span class="summary-ao-label">Preferred branch</span>
+                        <span class="summary-ao-value">{{preferredBranchName | capitalize}}</span>
+                    </div>
+                </div>
+            </section>
+            <section id="overdraft-summary" ng-if="overdraftSelected()">
+                <div class="overdraft-header">
+                    <div class="page-heading-row">
+                        <h3>Your overdraft</h3>
+                        
+                    </div>
+                </div>
+
+                <div class="summary-ao">
+                    <div class="summary-ao-row">
+                        <span class="summary-ao-label">Overdraft limit</span>
+                        <span id="overdraft-limit" class="summary-ao-value">{{overdraft.amount | randAmount}}</span>
+                    </div>
+                    <div class="summary-ao-row">
+                        <span class="summary-ao-label">Interest rate</span>
+                        <span id="overdraft-rate" class="summary-ao-value">{{overdraft.interestRate}}%</span>
+                    </div>
+                </div>
+
+                <p class="text-notification">Note that this overdraft offer is valid for 5 days. This offer constitutes approval in principle and is subject to the Bank verifying the information</p>
+            </section>
+            <section>
+                <div class="terms-conditions">
+                    <div class="box">
+                        <div class="inner">
+                            <input type="checkbox" id="termsAndConditions" ng-model="agreed">
+                            <!-- put links outside the label so ie9 won't toggle the checkbox -->
+                            <label for="termsAndConditions">You have read, understood and agree to the</label>
+                            <form ng-if="overdraftSelected()" name="costOfCreditDownloadForm" action="{{costOfCreditLetterURL}}" method="GET" target="_blank" class="inline">
+                                <input type="hidden" name="systemPrincipalId" value="{{principal.systemPrincipalId}}">
+                                <input type="hidden" name="systemPrincipalKey" value="{{principal.systemPrincipalKey}}">
+                                <input type="hidden" name="applicationNumber" value="{{offer.applicationNumber}}">
+                                <input type="hidden" name="productNumber" value="{{product.number}}">
+                                <input type="hidden" name="overdraftAmount" value="{{overdraft.amount}}">
+
+                                <a href="javascript:;" onclick="costOfCreditDownloadForm.submit()" target="_blank">overdraft agreement</a>
+                            </form>
+                            <label for="termsAndConditions" ng-show="overdraftSelected()">, as well as the </label>
+                            <a href="https://www.standardbank.co.za/secure/applications/wcf/generictc.pdf" target="_blank">general</a>
+                            <label for="termsAndConditions">and</label>
+                            <a href="https://www.standardbank.co.za/secure/applications/wcf/achiever_tc.pdf" target="_blank">product</a>
+                            <label for="termsAndConditions">terms and conditions</label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="actions">
+                    <button id="confirm" class="primary" ng-disabled="!canSubmit()" ng-click="submit()">Confirm</button>
+                    <button id="back" class="secondary" ng-click="back()">Back</button>
+                </div>
+            </section>
+        </div>
+
+    </div>
+</div>

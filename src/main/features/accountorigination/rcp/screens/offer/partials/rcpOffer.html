@@ -1,0 +1,318 @@
+<div class="page-heading-row wide hide-on-print">
+    <h2 id="rcpOfferTitle">Your Revolving Credit Plan</h2>
+</div>
+<flow class="hide-on-print wide"></flow>
+
+<div class="offer rcp-offer well wide hide-on-print">
+    <ng-form name="rcpOfferForm">
+        <section class="product-row">
+            <h3 id="productFamilyName">We are pleased to offer you a Revolving Credit Plan</h3>
+            <img class="show-for-large-up" src="assets/images/rcp.jpg"
+                 alt="Revolving Credit Plan"/>
+
+            <p>Need quick access to cash for unplanned expenses? A Revolving Credit Plan (RCP) lets you borrow again up
+                to your original
+                loan amount as soon as you repay 15% of your loan.</p>
+            <button id="rcpProductDetailsButton" class="secondary" ng-click="showDetails = true"
+                    data-dtmid="link_content_account application" data-dtmtext="RCP details button click">Details
+            </button>
+        </section>
+        <section class="overdraft">
+
+
+            <div>
+                <button class="secondary print-quote" ng-click="showPreAgreement()"
+                        track-click="Apply.RCP.Your Revolving Credit Plan.View quote"
+                        ng-disabled="rcpOfferForm.$error.loanamount" data-dtmid="link_content_account application"
+                        data-dtmtext="View Quote button click">View quote
+                </button>
+                <h3>Choose Your Revolving Credit Plan Amount</h3>
+
+                <p>You qualify for a loan of up to {{offerDetails.maximumLoanAmount |
+                    randAmount}}</p>
+            </div>
+
+            <div class="box">
+                <div class="rcp-properties-group">
+                    <div class="rcp-properties">
+                        <div class="property large">
+                            <sb-amount
+                                    ng-model="selectedOffer.requestedLimit"
+                                    class="amount"
+                                    input-name="loanamount"
+                                    label="Loan amount"
+                                    ng-change="requestedLoanAmountChanged()"
+                                    enforcer="requestedLimitEnforcer"
+                                    hinter="requestedLimitHinter"
+                                    ng-disabled="false">
+                            </sb-amount>
+                        </div>
+
+                        <div class="property minimum-repayment value-{{minimumRepayment || 'none'}}">
+                            <p>Minimum monthly repayment</p>
+
+                            <p id="minimumRepayment" class="limit emphasis-amount">{{ minimumRepayment |
+                                randAmount}}</p>
+                        </div>
+                        <div class="property small">
+                            <p>Interest rate</p>
+
+                            <p id="interestRate" class="rate emphasis-amount">{{offerDetails.interestRate}}%</p>
+                        </div>
+                        <div class="property">
+                            <p>Repayment term</p>
+
+                            <p id="repaymentTerm" class="limit emphasis-amount">{{offerDetails.loanTermInMonths}}
+                                months</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="branch" ng-hide="hasDefaultBranch">
+            <h3>
+                <label for="preferredBranch-typeahead-input">
+                    Choose your preferred branch *
+                </label>
+            </h3>
+
+            <div class="wide-input-field">
+            <span ng-class="spinnerClass" class="inline-block pace pace-inactive branch-inline-spinner">
+                <span class="inline-spinner"></span>
+            </span>
+                <walk-in-branches
+                        id="preferredBranch"
+                        ng-model="selection.selectedBranch"
+                        placeholder="Your preferred branch"
+                        ng-required="true"
+                        default-to-preferred-branch="true"
+                        default-branch-selected="hasDefaultBranch">
+                </walk-in-branches>
+            </div>
+        </section>
+        <section class="debitOrder">
+            <h3>Set up your debit order</h3>
+
+            <div class="box">
+                <div id="StandardBankDebitOrderDetails" ng-show="debitOrder.account.isStandardBank">
+                    <section>
+                        <div class="wide-input-field">
+                            <div class="inline-select left">
+                                <label for="fromAccount">From account</label>
+
+                                <div class="styled-select">
+                                    <select id="fromAccount"
+                                            ng-model="debitOrder.account"
+                                            ng-required="debitOrder.account.isStandardBank"
+                                            ng-options="item | accountLabel for item in standardBankAccounts track by item.formattedNumber">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                </div>
+                <div id="OtherBankDebitOrderDetails" ng-hide="debitOrder.account.isStandardBank">
+                    <section>
+                        <div class="info wide notification">Note: this should be the account into which your salary is
+                            deposited
+                        </div>
+                    </section>
+
+                    <section>
+                        <div class="wide-input-field">
+                            <label for="bank-input">Bank *</label>
+                            <sb-typeahead
+                                    id="bank"
+                                    placeholder="Select a bank"
+                                    items="banks"
+                                    ng-model="debitOrder.account.bank"
+                                    ng-change="onBankChanged()"
+                                    ng-required="!debitOrder.account.isStandardBank"
+                                    sort-by="name"
+                            >
+                            </sb-typeahead>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div class="wide-input-field">
+                            <span ng-class="spinnerClass" class="inline-block pace pace-inactive branch-inline-spinner">
+                                    <span class="inline-spinner"></span>
+                                </span>
+                            <label for="branch-input">Branch *</label>
+                            <sb-typeahead
+                                    id="branch"
+                                    placeholder="Select a branch"
+                                    items="selectedDebitOrderBankBranches()"
+                                    ng-model="debitOrder.account.branch"
+                                    ng-required="!debitOrder.account.isStandardBank"
+                                    sort-by="name"
+                                    xlazy-load="true">
+                            </sb-typeahead>
+                        </div>
+                    </section>
+
+                    <section>
+                        <sb-input name="accountNumber"
+                                  label="Account number *"
+                                  ng-model="debitOrder.account.number"
+                                  ng-required="!debitOrder.account.isStandardBank"
+                                  ng-maxlength="16"
+                                  ng-pattern="'[0-9]*'"
+                                  pattern-message="Please enter a number"
+                                  class="wide-input-field"
+                                >
+                        </sb-input>
+                    </section>
+
+                </div>
+
+                <section class="text-notification">
+                    Once approved we will transfer the loan amount into this account
+                </section>
+
+                <section>
+                    <div>Repayment date</div>
+                    <div class="left debit-order-day-text">
+                        Day
+                    </div>
+                    <div class="styled-select small-input left">
+                        <select id="dayOfMonth"
+                                class=""
+                                ng-model="debitOrder.repayment.day"
+                                ng-required="true"
+                                ng-options="day for day in days track by day">
+                        </select>
+
+                    </div>
+                    <div class="left debit-order-month-text">
+                        of every month
+                    </div>
+
+                </section>
+
+                <section>
+                    <sb-amount
+                            ng-model="debitOrder.repayment.amount"
+                            ng-disabled="rcpOfferForm.$error.loanamount"
+                            enforcer="enforcer"
+                            hinter="hinter"
+                            class="amount"
+                            ng-required="true"
+                            label="Repayment amount">
+                    </sb-amount>
+                    <div class="minimum-repayment">
+                        (Minimum: {{ minimumRepayment | randAmount}})
+                    </div>
+                </section>
+
+
+                <section id="electronicConsent" ng-hide="debitOrder.account.isStandardBank">
+                    <input track-click="Apply.RCP.Your Revolving Credit Plan.Uncheck IDX Consent" type="checkbox"
+                           id="electronicConsentCheckbox"
+                           ng-model="debitOrder.electronicConsent"/>
+                    <label track-click="Apply.RCP.Your Revolving Credit Plan.Uncheck IDX Consent"
+                           for="electronicConsentCheckbox">You consent to Standard Bank electronically obtaining the
+                        above-mentioned account statements</label>
+
+                    <p id="rcpConsentNotification" class="text-notification"
+                       ng-show="!debitOrder.electronicConsent">
+                        Note that manually sending your statements may delay the process
+                    </p>
+                </section>
+
+            </div>
+        </section>
+        <section class="actions">
+            <button id="acceptRcpOffer" class="primary action-button"
+                    track-click="Apply.RCP.Your Revolving Credit Plan.Accept quote" ng-click="accept()"
+                    ng-disabled="!rcpOfferForm.$valid" data-dtmid="link_content_account application" data-dtmtext="Accept Quote button click">
+                Accept quote
+            </button>
+            <button id="saveForLater" class="secondary action-button"
+                    track-click="Apply.RCP.Your Revolving Credit Plan.Save for Later" ng-click="decideLater = true"
+                    data-dtmid="link_content_account application" data-dtmtext="Save for later button click">
+                Save For Later
+            </button>
+        </section>
+    </ng-form>
+</div>
+<div id="rcpOfferDetails" class="modal-overlay" ng-show="showDetails">
+    <div class="modal-container offer-details">
+        <div class="offer-header">
+            <div class="modal-close">
+                <div id="closeRcpOfferDetails" class="close-button" ng-click="showDetails = false">
+                    <i class="icon icomoon-close-circle"></i>
+                </div>
+            </div>
+            <h2>Revolving Credit Plan</h2>
+            <small>Borrow again after paying back part of your loan</small>
+        </div>
+        <div class="product-information">
+            <div>
+                <div ng-include="'features/accountorigination/rcp/screens/products/partials/rcpDetails.html'"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" ng-show="decideLater">
+    <div class="modal-container action-modal">
+        <div class="modal-header">
+            <h3>Save for later</h3>
+        </div>
+
+        <div class="modal-content">You can save your application for now and come back to finish your application.</div>
+        <div class="actions">
+            <a go-home track-click="Apply.RCP.Your Revolving Credit Plan.Save for Later.Ok"
+               class="btn primary">OK</a>
+            <button ng-click="decideLater = false"
+                    track-click="Apply.RCP.Your Revolving Credit Plan.Save for Later.Cancel" id="cancel"
+                    class="secondary">Cancel
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="rcpQuote hide-on-print" class="modal-overlay quote-popup" ng-show="showQuote">
+    <div class="modal-container offer-details">
+        <div class="quote">
+
+            <div class="modal-close">
+                <div id="closeRcpQuote" class="close-button" ng-click="showQuote = false">
+                    <i class="icon icomoon-close-circle"></i>
+                </div>
+            </div>
+            <img class="quote-logo" src="assets/images/logo-blue-full.png"/>
+
+            <div ng-bind-html="preagreementHtml" class="loan-agreement"></div>
+            <div class="clear"></div>
+
+            <form id="downloadRcpPreAgreement" name="preAgreementDownloadForm" action="{{downloadRcpPreAgreementURL}}"
+                  method="GET"
+                  target="_blank" class="inline">
+                <input id="systemPrincipalIdParam" type="hidden" name="systemPrincipalId"
+                       value="{{principal.systemPrincipalId}}"/>
+                <input id="systemPrincipalKeyParam" type="hidden" name="systemPrincipalKey"
+                       value="{{principal.systemPrincipalKey}}"/>
+
+                <input id="applicationNumberParam" type="hidden" name="applicationNumber"
+                       value="{{applicationNumber}}"/>
+                <input id="requestedLimitParam" type="hidden" name="requestedLimit"
+                       value="{{selectedOffer.requestedLimit}}"/>
+                <input id="productNumberParam" type="hidden" name="productNumber"
+                       value="{{offerDetails.productNumber}}"/>
+
+                <button class="secondary show-for-medium-up"
+                        track-click="Apply.RCP.Your Revolving Credit Plan.View quote.Print"
+                        href="javascript:;" target="_blank">
+                    Print quote
+                </button>
+            </form>
+        </div>
+
+
+    </div>
+</div>

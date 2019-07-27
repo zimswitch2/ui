@@ -1,0 +1,12 @@
+cancel-confirmation {
+  .modal-overlay {
+    .modal-container {
+      .actions {
+        @media #{$small-only} {
+          margin-left: 17px;
+          margin-right: 37px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,123 @@
+<h2>Beneficiary Details</h2>
+<div class="clearfix">
+    <div class="form-layout-main">
+        <div class="panel">
+            <div class="summary">
+                <div class="summary-row">
+                    <div id="beneficiaryName">
+                        <span>Beneficiary name </span>
+                        <span>{{beneficiary.name}}</span>
+                    </div>
+                </div>
+                <div class="summary-row" id="bank" ng-if="isPrivateBeneficiary()">
+                    <div>
+                        <span>Bank </span>
+                        <span>{{beneficiary.bank.name}}</span>
+                    </div>
+                </div>
+                <div class="summary-row" id="branch" ng-if="isPrivateBeneficiary()">
+                    <div>
+                        <span>Branch </span>
+                        <span>{{beneficiary.bank.branch.name}} ({{beneficiary.bank.branch.code}})</span>
+                    </div>
+                </div>
+                <div class="summary-row" id="accountNumber" ng-if="isPrivateBeneficiary()">
+                    <div>
+                        <span>Account number </span>
+                        <span>{{beneficiary.accountNumber}}</span>
+                    </div>
+                </div>
+                <div class="summary-row" id="myReference">
+                    <div>
+                        <span>Your reference </span>
+                        <span>{{beneficiary.customerReference}}</span>
+                    </div>
+                </div>
+                <div class="summary-row" id="beneficiaryReference">
+                    <div>
+                        <span>Beneficiary reference </span>
+                        <span>{{beneficiary.recipientReference}}</span>
+                    </div>
+                </div>
+                <div class="summary-row" id="paymentConfirmationType" ng-if="beneficiary.paymentConfirmation.address">
+                    <div>
+                        <span>Send confirmation to</span>
+                        <span>{{beneficiary.paymentConfirmation.recipientName}} ({{beneficiary.paymentConfirmation.address}})</span>
+                    </div>
+                </div>
+                <div class="summary-row" id="beneficiaryGroup" ng-if="beneficiary.recipientGroupName">
+                    <div>
+                        <span>Beneficiary group </span>
+                        <span>{{beneficiary.recipientGroupName}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <!--TODO: for after beta please put appropriate permission-->
+                <a id="pay-beneficiary-button" class="button icon-button action pay" title="pay" ng-click="payBeneficiary(beneficiary)" require-permission="doNotShow">
+                    <i class="icon icomoon-pay"></i>
+                    <span class="title">Pay</span>
+                </a>
+
+                <a id="edit-beneficiary-button" class="button icon-button action edit" title="modify" ng-click="edit(beneficiary.originalBeneficiary)" require-permission="modifyBeneficiary">
+                    <i class="icon icomoon-edit"></i>
+                    <span class="title">Modify</span>
+                </a>
+
+                <a id="delete-beneficiary-button" class="button icon-button action danger" title="delete" ng-click="markForDeletion()" require-permission="deleteBeneficiary">
+                    <i class="icon icomoon-delete"></i>
+                    <span class="title">Delete</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <div class="form-layout-right" require-permission="viewLastPayments">
+        <div class="panel" ng-show="beneficiary.recentPayment.length &gt; 0">
+            <h3 ng-show="beneficiary.recentPayment.length &gt; 0">Last payments</h3>
+            <table ng-show="beneficiary.recentPayment.length &gt; 0">
+                <thead>
+                <tr>
+                    <th>Payment date</th>
+                    <th class="currency">Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-hide="payment.amount.amount===0" ng-repeat="payment in beneficiary.recentPayment">
+                    <td>
+                        {{payment.date | dateFormat}}
+                    </td>
+                    <td class="currency">
+                        {{payment.amount.amount | randAmount}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<button go-back="" id="beneficiary-list-button" class="secondary">Back</button>
+
+<div class="modal-overlay" ng-show="beingDeleted">
+    <div class="modal-container action-modal">
+        <div class="modal-header">
+            <h3>Are you sure you want to delete this beneficiary?</h3>
+        </div>
+
+        <div class="modal-content" ng-hide="deletionError">Any scheduled future payments will be cancelled.</div>
+
+        <div class="actions" ng-hide="deletionError">
+            <button class="danger-confirm" ng-click="confirmDeletion()">Confirm</button>
+            <button class="secondary" ng-click="cancelDeletion()">Cancel</button>
+        </div>
+
+        <!--Deleted error -->
+        <div class="deleted-error" ng-show="deletionError">
+            <div class="prompt">
+                Couldn't delete beneficiary <em>{{beneficiary.name}}</em>. Please try again later.
+                <button class="secondary btn" ng-click="cancelDeletion()"><i class="icon icon-times"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

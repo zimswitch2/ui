@@ -1,0 +1,77 @@
+<script type="text/javascript">
+    (function () {
+        var scriptUrl = ["cdn.standardbank.co.za", "811652", "div-fol12.js"].join("/");
+        window.loadTrusteerScript(scriptUrl);
+    })();
+</script>
+
+<script type="text/javascript">
+    (function () {
+        var scriptUrl = ["cdn.standardbank.co.za", "811652", "waveForm3.js"].join("/");
+        window.loadTrusteerScript(scriptUrl);
+    })();
+</script>
+
+<h2>{{title}}</h2>
+
+<div not-feature='newRegisteredPage' success notification ng-show="noCardLinked && isSuccessful && !errorMessage">
+    {{successMessage}}
+</div>
+
+<div notification error ng-show="errorMessage">{{errorMessage}}</div>
+
+<div flow></div>
+
+<bb-account-type-selection></bb-account-type-selection>
+
+<div class="phone-type-ahead">
+    <form name="linkCardForm" ng-submit="linkCardToProfile()"
+          novalidate="novalidate" autocomplete="off">
+
+        <div class="panel">
+
+            <section>
+                <div>
+                    <label for="cardnumber">Card number</label>
+                    <input type="text" id="cardnumber" name="cardnumber" ng-model="cardData.cardNumber"
+                           ng-class="{'show-validation-styles': linkCardForm.cardnumber.$touched || linkCardForm.cardnumber.$dirty || linkCardForm.$submitted}"
+                           exact-lengths="16,18" ng-pattern="'[0-9]*'" focus-on/>
+                    <ng-messages for="linkCardForm.cardnumber.$error" ng-show="linkCardForm.cardnumber.$touched || linkCardForm.cardnumber.$dirty || linkCardForm.$submitted" >
+                        <ng-message class="form-error" when="pattern">Please enter a valid card number</ng-message>
+                        <ng-message class="form-error" when="exactLengths">Must be 16 or 18 numbers long</ng-message>
+                    </ng-messages>
+                </div>
+            </section>
+
+            <section>
+                <div>
+                    <label for="atmpin">ATM PIN</label>
+                    <input type="password" id="atmpin" name="atmpin" ng-model="cardData.atmPIN"
+                           ng-class="{'show-validation-styles': linkCardForm.atmpin.$touched || linkCardForm.atmpin.$dirty || linkCardForm.$submitted}"
+                           exact-lengths="5" ng-pattern="'[0-9]*'" />
+                    <ng-messages for="linkCardForm.atmpin.$error" ng-show="linkCardForm.atmpin.$touched || linkCardForm.atmpin.$dirty || linkCardForm.$submitted" >
+                        <ng-message class="form-error" when="pattern">Please enter a valid ATM PIN</ng-message>
+                        <ng-message class="form-error" when="exactLengths">Must be 5 numbers long</ng-message>
+                    </ng-messages>
+                </div>
+            </section>
+
+            <section>
+                <div>
+                    <international-phone-number ng-model="cardData.contactDetails"></international-phone-number>
+                </div>
+            </section>
+
+            <button id="continue" ng-disabled="!linkCardForm.$valid" class="primary">Next</button>
+            <span feature='newRegisteredPage'>
+                <a id="back" ng-show="noCardLinked" class="btn secondary" ng-click="back()">Back</a>
+                <a id="logout" ng-show="noCardLinked" class="btn tertiary" ng-click="signOut()">Sign out</a>
+                <a id="cancel" ng-hide="noCardLinked" class="btn tertiary" href="#/dashboards">Cancel</a>
+            </span>
+            <span not-feature='newRegisteredPage'>
+                <a id="logout" ng-show="noCardLinked" class="btn secondary" ng-click="signOut()">Sign out</a>
+                <a id="cancel" ng-hide="noCardLinked" class="btn secondary" href="#/dashboards">Cancel</a>
+            </span>
+        </div>
+    </form>
+</div>

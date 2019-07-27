@@ -1,0 +1,58 @@
+<h3>Contact Information</h3>
+
+<div ng-if="!isNewToBankCustomer &amp;&amp; customerInformationData.hasCellphoneContact()" class="notification info wide">
+    Modifying these details won't change your one-time password (OTP) contact preferences. To update your OTP preferences, please visit your branch
+</div>
+
+<div class="notification error" ng-show="!customerInformationData.hasCellphoneContact()">
+    Please enter at least one cell phone number to continue
+</div>
+
+<ul class="data edit-mode editContact margin-top">
+    <li id="contactItem{{$index}}" class="data row-field" ng-repeat="contact in customerInformationData.communicationInformation">
+        <div class="information">
+            <div data-header="Title" class="field-label">
+                <div class="data">
+                    <div class="styled-select medium-width">
+                        <select id="contactItemList{{$index}}" name="Contact_type_{{$index}}" ng-model="contact.communicationTypeCode" ng-required="true" fix-ie-select="" ng-options="type.code as type.description for type in contactTypes" class="styled-select">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div data-header="Title" class="field-value">
+                <div class="cell-data">
+                    <sb-input ng-if="contact.communicationTypeCode === &apos;01&apos; || contact.communicationTypeCode === &apos;03&apos;" name="Contact_detail_{{$index}}" ng-model="contact.communicationDetails" ng-maxlength="10" ng-minlength="10" ng-pattern="&apos;(0)(?!(((0){2})|((1){9})|((2){9})|((3){9})|((4){9})|((5){9})|((6){9})|((7){9})|((8){9})|((9){9})|(123456789)|(987654321)))([0-9]{9})&apos;" pattern-message="{{getInvalidPatternMessage(contact.communicationTypeCode)}}" ng-required="true" validate-on-load="true">
+                        <button id="remove-contact{{$index}}" class="btn icon-button action remove" title="remove" ng-click="removeContact($index)" ng-show="customerInformationData.communicationInformation.length &gt; 1">
+                            <i class="icon icomoon-remove"></i>
+                            <span class="title">Remove</span>
+                        </button>
+                    </sb-input>
+
+                    <sb-input ng-if="contact.communicationTypeCode === &apos;02&apos;" name="Contact_detail_{{$index}}" ng-model="contact.communicationDetails" ng-maxlength="10" ng-minlength="10" ng-pattern="&apos;(0)(?!(((0){2})|((1){9})|((2){9})|((3){9})|((4){9})|((5){9})|((6){9})|((7){9})|((8){9})|((9){9})|(123456789)|(987654321)))([0-9]{9})&apos;" pattern-message="{{getInvalidPatternMessage(contact.communicationTypeCode)}}" ng-required="true" validate-on-load="true">
+                        <button id="remove-contact{{$index}}" class="btn icon-button action remove" title="remove" ng-click="removeContact($index)" ng-show="customerInformationData.communicationInformation.length &gt; 1">
+                            <i class="icon icomoon-remove"></i>
+                            <span class="title">Remove</span>
+                        </button>
+                    </sb-input>
+                    <sb-input ng-if="contact.communicationTypeCode === &apos;04&apos;" name="Contact_detail_{{$index}}" ng-model="contact.communicationDetails" ng-maxlength="configuration.email.maxLength" ng-pattern="&apos;{{configuration.email.pattern}}&apos;" pattern-message="{{getInvalidPatternMessage(contact.communicationTypeCode)}}" ng-required="true" validate-on-load="true">
+                        <button id="remove-contact{{$index}}" class="btn icon-button action remove" title="remove" ng-click="removeContact($index)" ng-show="customerInformationData.communicationInformation.length &gt; 1">
+                            <i class="icon icomoon-remove"></i>
+                            <span class="title">Remove</span>
+                        </button>
+                    </sb-input>
+                </div>
+            </div>
+        </div>
+    </li>
+
+    <row-field ng-show="contactsValid()">
+        <a href="" ng-click="addContact()" class="notification-preference add-detail">+ Add additional contact</a>
+    </row-field>
+
+    <row-field label="Preferred language for SMS / email / post *">
+        <div class="styled-select medium-width">
+            <select ng-model="customerInformationData.preferredLanguageCode" name="Preferred_language" ng-required="true" fix-ie-select="" ng-options="language.code as language.description for language in languages">
+            </select>
+        </div>
+    </row-field>
+</ul>

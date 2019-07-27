@@ -1,0 +1,28 @@
+<div class="page-heading-row" ng-init="initialize()">
+    <h2>Transfer Between Your Accounts</h2>
+</div>
+
+<div class="form-layout-main">
+    <div success="" notification="" ng-show="isSuccessful">Transfer was successful</div>
+    <div error="" notification="" ng-show="errorMessage">{{ errorMessage }}</div>
+
+    <div flow="" ng-hide="!transferPossible || finished()"></div>
+
+
+    <div ng-show="!transferPossible" class="notification warn">
+        You don't have any accounts to transfer between
+    </div>
+
+    <div class="notification info" ng-show="transferPossible &amp;&amp; editing()">
+        Transfers from a Standard Bank account to a Credit Card account take up to 1 business day
+    </div>
+    <div ng-show="transferPossible &amp;&amp; editing()">
+        <div ng-hide="isSuccessful" ng-include="" src="&apos;features/transfers/partials/input.html&apos;"></div>
+    </div>
+
+    <div class="panel" ng-hide="editing()">
+        <div name="summary" ng-show="confirming()" ng-include="" src="&apos;features/transfers/partials/confirmation.html&apos;"></div>
+        <div name="summary" ng-show="finished() &amp;&amp; !isError" ng-include="" src="&apos;features/transfers/partials/success.html&apos;"></div>
+        <div name="summary" ng-show="finished() &amp;&amp; isError" ng-include="" src="&apos;features/transfers/partials/error.html&apos;"></div>
+    </div>
+</div>

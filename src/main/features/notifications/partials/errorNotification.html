@@ -1,0 +1,18 @@
+<div class="modal-overlay" ng-show="notificationError">
+    <div class="modal-container action-modal">
+        <div class="modal-header">
+            <h3>{{notificationTitle}}</h3>
+        </div>
+
+        <div class="modal-content">{{notificationError}}</div>
+        <div class="actions">
+            <button ng-click="closePopup()"
+                    ng-if="notificationOptions.showOkAction" class="secondary ok_button">Ok</button>
+
+            <a ng-repeat="(name,path) in notificationOptions.actions" href="{{path}}" class="btn primary">{{name}}</a>
+
+            <button ng-click="logout()" ng-controller="LogoutController"
+                    ng-show="notificationOptions.showLogoutAction && shouldDisplayLogoutOption()" class="secondary logout_button" data-dtmid="link_modal_modal link" data-dtmtext="Sign out button click">Sign out</button>
+        </div>
+    </div>
+</div>

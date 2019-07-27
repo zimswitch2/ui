@@ -1,0 +1,62 @@
+<div class="account-sharing" ng-if="vm.operator">
+    <h2>{{vm.operator.userDetails.firstName}} {{vm.operator.userDetails.surname}}</h2>
+    <div class="page-heading-row row">
+        <h3>User is <span ng-class="{'red-text': !vm.active(), 'green-text': vm.active()}">{{vm.operator.active ? "active" : "inactive"}}</span></h3>
+        <div class="btn-container">
+            <button class="btn secondary"
+                    ng-click="vm.activate()"
+                    ng-show="!vm.active()"
+                    data-dtmid="obb_content activate user button"
+                    data-dtmtext="Activate user button click">
+                Activate user
+            </button>
+            <button class="btn secondary"
+                    ng-click="vm.deactivate()"
+                    ng-show="vm.active()"
+                    data-dtmid="obb_content deactivate user button"
+                    data-dtmtext="Deactivate user button click">
+                Deactivate user
+            </button>
+            <button class="btn secondary"
+                    ng-click="vm.delete()"
+                    data-dtmid="obb_content delete user button"
+                    data-dtmtext="Delete user button click">
+                Delete user
+            </button>
+        </div>
+    </div>
+    <div ng-show="vm.errorMessage" error notification>{{vm.errorMessage}}</div>
+
+    <account-sharing-user-details user="vm.operator.userDetails" edit-user="vm.editUserDetails()" hide-fields="[ 'email' ]"></account-sharing-user-details>
+    <account-sharing-user-permissions permissions="vm.operator.permissions" edit-permissions="vm.editPermissions()"></account-sharing-user-permissions>
+
+    <user-details-modal title="Delete User" show-modal="vm.showDelete" on-confirm="vm.confirmDelete()" on-cancel="vm.cancelDelete()" confirm-text="Continue" cancel-text="Cancel">
+        <div>
+            <p>The selected user {{vm.operator.userDetails.firstName}} {{vm.operator.userDetails.surname}} will be deleted.</p>
+
+            <div ng-if="vm.active()">
+                <p>This user's pending items will be assigned to you</p>
+            </div>
+        </div>
+    </user-details-modal>
+
+    <user-details-modal title="Deactivate User" show-modal="vm.showDeactivate" on-confirm="vm.confirmDeactivate()" on-cancel="vm.cancelDeactivate()" confirm-text="Continue" cancel-text="Cancel">
+        <div>
+            <p>By deactivating a user you will be removing them from the account</p>
+        </div>
+    </user-details-modal>
+
+    <user-details-modal title="Activate User" show-modal="vm.showActivate" on-confirm="vm.confirmActivate()" on-cancel="vm.cancelActivate()" confirm-text="Continue" cancel-text="Cancel">
+        <div>
+            <p>By activating a user you will be granting them access to the account</p>
+        </div>
+    </user-details-modal>
+
+
+    <button class="btn primary"
+            ng-click="vm.back()"
+            data-dtmid="obb_content back button"
+            data-dtmtext="Back button click">
+        Back
+    </button>
+</div>

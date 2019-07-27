@@ -1,0 +1,59 @@
+<h2>Your Details</h2>
+
+<flow class="wide"></flow>
+
+<div class="notification error wide" ng-show="serverErrorMessage !== undefined">
+    {{serverErrorMessage}}
+</div>
+
+<div class="customer-info-container">
+    <customer-information-navigation current-page="&apos;income&apos;"></customer-information-navigation>
+    <div class="customer-info-form">
+        <form name="customerInformationForm" data-frmcontainer="edit income and expenses form" novalidate="">
+            <div class="customer-info-scroll">
+                <div class="income">
+                    <div>
+                        <button id="edit-income-expenses-button" class="btn icon-button action edit" title="modify" ng-click="edit()">
+                            <i class="icon icomoon-edit"></i>
+                            <span class="title">Modify</span>
+                        </button>
+
+                        <div>
+                            <div>
+                                <h3>Monthly income</h3>
+                            </div>
+                            <ul class="data">
+                                <row-field id="incomeItem{{$index}}" label="{{incomeItem.itemTypeCode | map:&apos;incomeType&apos;}}" ng-repeat="incomeItem in customerInformationData.getIncomes()">
+                                    {{incomeItem.itemAmount | randAmount}}
+                                </row-field>
+                                <row-field id="grossIncome" label="Total income">
+                                    {{customerInformationData.getGrossIncome() | randAmount}}
+                                </row-field>
+                            </ul>
+                        </div>
+                        <div class="second-section">
+                            <div>
+                                <h3>Monthly expenses</h3>
+                            </div>
+                            <ul class="data">
+                                <row-field id="totalExpenses" label="Total expenses">
+                                    {{customerInformationData.getTotalExpenses() | randAmount}}
+                                </row-field>
+                            </ul>
+                            <ul class="data">
+                                <div id="consentPage" class="nav-arrow">
+                                    <a ng-click="next()">
+                                        <i class="icon icon-angle-down"></i>
+                                        <span>Next section</span>
+                                    </a>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<cancel-confirmation></cancel-confirmation>

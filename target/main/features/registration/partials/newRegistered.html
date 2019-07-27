@@ -1,0 +1,38 @@
+<h2>Service Delivery Plaform</h2>
+
+<div ng-show="isSuccessful &amp;&amp; passwordHasChanged" success="" notification="">Password was successfully changed.</div>
+<div ng-show="isSuccessful &amp;&amp; newRegistered" success="" notification="">Hello {{preferredName}}. Your profile was successfully created. What do you want to do next?</div>
+
+<div class="panel new-registered">
+    <div>
+        <h3>Copy your old Internet banking profile</h3>
+        <p class="description">This will copy your existing profile, including beneficiaries and future-dated payments. You'll need your card number, customer-selected PIN (CSP) and password.</p>
+        <div class="margin-top">
+            <a id="start-banking" class="btn primary" href="#/migrate" data-dtmid="link_content_registration options" data-dtmtext="Copy your profile button click">Copy your profile</a>
+        </div>
+
+        <div class="divider horizontal"></div>
+
+        <h3>Link your card</h3>
+        <p class="description">Link your new or existing Standard Bank account to your card. You'll need your card number, ATM PIN and cell phone number.</p>
+        <div class="margin-top">
+            <a id="link-your-card" class="btn primary" href="#/linkcard" data-dtmid="link_content_registration options" data-dtmtext="Link your card button click">Link your card</a>
+        </div>
+
+        <div class="divider horizontal"></div>
+
+        <span>
+            <h3>Open an account</h3>
+            <p class="description">Open an account in just a few steps.</p>
+            <div class="margin-top">
+                <a id="open-an-account" class="button primary" href="#/apply" data-dtmid="link_content_registration options" data-dtmtext="Open an account button click">Open an account</a>
+            </div>
+        </span>
+
+        
+    </div>
+</div>
+
+
+
+

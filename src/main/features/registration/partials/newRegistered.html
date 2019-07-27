@@ -1,0 +1,103 @@
+<h2>Service Delivery Plaform</h2>
+
+<div ng-show="isSuccessful && passwordHasChanged" success notification>Password was successfully changed.</div>
+<div ng-show="isSuccessful && newRegistered" success notification>Hello {{preferredName}}. Your profile was successfully created. What do you want to do next?</div>
+
+<div class="panel new-registered" feature='newRegisteredPage'>
+    <div >
+        <h3>Copy your old Internet banking profile</h3>
+        <p class="description">This will copy your existing profile, including beneficiaries and future-dated payments. You'll need your card number, customer-selected PIN (CSP) and password.</p>
+        <div class="margin-top">
+            <a id="start-banking" class="btn primary" href="#/migrate"  data-dtmid="link_content_registration options" data-dtmtext="Copy your profile button click">Copy your profile</a>
+        </div>
+
+        <div class="divider horizontal"></div>
+
+        <h3>Link your card</h3>
+        <p class="description">Link your new or existing Standard Bank account to your card. You'll need your card number, ATM PIN and cell phone number.</p>
+        <div class="margin-top">
+            <a id="link-your-card" class="btn primary" href="#/linkcard" data-dtmid="link_content_registration options" data-dtmtext="Link your card button click">Link your card</a>
+        </div>
+
+        <div class="divider horizontal"></div>
+
+        <span feature="rcp">
+            <h3>Open an account</h3>
+            <p class="description">Open an account in just a few steps.</p>
+            <div class="margin-top">
+                <a id="open-an-account" class="button primary" href="#/apply" data-dtmid="link_content_registration options" data-dtmtext="Open an account button click">Open an account</a>
+            </div>
+        </span>
+
+        <span not-feature="rcp">
+            <h3>Open an account</h3>
+            <p class="description" >Open a current or savings account in just a few steps.</p>
+            <div class="margin-top">
+                <a id="open-an-account" class="button primary" href="#/apply/current-account" data-dtmid="link_content_registration options" data-dtmtext="Open an account button click">Open an account</a>
+            </div>
+        </span>
+    </div>
+</div>
+
+<div class="panel" not-feature='newRegisteredPage'>
+    <div class="row">
+        <div class="large-6 columns">
+            <h3>New to Standard Bank?</h3>
+            <p>You are currently not a Standard Bank customer and have no accounts with us.</p>
+            <div class="margin-top">
+                <a id="open-an-account" feature="rcp" class="button secondary" href="#/apply" data-dtmid="link_content_registration options" data-dtmtext="Open an account button click">Open an account</a>
+                <a id="open-an-account" not-feature="rcp" class="button secondary" href="#/apply/current-account" data-dtmid="link_content_registration options" data-dtmtext="Open an account button click">Open an account</a>
+            </div>
+
+            <br/>
+            <p class="margin-top">Has your new card been delivered?</p>
+            <div class="margin-top">
+                <a id="link-your-card-new-to-bank" class="btn secondary" href="#/linkcard" data-dtmid="link_content_registration options" data-dtmtext="link new card button click">Link your new card</a>
+            </div>
+        </div>
+
+        <div class="medium-12 columns hide-for-large-up panel-break">
+            <span>or</span>
+        </div>
+
+        <div class="large-1 columns show-for-large-up ">
+            <div class="row">
+                <div class="large-6 columns panel-break-vertical small-vertical-height">
+                    <span>or</span>
+                </div>
+                <div class="large-6 columns">
+                </div>
+            </div>
+        </div>
+
+        <div class="large-5 columns">
+            <h3>Existing customers</h3>
+            <p>Do you currently use our old Internet banking site?</p>
+
+            <ul class="radio-button-group">
+                <li>
+                    <input required id="existingSiteYes" type="radio" ng-value="true" ng-model="useOldInternetBanking">
+                    <label for="existingSiteYes">Yes</label>
+                </li>
+
+                <li>
+                    <input required id="existingSiteNo" type="radio" ng-value="false" ng-model="useOldInternetBanking">
+                    <label for="existingSiteNo">No</label>
+                </li>
+            </ul>
+
+            <div class="margin-top">
+                <div ng-show="useOldInternetBanking === true">
+                    <a id="start-banking" class="btn secondary" href="#/migrate" data-dtmid="link_content_registration options" data-dtmtext="start banking button click">Start banking</a>
+                </div>
+
+                <div ng-show="useOldInternetBanking === false">
+                    <a id="link-your-card" class="btn secondary" href="#/linkcard" data-dtmid="link_content_registration options" data-dtmtext="Link your existing card button click">Link your existing card</a>
+                </div>
+                <div ng-show="useOldInternetBanking === false" class="margin-top">... using your old card number and ATM pin</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

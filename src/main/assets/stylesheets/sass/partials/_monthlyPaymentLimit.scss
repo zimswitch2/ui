@@ -1,0 +1,82 @@
+monthly-payment-limits {
+  padding: 0;
+  border-top: 1px solid #f3f3f3;
+  max-width: $content-max-width;
+
+  h3 {
+    color: #232323;
+    font-size: 1.2em;
+    margin: 0;
+  }
+
+  .content {
+    background-color: $white;
+    display: block;
+    padding: 0;
+
+    h6 {
+      font-size: 1em;
+      color: #000;
+      font-weight: normal;
+    }
+
+    .invalid-balance {
+      .amount {
+        color: #FF2A4C;
+      }
+    }
+
+    .progress-bar {
+      background-color: #EEE;
+      height: 2em;
+      width: 100%;
+      border: 1px solid #EEE;
+      .progress {
+        background-color: #2F91FF;
+        height: 100%;
+        border: 1px solid #D2D2D2;
+      }
+    }
+
+    .monthly-limit {
+      width: 100%;
+      float: none;
+      text-align: center;
+      margin-bottom: 1em;
+
+      span {
+        display: block;
+        font-size: 1.5em;
+        font-weight: lighter;
+      }
+    }
+
+    .payment-limit {
+      width: 50%;
+      float: left;
+      margin-top: 1em;
+
+      span.amount {
+        font-weight: lighter;
+        font-size: 1.5em;
+        color: #2F91FF;
+      }
+
+      span {
+        color: $slate-grey;
+        display: block;
+        font-weight: bold;
+      }
+    }
+  }
+  &.as-main-content {
+    .content{
+      border: none;
+    }
+    h3 {
+      background-color: $white;
+      color: #787878;
+      font-size: 1.5em;
+    }
+  }
+}

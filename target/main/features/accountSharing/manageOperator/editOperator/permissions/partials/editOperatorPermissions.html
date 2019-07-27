@@ -1,0 +1,19 @@
+<div class="add-user-details wide">
+    <h2>Edit permissions</h2>
+    <div class="form-layout-top">
+        <flow></flow>
+        <div class="notification error" ng-show="!vm.isRoleSelectionValid()">Please ensure that at least one account is assigned a role other than 'None'</div>
+        <div class="panel">
+            <edit-user-permissions user-name="vm.user.userDetails.firstName" permissions="vm.user.permissions" roles="vm.roles" accounts="vm.accounts"></edit-user-permissions>
+        </div>
+        <div class="btn-container">
+            <button class="primary" ng-click="vm.next()" ng-disabled="!vm.isRoleSelectionValid()" data-dtmid="obb_content edit permissions next button" data-dtmtext="Next button click">
+                Next
+            </button>
+            <button class="secondary" ng-click="vm.cancel()" data-dtmid="obb_content edit permissions cancel button" data-dtmtext="Cancel button click">
+                Cancel
+            </button>
+        </div>
+    </div>
+    <cancel-dialog></cancel-dialog>
+</div>

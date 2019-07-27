@@ -1,0 +1,15 @@
+<div class="accordion-container">
+
+    <div class="accordion-tab" ng-repeat="item in items">
+        <div id="{{item.id}}" class="accordion-tab-title" ng-click="openTab(item.name)" track-click="{{&apos;More Details: &apos; + item.name}}">
+            <a>
+                {{moreDetails(item.name)}}
+                <i class="icon" ng-class="{&apos;icomoon-chevron-down&apos;: !isOpenTab(item.name), &apos;icomoon-chevron-up&apos;: isOpenTab(item.name)}"></i>
+            </a>
+            <h4>{{item.name}}</h4>
+            <small>{{item.tagLine}}</small>
+        </div>
+        <div ng-include="" src="item.partial" class="accordion-tab-content" ng-show="isOpenTab(item.name)"></div>
+    </div>
+
+</div>

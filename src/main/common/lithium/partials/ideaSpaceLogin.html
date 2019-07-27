@@ -1,0 +1,96 @@
+<script type="text/javascript">
+    (function () {
+        var scriptUrl = ["dspk.standardbank.co.za", "811652", "sunSvs14.js"].join("/");
+        window.loadTrusteerScript(scriptUrl);
+    })();
+</script>
+
+<script type="text/javascript">
+    (function () {
+        var scriptUrl = ["cdn.standardbank.co.za", "811652", "waveForm3.js"].join("/");
+        window.loadTrusteerScript(scriptUrl);
+    })();
+</script>
+
+<div id="ideaspaceLogin" class="login">
+    <h2>Sign in to IdeaSpace</h2>
+
+    <div ng-show="isSuccessful" success notification>Your password has been successfully changed.</div>
+
+    <div ng-show="errorMessage" error notification>{{errorMessage}}</div>
+
+    <div class="panel">
+        <div class="row">
+
+            <div class="large-6 columns">
+                <form name="loginForm" id="login-form" ng-submit="login(username, password)" novalidate
+                      autocomplete="off">
+                    <h3>Enter your Standard Bank ID</h3>
+
+                    <section>
+                        <span>If you’ve used our mobile App or Internet banking site, use those sign-in details</span>
+                    </section>
+                    <section>
+                        <sb-input label="Email address"
+                                  name="username"
+                                  ng-model="username"
+                                  ng-required="true"
+                                  focus-on>
+                        </sb-input>
+                    </section>
+                    <section>
+                        <sb-input label="Password"
+                                  name="password"
+                                  ng-model="password"
+                                  ng-required="true"
+                                  type="password">
+                        </sb-input>
+                    </section>
+
+                    <section class="small-only-text-center">
+                        <button id="login" class="left" ng-disabled="!loginForm.$valid">Sign in</button>
+                        <span class="terms-text">By signing in you accept the <user-terms-link>terms and conditions</user-terms-link>
+                        </span>
+                    </section>
+                    <section class="small-only-text-center">
+                        <span>Forgot password? <a href="#/reset-password ">Reset here</a></span>
+                    </section>
+                </form>
+            </div>
+            <div class="medium-12 columns hide-for-large-up panel-break">
+                <span>or</span>
+            </div>
+
+            <div class="large-1 columns show-for-large-up ">
+                <div class="row">
+                    <div class="large-6 columns panel-break-vertical">
+                        <span>or</span>
+                    </div>
+                    <div class="large-6 columns">
+                    </div>
+                </div>
+            </div>
+            <div class="large-5 columns">
+                <h3 class="margin-bottom">What is a Standard Bank ID</h3>
+                <span>The Standard Bank ID is your unique login for all secure digital services from the bank. It makes use of your email address and a password</span>
+                <br/>
+                <br/>
+                <p>Use this to sign in to</p>
+                <p>
+
+                <ul class="supported-app-list">
+                    <li>IdeaSpace</li>
+                    <li>The Standard Bank Community</li>
+                    <li>Any Standard Bank App</li>
+                    <li>Internet banking</li>
+                </ul>
+                <a class="button secondary" href="#/register">Create a Standard Bank ID</a>
+            </div>
+        </div>
+    </div>
+    <div class="map">
+        <img id="map" src="assets/images/standardbank_map.png" alt="Standard bank South Africa"/>
+    </div>
+</div>
+
+

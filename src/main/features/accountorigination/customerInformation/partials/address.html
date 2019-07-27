@@ -1,0 +1,120 @@
+<h2>Your Details</h2>
+
+<flow class="wide"></flow>
+
+<div class="notification error wide" ng-show="serverErrorMessage !== undefined">
+    {{serverErrorMessage}}
+</div>
+
+<div class="customer-info-container">
+    <customer-information-navigation current-page="'address'"></customer-information-navigation>
+    <div class="customer-info-form">
+        <form name="customerInformationForm" data-frmcontainer="edit address form" novalidate>
+            <div class="customer-info-scroll">
+                <div class="address">
+                    <div>
+                        <button id="edit-residence-button" class="btn icon-button action edit" title="modify"
+                                ng-click="edit()" ng-show="customerInformationData.canModifyAddresses()">
+                            <i class="icon icomoon-edit"></i>
+                            <span class="title">Modify</span>
+                        </button>
+
+                        <div>
+                            <div>
+                                <h3>Home Address
+
+                                    <a href="javascript:void(0)"
+                                       name="Also known as domicilium citandi et executandi: the physical address where any legal correspondence and notices will be sent"
+                                       aria-label="sequestration-tooltip" class="sb-tooltip bottom" tabindex="-1">
+                                        <i class="icon icon-question-circle"></i>
+                                    </a>
+
+                                </h3>
+
+                            </div>
+                            <div class="notification info wide" ng-show="!customerInformationData.canModifyAddresses()">
+                                To update your address details, please visit your nearest branch with proof of your residential or postal address
+                            </div>
+                            <ul id="homeAddress" class="data"
+                                ng-hide="customerInformationData.getCurrentResidentialAddress() === undefined">
+                                <row-field label="Unit Number" id="homeUnitNumber"
+                                           ng-show="customerInformationData.getCurrentResidentialAddress().unitNumber">
+                                    {{customerInformationData.getCurrentResidentialAddress().unitNumber}}
+                                </row-field>
+                                <row-field label="Complex/Flat" id="homeBuilding"
+                                           ng-show="customerInformationData.getCurrentResidentialAddress().building">
+                                    {{customerInformationData.getCurrentResidentialAddress().building | capitalize}}
+                                </row-field>
+                                <row-field label="Street" id="homeStreetPOBox">
+                                    {{customerInformationData.getCurrentResidentialAddress().streetPOBox | capitalize}}
+                                </row-field>
+                                <row-field label="Suburb" id="homeSuburb">
+                                    {{customerInformationData.getCurrentResidentialAddress().suburb | capitalize}}
+                                </row-field>
+                                <row-field label="City/town" id="homeCityTown">
+                                    {{customerInformationData.getCurrentResidentialAddress().cityTown | capitalize}}
+                                </row-field>
+                                <row-field label="Postal code" id="homePostalCode">
+                                    {{customerInformationData.getCurrentResidentialAddress().postalCode}}
+                                </row-field>
+                                <row-field label="Residential Status" id="homeResidentialStatus"
+                                           ng-show="customerInformationData.accommodationTypeCode">
+                                    {{customerInformationData.accommodationTypeCode | map: 'residentialStatus'}}
+                                </row-field>
+                            </ul>
+
+                            <ul class="data" id="noHomeAddress"
+                                ng-show="customerInformationData.getCurrentResidentialAddress() === undefined">
+                                <row-field>No physical address information</row-field>
+                            </ul>
+                        </div>
+
+                        <div class="second-section">
+
+                            <div>
+                                <h3>Postal Address</h3>
+                            </div>
+                            <ul id="postalAddress" class="data"
+                                ng-hide="customerInformationData.getCurrentPostalAddress() === undefined">
+                                <row-field label="Unit Number" id="postalUnitNumber"
+                                           ng-show="customerInformationData.getCurrentPostalAddress().unitNumber">
+                                    {{customerInformationData.getCurrentPostalAddress().unitNumber}}
+                                </row-field>
+                                <row-field label="Complex/Flat" id="postalBuilding"
+                                           ng-show="customerInformationData.getCurrentPostalAddress().building">
+                                    {{customerInformationData.getCurrentPostalAddress().building | capitalize}}
+                                </row-field>
+                                <row-field label="Street/PO Box" id="postalStreetPOBox">
+                                    {{customerInformationData.getCurrentPostalAddress().streetPOBox | capitalize}}
+                                </row-field>
+                                <row-field label="Suburb" id="postalSuburb">
+                                    {{customerInformationData.getCurrentPostalAddress().suburb | capitalize}}
+                                </row-field>
+                                <row-field label="City/town" id="postalCityTown">
+                                    {{customerInformationData.getCurrentPostalAddress().cityTown | capitalize}}
+                                </row-field>
+                                <row-field label="Postal code" id="postalPostalCode">
+                                    {{customerInformationData.getCurrentPostalAddress().postalCode}}
+                                </row-field>
+                            </ul>
+
+                            <ul class="data" id="noPostalAddress"
+                                ng-show="customerInformationData.getCurrentPostalAddress() === undefined">
+                                <row-field>No postal address information</row-field>
+                            </ul>
+
+                            <ul class="data">
+                                <div id="employmentPage" class="nav-arrow">
+                                    <a ng-click="next()">
+                                        <i class="icon icon-angle-down"></i>
+                                        <span>Next section</span>
+                                    </a>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

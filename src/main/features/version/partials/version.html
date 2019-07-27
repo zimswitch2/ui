@@ -1,0 +1,27 @@
+<section>
+    <h3>Gateway Version</h3>
+    <ul ng-hide="gatewayVersion.error">
+        <li><em>Build:</em> {{gatewayVersion.implementationVersion}}</li>
+        <li><em>Revision:</em> {{gatewayVersion.scmRevision}}</li>
+    </ul>
+    <ul ng-show="gatewayVersion.error">
+        <li>{{gatewayVersion.error.message}}</li>
+        <li><em>Details:</em> {{gatewayVersion.error.details}}</li>
+    </ul>
+</section>
+<section>
+    <h3>Front End Version</h3>
+    <ul ng-hide="frontEndVersion.error">
+        <li><em>Build:</em> {{frontEndVersion.implementationVersion}}</li>
+        <li><em>Revision:</em> {{frontEndVersion.scmRevision}}</li>
+    </ul>
+    <p ng-show="frontEndVersion.error">{{frontEndVersion.error}}</p>
+</section>
+<section>
+    <h3>Deployment Version</h3>
+    <ul ng-hide="deploymentVersion.error">
+        <li><em>Current:</em> {{deploymentVersion.currentDeployment}}</li>
+        <li><em>Revision:</em> {{deploymentVersion.scmRevision}}</li>
+    </ul>
+    <p ng-show="deploymentVersion.error">{{frontEndVersion.error}}</p>
+</section>

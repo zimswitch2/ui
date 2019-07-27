@@ -1,0 +1,33 @@
+<button class="btn primary apply" ng-click="apply()" data-dtmid="link_content_account application" data-dtmtext="{{productType}} apply button click">Apply now
+</button>
+<div class="modal-overlay fraud-check" ng-show="fraudCheckModalIsShown">
+    <div class="modal-container action-modal">
+        <div class="modal-header">
+            <h3>Before We Start</h3>
+        </div>
+        <div class="modal-content">
+            <label for="creditAndFraudCheckConsent">
+                <input required type="checkbox" id="creditAndFraudCheckConsent" ng-model="creditAndFraudCheckConsent"/>
+                <span>You agree to us doing a fraud check and sharing this information with the South African Fraud Prevention Service.</span>
+            </label>
+        </div>
+        <div class="actions">
+            <apply-for-account product-type="{{productType}}" is-disabled="!creditAndFraudCheckConsent" track-click="Consent to Fraud_Yes"></apply-for-account>
+            &nbsp;
+            <button class="btn secondary" ng-click="cancel()" track-click="Consent to Fraud_No" data-dtmid="link_content_account application" data-dtmtext="fraud consent {{productType}} | cancel button click">Cancel</button>
+        </div>
+    </div>
+</div>
+<div class="modal-overlay not-kyc-compliant" ng-show="referCustomerToBranch">
+    <div class="modal-container action-modal">
+        <div class="modal-header">
+            <h3>Sorry, we cannot offer you an account</h3>
+        </div>
+        <div class="modal-content">
+            Your FICA details are outstanding. Please visit your nearest branch with proof of ID and residence.
+        </div>
+        <div class="actions">
+            <button class="btn primary" ng-click="closeNonKycModal()")>Close</button>
+        </div>
+    </div>
+</div>

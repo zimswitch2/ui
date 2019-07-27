@@ -1,0 +1,34 @@
+<label for="cellPhoneNumber">Cell phone number</label>
+<ng-messages for="form.cellPhoneNumber.$error" ng-if="form.cellPhoneNumber.$touched || form.cellPhoneNumber.$dirty || form.$submitted">
+    <ng-message class="form-error" when="required">Required</ng-message>
+    <ng-message class="form-error input-length" when="exactlength">Must be {{exactLength}} numbers long</ng-message>
+    <ng-message class="form-error input-length" when="minlength">Must be longer than {{minLength}} numbers</ng-message>
+    <ng-message class="form-error input-length" when="maxlength">Cannot be longer than {{maxLength}} numbers</ng-message>
+    <ng-message class="form-error" when="pattern">Please enter a valid cell phone number</ng-message>
+</ng-messages>
+<div class="row collapse">
+    <div class="small-4 medium-3 columns">
+            <span class="btn label-button secondary" id="internationalDialingCode" title="Country code"
+                  ng-click="showCountries = !showCountries">+{{country.internationalDialingCode}}
+            <i class="icon" ng-class="showCountries ? 'icomoon-chevron-up' : 'icomoon-chevron-down'"></i>
+        </span></div>
+    <div class="small-8 medium-9 columns">
+        <input type="text"
+               id="cellPhoneNumber"
+               name="cellPhoneNumber"
+               ng-class="{'show-validation-styles': form.cellPhoneNumber.$touched || form.cellPhoneNumber.$dirty || form.$submitted}"
+               ng-required="true"
+               ng-pattern="'\\d+'"
+               ng-change="changePhoneNumber()"
+               ng-model="phoneNumber" />
+    </div>
+</div>
+<span id="warningMessage" ng-show="warningMessage && !showCountries" class="warn">{{warningMessage}}</span>
+<div id="countrySelector" class="countrySelector" ng-show="showCountries">
+    <sb-typeahead id="country"
+                  placeholder="e.g. Botswana, Zimbabwe, etc."
+                  items="countryDialingCodes"
+                  ng-model="selectedCountry"
+                  ng-change="changeCountry()">
+    </sb-typeahead>
+</div>

@@ -1,0 +1,47 @@
+<div class="what-happens-next-column">
+    <div class="happens-next-section" id="supportingDocuments" ng-show="!statementsConsentSelected">
+        <p><b>Send your supporting documents</b></p>
+        <ul>
+            <li>We need to verify your income. Please send us your last 3 payslips or bank statements</li>
+            
+            <li>
+                Email all these documents to:
+                <a id="sendSupportingDocsLink" href="mailto:supportingdocuments@standardbank.co.za?subject=Current account application: Supporting documents for {{accountNumber}}&amp;body=Please find attached my supporting documents." target="_blank">supportingdocuments@standardbank.co.za</a>
+                <br>
+                <span class="text-light">Send as PDF, JPEG or TIFF. (Max file size: 4MB)</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="happens-next-section">
+        <p ng-hide="shortVersion" id="confirmingYourApplication"><b>Confirming your application</b></p>
+        <ul>
+            <li> You should receive an SMS within 1 working day after you apply</li>
+            <li ng-hide="shortVersion" id="receiveSms">If you haven't received the SMS after 2 working days, please call 0860 123 000</li>
+        </ul>
+    </div>
+</div>
+
+<div class="what-happens-next-column">
+    <div class="happens-next-section">
+        <p><b>Getting your card</b></p>
+        <ul>
+            <li>A courier service will contact you to arrange delivery of your card</li>
+            <li>Delivery can take between 5 and 9 working days</li>
+            <li>Ensure you have your ID book with you when the courier arrives</li>
+            <li ng-hide="customerKyc" id="nonKycCompliantSupportingDocs">Ensure you give copies of your ID and proof of home address to the courier</li>
+        </ul>
+    </div>
+
+    <div class="happens-next-section" ng-show="newToBank" id="linkingCard">
+        <p><b>Linking your card</b></p>
+        <ul>
+            <li>When you get your card, sign in to Internet banking and link it to your profile</li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="what-happens-next-disclaimer" ng-show="hasOverdraft" id="overdraftDisclaimer">
+    <p><b>Note that this overdraft offer is valid for 5 days. This offer constitutes approval in principle and is subject to the Bank verifying the information</b>.</p>
+</div>

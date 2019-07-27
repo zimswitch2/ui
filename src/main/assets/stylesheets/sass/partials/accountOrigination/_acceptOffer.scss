@@ -1,0 +1,37 @@
+.accept-offer {
+  .sections {
+    @include separated-sections;
+  }
+
+  .terms-conditions {
+    margin: 1em 0 0 0;
+    .inner {
+      margin-left: 18px;
+
+      input[type=checkbox] {
+        margin-left: -18px;
+      }
+    }
+  }
+
+  label {
+    display: inline;
+  }
+
+  form.inline{
+    display: inline;
+  }
+
+  .overdraft-header  {
+    padding-top:13px;
+    clear:both;
+
+    .overdraft-button {
+      padding : 10px;
+
+      @media #{$medium-up} {
+        padding : 0px;
+      }
+    }
+  }
+}

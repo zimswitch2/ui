@@ -1,0 +1,16 @@
+$icon-pos-adjust: 0.4em;
+
+form, ng-form {
+  .close {
+    position: absolute;
+    top: $icon-pos-adjust;
+    right: $icon-pos-adjust;
+    cursor: pointer;
+  }
+
+  .icomoon-search {
+    position: absolute;
+    top: $icon-pos-adjust;
+    left: $icon-pos-adjust;
+  }
+}

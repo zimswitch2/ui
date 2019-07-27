@@ -1,0 +1,44 @@
+<h2>Rejected Transactions</h2>
+<div ng-show="vm.numberOfRejectedTransactions > 0" class="rejected-beneficiary-payments-toast info notification" >Recapture a new payment to correct the rejected transaction</div>
+<div class="entitlement-pending-table entitlement-pending-transactions-table wide-content">
+    <div>
+        <div class="page-heading-row"  ng-show="vm.numberOfRejectedTransactions > 0">
+            <h3>Pay a Beneficiary</h3>
+        </div>
+        <div id="paymentDetails" class="rejected-beneficiary-payments-action-table action-table">
+            <ul class="header">
+                <li>
+                    <div class="information">
+                        <div><span>Beneficiary</span></div>
+                        <div><span>Rejected by</span></div>
+                        <div><span>Reason for rejection</span></div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="data">
+                <li ng-repeat="rejectedPayment in vm.rejectedPayments" ng-click="vm.showDetails(rejectedPayment)">
+                        <div class="information">
+                            <div data-header="Beneficiary">
+                                <div>
+                                    <div>{{rejectedPayment.beneficiaryName}}</div>
+                                    <div>{{rejectedPayment.beneficiaryAccount}}</div>
+                                </div>
+                            </div>
+                            <div data-header="Rejected By">
+                                <div>{{rejectedPayment.rejectedBy}}</div>
+                            </div>
+                            <div data-header="Reason for rejection">
+                                <div>{{rejectedPayment.reasonForRejection}}</div>
+                            </div>
+                        </div>
+
+                </li>
+            </ul>
+            <span class="information message" ng-show="vm.numberOfRejectedTransactions == 0">There are currently no rejected transactions</span>
+
+        </div>
+    </div>
+</div>
+
+<button class="secondary" ng-click="vm.back()">Back</button>
+

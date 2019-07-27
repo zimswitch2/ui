@@ -1,0 +1,33 @@
+<div class="account-sharing">
+    <h2>Invite details for {{vm.operator.userDetails.firstName}}</h2>
+    <div class="page-heading-row row">
+        <h3> User is <span ng-class="{&apos;orange-text&apos;: vm.isPending(), &apos;red-text&apos;: vm.isExpired()}">{{vm.operator.status}}</span></h3>
+        <div class="btn-container">
+            <button class="btn secondary" ng-click="vm.editOperatorDetails()" ng-show="vm.isPending()" data-dtmid="obb_content invitation user edit details button" data-dtmtext="Edit details button click">
+                Edit details
+            </button>
+            <button class="btn secondary" ng-click="vm.showDelete()" data-dtmid="obb_content invitation delete user button" data-dtmtext="Delete user button click">
+                Delete user
+            </button>
+            <button class="btn secondary" ng-click="vm.reInviteOperator()" ng-show="vm.isExpired()" data-dtmid="Reinvite user button click" data-dtmtext="Reinvite user button click">
+                Reinvite user
+            </button>
+            <user-details-modal title="Delete User" show-modal="vm.showDeleteModal" on-confirm="vm.confirmDelete()" on-cancel="vm.cancelDelete()" confirm-text="Yes" cancel-text="No">
+                <div>
+                    <p>Are you sure you want to delete the user?</p>
+                </div>
+            </user-details-modal>
+        </div>
+    </div>
+    <div ng-show="vm.errorMessage" error="" notification="">{{vm.errorMessage}}</div>
+
+    <account-sharing-invitation-details-view operator-details="vm.operator.userDetails" reference-no="vm.operator.userDetails.referenceNumber" edit-operator="vm.editOperatorDetails()" hide-fields="[ &apos;email&apos; ]"></account-sharing-invitation-details-view>
+    <account-sharing-user-permissions permissions="vm.operator.permissions" edit-permissions="vm.editPermissions()" hide-fields="[ &apos;editPermissions&apos;  ]"></account-sharing-user-permissions>
+
+    <button class="btn primary" ng-click="vm.done()" data-dtmid="obb_content done button" data-dtmtext="Done button click">
+        Done
+    </button>
+    <button class="secondary" ng-click="vm.cancel()" data-dtmid="obb_content done button" data-dtmtext="Cancel button click">
+        Cancel
+    </button>
+</div>

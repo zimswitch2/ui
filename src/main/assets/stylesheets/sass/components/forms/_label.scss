@@ -1,0 +1,9 @@
+label {
+  color: $gunmetal;
+  clear: both;
+  font-size: 1em;
+}
+
+input[type="checkbox"] + label {
+  margin-right: 0.2em;
+}

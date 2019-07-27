@@ -1,0 +1,16 @@
+ng-form, form {
+
+  section {
+    @extend .clearfix;
+    padding-bottom: 1em;
+  }
+
+  div {
+    position: relative;
+  }
+
+  span {
+    color: $slate-grey;
+    font-size: 1em;
+  }
+}

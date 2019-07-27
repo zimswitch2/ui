@@ -1,0 +1,19 @@
+<h2>Buy Prepaid</h2>
+<div class="form-layout-top" ng-show="isSuccessful" success notification>Prepaid purchase was successful</div>
+<div class="panel form-layout-main prepaid-recharge">
+    <ul>
+        <ng-include src="'features/prepaid/partials/summary/enteredValues.html'" ></ng-include>
+    </ul>
+
+    <div>
+        <span id="backToTransact" class="btn-container">
+            <a class="button secondary" href="#/transaction/dashboard">Back to transact</a>
+        </span>
+        <span id="makeAnotherRecharge" class="btn-container">
+            <button class="secondary"ng-click="makeAnotherRecharge()">Make another recharge</button>
+        </span>
+    </div>
+</div>
+<div class="form-layout-right">
+    <ng-include src="'features/prepaid/partials/rechargeBalances.html'"></ng-include>
+</div>

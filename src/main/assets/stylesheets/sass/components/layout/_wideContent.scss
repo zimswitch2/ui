@@ -1,0 +1,19 @@
+.wide-content {
+  &.row {
+    max-width: none;
+  }
+  .panel, .notification, ol.steps {
+    width: 100%;
+    max-width: none;
+  }
+
+
+  @media #{$small-only} {
+    .panel {
+      width: 95%;
+      margin: 0 auto;
+      margin-bottom: 1em;
+      padding: 1em;
+    }
+  }
+}

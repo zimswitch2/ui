@@ -1,0 +1,85 @@
+.table {
+  .header-row {
+    display: none;
+  }
+
+  .table-row {
+    margin-bottom: 1em;
+    > div {
+      padding: 1em;
+      border-right: 1px solid $table-border-color;
+      border-left: 1px solid $table-border-color;
+      border-bottom: 1px solid $table-border-color;
+      display: block;
+      width: 100%;
+    }
+    > div:before {
+      color: $gunmetal;
+      content: attr(data-header);
+    }
+    > div:nth-child(1) {
+      border-top: 1px solid $table-border-color;
+    }
+  }
+
+  .hide-row, .hide-column {
+    display: none;
+  }
+
+  @media #{$medium-up} {
+    .table-row {
+      > div {
+        padding: 0;
+
+        > div {
+          display: table-cell;
+          padding: 1em;
+        }
+      }
+      > div:before {
+        padding: 1em;
+        display: table-cell;
+        min-width: 13em;
+        background-color: $silver-grey-light;
+      }
+    }
+  }
+
+  @media #{$large-up} {
+    .table-row {
+      color: $slate-grey !important;
+      margin: 0;
+      padding: 1em;
+      border-right: 1px solid $table-border-color !important;
+      border-left: 1px solid $table-border-color !important;
+      border-bottom: 1px solid $table-border-color !important;
+
+      > div {
+        display: inline-block;
+        border: none;
+        padding-right: 1em;
+        word-break: break-all;
+        vertical-align: top;
+
+        &:nth-child(1) {
+          border: 0;
+        }
+
+        div {
+          padding: 0;
+        }
+      }
+
+      > div:before {
+        content: none;
+      }
+    }
+    .header-row {
+      display: block;
+      border: 1px solid $table-border-color !important;
+      color: $gunmetal !important;
+      background-color: $silver-grey-light !important;
+      @include sortable_headers;
+    }
+  }
+}

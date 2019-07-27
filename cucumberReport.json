@@ -1,0 +1,88 @@
+[
+  {
+    "id": "Instant-money",
+    "name": "Instant money",
+    "description": "As a new to bank customer\nI need to be able to capture my basic details\nSo that I can apply for an account",
+    "line": 2,
+    "keyword": "Feature",
+    "tags": [
+      {
+        "name": "@instantMoney",
+        "line": 1
+      }
+    ],
+    "uri": "/Users/mikegeyser/Code/ib/ui/target/test/functional/acceptance/instantMoney/instantMoney.feature",
+    "elements": [
+      {
+        "name": "View unclaimed instant money transactions",
+        "id": "Instant-money;view-unclaimed-instant-money-transactions",
+        "line": 7,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "I have logged in",
+            "line": 8,
+            "keyword": "Given ",
+            "result": {
+              "duration": 12602055,
+              "status": "passed"
+            },
+            "match": {}
+          },
+          {
+            "name": "I click on the \"Transact\" link",
+            "line": 9,
+            "keyword": "When ",
+            "result": {
+              "duration": 1861030,
+              "status": "passed"
+            },
+            "match": {}
+          },
+          {
+            "name": "I should see the \"Transact\" page",
+            "line": 10,
+            "keyword": "Then ",
+            "result": {
+              "duration": 5928935449,
+              "status": "passed"
+            },
+            "match": {}
+          },
+          {
+            "name": "the \"Instant Money\" tile should be visible",
+            "line": 11,
+            "keyword": "Then ",
+            "result": {
+              "duration": 1570115,
+              "status": "passed"
+            },
+            "match": {}
+          },
+          {
+            "name": "I click on the \"Instant Money\" tile",
+            "line": 12,
+            "keyword": "When ",
+            "result": {
+              "duration": 1411004,
+              "status": "passed"
+            },
+            "match": {}
+          },
+          {
+            "name": "I should see the \"Instant Money\" page",
+            "line": 13,
+            "keyword": "Then ",
+            "result": {
+              "duration": 482636353,
+              "status": "passed"
+            },
+            "match": {}
+          }
+        ]
+      }
+    ]
+  }
+]

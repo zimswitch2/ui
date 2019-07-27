@@ -1,0 +1,13 @@
+---
+
+- name: install fish
+  apt: pkg=fish state=latest
+
+- name: make bamboo agent home directory
+  file: state=directory path=/home/vagrant/bamboo-agent-home/
+
+- name: copy agent installer
+  copy: src=../../../../atlassian-bamboo-agent-installer-5.3.jar dest=/home/vagrant/
+
+- name: chown bamboo agent home to vagrant user
+  file: path=/home/vagrant/bamboo-agent-home recurse=true owner=vagrant

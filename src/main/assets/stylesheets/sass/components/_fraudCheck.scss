@@ -1,0 +1,25 @@
+fraud-check {
+  .modal-overlay {
+    .modal-container {
+      .modal-content {
+        label {
+          input[type="checkbox"] {
+            display: inline-block;
+            width: 5%;
+            vertical-align: top;
+          }
+          span {
+            display: inline-block;
+            width: 93%;
+          }
+        }
+      }
+      .actions {
+        @media #{$small-only} {
+          margin-left: 17px;
+          margin-right: 37px;
+        }
+      }
+    }
+  }
+}

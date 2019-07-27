@@ -1,0 +1,28 @@
+{
+  "channelUser": {
+    "channelProfiles": [
+      {
+        "image": "",
+        "imageDate": null,
+        "tileViews": [],
+        "profileId": "55982",
+        "profileName": "My Personal Dashboard",
+        "profileStyle": "PERSONAL",
+        "systemPrincipalIdentifiers": [
+          {
+            "locale": null,
+            "systemPrincipalId": "5770",
+            "systemPrincipalKey": "SBSA_BANKING"
+          }
+        ]
+      }
+    ],
+    "channelSettings": [],
+    "defaultProfileId": "55982",
+    "digitalId": null,
+    "lastLoggedIn": null,
+    "preferredName": null
+  },
+  "keyValueMetadata": [],
+  "stepUp": null
+}

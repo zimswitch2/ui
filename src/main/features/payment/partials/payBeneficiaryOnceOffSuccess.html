@@ -1,0 +1,85 @@
+<h2>Once-off Payment</h2>
+<ng-include src="'features/beneficiaries/partials/printBeneficiaryReceiptHeader.html'"></ng-include>
+
+<div class="form-layout-main">
+    <div success notification ng-show="onceOffPaymentModel.isSuccessful && !onceOffPaymentModel.beneficiaryAdded">Payment was successful</div>
+    <div success notification ng-show="onceOffPaymentModel.isSuccessful && onceOffPaymentModel.beneficiaryAdded">Payment was successful. New beneficiary was added</div>
+    <div error notification ng-show="onceOffPaymentModel.errorMessage">{{onceOffPaymentModel.errorMessage}}</div>
+    <div class="panel summary" id="paymentDetails">
+        <div class="summary-split-row hide-on-print">
+            <div>
+                <span>From account</span>
+                <span id="fromAccount">{{onceOffPaymentModel.account | accountLabel}}</span>
+            </div>
+            <div>
+                <span>Available balance</span>
+                <span id="availableBalance" name="confirm-fromBalance">{{onceOffPaymentModel.account.availableBalance.amount | randAmount}}</span>
+            </div>
+        </div>
+        <div ng-class="onceOffPaymentModel.saveAsBeneficiary ? 'summary-split-row': 'summary-row'">
+            <div>
+                <span>Beneficiary name</span>
+                <span id="beneficiaryName" ng-show="onceOffPaymentModel.isPrivateBeneficiary()">{{onceOffPaymentModel.beneficiary.name}}</span>
+                <span id="listedBeneficiaryName" ng-show="onceOffPaymentModel.isListedBeneficiary()">{{onceOffPaymentModel.listedBeneficiary.name}}</span>
+            </div>
+            <div id="savedBeneficiary" ng-show="onceOffPaymentModel.saveAsBeneficiary" class="hide-on-print">
+                {{onceOffPaymentModel.beneficiary.name || onceOffPaymentModel.listedBeneficiary.name}} was saved as a beneficiary
+            </div>
+        </div>
+        <div class="summary-row" ng-show="onceOffPaymentModel.isPrivateBeneficiary()">
+            <div><span>Bank</span><span id="bank">{{onceOffPaymentModel.beneficiary.bank.name}}</span></div>
+        </div>
+        <div class="summary-row" ng-show="onceOffPaymentModel.isPrivateBeneficiary()">
+            <div>
+                <span>Branch</span>
+                <span id="branch">{{onceOffPaymentModel.beneficiary.bank.branch.name}} ({{onceOffPaymentModel.beneficiary.bank.branch.code}})</span>
+            </div>
+        </div>
+        <div class="summary-row" ng-show="onceOffPaymentModel.isPrivateBeneficiary()">
+            <div>
+                <span>Account number</span>
+                <span id="accountNumber">{{onceOffPaymentModel.beneficiary.accountNumber}}</span>
+            </div>
+        </div>
+        <div class="summary-row">
+            <div>
+                <span>Your reference</span>
+                <span id="yourReference">{{onceOffPaymentModel.beneficiary.customerReference}}</span>
+            </div>
+        </div>
+        <div class="summary-row">
+            <div>
+                <span>Beneficiary reference</span>
+                <span id="beneficiaryReference">{{onceOffPaymentModel.beneficiary.recipientReference}}</span>
+            </div>
+        </div>
+        <div class="summary-row" ng-if="onceOffPaymentModel.hasPaymentConfirmation()">
+            <div>
+                <span>
+                    {{onceOffPaymentModel.beneficiary.paymentConfirmation.recipientName}} will receive payment notifications by
+                    {{onceOffPaymentModel.beneficiary.paymentConfirmation.confirmationType | sentenceCaseForNotificationTypeFilter}}
+                    {{onceOffPaymentModel.beneficiary.paymentConfirmation.confirmationType | prepositionForNotificationTypeFilter}}
+                </span>
+                <span id="confirmationAddress">{{onceOffPaymentModel.beneficiary.paymentConfirmation.address}}</span>
+            </div>
+        </div>
+        <div class="summary-row">
+            <div>
+                <span>Payment date</span>
+                <span id="paymentDate">{{latestTimestampFromServer | dateFormat}}</span>
+            </div>
+        </div>
+        <div class="summary-row">
+            <div>
+                <span>Amount</span><span class="amount">{{onceOffPaymentModel.amount | nonNegativeRandAmount}}</span>
+            </div>
+        </div>
+
+        <button id="done" ng-click="done()" class="secondary">Back to transactions</button>
+        <print-button button-class="secondary" button-text="Print receipt"></print-button>
+    </div>
+
+    <div class="print-only one-page">
+        <ng-include src="'common/print/partials/printFooter.html'"></ng-include>
+    </div>
+</div>

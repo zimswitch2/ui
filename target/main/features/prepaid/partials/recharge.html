@@ -1,0 +1,43 @@
+<h2>Buy Prepaid</h2>
+
+<div class="form-layout-top" flow=""></div>
+
+<div class="prepaid-recharge form-layout-main">
+    <div class="info notification" ng-show="displayNotification.hasInfo">{{displayNotification.message}}</div>
+    <div ng-show="errorMessage" error="" notification="">{{errorMessage}}</div>
+
+    <form name="rechargePrepaidForm" class="panel">
+        <section>
+            <sb-account-dropdown name="From_Account" label="From account" ng-model="recharge.account" items="recharge.fromAccounts" highlight-balance="amountExceedsAvailableBalance()" ng-required="true">
+            </sb-account-dropdown>
+        </section>
+        <section class="clearfix">
+            <div class="inline-select left">
+                <label for="provider">Provider</label>
+
+                <div class="styled-select">
+                    <select id="provider" ng-model="recharge.provider" ng-options="provider.name for provider in recharge.providers">
+                    </select>
+                </div>
+            </div>
+            <div class="inline-info provider-icon left {{recharge.provider.id}}"></div>
+        </section>
+        <span ng-switch="recharge.provider.type">
+            <span ng-switch-when="mobile">
+                <ng-include src="&apos;features/prepaid/partials/input/mobile.html&apos;"></ng-include>
+            </span>
+            <span ng-switch-default="">
+                <ng-include src="&apos;features/prepaid/partials/input/electricity.html&apos;"></ng-include>
+            </span>
+        </span>
+
+        <button id="proceed" class="primary" ng-disabled="!rechargePrepaidForm.$valid || amountExceedsDailyWithdrawalLimit() || amountExceedsAvailableBalance()" ng-click="proceed()">Next
+        </button>
+        <button go-back="" id="cancel" ng-click="cancel()" class="secondary">Cancel</button>
+    </form>
+</div>
+
+<div class="form-layout-right">
+    <ng-include src="&apos;features/prepaid/partials/rechargeBalances.html&apos;"></ng-include>
+</div>
+

@@ -1,0 +1,22 @@
+<section>
+    <sb-input name="rechargeNumber"
+          label="Meter number"
+          ng-model="recharge.rechargeNumber"
+          ng-required="true"
+          ng-pattern="'[0-9]{7,11}'"
+          pattern-message="Please enter a valid meter number">
+    </sb-input>
+</section>
+<section>
+    <sb-amount
+        ng-model="$parent.recharge.provider.product.amount"
+        enforcer="$parent.enforcer"
+        placeholder="0"
+        label="Amount">
+    </sb-amount>
+</section>
+<section class="text-notification">Enter an amount from <span class="rand-amount">R {{recharge.provider.product.range.min}}</span> to <span class="rand-amount">R {{recharge.provider.product.range.max}}</span></section>
+<section>
+    <label>Transaction date</label>
+    <span id="rechargeDate" class="display-block">{{latestTimestampFromServer | dateFormat}}</span>
+</section>

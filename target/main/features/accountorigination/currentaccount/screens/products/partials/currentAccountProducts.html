@@ -1,0 +1,43 @@
+<h2>Apply for Account</h2>
+<div class="info notification wide" ng-if="hasCurrentAccount()">
+    You already have a current account. Please visit your branch to enquire about current account upgrades, or to apply
+    for a different account
+</div>
+
+<div class="account-products well wide">
+    <section class="product-row relative">
+        <div class="page-heading-row">
+            <h3 class="hide-on-print">Current account solutions</h3>
+        </div>
+        <img class="show-for-large-up" src="assets/images/current-account.jpg" alt="Transaction Account">
+
+        <div class="application-status-text">
+
+            <service-error>
+                The account application service is currently unavailable. Please try again later
+            </service-error>
+
+            <div>
+                <p>Our current account solutions are designed to meet your needs as an individual and come with a range
+                    of
+                    features and benefits that add real value to your life.</p>
+            </div>
+
+            <p ng-show="canApply()">Apply now to find out which current account you qualify for. You may also qualify
+                for an overdraft, which is optional.</p>
+        </div>
+
+        <div>
+            <apply-for-account product-type="current-account" class="apply-now" ng-if="canApply()"></apply-for-account>
+        </div>
+    </section>
+
+    <section>
+        <h3>Browse our current account solutions:</h3>
+        <sb-accordion items="products" partial="common/accordion/partials/accountOriginationAccordion.html"></sb-accordion>
+    </section>
+</div>
+
+
+
+

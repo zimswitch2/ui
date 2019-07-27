@@ -1,0 +1,46 @@
+<h2>Instant Money</h2>
+
+<div class="form-layout-top" flow=""></div>
+
+<div class="form-layout-main">
+    <div class="panel">
+        <div class="summary">
+            <div class="summary-split-row hide-on-print">
+
+                <div>
+                    <span>From Account</span>
+                    <span id="fromAccount">{{voucher.fromAccount}}</span>
+                </div>
+                <div>
+                    <span>Available balance</span>
+                    <span id="availableBalance" name="confirm-fromBalance">{{voucher.accAvailableBalance.amount | randAmount}}</span>
+                </div>
+            </div>
+
+            <div class="summary-row">
+                <div>
+                    <span>Cell phone number </span><span id="cellPhoneNumber">{{voucher.contact.address}}</span>
+                </div>
+            </div>
+
+            <div class="summary-row">
+                <div>
+                    <span>Amount</span><span id="amount">{{voucher.amount.amount  | randAmountNoCents}}</span>
+                </div>
+            </div>
+
+            <div class="summary-row">
+                <div>
+                    <span>Voucher number</span><span id="voucherNumber">{{voucher.voucherNumber}}</span>
+                </div>
+            </div>
+
+            <button ng-click="confirm()" data-dtmid="link_content_Instant Money" data-dtmtext="change pin step 2 | confirm button click">
+                Confirm
+            </button>
+
+            <a class="btn secondary" href="#/instant-money" data-dtmid="link_content_Instant Money" data-dtmtext="change pin step 2 | cancel button click">Cancel</a>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,16 @@
+<h2>Filter Controls</h2>
+<div class="example">
+    <p>A div that we can wrap inputs in to put them in a row.</p>
+
+    <div class="demo">
+        <div class="filter-controls">
+            <div class="left styled-select">
+                <select ng-model="selectedItem" ng-options="item.label for item in selectItems | filter: {label: query}"></select>
+            </div>
+            <form class="right">
+                <filter-box ng-model="query" placeholder="Search this list"></filter-box>
+            </form>
+        </div>
+        <show-code></show-code>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<header id="top" >
+    <img class="hide-on-print" src="assets/images/logo.png"/>
+    <img class="print-only" src="assets/images/logo-black.png"/>
+
+    <div ng-controller="HeaderController" ng-show="shouldDisplayProfileDropdown()">
+        <div class="profile-dropdown-container hide-for-small-only">
+            <a ng-if="hasMultipleDashboards()" id="choose-dashboard" class="choose-dashboard-link"
+               href="#/choose-dashboard" data-dtmid="header_nav_link" data-dtmtext="choose dashboard">
+                <div class="switch-icon">
+                    <i class="icon icomoon-switch-dashboard"></i>
+                </div>
+                {{dashboardName()}}
+            </a>
+            <div id="signedinas" ng-click="showProfileDropdown = !showProfileDropdown" style="padding-bottom: 1em;" ng-show="shouldDisplayProfileDropdown()">
+                <i class="icon icomoon-security"></i>{{ preferredName() }}<i class="icon icon-caret-down"></i>
+            </div>
+
+            <div class="dropdown-menu" dropdown-menu ng-show="showProfileDropdown">
+                <a id="header-profile-settings" href="#/dashboards" ng-if="hasCard()" data-dtmid="header_nav_link"
+                   data-dtmtext="Profile and settings">Profile and settings</a>
+                <a id="header-change-password" href="#/change-password" data-dtmid="header_nav_link"
+                   data-dtmtext="Change password">Change password</a>
+                <a href="#/account-sharing/operators" ng-if="isBusinessUser()" data-dtmid="header_nav_link"
+                   data-dtmtext="Account sharing">Online Banking for Business</a>
+                <a id="signout" ng-click="logout()" ng-controller="LogoutController"
+                   ng-show="shouldDisplayLogoutOption()" track-click="Sign out" data-dtmid="header_nav_link"
+                   data-dtmtext="Sign out">Sign out</a>
+            </div>
+        </div>
+    </div>
+</header>

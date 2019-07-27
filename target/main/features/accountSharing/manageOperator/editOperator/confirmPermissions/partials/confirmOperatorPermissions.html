@@ -1,0 +1,15 @@
+<div class="account-sharing">
+    <h2>Edit permissions</h2>
+    <flow></flow>
+
+    <account-sharing-user-permissions permissions="vm.operator.permissions" edit-permissions="vm.editPermissions()"></account-sharing-user-permissions>
+
+    <button class="btn primary" ng-click="vm.confirm()" data-dtmid="obb_content edit permissions confirm button" data-dtmtext="Confirm button click">
+        Confirm
+    </button>
+    <button class="btn secondary" ng-click="vm.cancel()" data-dtmid="obb_content edit permissions cancel button" data-dtmtext="Cancel button click">
+        Cancel
+    </button>
+
+    <cancel-dialog></cancel-dialog>
+</div>

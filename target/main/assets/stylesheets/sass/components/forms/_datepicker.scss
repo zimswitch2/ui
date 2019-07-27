@@ -1,0 +1,184 @@
+.datepicker {
+  position: absolute;
+  width: 21em;
+  height: 24em;
+  background-color: #fff;
+  color: #f3f3f3;
+  margin-top: 0.5em;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
+  z-index: 9999;
+
+  select {
+    margin-top: 0.8em;
+    width: 4.5em;
+    background: transparent;
+    border: none;
+    font-weight: bold;
+    font-size: 100%;
+    -webkit-appearance: menulist-button !important;
+  }
+
+  .header {
+    background-color: #f3f3f3;
+    height: 3em;
+    text-align: center;
+
+    i {
+      margin: 0.3em;
+      padding: 0.4em;
+      position: absolute;
+      color: $gunmetal-light;
+
+      &:hover {
+        background: #ddd;
+        cursor: pointer;
+      }
+
+      &.left {
+        left: 0;
+      }
+
+      &.left-second {
+        left: 30px;
+      }
+
+      &.right {
+        right: 0;
+      }
+
+      &.right-second {
+        right: 30px;
+      }
+    }
+
+    button {
+      background-color: #f3f3f3;
+      color: #333;
+      font-weight: bold;
+      padding: 0;
+      width: 4em;
+      height: 3em;
+      border: none;
+
+      &.month {
+        width: 5.5em;
+        border-right: none;
+      }
+
+      &.year {
+        width: 3em;
+        border-left: none;
+      }
+    }
+  }
+
+  ul {
+    margin-left: 0;
+    line-height: 2em;
+  }
+
+  li {
+    padding-top: 0.5em;
+  }
+
+  .days {
+    width: 21em;
+    li {
+      font-weight: bold;
+      float: left;
+      width: 3em;
+      height: 3em;
+      text-align: center;
+    }
+  }
+
+  .dates {
+    width: 21em;
+    li {
+      float: left;
+      width: 3em;
+      height: 3em;
+      text-align: center;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f3f3f3;
+      }
+
+      &.different-month {
+        color: #bbb;
+      }
+
+      &.invalid {
+        color: $silver-grey;
+        cursor: not-allowed;
+
+        &:hover {
+          background-color: white;
+        }
+      }
+
+      &.selected {
+        background-color: #0093FF;
+        color: white;
+      }
+    }
+  }
+}
+
+.datepicker-input {
+  width: 14em;
+  padding-bottom: 0;
+  z-index: 0;
+  input[readonly] {
+    background: transparent;
+    cursor: pointer;
+  }
+
+  &:after {
+    font-family: "icomoon";
+    content: "\e808";
+    z-index: -99;
+    font-size: 4em;
+    position: absolute;
+    top: -0.25em;
+    right: -7px;
+    pointer-events: none;
+    color: #787878;
+    line-height: 1.15em;
+  }
+}
+
+.canProceedWithCapture{
+  input[readonly] {
+  border: 1px solid #FF2A4C;
+  }
+}
+
+@media #{$small-only} {
+  sb-datepicker {
+    width: 100%;
+  }
+  .datepicker-input {
+    width: auto;
+  }
+  .datepicker {
+    height: 25em;
+    .days {
+      clear: both;
+    }
+    button {
+      &.month {
+        float: left;
+        margin-left: 5.5em;
+      }
+
+      &.year {
+        float: left;
+      }
+    }
+    select {
+      margin-right: 4em;
+    }
+  }
+}

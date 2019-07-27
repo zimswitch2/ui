@@ -1,0 +1,40 @@
+<h2>Your Details</h2>
+
+<flow class="wide"></flow>
+
+<div class="notification error wide" ng-show="serverErrorMessage !== undefined">
+    {{serverErrorMessage}}
+</div>
+
+<div class="customer-info-container">
+    <customer-information-navigation editing="true" current-page="'profile'"></customer-information-navigation>
+    <div class="customer-info-form">
+        <form name="customerInformationForm" data-frmcontainer="edit basic information form" novalidate>
+            <div class="customer-info-scroll">
+                <div class="basic-info">
+                    <div>
+                        <ng-include src="'features/accountorigination/customerInformation/partials/basicInformation.html'"></ng-include>
+                    </div>
+                    <div class="second-section">
+                        <ng-form name="editContactForm">
+                            <div class="edit-section">
+                                <ng-include src="'features/accountorigination/customerInformation/partials/addContact.html'"></ng-include>
+
+                                <div>
+                                    <button id="save-contact" class="primary" ng-click="save()"
+                                            ng-disabled="!(editContactForm.$valid && customerInformationData.hasCellphoneContact())">
+                                        Save
+                                    </button>
+                                    <button id="cancel-contact" class="secondary" ng-click="cancel()">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </ng-form>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<cancel-confirmation edit-form="editContactForm"></cancel-confirmation>

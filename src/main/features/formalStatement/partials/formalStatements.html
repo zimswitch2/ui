@@ -1,0 +1,146 @@
+<div class="formal-statements wide-content" xmlns="http://www.w3.org/1999/html">
+    <h2>Formal Statement</h2>
+
+    <h3 id="lastMonthsText">Last 12 months</h3>
+
+
+    <div ng-show="errorMessage" error notification>{{errorMessage}}</div>
+    <div ng-show="isSuccessful" success notification>Formal statement successfully sent to {{emailAddress}}</div>
+
+    <div class="panel">
+        <div class="filter-controls">
+            <div class="left styled-select">
+                <select id="account"
+                        ng-model="selectedAccount"
+                        ng-change="changeAccountTo()"
+                        ng-options="item | accountLabel for item in accounts">
+                </select>
+            </div>
+
+            <form ng-show="formalStatements" class="filter right">
+                <filter-box
+                        ng-model="query"
+                        placeholder="Search"
+                        track-click="Request specific Formal Statements.search"
+                        ></filter-box>
+            </form>
+        </div>
+
+        <div class="action-table">
+            <ul class="header">
+                <li>
+                    <div class="information fixed-column-width">
+                        <div><span>Statement period</span></div>
+                        <div><span>Statement from</span></div>
+                        <div><span>File size</span></div>
+                    </div>
+                    <div class="actions">
+                        <div class="action" feature="downloadTunleyFormalStatement">Download</div>
+                        <div class="action" feature="emailTunleyFormalStatement">Email</div>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="data not-clickable">
+                <li ng-repeat="formalStatement in formalStatements | formalStatementFilter : query" class="transaction">
+                    <div class="information fixed-column-width">
+                        <div class="period" data-header="Statement period">
+                            <div class="cell-data">{{formalStatement.statementTimeFrame.startDate | monthYearDateFormat}}</div>
+                        </div>
+                        <div class="from" data-header="Statement from">
+                            <div class="cell-data">
+                                {{formalStatement.statementTimeFrame.startDate | dateFormat}} to
+                                {{formalStatement.statementTimeFrame.endDate | dateFormat}}
+                            </div>
+                        </div>
+                        <div class="fileSize" data-header="File size">
+                            <div class="cell-data">{{formalStatement.statementFileSize | bytes}}</div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <a feature="downloadTunleyFormalStatement" class="action" title="download" ng-click="openDownloadModal(formalStatement)">
+                            <span class="title">Download</span>
+                            <i class="icon icomoon-download"></i>
+                        </a>
+                        <a feature="emailTunleyFormalStatement" class="action" title="email" ng-click="openEmailModal(formalStatement)">
+                            <span class="title">Email</span>
+                            <i class="icon icomoon-email-circle"></i>
+                        </a>
+                    </div>
+                </li>
+                <span class="information message" ng-hide="formalStatements && formalStatements.length > 0">
+                    There are no available statements to display
+                </span>
+                <span ng-show="(formalStatements | formalStatementFilter : query).length == 0" id="no-matches-message" class="information message">
+                        No matches found
+                </span>
+            </ul>
+
+        </div>
+    </div>
+
+    <a class="btn secondary" href="#/transaction/dashboard">Back</a>
+
+</div>
+
+<div class="modal-overlay formal-statements" ng-if="isDownloadModalOpen">
+    <div class="modal-container action-modal">
+        <div class="modal-header">
+            <h3>Download Encrypted PDF</h3>
+        </div>
+
+        <div class="modal-content">
+            <p> Download your statement as an encrypted PDF. To open it, enter your South African ID as a password.
+                If you don't have a South African ID, enter your passport number.
+            </p>
+
+            <p>
+                Note that you need Adobe PDF Reader to view your statement, which you can download from the Adobe website.
+            </p>
+        </div>
+
+        <div class="actions">
+            <hidden-form-button
+                    track-click="Download List of Formal Statements.download"
+                    form-items="downloadFormalStatement"
+                    action-url="downloadUrl"
+                    ng-click="closeDownloadModal()">
+                Download PDF
+            </hidden-form-button>
+            <button ng-click="$parent.isDownloadModalOpen = undefined" class="secondary">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay formal-statements" ng-if="isEmailModalOpen">
+    <div class="modal-container action-modal">
+        <div class="modal-header">
+            <h3>Email formal statement</h3>
+        </div>
+
+        <div class="modal-content">
+            <br> You are about to email a statement from {{statementDateDetails.startDate | monthYearDateFormat}}.</br>
+            This statement is from <b>{{statementDateDetails.startDate | dateFormat}}</b> to <b>{{statementDateDetails.endDate | dateFormat}}</b>
+            </p>
+
+            <form name="emailForm">
+                <section>
+                    <sb-input name="emailAddress"
+                              label="Email address"
+                              ng-model="$parent.emailAddress"
+                              ng-required="true"
+                              ng-maxlength="configuration.email.maxLength"
+                              ng-pattern="'{{configuration.email.pattern}}'"
+                              pattern-message="Please enter a valid email address">
+                    </sb-input>
+                </section>
+                <button ng-click="emailStatement()"
+                        track-click="Request specific Formal Statements.email"
+                        class="primary"
+                        ng-disabled="!emailForm.$valid">Continue
+                </button>
+                <button ng-click="closeEmailModal()" class="secondary">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>

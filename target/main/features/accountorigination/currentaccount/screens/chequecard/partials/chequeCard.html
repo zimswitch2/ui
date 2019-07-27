@@ -1,0 +1,75 @@
+<h2 class="clear">Your Cheque Card</h2>
+
+<flow class="wide"></flow>
+
+<div class="cheque-cards well wide hide-on-print">
+    <section class="product-row">
+        <h3>Simpler day-to-day banking</h3>
+        <img class="show-for-large-up" ng-src="{{chequeCardImage}}">
+
+        <p>Your Visa or MasterCard cheque card is linked to your current account and gives you a range of benefits
+            that make day-to-day banking even simpler. With your cheque card you can make fast payments at merchants,
+            easily withdraw cash, make deposits and transfers, and top up prepaid services at our AutoPlus ATMs.
+            Use your cheque card anywhere you see Visa / MasterCard signs.</p>
+        <button class="secondary" ng-click="showDetails = true" track-click="Cheque card details">Details
+        </button>
+    </section>
+
+    <section>
+        <h3 ng-if="moreThanOne">Choose a cheque card for your current account:</h3>
+        <h3 ng-if="!moreThanOne">You will get the following cheque card for your current account:</h3>
+        <div class="box">
+            <div ng-repeat="option in chequeCardOptions" class="cheque-card-option">
+                <input ng-if="moreThanOne" type="radio" id="{{option.number}}" ng-model="selection.chequeCard" ng-value="option">
+                <label for="{{option.number}}">{{option.name}}</label>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <button id="next" class="primary" ng-disabled="!selection.chequeCard" ng-click="next()">Finish</button>
+    </section>
+</div>
+
+<div class="modal-overlay" ng-show="showDetails">
+    <div class="modal-container offer-details">
+        <div class="offer-header">
+            <div class="modal-close">
+                <div class="close-button" ng-click="showDetails = false">
+                    <i class="icon icomoon-close-circle"></i>
+                </div>
+            </div>
+
+            <h2>Cheque Card</h2>
+        </div>
+
+        <div class="product-information">
+            <div>
+                <section>
+                    <h3>Highlights</h3>
+                    <ul>
+                        <li>Secure, quick and easy in-store purchases and online shopping</li>
+                        <li>Free travel insurance when using your card to pay for flight tickets. Extra cover available from your branch, or call 0860 100 484</li>
+                        <li>Withdraw cash, make deposits and transfers, top up prepaid services and much more via our AutoPlus ATMs</li>
+                        <li>Link your cheque card to 3 more cards and 9 accounts</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>What it costs</h3>
+                    <ul>
+                        <li>Cheque card fees are included in your minimum monthly service fee</li>
+                        <li>No additional fees are charged for purchases made with your cheque card</li>
+                        <li><span class="rand-amount">R 125</span> card replacement fee</li>
+                        <li>
+                            You may be charged a service fee when using your cheque card to withdraw cash from a branch. Consult your current account's pricing guide for details:<br><br>
+                            <a ng-if="productFamily === &apos;elite&apos;" href="http://standardbank.co.za/standimg/South%20Africa/PDF/Pricing/Elite_Pricing.pdf" target="_blank">Elite Banking pricing (PDF)</a><br><br>
+                            <a ng-if="productFamily === &apos;prestige&apos;" href="http://standardbank.co.za/standimg/South%20Africa/PDF/Pricing/Prestige_Pricing.pdf" target="_blank">Prestige Banking pricing (PDF)</a><br><br>
+                            <a ng-if="productFamily === &apos;consolidator&apos;" href="http://standardbank.co.za/standimg/South%20Africa/PDF/Pricing/Consolidator_Pricing.pdf" target="_blank">Consolidator Banking pricing (PDF)</a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

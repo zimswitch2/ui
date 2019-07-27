@@ -1,0 +1,37 @@
+.summary-ao {
+
+  hr {
+    border-bottom: 1px solid #EEE;
+    padding: 1em 0;
+  }
+
+  .summary-ao-row {
+    @extend .row;
+
+    padding: 0.5em 0;
+  }
+
+  .summary-ao-label {
+    @extend .medium-4;
+    @extend .columns;
+
+    color: $gunmetal-light;
+    padding-left: 0;
+  }
+
+  .summary-sni-label {
+  @extend .summary-ao-label;
+
+  font-weight: 500;
+}
+
+  .summary-ao-value {
+    @extend .medium-8;
+    @extend .columns;
+
+    color: $slate-grey;
+    padding-left: 0;
+  }
+
+  @include clearfix;
+}

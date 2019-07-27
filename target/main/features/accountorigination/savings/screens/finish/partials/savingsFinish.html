@@ -1,0 +1,77 @@
+<div class="confirm-offer savings-origination-form">
+    <div class="page-heading-row wide">
+        <h2 ng-if="applicationSuccessful()">Application Successful</h2>
+        <h2 ng-if="!applicationSuccessful()">Application Unsuccessful</h2>
+
+        <div>
+            <print-button button-track-click="{{&apos;Print accepted offer: &apos; + product.name}}" track-click="Print {{product.name}} application successful page"></print-button>
+        </div>
+    </div>
+
+    <flow class="wide hide-on-print"></flow>
+
+    <div ng-if="applicationSuccessful()">
+        <p class="notification success wide">Your application was successful</p>
+
+        <div class="panel wide">
+
+            <div class="row divider-container">
+                <div class="show-for-medium-up">
+                    <div class="divider vertical medium-offset-5"></div>
+                </div>
+
+                <section class="account-information">
+                    <h3>Summary</h3>
+                    <br>
+                    <div class="summary-ao">
+                        <div class="summary-ao-row" id="accountType">
+                            <span class="summary-sni-label">Account type</span>
+                            <span class="summary-ao-value">{{productName}}</span>
+                        </div>
+                        <div class="summary-ao-row" id="accountNumber">
+                            <span class="summary-sni-label">Account number</span>
+                            <span class="summary-ao-value">{{accountNumber}}</span>
+                        </div>
+                        <div class="summary-ao-row" id="dateAccepted">
+                            <span class="summary-sni-label">Date</span>
+                            <span class="summary-ao-value">{{acceptedTimestamp | dateFormat}}</span>
+                        </div>
+                        <div class="summary-ao-row" id="timeAccepted">
+                            <span class="summary-sni-label">Time</span>
+                            <span class="summary-ao-value">{{acceptedTimestamp | timeFormat}}</span>
+                        </div>
+                    </div>
+                    <br>
+                </section>
+
+                <section class="documents-request">
+
+                    <div class="show-for-small-only">
+                        <div class="divider horizontal"></div>
+                    </div>
+
+                    <h3>What happens next?</h3>
+                    <br>
+                    <div class="what-happens-next-column">
+                        <div class="happens-next-section">
+                            <p class="font-weight-normal">Your account is ready to use</p>
+                            <br>
+                            <p class="font-weight-normal">You can start transferring funds to and from your {{productName}} account</p>
+                        </div>
+                    </div>
+
+
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-notification wide panel " ng-if="!applicationSuccessful()">
+        Your application was unsuccessful. Please call 0860 123 000 or visit your nearest branch to find out which savings and investment solutions suit you best
+    </div>
+
+    <div class="clear"></div>
+
+    <a go-home="" class="btn secondary margin-top" track-click="{{product.name}} application successful_Back to Account Summary" data-dtmid="link_content_account application" data-dtmtext="Back to account summary button click">Back to Account Summary</a>
+
+</div>

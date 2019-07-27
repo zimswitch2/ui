@@ -1,0 +1,221 @@
+.international-payment-reason-for-payment {
+  float: left;
+  width: 100%;
+
+  .reason-for-payment-search {
+
+    .search-input-container {
+      margin-right: 10em;
+
+      input {
+        padding-left: 2.5em;
+        padding-right: 2.5em;
+        border-right: 0px;
+      }
+    }
+
+    .search-cue {
+      float: right;
+      background-color: $azure-blue;
+      color: white;
+      width: 10em;
+      height:2.8em;
+      line-height:2.8em;
+      text-align: center;
+    }
+  }
+
+  .search-results {
+    a span strong {
+      color:$gunmetal-light;
+    }
+  }
+
+  .bop-groups {
+    background-color: $silver-grey-light;
+    padding-left:0.5em;
+    padding-right:0.5em;
+    padding-bottom:0.5em;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 0.3em;
+
+    .bop-group {
+      float: left;
+      background-color: $silver-grey;
+      color: white;
+      padding-left:0.5em;
+      padding-right:0.5em;
+      margin-right:0.5em;
+      margin-top:0.5em;
+
+      &.selected {
+        background-color:$azure-blue;
+      }
+    }
+  }
+
+  .search-results,
+  .reason-for-payment-accordion {
+    border: 1px solid $silver-grey;
+    border-bottom: 0px;
+    margin-top: 1em;
+
+    &.animate-show.ng-hide-add,
+    &.animate-show.ng-hide-remove {
+      -webkit-transition:all linear 0.3s;
+      -moz-transition:all linear 0.3s;
+      -o-transition:all linear 0.3s;
+      transition:all linear 0.3s;
+      display:block!important;
+    }
+    
+    &.animate-show.ng-hide-add,
+    &.animate-show.ng-hide-remove {
+      display:block!important;
+    }
+
+    &.animate-show.ng-hide-add.ng-hide-add-active,
+    &.animate-show.ng-hide-remove {
+      line-height:0;
+      opacity:0;
+      padding:0 10px;
+    }
+
+    &.animate-show.ng-hide-add,
+    &.animate-show.ng-hide-remove.ng-hide-remove-active {
+      line-height:20px;
+      opacity:1;
+    }
+
+    a {
+      display: block;
+      position: relative;
+      min-height: 2em;
+      overflow: hidden;
+      text-decoration: none;
+      font-size: 1.5em;
+      color: $slate-grey;
+      background: $silver-grey-light;
+      padding-left: 3em;
+      padding-right: 1em;
+      padding-top: 0.6em;
+      line-height: 1.2em;
+
+      &.bordered {
+        border-bottom: 1px solid $silver-grey;
+      }
+
+      div.title {
+        color: black;
+        font-size: 0.9em;
+      }
+
+      div.subtitle {
+        font-size: 0.6em;
+      }
+
+      &.last-opened {
+        color: $denim-blue;
+
+        div.title {
+          color: $denim-blue;
+        }
+      }
+
+
+      &.secondary {
+        font-size: 1em;
+        color: black;
+        background: white;
+        padding: 1em;
+        min-height: 2.6em;
+
+        span {
+          display: inline-block;
+          vertical-align: middle;
+          line-height: normal;
+        }
+
+        .icon {
+          left: 1em;
+        }
+
+        &:hover {
+          cursor: pointer;
+          background-color: $azure-blue-light;
+        }
+
+        &.selected {
+          background-color: $powder-blue;
+        }
+      }
+
+      .icon-left {
+        font-size: 1.5em;
+        position: absolute;
+        top: 0.7em;
+        left: 0.2em;
+      }
+    }
+  }
+
+  .help-section {
+    border: 1px solid $silver-grey;
+    margin-top: 1em;
+
+    .help-text {
+      padding: 1em;
+
+      h4 {
+        font-size: 1.2rem;
+      }
+      p {
+        margin-top: 1em;
+      }
+    }
+
+    .telephone-row {
+      @media #{$medium-up}{
+        .telephone-text a {
+          color: $slate-grey;
+          text-decoration: none;
+        }
+      }
+      border-top: 1px solid $silver-grey;
+      background-color: $silver-grey-light;
+
+      .customer-care-column {
+
+        @include span-columns(6);
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        text-align: center;
+      }
+
+      .customer-care-column:nth-child(1) {
+        border-right: 1px solid $silver-grey;
+      }
+
+      i.icomoon-call {
+        color: $gunmetal-light;
+        font-size: 2.8rem;
+        padding-right: 0.1rem;
+      }
+
+      .telephone-icon {
+        display: inline-block;
+      }
+
+      .telephone-number-link a {
+        padding-left: 0rem;
+        color: $font-grey-dark;
+      }
+
+      .telephone-text {
+        color: $slate-grey;
+        display: inline-block;
+      }
+    }
+  }
+}

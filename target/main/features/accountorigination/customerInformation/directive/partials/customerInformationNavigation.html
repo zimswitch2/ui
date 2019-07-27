@@ -1,0 +1,66 @@
+<div class="customer-info-nav hide-for-small-only">
+    <ul ng-if="canNavigate()">
+        <li>
+            <a ng-click="navigate(&apos;profile&apos;)" ng-class="{active: currentPage === &apos;profile&apos;}">
+                Basic information
+                <div class="application-step">1</div>
+            </a>
+        </li>
+        <li>
+            <a id="address-nav" ng-click="navigate(&apos;address&apos;)" ng-class="{active: currentPage === &apos;address&apos;}">
+                Address
+                <div class="application-step">2</div>
+            </a>
+        </li>
+        <li>
+            <a id="employment-nav" ng-click="navigate(&apos;employment&apos;)" ng-class="{active: currentPage === &apos;employment&apos;}">
+                Employment
+                <div class="application-step">3</div>
+            </a>
+        </li>
+        <li>
+            <a id="income-and-expenses-nav" ng-click="navigate(&apos;income&apos;)" ng-class="{active: currentPage === &apos;income&apos;}">
+                Income and expenses
+                <div class="application-step">4</div>
+            </a>
+        </li>
+        <li>
+            <a id="consent-nav" ng-click="navigate(&apos;submit&apos;)" ng-class="{active: currentPage === &apos;submit&apos;}">
+                Submit
+                <div class="application-step">5</div>
+            </a>
+        </li>
+    </ul>
+    <ul ng-if="!canNavigate()">
+        <li id="profile-basic" ng-class="{&apos;disable-anchor&apos;: currentPage !== &apos;profile&apos;}" ng-enabled="currentPage === &apos;profile&apos;">
+            <a ng-class="{active: currentPage === &apos;profile&apos;}">
+                Basic information
+                <div class="application-step">1</div>
+            </a>
+        </li>
+        <li id="address-basic" ng-class="{&apos;disable-anchor&apos;: currentPage !== &apos;address&apos;}" ng-enabled="currentPage === &apos;address&apos;">
+            <a ng-class="{active: currentPage === &apos;address&apos;}">
+                Address
+                <div class="application-step">2</div>
+            </a>
+        </li>
+        <li class="disable-anchor" disabled>
+            <a>
+                Employment
+                <div class="application-step">3</div>
+            </a>
+        </li>
+        <li class="disable-anchor" disabled>
+            <a>
+                Income and expenses
+                <div class="application-step">4</div>
+            </a>
+        </li>
+        <li class="disable-anchor" disabled>
+            <a>
+                Submit
+                <div class="application-step">5</div>
+            </a>
+        </li>
+    </ul>
+</div>

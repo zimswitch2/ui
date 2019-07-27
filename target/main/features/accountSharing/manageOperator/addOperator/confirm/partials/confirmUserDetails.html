@@ -1,0 +1,21 @@
+<div class="account-sharing">
+    <h2>{{vm.entryModeDesc}}</h2>
+
+    <flow></flow>
+
+    <div ng-show="errorMessage" error="" notification="">{{errorMessage}}</div>
+
+    <account-sharing-user-details user="vm.userDetails" edit-user="vm.editUserDetails()" data-dtmid="obb_content user details summary edit link" data-dtmtext="Edit link click">
+    </account-sharing-user-details>
+    <account-sharing-user-permissions permissions="vm.permissions" edit-permissions="vm.editPermissions()" data-dtmid="obb_content permission details summary edit link" data-dtmtext="Edit link click">
+    </account-sharing-user-permissions>
+
+    <button class="btn primary" ng-click="vm.confirmUserDetails()" data-dtmid="obb_content summary details confirm button" data-dtmtext="Confirm button click">
+        Confirm
+    </button>
+    <button class="btn secondary" ng-click="vm.cancel()" data-dtmid="obb_content summary details cancel button" data-dtmtext="Cancel button click">
+        Cancel
+    </button>
+
+    <cancel-dialog></cancel-dialog>
+</div>

@@ -1,0 +1,44 @@
+<h2>Pending Transactions</h2>
+<div class="entitlement-pending-table entitlement-pending-transactions-table wide-content">
+    <div>
+        <div class="page-heading-row" ng-show="vm.numberOfPendingTransactions &gt; 0">
+            <h3>Pay a Beneficiary</h3>
+        </div>
+        <div id="paymentDetails" class="pending-beneficiary-payments-action-table action-table">
+            <ul class="header">
+                <li>
+                    <div class="information">
+                        <div><span>Beneficiary</span></div>
+                        <div><span>Description</span></div>
+                        <div><span>Amount</span></div>
+                    </div>
+
+                </li>
+            </ul>
+
+            <ul class="data">
+                <li ng-repeat="pendingPayment in vm.pendingPayments">
+                    <div class="information">
+                        <div data-header="Beneficiary">
+                            <div>
+                                <div>{{pendingPayment.beneficiaryName}}</div>
+                                <div>{{pendingPayment.beneficiaryAccount}}</div>
+                            </div>
+                        </div>
+                        <div data-header="Description">
+                            <div>{{vm.formatDescription(pendingPayment.yourReference, pendingPayment.reasonForPayment)}}</div>
+                        </div>
+                        <div data-header="Amount">
+                            <div>{{pendingPayment.currency}} {{pendingPayment.amount}}</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <span class="information message" ng-show="vm.numberOfPendingTransactions == 0">There are currently no pending transactions</span>
+
+        </div>
+    </div>
+</div>
+
+<button class="secondary" ng-click="vm.back()">Back</button>
+

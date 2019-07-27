@@ -1,0 +1,72 @@
+<h2>Instant Money</h2>
+
+<div class="form-layout-top" flow></div>
+
+<div class="form-layout-main">
+    <form name="changePinForm" class="panel">
+        <div class="summary">
+            <div class="summary-split-row hide-on-print">
+
+                <div>
+                    <span>From Account</span>
+                    <span id="fromAccount">{{voucher.fromAccount}}</span>
+                </div>
+                <div>
+                    <span>Available balance</span>
+                    <span id="availableBalance" name="confirm-fromBalance">{{voucher.accAvailableBalance.amount | randAmount}}</span>
+                </div>
+            </div>
+
+            <div class="summary-row">
+                <div>
+                    <span>Cell phone number </span><span id="cellPhoneNumber">{{voucher.contact.address}}</span>
+                </div>
+            </div>
+
+            <div class="summary-row">
+                <div>
+                    <span>Amount</span><span id="amount">{{voucher.amount.amount  | randAmountNoCents}}</span>
+                </div>
+            </div>
+
+            <section>
+                <sb-input name="VoucherPin"
+                          label="Create cash collection PIN"
+                          ng-model="voucher.voucherPin"
+                          ng-required=true
+                          required-message="Please create a PIN which the recipient will use"
+                          ng-pattern="'[0-9]{4}'"
+                          type="password"
+                          pattern-message="Please enter a valid cash collection PIN"
+                          tooltip="Create a unique PIN and send it to the recipient of the transfer"
+                          prevent-consecutive-numbers="3"
+                          prevent-consecutive-numbers-message="Please do not use sequential numbers (e.g. 4321)"
+                          prevent-repetitive-numbers="2"
+                          prevent-repetitive-numbers-message="Please do not repeat numbers (e.g. 1223)"
+                          ng-maxlength="4"
+                          description='Create a PIN of 4 digits which does not include consecutive or repeated numbers (e.g. 1234, 1112)'
+                        >
+                </sb-input>
+            </section>
+
+            <section>
+                <sb-input name="ConfirmVoucherPin"
+                          label="Confirm cash collection PIN"
+                          ng-model="voucher.confirmVoucherPin"
+                          ng-required=true
+                          required-message="Please re-enter the cash collection PIN"
+                          confirm-input-name = "VoucherPin"
+                          confirmation-message="The two PINs do not match"
+                          type="password"
+                        >
+                </sb-input>
+            </section>
+
+            <button ng-disabled="!changePinForm.$valid" ng-click="next()" data-dtmid="link_content_Instant Money" data-dtmtext="change pin step 1 | next button click">
+                Next
+            </button>
+
+            <a class="btn secondary" href="#/instant-money" data-dtmid="link_content_Instant Money" data-dtmtext="change pin step 1 | cancel button click">Cancel</a>
+        </form>
+    </div>
+</div>

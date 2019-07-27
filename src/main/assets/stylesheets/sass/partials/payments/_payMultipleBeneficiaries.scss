@@ -1,0 +1,152 @@
+@mixin from-account {
+  color: $slate-grey;
+  font-weight: bold;
+}
+
+.multiple-beneficiaries {
+
+  .action-table {
+    @media #{$large-up} {
+      ul {
+        .information {
+          width: 100%;
+          div {
+            font-size: 0.9rem;
+          }
+          > div {
+            width: 18%;
+            &:nth-child(5) {
+              width: 10%;
+            }
+            > div {
+              padding: 1em 0 1em 0;
+              input, .form-error {
+                width: 70%;
+              }
+            }
+          }
+        }
+        &.data li {
+          padding-top: 0;
+        }
+      }
+    }
+    ul.header {
+      height: 3em;
+      padding-top: 1em;
+      div {
+        line-height: 1em;
+      }
+    }
+  }
+
+  @media #{$small-only} {
+    ul.data {
+      li:nth-child(odd) {
+        background-color: #F0F0F0;
+      }
+    }
+  }
+
+  .pay-multiple-beneficiaries-footer {
+    max-width: none;
+    > div {
+      span {
+        display: block;
+        color: $gunmetal-light;
+      }
+
+      span:nth-child(2) {
+        font-size: 1.5em;
+        font-weight: lighter;
+        color: $slate-grey;
+      }
+    }
+  }
+
+  @media #{$medium-up} {
+    .pay-multiple-beneficiaries-footer {
+      > div {
+        text-align: right;
+
+        &:nth-child(1) {
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  .from-account {
+    padding-right: 1.5em;
+  }
+
+  .pay-multiple-beneficiaries-footer {
+    > div {
+      &:nth-child(4) {
+        padding-right: 2.7em;
+      }
+    }
+  }
+
+  .mobile-hidden {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+  }
+
+  @media #{$medium-up} {
+    #pay-multiple-beneficiaries {
+      .mobile-hidden {
+        visibility: inherit !important;
+        opacity: inherit !important;
+        height: auto !important;
+      }
+    }
+  }
+  .show-hide {
+    -webkit-transition: opacity linear 0.3s;
+    -moz-transition: opacity linear 0.3s;
+    -o-transition: opacity linear 0.3s;
+    transition: opacity linear 0.3s;
+  }
+
+  .form-error {
+    position: static;
+  }
+
+  @media #{$large-up} {
+    .filter-controls {
+      label {
+        margin-right: 1em;
+        margin-top: 0.5em;
+      }
+      input {
+        width: 20em;
+      }
+    }
+  }
+
+  a.mobile-show-more-link {
+    padding-left: 0.5em;
+    padding-top: 0.5em;
+    display: block;
+
+    &:before {
+      content: 'Show details';
+    }
+
+    &.hide-details:before {
+      content: 'Hide details';
+    }
+
+    @media #{$medium-up} {
+      display: none;
+    }
+  }
+
+  .modal-content li {
+    padding-top: 0;
+    margin-left: 0;
+  }
+}

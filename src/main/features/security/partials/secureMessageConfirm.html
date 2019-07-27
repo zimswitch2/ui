@@ -1,0 +1,8 @@
+<h2>Secure Message</h2>
+<div flow></div>
+<div class="panel">
+    <ng-include src="'features/security/partials/secureMessageSummary.html'"></ng-include>
+    <button id="confirm" ng-click="confirm()" track-click="send secure message.confirm">Confirm</button>
+    <button id="modify" class="secondary" ng-click="modify()">Modify</button>
+    <a go-home id="cancel" class="btn secondary" track-click="send secure message.cancel">Cancel</a>
+</div>

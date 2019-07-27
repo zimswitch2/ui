@@ -1,0 +1,306 @@
+<h2>International Payment</h2>
+
+<flow class="international-payment-beneficiary-flow wide"></flow>
+
+<div class="international-payment-beneficiary-form-layout">
+    <div ng-show="errorMessage" class="wide" error="" notification="">{{errorMessage}}</div>
+    <div class="international-payment-beneficiary-container">
+
+        <international-payment-beneficiary-navigation current-page="&apos;bank-details&apos;"></international-payment-beneficiary-navigation>
+        <div class="international-payment-beneficiary-form">
+
+            <form class="xbp-beneficiary-bank-details" name="xbpBeneficiaryBankDetailsForm" novalidate="">
+                <div class="international-payment-beneficiary-scroll">
+                    <div class="row wide-content">
+                        <div class="large-7 medium-12 small-12 columns">
+                            <ng-form name="xbpBeneficiaryDetailsForm">
+                                <section>
+                                    <label for="country-input">Country of bank</label>
+                                    <a href="javascript:void(0)" class="beneficiary-tooltip country-of-bank" ng-click="showHelpForItem(&apos;country&apos;)">
+                                        <i class="icon icon-question-circle"></i>
+                                    </a>
+
+                                    <div class="medium-width">
+                                        <sb-typeahead id="country" placeholder="Select a country" items="countries" ng-model="beneficiary.bank.country" ng-change="selectedCountryChanged()" ng-required="true">
+                                        </sb-typeahead>
+                                    </div>
+                                    <div class="hide-for-large-up">
+                                        <div class="beneficiary-context-help medium-width" ng-show="showHelp.country">
+                                            <i class="icon icomoon-close close" ng-click="closeHelpItemFor(&apos;country&apos;)"></i>
+
+                                            <div class="center margin-top">
+                                                <p class="padding-bottom padding-top">
+                                                    The App supports payments to the listed countries only.
+                                                </p>
+
+                                                <p class="padding-bottom">
+                                                    For payments to
+                                                    any other country, please contact customer care or visit a branch
+                                                    with a
+                                                    forex teller.
+                                                </p>
+
+                                                <div class="row telephone-row">
+                                                    <div class="large-6 medium-6 small-12 columns customer-care-column padding-top padding-bottom">
+                                                        <div class="telephone-icon">
+                                                            <i class="icomoon-call padding-right"></i>
+                                                        </div>
+                                                        <div class="telephone-text">
+                                                            <div class="telephone-text-label">Customer Care</div>
+
+                                                            <a href="tel:0860 123 000">0860 123 000</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="large-6 medium-6 small-12 columns customer-care-column padding-top padding-bottom">
+                                                        <div class="telephone-icon">
+                                                            <i class="icomoon-call padding-right"></i>
+                                                        </div>
+
+                                                        <div class="telephone-text">
+                                                            <div class="telephone-text-label">International</div>
+
+                                                            <a href="tel:+27 11 299 4701">+27 11 299 4701</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section ng-show="beneficiary.bank.country" id="beneficiaryCurrencySection">
+                                    <label for="currency-input">Currency of payment</label>
+
+                                    <div class="medium-width">
+                                        <sb-typeahead id="currency" placeholder="Select a currency" items="currencies" ng-model="beneficiary.bank.currency" ng-required="true">
+                                        </sb-typeahead>
+                                    </div>
+
+                                </section>
+
+                                <section ng-show="beneficiary.ibanAndAccountNumberCapable()" id="beneficiaryAccountTypeSection">
+                                    <label for="accountType">Account type</label>
+
+                                    <div class="styled-select medium-width">
+                                        <select id="accountType" ng-model="beneficiary.bank.accountType" ng-change="accountTypeChanged()" ng-options="accountType.code as accountType.description for accountType in accountTypes">
+                                        </select>
+                                    </div>
+
+                                </section>
+
+                                <section ng-show="useAccountType(&apos;IBAN&apos;) &amp;&amp; beneficiary.bank.currency" class="medium-width" id="beneficiaryIBANSection">
+                                    <a href="javascript:void(0)" class="beneficiary-tooltip iban" ng-click="showHelpForItem(&apos;iban&apos;)">
+                                        <i class="icon icon-question-circle"></i>
+                                    </a>
+                                    <sb-input name="iban" label="IBAN number" ng-model="beneficiary.bank.iban" ng-required="useAccountType(&apos;IBAN&apos;)" ng-minlength="15" ng-maxlength="34  " ng-pattern="&apos;^[0-9a-zA-Z]*&apos;" pattern-message="Please enter a valid IBAN" ng-focus="showIBANHelp = true" ng-blur="showIBANHelp = false">
+                                    </sb-input>
+
+                                    <div class="hide-for-large-up">
+                                        <div class="beneficiary-context-help medium-width" ng-show="showHelp.iban">
+                                            <i class="icon icomoon-close close" ng-click="closeHelpItemFor(&apos;iban&apos;)"></i>
+
+                                            <div class="center margin-top">
+                                                <p class="padding-bottom padding-top">
+                                                    IBAN is used to identify a unique international account. An IBAN
+                                                    consists of
+                                                    an alphabetical country code, followed by two digits, and then up to
+                                                    35
+                                                    characters for the bank details and client account number.
+                                                </p>
+
+                                                <p class="padding-bottom">
+                                                    Example: GB25SBIC40523378945612
+                                                </p>
+
+                                                <p class="padding-bottom">
+                                                    You should get this information from your beneficiary directly.
+                                                </p>
+
+                                                <div class="row telephone-row">
+                                                    <div class="large-6 medium-6 small-12 columns customer-care-column padding-top padding-bottom">
+                                                        <div class="telephone-icon">
+                                                            <i class="icomoon-call padding-right"></i>
+                                                        </div>
+                                                        <div class="telephone-text">
+                                                            <div class="telephone-text-label">Customer Care</div>
+
+                                                            <a href="tel:0860 123 000">0860 123 000</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="large-6 medium-6 small-12 columns customer-care-column padding-top padding-bottom">
+                                                        <div class="telephone-icon">
+                                                            <i class="icomoon-call padding-right"></i>
+                                                        </div>
+
+                                                        <div class="telephone-text">
+                                                            <div class="telephone-text-label">International</div>
+
+                                                            <a href="tel:+27 11 299 4701">+27 11 299 4701</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section ng-show="useAccountType(&apos;accountNumber&apos;) &amp;&amp; beneficiary.bank.currency" class="medium-width" id="beneficiaryAccountNumberSection">
+                                    <sb-input name="accountNumber" label="Account number" ng-model="beneficiary.bank.accountNumber" ng-required="useAccountType(&apos;accountNumber&apos;)" ng-minlength="1" ng-maxlength="34  " ng-pattern="&apos;^[0-9a-zA-Z]*&apos;" pattern-message="Please enter a valid account number">
+                                    </sb-input>
+                                </section>
+
+                                <section ng-show="beneficiary.bank.currency" class="medium-width" id="beneficiarySwiftSection">
+                                    <a href="javascript:void(0)" class="beneficiary-tooltip swift-bic" ng-click="showHelpForItem(&apos;swift&apos;)">
+                                        <i class="icon icon-question-circle"></i>
+                                    </a>
+                                    <sb-input name="swift" label="SWIFT/BIC" ng-model="beneficiary.bank.swift" ng-required="true" ng-minlength="8" ng-maxlength="11" ng-pattern="&apos;^[0-9a-zA-Z]*&apos;" pattern-message="Please enter a valid SWIFT/BIC" ng-focus="showSWIFTHelp = true" ng-blur="showSWIFTHelp = false">
+                                    </sb-input>
+                                    <div class="hide-for-large-up">
+                                        <div class="beneficiary-context-help medium-width" ng-show="showHelp.swift">
+                                            <i class="icon icomoon-close close" ng-click="closeHelpItemFor(&apos;swift&apos;)"></i>
+
+                                            <div class="center margin-top">
+                                                <p class="padding-bottom padding-top">
+                                                    A SWIFT/BIC code is used to identify specific banks worldwide to
+                                                    ensure we
+                                                    send money to the correct bank overseas.
+                                                    A SWIFT/BIC code consists of either 8 or 11 characters.
+                                                </p>
+
+                                                <p class="padding-bottom">
+                                                    Example: SBZAZAJJ
+                                                </p>
+
+                                                <p class="padding-bottom">
+                                                    You should get this information from your beneficiary directly.
+                                                </p>
+
+                                                <div class="row telephone-row">
+                                                    <div class="large-6 medium-6 small-12 columns customer-care-column padding-top padding-bottom">
+                                                        <div class="telephone-icon">
+                                                            <i class="icomoon-call padding-right"></i>
+                                                        </div>
+                                                        <div class="telephone-text">
+                                                            <div class="telephone-text-label">Customer Care</div>
+
+                                                            <a href="tel:0860 123 000">0860 123 000</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="large-6 medium-6 small-12 columns customer-care-column padding-top padding-bottom">
+                                                        <div class="telephone-icon">
+                                                            <i class="icomoon-call padding-right"></i>
+                                                        </div>
+
+                                                        <div class="telephone-text">
+                                                            <div class="telephone-text-label">International</div>
+
+                                                            <a href="tel:+27 11 299 4701">+27 11 299 4701</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="beneficiaryRoutingSection" class="medium-width" ng-show="useAccountType(&apos;accountNumber&apos;) &amp;&amp; beneficiary.bank.currency &amp;&amp; beneficiary.bank.routingName">
+                                    <sb-input name="routingCode" label="{{beneficiary.bank.routingName}}" ng-model="beneficiary.bank.routingCode" ng-minlength="6" ng-maxlength="9" ng-pattern="&apos;^[0-9a-zA-Z]*&apos;" ng-required="beneficiary.bank.routingName &amp;&amp; useAccountType(&apos;accountNumber&apos;)" pattern-message="Please enter a valid national routing code">
+                                    </sb-input>
+                                    <div class="hide-for-large-up">
+                                </div></section>
+                                <div>
+                                    <button id="next" class="primary" ng-click="next()" ng-disabled="!xbpBeneficiaryBankDetailsForm.$valid">
+                                        Next
+                                    </button>
+                                    <button id="back" class="secondary" ng-click="back()">
+                                        Back
+                                    </button>
+                                </div>
+                            </ng-form>
+                        </div>
+                        <div class="large-5 columns show-for-large-up contextual-help-sidebar">
+                            <div class="beneficiary-context-help" ng-show="showHelp.country || showHelp.iban || showHelp.swift" ng-class="{&apos;align-bottom&apos;: showIBANHelp, &apos;align-swift&apos;: showSWIFTHelp }">
+                                <div class="center margin-top">
+                                    <div ng-show="showHelp.country" id="cobContextualHelp">
+                                        <i class="icon icomoon-close close" ng-click="closeHelpItemFor(&apos;country&apos;)"></i>
+
+                                        <p class="padding-bottom padding-top">
+                                            The App supports payments to the listed countries only.
+                                        </p>
+
+                                        <p class="padding-bottom">
+                                            For payments to
+                                            any other country, please contact customer care or visit a branch
+                                            with a
+                                            forex teller.
+                                        </p>
+                                    </div>
+
+                                    <div ng-show="showHelp.iban" id="ibanContextualHelp">
+                                        <i class="icon icomoon-close close" ng-click="closeHelpItemFor(&apos;iban&apos;)"></i>
+
+                                        <p class="padding-bottom padding-top">
+                                            IBAN is used to identify a unique international account. An IBAN consists of
+                                            an alphabetical country code, followed by two digits, and then up to 35
+                                            characters for the bank details and client account number.
+                                        </p>
+
+                                        <p class="padding-bottom">
+                                            Example: GB25SBIC40523378945612
+                                        </p>
+
+                                        <p class="padding-bottom">
+                                            You should get this information from your beneficiary directly.
+                                        </p>
+                                    </div>
+
+                                    <div ng-show="showHelp.swift" id="swiftContextualHelp">
+                                        <i class="icon icomoon-close close" ng-click="closeHelpItemFor(&apos;swift&apos;)"></i>
+
+                                        <p class="padding-bottom padding-top">
+                                            A SWIFT/BIC code is used to identify specific banks worldwide to ensure we
+                                            send money to the correct bank overseas.
+                                            A SWIFT/BIC code consists of either 8 or 11 characters.
+                                        </p>
+
+                                        <p class="padding-bottom">
+                                            Example: SBZAZAJJ
+                                        </p>
+
+                                        <p class="padding-bottom">
+                                            You should get this information from your beneficiary directly.
+                                        </p>
+                                    </div>
+
+                                    <div class="row telephone-row">
+                                        <div class="large-6 medium-6 small-6 columns customer-care-column padding-top padding-bottom">
+                                            <div class="telephone-icon">
+                                                <i class="icomoon-call padding-right"></i>
+                                            </div>
+                                            <div class="telephone-text">
+                                                <div class="telephone-text-label">Customer Care</div>
+
+                                                <a href="tel:0860 123 000">0860 123 000</a>
+                                            </div>
+                                        </div>
+                                        <div class="large-6 medium-6 small-6 columns customer-care-column padding-top padding-bottom">
+                                            <div class="telephone-icon">
+                                                <i class="icomoon-call padding-right"></i>
+                                            </div>
+
+                                            <div class="telephone-text">
+                                                <div class="telephone-text-label">International</div>
+
+                                                <a href="tel:+27 11 299 4701">+27 11 299 4701</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

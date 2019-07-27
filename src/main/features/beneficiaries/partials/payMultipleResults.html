@@ -1,0 +1,119 @@
+<div class="multiple-beneficiaries pay-multiple-results wide-content">
+    <ng-include src="'features/beneficiaries/partials/printMultiplePrintHeader.html'"></ng-include>
+    <h2 ng-show="groupOnly()">Pay Beneficiary Group Results</h2>
+
+    <h2 ng-hide="groupOnly()">Pay Multiple Beneficiaries Results</h2>
+
+    <div id="pay-multiple-beneficiaries" class="panel results" ng-init="results()">
+        <div class="selected-account"><strong>{{account | accountLabel}}</strong></div>
+
+        <div class="action-table hide-on-print">
+            <ul class="header">
+                <li>
+                    <div class="information">
+                        <div>Name</div>
+                        <div>Your reference</div>
+                        <div>Beneficiary reference</div>
+                        <div>Recipient name</div>
+                        <div>Notification</div>
+                        <div>Payment date</div>
+                        <div>Amount</div>
+                        <div>Status</div>
+                    </div>
+                    <div ng-if="!$root.isMobileDevice" class="actions">
+                        <div class="action">Print</div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="data not-clickable">
+                <li data-recipient-id="{{paymentResult.beneficiary.recipientId}}"
+                    ng-repeat="paymentResult in paymentResults">
+                    <div class="information">
+                        <div data-header="Name">
+                            <div><span>{{paymentResult.beneficiary.name}}</span></div>
+                        </div>
+                        <div data-header="Your reference">
+                            <div><span>{{paymentResult.beneficiary.customerReference}}</span></div>
+                        </div>
+                        <div data-header="Beneficiary reference">
+                            <div><span>{{paymentResult.beneficiary.recipientReference}}</span></div>
+                        </div>
+                        <div data-header="Recipient name">
+                            <div><span>{{paymentResult.beneficiary.paymentConfirmation.recipientName}}</span></div>
+                        </div>
+                        <div data-header="Notification">
+                            <div ng-hide="paymentResult.hasConfirmationWarning">
+                                <span>{{paymentResult.beneficiary.paymentConfirmation.address}}</span>
+                            </div>
+                            <div id="notification-warning" ng-show="paymentResult.hasConfirmationWarning">
+                                <span class="text-notification error">
+                                   {{paymentResult.confirmationWarningMessage}}
+                                </span>
+                            </div>
+                        </div>
+                        <div data-header="Payment date">
+                            <div><span>{{latestTimestampFromServer | dateFormat}}</span></div>
+                        </div>
+                        <div data-header="Amount">
+                            <div>
+                                <span class="amount payment-amount">{{paymentResult.amount | randAmount}}</span>
+                            </div>
+                        </div>
+                        <div data-header="Status">
+                            <div>
+                                <span class="result text-notification multiple {{paymentResult.responseType.toLowerCase()}}">{{paymentResult.responseMessage}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions" ng-if="!$root.isMobileDevice">
+                        <div>
+                            <print-button ng-show="paymentResult.responseType.toLowerCase() != 'error'"
+                                          button-click="print(paymentResult.beneficiary.recipientId)"
+                                          button-text="Print receipt"
+                                          action-button="true">
+                            </print-button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel hide-on-print">
+        <div class="pay-multiple-beneficiaries-footer row">
+            <div class="small-12 medium-4 columns">
+                <span>Available balance</span>
+            <span id="balance" ng-class="{'invalid-balance': invalidAvailableBalance}">
+                {{account.availableBalance.amount | nonNegativeRandAmount}}
+            </span>
+            </div>
+            <div class="small-12 medium-4 columns">
+                <span>Available monthly limit</span>
+            <span id="transfer"
+                  ng-class="{'invalid-balance': !invalidAvailableBalance && invalidAvailableTransferLimit}">
+                {{availableEAPLimit | nonNegativeRandAmount}}
+            </span>
+            </div>
+            <div class="small-12 medium-4 columns">
+                <span>Total</span>
+            <span class="total-amount"
+                  ng-class="{'invalid-balance': invalidAvailableBalance || invalidAvailableTransferLimit}">
+                {{totalAmount | nonNegativeRandAmount}}
+            </span>
+            </div>
+        </div>
+    </div>
+
+    <button go-back number-of-pages="3" class="secondary">Back</button>
+
+    <div class="print-only print-receipt"
+         ng-class="!printSelectedTransaction ? 'hide-on-print' : ''">
+        <ng-include src="'features/beneficiaries/partials/printMultipleReceipt.html'"></ng-include>
+    </div>
+
+    <div class="print-only one-page">
+        <ng-include src="'common/print/partials/printFooter.html'"></ng-include>
+    </div>
+
+</div>

@@ -1,0 +1,14 @@
+.radio-button-group {
+  li {
+    display: inline-block;
+    padding-right: 1em;
+
+    input[type='radio'] {
+      cursor: pointer;
+    }
+
+    label {
+      margin: 0;
+    }
+  }
+}

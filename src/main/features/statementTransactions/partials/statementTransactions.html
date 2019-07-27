@@ -1,0 +1,200 @@
+<div class="transactions list-page wide-content">
+    <ng-include src="'features/statementTransactions/partials/transactionStatementPrintHeader.html'"></ng-include>
+
+    <h2>Transactions</h2>
+
+    <div ng-show="errorMessage" error notification>{{errorMessage}}</div>
+    <div ng-show="hasInfo" info notification>{{message}}</div>
+
+    <div class="hide-on-print accountAndAmountPanel">
+        <div class="left styled-select">
+            <select id="account"
+                    ng-model="selectedAccount"
+                    ng-change="updateTransactions()"
+                    ng-options="item | accountLabel for item in accounts"
+                    data-dtmid="link_content_transaction account dropdown"
+                    fix-ie-select
+                    data-dtmtext="{{selectedAccount.accountType}}">
+            </select>
+        </div>
+
+        <div class="summary-row hide-for-small-only">
+            <span>
+                <h3>{{selectedAccount.availableBalance.amount | currencyAmount: currencyCode || 'R' }}</h3>
+            </span>
+            <span>
+                <small>
+                    Available balance
+                </small>
+            </span>
+        </div>
+        <div class="summary-row show-for-small-only">
+            <small>
+                Available balance
+            </small>
+
+            <span>
+                {{selectedAccount.availableBalance.amount | currencyAmount: currencyCode || 'R' }}
+            </span>
+        </div>
+    </div>
+
+    <div class="dates-panel hide-on-print">
+        <span>Last</span>
+        <button class="secondary" ng-click="getTransactionForTheLast(30)" ng-class="{active:isActive(30)}">30
+        </button>
+        <button class="secondary" ng-click="getTransactionForTheLast(60)" ng-class="{active:isActive(60)}">60
+        </button>
+        <button class="secondary" ng-click="getTransactionForTheLast(90)" ng-class="{active:isActive(90)}">90
+        </button>
+        <button class="secondary" ng-click="getTransactionForTheLast(180)" ng-class="{active:isActive(180)}" ng-if="!isCreditCardOrHomeLoan">180
+        </button>
+
+        <span>Days</span>
+    </div>
+
+    <div class="search-print-download-search-controls hide-on-print" ng-show="transactions.length >= 1">
+        <div class="filter-container" feature="searchTransactions">
+            <form class="filter right">
+                <filter-box ng-model="query" placeholder="Search"></filter-box>
+            </form>
+        </div>
+
+        <div class="print-transactions right" feature="printTransactions" ng-if="!$root.isMobileDevice">
+            <a class="button icon-button-link" ng-click="print()"
+               data-dtmid="link_content_transaction button click"
+               data-dtmtext="Print transactions">
+                <i class="icon icomoon-print"></i>
+                <span class="title">PRINT</span>
+
+            </a>
+        </div>
+
+        <div class="right download-transactions-csv" feature="downloadTransactionsCsv"
+             ng-show="transactions.length >= 1" ng-if="!$root.isMobileDevice">
+            <div class="dropdown-button-link">
+                <button type="button" class="button icon-button-link" ng-click="setDownload()">
+                    <i class="icon-download-png"><img src="../assets/images/download-icon.png" alt=""></i>
+                    <span class="title">Download</span>
+                    <span class="dropdown-icon"><i class="icon icomoon-chevron-down"></i></span>
+                </button>
+                <div class="dropdown-menu" dropdown-menu="" ng-show="dropDown.showDropdown">
+                    <hidden-form-button
+                            form-id="downloadCsvFormId"
+                            form-items="downloadStatementTransactionOptions"
+                            action-url="downloadUrl"
+                            submit-dtmid="link_content_transaction button click"
+                            submit-dtmtext="Download CSV Format">
+                        CSV
+                    </hidden-form-button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="centered-action-table hide-for-small-only">
+        <ul class="header">
+            <li>
+                <div class="information">
+                    <div><span>Date</span></div>
+                    <div><span>Description</span></div>
+                    <div class="currency"><span>Amount (R)</span></div>
+                    <div class="currency"><span>Balance (R)</span></div>
+                </div>
+            </li>
+        </ul>
+
+        <ul class="data not-clickable">
+            <div class="Description">
+                <li ng-show="spinnerActive" class="loading hide-on-print">
+                    <div class="center"><span class="centered-spinner"></span><span
+                            class="loading-text">Loading...</span>
+                    </div>
+                </li>
+            </div>
+            <li ng-if="transactions.length <= 0 && !spinnerActive && !retryToLoadTransaction">
+                    <span class="information">
+                        <div data-header="Date"></div>
+                        <div data-header="Description">
+                            <div class="cell-data">No transactions during this period</div>
+                        </div>
+                        <div data-header="Amount (R)"></div>
+                    </span>
+            </li>
+
+
+            <li ng-repeat="line in transactions | statementTransactionFilter: query | orderBy: transactionDate"
+                class="transaction" ng-hide="spinnerActive">
+                <div>
+                    <div class="information yearHeader" ng-if="line.transactionYearAsHeader">
+                        <div data-header="Date">
+                            <div class="cell-data narrative">{{line.transactionYearAsHeader}}</div>
+                        </div>
+                        <div data-header="Description">
+                            <div class="cell-data narrative"></div>
+                        </div>
+                        <div data-header="Amount (R)">
+                            <div class="cell-data"></div>
+                        </div>
+                        <div data-header="Balance (R)" class="balance currency">
+                            <div class="cell-data"></div>
+                        </div>
+                    </div>
+                    <div class="information rowInformation">
+                        <div data-header="Date">
+                            <div class="cell-data narrative">{{line.transactionDayDate}}</div>
+                            <div class="cell-data type month">
+                                <small>{{line.transactionMonthDate}}</small>
+                            </div>
+                        </div>
+                        <div data-header="Description">
+                            <div class="cell-data narrative">{{line.transactionStatementNarrative}}
+                            </div>
+                            <div class="type month">
+                                <small>{{line.description}}</small>
+                            </div>
+                        </div>
+                        <div data-header="Amount (R)" class="{{amountClass(line.amount.amount)}}">
+                            <div class="cell-data">{{line.amount.amount | amountNegativePositive}}</div>
+                        </div>
+                        <div data-header="Balance (R)" class="balance currency">
+                            <div class="cell-data">{{line.runningBalance.amount | amount}}</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li ng-if="!spinnerActive && !retryToLoadTransaction && (transactions | statementTransactionFilter : query).length == 0" class="no-match-search">
+                    <span class="information">
+                        <div data-header="Date"></div>
+                        <div data-header="Description">
+                            <div class="cell-data">There are no matches to your search criteria</div>
+                        </div>
+                        <div data-header="Amount (R)"></div>
+                    </span>
+            </li>
+
+            <li ng-if="loadingPaginated" class="loading hide-on-print">
+                <div class="center"><span class="centered-spinner"></span><span
+                        class="loading-text">Loading...</span>
+                </div>
+            </li>
+            <li ng-show="loadMore" ng-click="loadMoreTransactions()" class="bottom-text load-next hide-on-print">
+                <div><span>Load more transactions</span></div>
+            </li>
+            <li ng-show="retryToLoadTransaction" ng-click="retry()" class="bottom-text retry hide-on-print">
+                <div>Error loading transactions. <span>Retry?</span></div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="show-for-small-only">
+        <ng-include src="'features/statementTransactions/partials/transactionsMobileView.html'"></ng-include>
+    </div>
+
+    <div ng-if="transactions && transactions.length > 5" class="always-back-to-top hide-on-print"
+         ng-include="'features/goToAnchor/partials/scrollOnClick.html'"></div>
+
+    <ng-include src="'features/statementTransactions/partials/printFooterStatement.html'"></ng-include>
+</div>

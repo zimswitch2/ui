@@ -1,0 +1,94 @@
+<div class="add-user-details wide">
+    <h2>Edit user</h2>
+    <div class="form-layout-top">
+        <flow></flow>
+        <div class="notification error"
+             ng-show="serverErrorMessage !== undefined">
+            {{vm.serverErrorMessage}}
+        </div>
+    </div>
+    <div class="form-layout-main add-user-details">
+        <form name="userForm"
+              id="user-details-form"
+              novalidate
+              autocomplete="off">
+            <div class="panel">
+                <section>
+                    <div>
+                        <h3 class="small-only-text-center grey-text">Edit user details</h3>
+                    </div>
+                </section>
+                <section>
+                    <div>
+                        <label for="firstName">First name</label>
+                        <span ng-hide="userForm.firstName.$pristine">
+                            <span class="form-error"
+                                  ng-show="userForm.firstName.$error.required">Required</span>
+                            <span class="form-error"
+                                  ng-show="userForm.firstName.$error.maxlength">Please enter a first name up to 40 characters in length</span>
+                            <span class="form-error"
+                                  ng-show="userForm.firstName.$error.minlength">Please enter a first name which is at least 2 characters in length</span>
+                            <span class="form-error"
+                                  ng-show="userForm.firstName.$error.pattern">Please enter only alphabetical characters, spaces, apostrophes and hyphens</span>
+                        </span>
+                        <input id="firstName"
+                               name="firstName"
+                               type="text"
+                               ng-model="vm.user.userDetails.firstName"
+                               ng-minlength="2"
+                               ng-maxlength="40"
+                               ng-pattern="'[a-zA-Z]+[a-zA-Z\' -]*'"
+                               ng-required="true"/>
+                    </div>
+                </section>
+                <section>
+                    <div>
+                        <label for="surname">Surname</label>
+                        <span ng-hide="userForm.surname.$pristine">
+                            <span class="form-error"
+                                  ng-show="userForm.surname.$error.required">Required</span>
+                            <span class="form-error"
+                                  ng-show="userForm.surname.$error.maxlength">Please enter a surname up to 40 characters in length</span>
+                            <span class="form-error"
+                                  ng-show="userForm.surname.$error.minlength">Please enter a surname which is at least 2 characters in length</span>
+                            <span class="form-error"
+                                  ng-show="userForm.surname.$error.pattern">Please enter only alphabetical characters, spaces, apostrophes and hyphens</span>
+                        </span>
+                        <input id="surname"
+                               name="surname"
+                               type="text"
+                               ng-model="vm.user.userDetails.surname"
+                               ng-minlength="2"
+                               ng-maxlength="40"
+                               ng-pattern="'[a-zA-Z]+[a-zA-Z\' -]*'"
+                               ng-required="true"/>
+                    </div>
+                </section>
+                <section>
+                    <div>
+                        <international-phone-number ng-model="vm.user.userDetails.cellPhone"></international-phone-number>
+                    </div>
+                </section>
+            </div>
+
+            <div class="btn-container">
+                <button id="next-basic"
+                        class="primary"
+                        ng-click="vm.next()"
+                        ng-disabled="! userForm.$valid"
+                        data-dtmid="obb_form edit user next button"
+                        data-dtmtext="Next button click">
+                    Next
+                </button>
+                <button id="cancel-basic"
+                        class="secondary"
+                        ng-click="vm.cancel()"
+                        data-dtmid="obb_form edit user cancel button "
+                        data-dtmtext="Cancel button click">
+                    Cancel
+                </button>
+            </div>
+            <cancel-dialog></cancel-dialog>
+        </form>
+    </div>
+</div>

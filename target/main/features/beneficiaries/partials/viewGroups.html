@@ -1,0 +1,59 @@
+<div class="view-groups wide-content">
+<div class="page-heading-row">
+    <h2>List of Beneficiary Groups</h2>
+    <div>
+        <a class="button secondary" href="#/beneficiaries/groups/add" data-dtmid="link_content_content link" data-dtmtext="add beneficiary to group button click">
+            <i class="icon icomoon-add"></i>
+            Add beneficiary to group
+        </a>
+    </div>
+</div>
+
+<div class="panel">
+    <div ng-if="beneficiaryGroups &amp;&amp; beneficiaryGroups.length &gt; 5" ng-include="&apos;features/goToAnchor/partials/scrollOnClick.html&apos;"></div>
+    <div class="action-table">
+        <ul class="header">
+            <li>
+                <div class="information">
+                    <div>
+                        <a ng-click="sortBy(&apos;name&apos;)">Name <i ng-class="sortArrowClass(&apos;name&apos;)"></i></a>
+                    </div>
+                    <div>Number of members</div>
+                </div>
+                <div class="actions">
+                    <div class="action">Delete</div>
+                    <div class="action">Pay</div>
+                </div>
+            </li>
+        </ul>
+        <ul class="data">
+            <li id="{{group.name.replace(&apos; &apos;, &apos;&apos;)}}" ng-repeat="group in beneficiaryGroups | orderBy: sort.criteria:!sort.descending" class="beneficiary" ng-class="{&apos;highlight&apos;: group.highlightClass}">
+                <div class="information" ng-click="go(&apos;/beneficiaries/groups/view/&apos;, group.name)">
+                    <div data-header="Name" class="name">
+                        <div>{{group.name}}</div>
+                    </div>
+
+                    <div data-header="Number of members">
+                        <div>
+                            {{group.beneficiaries.length}}
+                            <span ng-show="group.beneficiaries.length &gt; 1"> members</span>
+                            <span ng-show="group.beneficiaries.length == 1"> member</span>
+                            <span ng-show="group.beneficiaries.length == 0"> members</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <a inline-action="delete" ng-click="markForDeletion(group.name)" action-message="confirmDeleteMessage(group)" error-message="errorDeleteMessage(group)" show-when="isBeingDeleted(group)" confirm-fn="delete(group)">
+                    </a>
+                    <a class="action pay" ng-class="{&apos;disabled&apos;: isEmptyGroup(group)}" title="pay" ng-click="payBeneficiaryGroup(group)">
+                        <span class="title">Pay</span>
+                        <i class="icon icomoon-pay"></i>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <span class="information message" ng-show="beneficiaryGroups.length == 0">There are no beneficiary groups linked to your profile.</span>
+</div>
+<button go-back="" class="secondary">Back</button>
+</div>

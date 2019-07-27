@@ -1,0 +1,35 @@
+<div class="summary">
+    <div class="summary-split-row">
+        <div>
+            <span>From account</span>
+            <span id="account">{{recharge.account | accountLabel}}</span>
+        </div>
+        <div>
+            <span>Available balance</span>
+            <span id="availableBalance">{{recharge.account.availableBalance.amount | randAmount}}</span>
+        </div>
+    </div>
+    <div class="summary-split-row">
+        <div>
+            <span>Provider</span>
+            <span id="provider">{{recharge.provider.name}}</span>
+        </div>
+        <div>
+            <span class="type provider-icon {{recharge.provider.id}}"></span>
+        </div>
+    </div>
+     <span ng-switch="recharge.provider.type">
+            <span ng-switch-when="mobile">
+                <ng-include src="&apos;features/prepaid/partials/summary/mobile.html&apos;"></ng-include>
+            </span>
+            <span ng-switch-default="">
+                <ng-include src="&apos;features/prepaid/partials/summary/electricity.html&apos;"></ng-include>
+            </span>
+        </span>
+    <div class="summary-row">
+        <div>
+            <span>Transaction date</span>
+            <span id="rechargeDate">{{latestTimestampFromServer | dateFormat}}</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div>
+    <label for="bank">Bank</label>
+    <span ng-class="dirtyClass(&apos;#bank&apos;)" ng-show="invalid(&apos;bankRequired&apos;) &amp;&amp; !invalid(&apos;bankNotInList&apos;)">Required</span>
+    <span ng-class="dirtyClass(&apos;#bank&apos;)" class="bank-not-in-list" ng-show="invalid(&apos;bankNotInList&apos;)">Please select a valid bank</span>
+    <input type="text" id="bank" name="bank" ng-model="bankText" ng-required="ngRequired" autocomplete="off">
+    <ul class="typeahead banks" ng-hide="banksHidden">
+        <li ng-repeat="item in banks | filter: bankText" ng-mousedown="selectBank(item)" ng-mouseover="current.bank.instance = null" ng-class="{&apos;current&apos;: item.code === current.bank.instance.code}">
+            {{item.name}}
+        </li>
+    </ul>
+</div>
+<div>
+    <label for="branch">Branch</label>
+    <span ng-class="dirtyClass(&apos;#branch&apos;)" ng-show="invalid(&apos;branchRequired&apos;) &amp;&amp; !invalid(&apos;branchNotInList&apos;)">Required</span>
+    <span ng-class="dirtyClass(&apos;#bank&apos;)" class="branch-not-in-list" ng-show="invalid(&apos;branchNotInList&apos;)">Please select a valid branch</span>
+    <input type="text" id="branch" name="branch" ng-model="branchText" ng-required="ngRequired" disabled="{{!selectedBank}}" autocomplete="off">
+    <ul class="typeahead branches" ng-hide="branchesHidden">
+        <li ng-repeat="item in branches[selectedBank.code] | filter: branchText" ng-mouseover="current.branch.instance = null" ng-class="{&apos;current&apos;: item.code === current.branch.instance.code}" ng-mousedown="selectBranch(item)">
+            {{item.code}} - {{item.name}}
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,106 @@
+<section id="payment-notification">
+    <label ng-if="$parent.editBeneficiary">Keep payment notification settings?</label>
+    <label ng-if="$parent.paySingleBeneficiary">Send a payment notification for this transaction?</label>
+    <label ng-if="$parent.addBeneficiary || $parent.payMultiple">Set up payment notification?</label>
+
+    <a href="javascript:void(0)" ng-show="confirmationTypeNotification" name="{{confirmationTypeNotification}}"
+       class="sb-tooltip"><i class="icon icon-info-circle"></i></a>
+
+    <ul class="radio-button-group">
+        <li>
+            <input id="yes" type="radio" name="Notification_Yes" ng-value="true"
+                   ng-model="$parent.paymentConfirmation">
+            <label for="yes">Yes</label>
+        </li>
+
+        <li>
+            <input id="no" type="radio" name="Notification_No" ng-value="false"
+                   ng-model="$parent.paymentConfirmation">
+            <label for="no">No</label>
+        </li>
+    </ul>
+</section>
+
+<div id="payment-confirmation" ng-if="$parent.paymentConfirmation">
+
+    <section>
+        <label class="display-inline">Payment notification method</label>
+
+        <notification-cost ng-model="$parent.beneficiary.paymentConfirmation.confirmationType"></notification-cost>
+        <ul class="radio-button-group">
+            <li>
+                <input id="emailpayment-confirmation" name="Notification_Email" value="Email"
+                       ng-checked="$parent.beneficiary.paymentConfirmation.confirmationType==='Email' || $parent.beneficiary.paymentConfirmation.confirmationType==='None'"
+                       type="radio"
+                       ng-model="$parent.beneficiary.paymentConfirmation.confirmationType">
+                <label for="emailpayment-confirmation">Email</label>
+            </li>
+
+            <li>
+                <input id="smspayment-confirmation" type="radio" name="Notification_SMS" value="SMS"
+                       ng-checked="$parent.beneficiary.paymentConfirmation.confirmationType==='SMS'"
+                       ng-model="$parent.beneficiary.paymentConfirmation.confirmationType">
+                <label for="smspayment-confirmation">SMS</label>
+            </li>
+
+            <li>
+                <input id="faxpayment-confirmation" type="radio" name="Notification_Fax" value="Fax"
+                       ng-checked="$parent.beneficiary.paymentConfirmation.confirmationType==='Fax'"
+                       ng-model="$parent.beneficiary.paymentConfirmation.confirmationType">
+                <label for="faxpayment-confirmation">Fax</label>
+            </li>
+        </ul>
+    </section>
+
+    <section ng-if="$parent.beneficiary.paymentConfirmation.confirmationType">
+        <sb-input name="Recipient_Name"
+                  label="Recipient name"
+                  ng-model="$parent.beneficiary.paymentConfirmation.recipientName"
+                  ng-required="$parent.paymentConfirmation"
+                  ng-maxlength="25"
+                  ng-minlength="1"
+                  text-validation
+                  pattern-message="Please enter a valid recipient name"
+        >
+        </sb-input>
+    </section>
+
+    <section class="payment-confirmation-preference"
+             ng-if="$parent.beneficiary.paymentConfirmation.confirmationType==='Email' || $parent.beneficiary.paymentConfirmation.confirmationType==='None'">
+        <sb-input name="Recipient_Email"
+                  label="Recipient email address"
+                  ng-model="$parent.beneficiary.paymentConfirmation.address"
+                  ng-required="$parent.beneficiary.paymentConfirmation.confirmationType==='Email' && $parent.paymentConfirmation"
+                  ng-maxlength="40"
+                  ng-pattern="'{{configuration.email.pattern}}'"
+                  pattern-message="Please enter a valid email address"
+        >
+        </sb-input>
+    </section>
+
+    <section class="payment-confirmation-preference"
+             ng-if="$parent.beneficiary.paymentConfirmation.confirmationType==='SMS'">
+        <sb-input name="Recipient_SMS"
+                  label="Recipient cell phone number"
+                  ng-model="$parent.beneficiary.paymentConfirmation.address"
+                  ng-required="$parent.beneficiary.paymentConfirmation.confirmationType==='SMS' && $parent.paymentConfirmation"
+                  ng-pattern="'(0)[6-8][0-9]{8}'"
+                  pattern-message="Please enter a 10-digit cell phone number"
+        >
+        </sb-input>
+
+    </section>
+
+    <section class="payment-confirmation-preference"
+             ng-if="$parent.beneficiary.paymentConfirmation.confirmationType==='Fax'">
+        <sb-input name="Recipient_Fax"
+                  label="Recipient fax number"
+                  ng-model="$parent.beneficiary.paymentConfirmation.address"
+                  ng-required="$parent.beneficiary.paymentConfirmation.confirmationType==='Fax' && $parent.paymentConfirmation"
+                  ng-pattern="'(0)[0-9]{9}'"
+                  pattern-message="Please enter a valid 10-digit fax number"
+        >
+        </sb-input>
+
+    </section>
+</div>

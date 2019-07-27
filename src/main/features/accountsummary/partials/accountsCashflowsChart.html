@@ -1,0 +1,28 @@
+<div class="accounts-cashflows-doughnut-chart">
+    <h3 ng-bind="ChartHeader"></h3>
+    <div error notification ng-show="errorMessage">
+        {{errorMessage}}
+    </div>
+    <div class="row" ng-if="CashflowData.length > 0 && !ErrorOccurred">
+        <div class="large-7 medium-11 small-11 columns">
+            <sb-doughnut-chart data="ChartData" colours="ChartColours"
+                               options="{animationEasing:'swing',animationSteps:20,maintainAspectRatio:false,percentageInnerCutout:0,customTooltips:true}">
+            </sb-doughnut-chart>
+        </div>
+        <div class="summary large-5 medium-12 small-12 columns chart-legend">
+            <div class="summary-row">
+                <span class="chart-legend-header-label">Total {{ChartHeader}} (Since 1 {{FromMonth | monthName}})</span>
+                <h2 class="chart-legend-header-value" ng-style="{color: CashFlowTextColour}" ng-bind="ChartHeader === 'Cash out' ? CashflowTotal * -1 : CashflowTotal | randAmount"></h2>
+            </div>
+            <div class="summary-row chart-legend-item" ng-repeat="account in CashflowData" ng-if="account.amount !== 0">
+                <div class="chart-legend-colour-swab pull-left" ng-style="{backgroundColor: account.colour}"></div>
+                <span class="pull-left" ng-bind="account.name"></span>
+                <span class="currency pull-right" ng-style="{color: CashFlowTextColour}" ng-bind="ChartHeader === 'Cash out' ? account.amount * -1 : account.amount | randAmount"></span>
+            </div>
+        </div>
+    </div>
+    <div class="button-bar">
+        <a ng-show="cashflowPropertyMapping === 'Income'" class="button secondary" href="#/account-summary/transactional-cash-out" track-click="{{parentPageDescription + ' accounts cashflows chart switch to cash out'}}">Switch to cash out</a>
+        <a ng-show="cashflowPropertyMapping === 'Expenses'" class="button secondary" href="#/account-summary/transactional-cash-in" track-click="{{parentPageDescription + ' accounts cashflows chart switch to cash in'}}">Switch to cash in</a>
+    </div>
+</div>

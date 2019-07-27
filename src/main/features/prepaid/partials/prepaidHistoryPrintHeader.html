@@ -1,0 +1,34 @@
+<div class="print-only print-header">
+    <div class="bank-info">
+        Customer Care: 0860 123 000<br/>
+        <b>Website:</b> <a href="www.standardbank.co.za">www.standardbank.co.za</a><br/>
+        {{ ctrl.printDate | dateFormat}}
+    </div>
+
+    <div class="row">
+        <div ng-if="ctrl.printInvoiceNumber" class="large-12 columns">
+            <h3>Prepaid Receipt</h3>
+        </div>
+        <div ng-if="!ctrl.printInvoiceNumber" class="large-12 columns">
+            <h3>Prepaid History</h3>
+        </div>
+    </div>
+
+    <div class="row" ng-if="!ctrl.printInvoiceNumber">
+        <div class="large-3 columns">
+            <span>Card number</span>
+        </div>
+        <div class="large-9 columns">
+            <span>: {{ctrl.maskedCardNumber}}</span>
+        </div>
+    </div>
+
+    <div class="row" ng-if="!ctrl.printInvoiceNumber">
+        <div class="large-3 columns">
+            <span>Statement period</span>
+        </div>
+        <div class="large-9 columns">
+            <span>: Last 30 days</span>
+        </div>
+    </div>
+</div>

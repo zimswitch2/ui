@@ -1,0 +1,6 @@
+<button id="print" title="print" class="btn secondary" ng-class="buttonClass" ng-click="print()" track-click="{{buttonTrackClick}}" ng-if="!actionButton &amp;&amp; !$root.isMobileDevice" data-dtmid="link_content_content link" data-dtmtext="Print button click">{{buttonText || 'Print'}}</button>
+
+<a class="action" title="print" ng-click="print()" ng-if="actionButton &amp;&amp; !$root.isMobileDevice" data-dtmid="link_content_content link" data-dtmtext="Print button click">
+        <span class="title">Print</span>
+        <i class="icon icomoon-print-circle"></i>
+</a>

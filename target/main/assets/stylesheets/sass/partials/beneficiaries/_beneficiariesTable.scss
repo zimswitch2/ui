@@ -1,0 +1,31 @@
+.beneficiaries-table {
+  .action-table {
+    ul {
+      .actions {
+        .action {
+
+          &[title="modify"] {
+            top: 4.5rem;
+          }
+
+          &[title="delete"] {
+            top: 9rem;
+          }
+        }
+      }
+    }
+    @media #{$large-up} {
+      ul {
+        .information {
+          width: 84%;
+          > div {
+            width: 20%;
+          }
+        }
+        .actions {
+          width: 12em;
+        }
+      }
+    }
+  }
+}

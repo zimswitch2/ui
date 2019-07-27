@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="large-12 medium-12 columns">
+        <div class="happens-next-section">
+            <div id="supportingDocuments" ng-hide="debitOrder.electronicConsent || debitOrder.account.isStandardBank">
+                <p>Send us your supporting documents</p>
+                <ul>
+                    <li>We are currently verifying your income and employment details. Please send us your last 3 bank
+                        statements or payslip
+                    </li>
+                    <li>Email all documents to <a id="sendEmail"
+                                                        href="mailto:supportingdocuments@standardbank.co.za?subject=Revolving Credit Plan application: Supporting documents for {{offerConfirmationDetails.accountNumber}}&body=Please find attached my supporting documents."
+                                                        target="_blank">supportingdocuments@standardbank.co.za</a>
+                        <span class="text-light">Send them as PDF, JPEG or TIFF (max file size: 4MB)</span>
+                    </li>
+                </ul>
+            </div>
+            <p>Receive confirmation</p>
+            <ul>
+                <div id="verifyingIncome" ng-show="debitOrder.electronicConsent || debitOrder.account.isStandardBank">
+                    <li>
+                        We are currently verifying your income and employment details
+                    </li>
+                    <li id="verifyingIncomeSuccess" ng-show="isCustomerKycCompliant">
+                        If successful, your money will be available within 45 minutes. You will receive a confirmation
+                        SMS as soon as your money is transferred into your account
+                    </li>
+                </div>
+
+                <div id="kycNonCompliantConfirmation" ng-show="!isCustomerKycCompliant">
+                    <li>A courier service will contact you to collect copies of your ID and proof of home address
+                    </li>
+                    <li>After the courier collects your documents you will receive an SMS update. If you don't receive
+                        the SMS, please call 0860 123 000
+                    </li>
+                    <li>You will receive a confirmation SMS as soon as your money is transferred into your account
+                    </li>
+                </div>
+                <div id="kycCompliantConfirmation" ng-show="isCustomerKycCompliant">
+                    <div ng-show="!(debitOrder.electronicConsent || debitOrder.account.isStandardBank)">
+                        <li>You should receive an SMS within 24 hours after we receive your documents. If you don't receive the SMS, please call 0860 123 000
+                        </li>
+                        <li>You will receive a confirmation SMS as soon as your money is transferred into your account
+                        </li>
+                    </div>
+                    <li ng-show="debitOrder.electronicConsent || debitOrder.account.isStandardBank">
+                        Please call 0860 123 000 if you have any queries
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>

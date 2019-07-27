@@ -1,0 +1,34 @@
+<div class="icon-summary" ng-if="hasAcceptedOffer()">
+    <div class="icon-summary-item">
+        <i class="icon icomoon-products"></i>
+
+        <div class="with-icon">
+            <p>Product</p>
+            <small>{{application.productName | capitalize}}</small>
+        </div>
+    </div>
+    <div class="icon-summary-item">
+        <i class="icon icomoon-account-number"></i>
+
+        <div class="with-icon">
+            <p>Account number</p>
+            <small id="acceptedApplicationAccountNumber">{{application.reference}}</small>
+        </div>
+    </div>
+    <div class="icon-summary-item" ng-if="hasOverdraft()">
+        <i class="icon icomoon-overdraft"></i>
+
+        <div class="with-icon">
+            <p>Overdraft</p>
+            <small id="overdraft">{{application.limitAmount | randAmount}}</small>
+        </div>
+    </div>
+    <div class="icon-summary-item">
+        <i class="icon icomoon-scheduled"></i>
+
+        <div class="with-icon">
+            <p>Offer accepted on</p>
+            <small id="acceptedApplicationDate">{{application.date | dateFormat }}</small>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<h2>Profile and Settings</h2>
+<div class="row">
+    <sb-accordion items="menuItems" partial="common/accordion/partials/profileAccordion.html"></sb-accordion>
+
+    <div class="medium-12 large-9 columns">
+        <div error notification ng-show="errorMessage">{{errorMessage}}</div>
+        <div info notification ng-hide="statementPreferences">No account preferences to display for this
+            account
+        </div>
+        <div success notification ng-show="isSuccessful">Preference successfully updated</div>
+
+        <div class="account-preferences panel">
+            <h2>Product preference</h2>
+            <h3 id="account-details">{{accountDetails}}</h3>
+            <div class="section">
+                <h3>Formal statement delivery</h3>
+                <div class="text-notification">Please visit your nearest branch if you want your statements delivered by post, or to update your postal address</div>
+
+
+                <div ng-show="statementPreferences">
+                    <div class="summary">
+                        <div class="summary-row">
+                            <div>
+                                <span id="product-preferences-delivery-description">Formal statements are being delivered to your</span>
+                                <span id="product-preferences-delivery-method">{{deliveryMethod}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div feature="editFormalStatementPreferences">
+                        <a id="edit-account-preferences-btn" ng-click="modify()"
+                           class="btn icon-button action edit" title="modify">
+                            <i class="icon icomoon-edit"></i>
+                            <span class="title">Modify</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

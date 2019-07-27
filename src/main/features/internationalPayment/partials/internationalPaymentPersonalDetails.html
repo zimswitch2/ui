@@ -1,0 +1,150 @@
+<h2>International Payment</h2>
+
+<div class="international-payment-summary">
+    <flow class="wide"></flow>
+    <div class="wide notification error" id="incomplete-fields-notification"
+         ng-show="customerDetails.incompleteFields()">
+        Your personal details are incomplete. Please visit your nearest branch to update your personal details
+    </div>
+    <div class="panel">
+        <div class="summary">
+            <h3 ng-show="customerDetails.firstName && customerDetails.lastName">{{customerDetails.firstName}}
+                {{customerDetails.lastName}}</h3>
+            <hr />
+            <div class="summary-row-one-line">
+                <div>
+                    <span>Contact first name</span>
+                    <span id="firstName" class="{{customerDetails.firstName ? '' : 'incomplete-field'}}">{{customerDetails.firstName || 'Not available'}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line">
+                <div>
+                    <span>Contact last name</span>
+                    <span id="lastName" class="{{customerDetails.lastName ? '' : 'incomplete-field'}}">{{customerDetails.lastName || 'Not available'}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line">
+                <div>
+                    <span>Gender</span>
+                    <span id="gender" class="{{customerDetails.gender ? '' : 'incomplete-field'}}">{{customerDetails.gender || 'Not available'}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line" ng-if="customerDetails.isResident()">
+                <div>
+                    <span>ID number</span>
+                    <span id="idNumber" class="{{customerDetails.idNumber ? '' : 'incomplete-field'}}">{{customerDetails.idNumber || 'Not available'}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line">
+                <div>
+                    <span>Date of birth</span>
+                    <span id="dateOfBirth" class="{{customerDetails.dateOfBirth ? '' : 'incomplete-field'}}">{{customerDetails.dateOfBirth || 'Not available'}}</span>
+                </div>
+            </div>
+            <div class="summary-row-one-line">
+                <div>
+                    <span>Contact</span>
+                    <span id="contact" class="{{customerDetails.contact ? '' : 'incomplete-field'}}">{{customerDetails.contact || 'Not available'}}</span>
+                </div>
+            </div>
+
+            <div ng-if="!customerDetails.isResident()">
+                <hr />
+
+                <div class="summary-row-one-line" ng-if="customerDetails.hasWorkPermit()">
+                    <div>
+                        <span>Work permit visa</span>
+                        <span id="workPermitNumber" class="{{customerDetails.workPermitNumber ? '': 'incomplete-field'}}">{{customerDetails.workPermitNumber || 'Not available'}}</span>
+                    </div>
+                </div>
+                <div class="summary-row-one-line" ng-if="customerDetails.hasWorkPermit()">
+                    <div>
+                        <span>Expiry date</span>
+                    <span id="workPermitExpiryDate"
+                          class="{{customerDetails.workPermitExpiryDate ? '': 'incomplete-field'}}">{{customerDetails.workPermitExpiryDate || 'Not available'}}</span>
+                    </div>
+                </div>
+
+                <div class="summary-row-one-line">
+                    <div ng-if="customerDetails.hasWorkPermit()">
+                        <span>Passport</span>
+                        <span id="passportNumber" class="{{customerDetails.passportNumber ? '': 'incomplete-field'}}">{{customerDetails.passportNumber || 'Not available'}}</span>
+                    </div>
+                    <div ng-if="!customerDetails.hasWorkPermit()">
+                        <span>Foreign ID number</span>
+                        <span id="foreignIdNumber" class="{{customerDetails.foreignIdNumber ? '': 'incomplete-field'}}">{{customerDetails.passportNumber || 'Not available'}}</span>
+                    </div>
+                </div>
+
+                <div class="summary-row-one-line">
+                    <div>
+                        <span>Country of issue</span>
+                        <span id="countryOfIssue" class="{{countryOfIssueName ? '': 'incomplete-field'}}">{{countryOfIssueName || 'Not available'}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <h4>Address</h4>
+            <div class="summary-row-one-line">
+                <div>
+                    <span class="padding-bottom">Home address</span>
+
+                    <div class="right-block">
+                        <span id="residentialAddressOne"
+                              class="{{customerDetails.residentialAddressOne ? '' : 'incomplete-field'}}">{{customerDetails.residentialAddressOne || 'Street'}}</span>
+                        <span>{{customerDetails.residentialAddressTwo}}</span>
+                    <span id="residentialSuburb"
+                          class="{{customerDetails.residentialSuburb ? '' : 'incomplete-field'}}">{{customerDetails.residentialSuburb || 'Suburb'}}</span>
+                        <span id="residentialCity"
+                              class="{{customerDetails.residentialCity ? '' : 'incomplete-field'}}">{{customerDetails.residentialCity || 'City'}}</span>
+                    <span id="residentialProvince"
+                          class="{{customerDetails.residentialProvince ? '' : 'incomplete-field'}}">{{customerDetails.residentialProvince || 'Province'}}</span>
+                    <span id="residentialPostalCode"
+                          class="{{customerDetails.residentialPostalCode ? '' : 'incomplete-field'}}">{{customerDetails.residentialPostalCode || 'Postal code'}}</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="summary-row-one-line">
+                <div>
+                    <span class="padding-bottom">Postal address</span>
+                    <div class="right-block">
+                        <span id="postalAddressOne" class="{{customerDetails.postalAddressOne ? '' : 'incomplete-field'}}">{{customerDetails.postalAddressOne  || 'Street/PO Box'}}</span>
+                        <span>{{customerDetails.postalAddressTwo}}</span>
+                        <span id="postalSuburb" class="{{customerDetails.postalSuburb ? '' : 'incomplete-field'}}">{{customerDetails.postalSuburb || 'Suburb'}}</span>
+                        <span id="postalCity" class="{{customerDetails.postalCity ? '' : 'incomplete-field'}}">{{customerDetails.postalCity || 'City'}}</span>
+                        <span id="postalProvince" class="{{customerDetails.postalProvince ? '' : 'incomplete-field'}}">{{customerDetails.postalProvince || 'Province'}}</span>
+                        <span id="postalPostalCode" class="{{customerDetails.postalPostalCode ? '' : 'incomplete-field'}}">{{customerDetails.postalPostalCode || 'Postal code'}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="padding-top padding-bottom">
+            <a href="#/international-payment/update-details">{{customerDetails.incompleteFields() ? 'How to update your details' : 'These details are incorrect'}}</a>
+        </section>
+        <div ng-if="customerDetails.incompleteFields()">
+            <section class="padding-top">
+                <a go-home id="navigate-home" class="btn primary" track-click="">Done</a>
+            </section>
+        </div>
+        <div ng-if="!customerDetails.incompleteFields()">
+            <section class="padding-top">
+                <label for="internationalPaymentPersonalDetailsConfirmation">
+                    <input required type="checkbox" id="internationalPaymentPersonalDetailsConfirmation"
+                           ng-model="customerDetails.internationalPaymentPersonalDetailsConfirmation"/>
+                    You confirm your details are correct
+                </label>
+            </section>
+            <section class="padding-top">
+                <button id="confirm" class="primary" ng-click="submit()"
+                        ng-disabled="!customerDetails.internationalPaymentPersonalDetailsConfirmation"
+                        track-click="">Next
+                </button>
+                <button id="back" class="secondary" ng-click="back()">
+                    Back
+                </button>
+            </section>
+        </div>
+    </div>
+</div>

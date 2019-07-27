@@ -1,0 +1,14 @@
+.page-heading-row {
+  @extend .clearfix;
+  @media #{$medium-up} {
+    h2, h3, h4, h5 {
+      float: left;
+    }
+    > div {
+      float: right;
+    }
+    p {
+      clear: left;
+    }
+  }
+}

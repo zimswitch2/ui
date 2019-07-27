@@ -1,0 +1,91 @@
+<h2>Manage users</h2>
+<div class=" operator-table">
+    <div>
+        <div class="page-heading-row">
+            <h3>Added users</h3>
+
+            <div>
+                <div id="addDashboard" class="button secondary" ng-click="getOperator.addUser()"
+                   data-dtmid="obb_operators_content invite a user button" data-dtmtext="Invite a user button click">
+                    <i class="icon icomoon-add"></i>Invite a user
+                </div>
+            </div>
+        </div>
+        <div id="operatorDetails" class="action-table">
+            <ul class="header">
+                <li>
+                    <div class="information">
+                        <div><span>Name</span></div>
+                        <div><span>Status</span></div>
+
+                    </div>
+
+                </li>
+            </ul>
+
+            <ul class="data">
+                <li ng-repeat="operator in getOperator.operators">
+                    <a href="{{ '#/account-sharing/users/' + operator.id }}"
+                       data-dtmid="obb_content user details row"
+                       data-dtmtext="User details row click">
+                        <div class="information">
+                            <div data-header="Name">
+                                <div>{{operator.userDetails.firstName}} {{operator.userDetails.surname}}</div>
+                            </div>
+                            <div data-header="Status">
+                                <div>
+                                    <span ng-class="getOperator.operatorStatus(operator)">{{getOperator.changeStatusToUpper(operator)}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                </li>
+            </ul>
+            <span class="information message" ng-show="getOperator.numberOfOperators == 0">There are no operators linked to your profile.</span>
+
+        </div>
+    </div>
+</div>
+
+<div class="operator-table">
+    <div>
+        <div class="page-heading-row">
+            <h3>Pending users</h3>
+        </div>
+        <div id="pendingOperatorDetails" class="pending-operator-action-table action-table">
+            <ul class="header">
+                <li>
+                    <div class="information">
+                        <div><span>Name</span></div>
+                        <div><span>Reference code</span></div>
+                        <div><span>Status</span></div>
+
+                    </div>
+
+                </li>
+            </ul>
+
+            <ul class="data">
+                <li ng-repeat="operator in getOperator.pendingOperators">
+                        <div class="information" ng-click="getOperator.viewInvitationDetails(operator)"
+                             data-dtmid="obb_content pending users row"
+                             data-dtmtext="Pending user row click">
+                            <div data-header="Name">
+                                <div>{{operator.userDetails.firstName}} {{operator.userDetails.surname}}</div>
+                            </div>
+                            <div data-header="Reference code">
+                                <div>{{operator.referenceNo}}</div>
+                            </div>
+                            <div data-header="Status">
+                                <div><span>{{operator.status}}</span></div>
+                            </div>
+                        </div>
+
+                </li>
+            </ul>
+            <span class="information message" ng-show="getOperator.numberOfPendingOperators == 0">There are no pending operators linked to your profile.</span>
+
+        </div>
+    </div>
+</div>

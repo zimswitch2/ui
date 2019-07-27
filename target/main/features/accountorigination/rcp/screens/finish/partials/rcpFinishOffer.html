@@ -1,0 +1,73 @@
+<div class="confirm-offer">
+    <div class="page-heading-row wide">
+        <h2 id="confirmRcpTitle">Application Successful</h2>
+    </div>
+
+    <flow class="wide hide-on-print"></flow>
+
+    <p class="notification success wide">We are pleased to inform you that your Revolving Credit Plan has been
+        approved.</p>
+
+    <div class="panel wide hide-on-print">
+
+        <div class="row divider-container">
+            <div class="show-for-medium-up">
+                <div class="divider vertical medium-offset-5"></div>
+            </div>
+
+            <section class="account-information">
+                <h3>Summary</h3>
+
+                <div class="summary-ao">
+                    <div class="summary-ao-row" id="accountType">
+                        <span class="summary-ao-label">Account type</span>
+                        <span class="summary-ao-value">{{rcpOfferDetails.productName}}</span>
+                    </div>
+                    <div class="summary-ao-row" id="accountNumber">
+                        <span class="summary-ao-label">Account number</span>
+                        <span class="summary-ao-value">{{offerConfirmationDetails.accountNumber}}</span>
+                    </div>
+                    <div class="summary-ao-row" id="rcpAmount">
+                        <span class="summary-ao-label">RCP amount</span>
+                        <span class="summary-ao-value">{{requestedLimit | randAmount}}</span>
+                    </div>
+                    <div class="summary-ao-row" id="interestRate">
+                        <span class="summary-ao-label">Interest rate</span>
+                        <span class="summary-ao-value">{{rcpOfferDetails.interestRate}}%</span>
+                    </div>
+                    <div class="summary-ao-row" id="monthlyRepaymentAmount">
+                        <span class="summary-ao-label">Monthly repayment amount</span>
+                        <span class="summary-ao-value">{{debitOrder.repayment.amount | randAmount}}</span>
+                    </div>
+                    <div class="summary-ao-row" id="preferredBranch">
+                        <span class="summary-ao-label">Preferred branch</span>
+                        <span class="summary-ao-value">{{preferredBranch | capitalize}}</span>
+                    </div>
+                    <div class="summary-ao-row" id="dateAccepted">
+                        <span class="summary-ao-label">Date accepted</span>
+                        <span class="summary-ao-value">{{offerConfirmationDetails.timestamp | dateFormat}}</span>
+                    </div>
+                    <div class="summary-ao-row" id="timeAccepted">
+                        <span class="summary-ao-label">Time accepted</span>
+                        <span class="summary-ao-value">{{offerConfirmationDetails.timestamp | timeFormat}}</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="documents-request" id="whatHappensNext">
+
+                <div class="show-for-small-only">
+                    <div class="divider horizontal"></div>
+                </div>
+
+                <h3>What happens next?</h3>
+                <ng-include src="&apos;features/accountorigination/rcp/screens/finish/partials/whatHappensNext.html&apos;" ng-if="!hasPrivateBankingAccount"></ng-include>
+                <ng-include src="&apos;features/accountorigination/rcp/screens/finish/partials/whatHappensNextForPrivateBanking.html&apos;" ng-if="hasPrivateBankingAccount"></ng-include>
+            </section>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <button ng-click="finishApplication()" class="btn secondary margin-top" name="finishApplication" id="rcpGoAccountSummary">{{ finishApplicationText }}</button>
+</div>

@@ -1,0 +1,27 @@
+<h2>Your Details</h2>
+
+<flow class="wide"></flow>
+
+<div class="notification error wide" ng-show="serverErrorMessage !== undefined">
+    {{serverErrorMessage}}
+</div>
+
+<div class="customer-info-container">
+    <customer-information-navigation current-page="&apos;profile&apos;"></customer-information-navigation>
+    <div class="customer-info-form">
+        <form name="customerInformationForm" data-frmcontainer="edit basic information form" novalidate="">
+            <div class="customer-info-scroll">
+                <div class="basic-info">
+                    <div>
+                        <ng-include src="&apos;features/accountorigination/customerInformation/partials/basicInformation.html&apos;"></ng-include>
+                    </div>
+                    <div id="contactInformationSection" class="second-section">
+                        <ng-include src="&apos;features/accountorigination/customerInformation/partials/contactInformation.html&apos;"></ng-include>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<cancel-confirmation></cancel-confirmation>

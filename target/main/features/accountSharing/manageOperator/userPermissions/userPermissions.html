@@ -1,0 +1,24 @@
+<div class="view-permissions">
+    <div class="panel">
+        <h3>Permissions</h3>
+
+        <div class="summary account-sharing-summary">
+            <div class="summary-split-row" ng-repeat="permission in permissions">
+                <div>
+                    <span>{{ permission.accountReference.productName }}</span>
+                    <span>{{ permission.accountReference.formattedNumber }}</span>
+                </div>
+                <div>
+                    <span>&nbsp;</span>
+                    <span>{{ permission.role.name }}</span>
+                </div>
+            </div>
+
+            <div class="account-summary-action" ng-hide="hide.editPermissions">
+                <a href="" ng-click="editPermissions()" data-dtmid="obb_content edit user permissions link" data-dtmtext="Edit link click">
+                    Edit
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

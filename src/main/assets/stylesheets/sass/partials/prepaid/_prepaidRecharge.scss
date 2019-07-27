@@ -1,0 +1,40 @@
+.prepaid-recharge {
+  .provider-icon {
+    display: none;
+    top: 0;
+    height: 38px;
+    width: 80px;
+    background-size: 100%;
+
+    &.cellc {
+      background-image: url("../../../assets/images/prepaid/cellc-thumb.png");
+    }
+    &.electricity {
+      background-image: url("../../../assets/images/prepaid/electricity-thumb.png");
+    }
+    &.mtn {
+      background-image: url("../../../assets/images/prepaid/mtn-thumb.png");
+    }
+    &.telkom {
+      background-image: url("../../../assets/images/prepaid/telkom-thumb.png");
+    }
+    &.telkom-mobile {
+      background-image: url("../../../assets/images/prepaid/telkommobile-thumb.png");
+    }
+    &.vodacom {
+      background-image: url("../../../assets/images/prepaid/vodacom-thumb.png");
+    }
+    &.virgin {
+      background-image: url("../../../assets/images/prepaid/virgin-thumb.png");
+    }
+    &.worldcall {
+      background-image: url("../../../assets/images/prepaid/worldcall-thumb.png");
+    }
+  }
+
+  @media #{$medium-up} {
+    form .provider-icon {
+      display: inline-block;
+    }
+  }
+}

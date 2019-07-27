@@ -1,0 +1,115 @@
+<div class="instant-money-uncollected wide-content">
+    <h2>Instant Money</h2>
+
+    <div class="page-heading-row">
+        <h3>Uncollected vouchers</h3>
+
+        <div>
+            <a class="btn" href="#/instant-money/details" data-dtmid="link_content_content link" data-dtmtext="instant money | Send money button click">Send money
+            </a>
+
+            <print-button></print-button>
+
+            <div class="filter-controls">
+                <form class="filter">
+                    <filter-box ng-change="clearSelection()" ng-model="query" placeholder="Search"></filter-box>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="info notification" ng-show="!haveVouchers">No transactions during this period</div>
+    <div error="" notification="" ng-show="errorMessage">{{errorMessage}}</div>
+    <div success="" notification="" ng-show="isSuccessful">{{success}}</div>
+
+    <div class="panel">
+        <div class="action-table">
+            <ul class="header">
+                <li>
+                    <div class="information">
+                        <div>
+                            <a id="date" ng-click="sortBy(&apos;createdDate&apos;)">Date<i ng-class="sortArrowClass(&apos;createdDate&apos;)"></i></a>
+                        </div>
+                        <div>
+                            <a id="from-account" ng-click="sortBy(&apos;fromAccount&apos;)">From account<i ng-class="sortArrowClass(&apos;fromAccount&apos;)"></i></a>
+                        </div>
+
+                        <div>
+                            <span id="voucher-number">Voucher number</span>
+                        </div>
+
+                        <div>
+                            <a id="cell-phone" ng-click="sortBy(&apos;contact.address&apos;)">Cellphone<i ng-class="sortArrowClass(&apos;contact.address&apos;)"></i></a>
+                        </div>
+
+                        <div>
+                            <span id="amount">Amount</span>
+                        </div>
+                    </div>
+                    <div class="actions hide-on-print">
+                        <div class="action">Delete</div>
+                        <div class="action">Edit</div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="data not-clickable">
+                <li ng-repeat="instantMoney in instantMoneyHistory | uncollectedInstantMoneyFilter: query | orderBy: sort.criteria:!sort.descending">
+                    <div>
+                        <div class="information">
+                            <div class="date" data-header="Date">
+                                <div class="cell-data">{{instantMoney.createdDate | dateFormat}}</div>
+                            </div>
+                            <div class="from-account" data-header="From account">
+                                <div class="cell-data">{{instantMoney.fromAccount}}</div>
+                            </div>
+                            <div class="voucher-number" data-header="Voucher number">
+                                <div class="cell-data">{{instantMoney.voucherNumber}}</div>
+                            </div>
+                            <div class="cell-phone" data-header="Cell phone">
+                                <div class="cell-data">{{instantMoney.contact.address}}</div>
+                            </div>
+                            <div class="amount" data-header="Amount">
+                                <div class="cell-data">{{instantMoney.amount.amount | randAmountNoCents}}</div>
+                            </div>
+                        </div>
+                        <div class="actions hide-on-print">
+                            <a class="action" title="delete" ng-click="delete(instantMoney)" data-dtmid="link_content_content link" data-dtmtext="instant money | delete button click">
+                                <span class="title">Delete</span>
+                                <i class="icon icomoon-delete"></i>
+                            </a>
+                            <a class="action" title="modify" ng-click="modify(instantMoney)" data-dtmid="link_content_content link" data-dtmtext="instant money | edit button click">
+                                <span class="title">Edit</span>
+                                <i class="icon icomoon-edit"></i>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page-heading-row">
+        <a id="back-to-transact" href="#/transaction/dashboard" class="btn secondary" data-dtmid="link_content_content link" data-dtmtext="instant money | back to transact button click">Back to transact</a>
+    </div>
+
+    <div class="modal-overlay" ng-if="voucherToDelete">
+        <div class="modal-container action-modal">
+            <div class="modal-header">
+                <h3>Delete Instant Money</h3>
+            </div>
+
+            <div class="modal-content">
+                <div class="margin-top">Enter the cash collection PIN you created for this voucher. </div>
+                <div class="text-notification">No Instant Money will be sent to {{voucherToDelete.contact.address}}.</div>
+                <div class="margin-top">
+                    <input type="password" ng-model="voucherToDelete.voucherPin" ng-required="true" ng-maxlength="4" ng-pattern="\-?\d+">
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="modal-confirm" type="button" ng-disabled="!(voucherToDelete.voucherPin &amp;&amp; voucherToDelete.voucherPin.length == 4)" ng-click="confirmDelete()" class="primary" data-dtmid="link_modal_Instant money" data-dtmtext="delete voucher | Confirm button click">Confirm</button>
+                <button id="modal-cancel" type="button" ng-click="cancelDelete()" class="secondary" data-dtmid="link_modal_Instant money" data-dtmtext="delete voucher | Cancel button click">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

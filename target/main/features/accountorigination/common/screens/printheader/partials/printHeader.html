@@ -1,0 +1,18 @@
+<p class="bank-info">
+    Self-Service Banking Team<br>
+    <span id="customerCareLine">{{isPrivateBankingProduct ? 'Private Banking Line: 0860 123 101' : 'Customer Care: 0860 123 000'}}</span><br>
+    Website: www.standardbank.co.za<br>
+    {{letterDate | dateFormat}}
+</p>
+
+<p class="customer-address">
+    <span>{{customer.fullName | capitalize}}</span><br>
+    <span ng-show="customer.residentialAddress.unitNumber">{{customer.residentialAddress.unitNumber | capitalize}}, </span>
+    <span ng-show="customer.residentialAddress.building">{{customer.residentialAddress.building | capitalize}}<br></span>
+    <span ng-show="customer.residentialAddress.streetPOBox">{{customer.residentialAddress.streetPOBox | capitalize}}<br></span>
+    <span ng-show="customer.residentialAddress.suburb">{{customer.residentialAddress.suburb | capitalize}}<br></span>
+    <span ng-show="customer.residentialAddress.cityTown">{{customer.residentialAddress.cityTown | capitalize}}<br></span>
+    <span ng-show="customer.residentialAddress.postalCode">{{customer.residentialAddress.postalCode}}</span>
+</p>
+
+<p>Dear {{customer.displayName | capitalize}},</p>

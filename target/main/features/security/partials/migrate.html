@@ -1,0 +1,72 @@
+<script type="text/javascript">
+    (function () {
+        var scriptUrl = ["cdn.standardbank.co.za", "811652", "div-fol12.js"].join("/");
+        window.loadTrusteerScript(scriptUrl);
+    })();
+</script>
+
+<script type="text/javascript">
+    (function () {
+        var scriptUrl = ["cdn.standardbank.co.za", "811652", "waveForm3.js"].join("/");
+        window.loadTrusteerScript(scriptUrl);
+    })();
+</script>
+
+
+<h2>Copy Your Profile</h2>
+
+
+<div notification="" error="" ng-show="errorMessage">{{errorMessage}}</div>
+
+<div flow=""></div>
+
+<bb-account-type-selection></bb-account-type-selection>
+
+<form novalidate="novalidate" autocomplete="off" name="migrateForm" ng-submit="migrateExistingUser()">
+
+    <div class="panel">
+
+        <section>
+            <div>
+                <label for="cardnumber">Card number</label>
+                <input type="text" id="cardnumber" name="cardnumber" ng-model="cardNumber" ng-class="{&apos;show-validation-styles&apos;: migrateForm.cardnumber.$touched || migrateForm.cardnumber.$dirty || migrateForm.$submitted}" exact-lengths="9,16,18" ng-pattern="&apos;[0-9]*&apos;" focus-on="">
+                <ng-messages for="migrateForm.cardnumber.$error" ng-show="migrateForm.cardnumber.$touched || migrateForm.cardnumber.$dirty || migrateForm.$submitted">
+                    <ng-message class="form-error" when="pattern">Please enter a valid card number</ng-message>
+                    <ng-message class="form-error" when="exactLengths">Must be 9, 16 or 18 numbers long</ng-message>
+                </ng-messages>
+            </div>
+        </section>
+
+        
+
+        <section>
+            <div>
+                <label for="csp">Customer Selected PIN (CSP)</label>
+                <input type="password" id="csp" name="csp" ng-model="csp" ng-class="{&apos;show-validation-styles&apos;: migrateForm.csp.$touched || migrateForm.csp.$dirty || migrateForm.$submitted}" exact-lengths="5" ng-pattern="&apos;[0-9]*&apos;">
+                <ng-messages for="migrateForm.csp.$error" ng-show="migrateForm.csp.$touched || migrateForm.csp.$dirty || migrateForm.$submitted">
+                    <ng-message class="form-error" when="pattern">Please enter a valid CSP PIN</ng-message>
+                    <ng-message class="form-error" when="exactLengths">Must be 5 numbers long</ng-message>
+                </ng-messages>
+            </div>
+        </section>
+
+        <section>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" ng-model="password" ng-maxlength="16" required ng-class="{&apos;show-validation-styles&apos;: migrateForm.password.$dirty || migrateForm.password.$touched || migrateForm.$submitted}">
+                <ng-messages for="migrateForm.password.$error" ng-show="migrateForm.password.$dirty || migrateForm.password.$touched || migrateForm.$submitted">
+                    <ng-message class="form-error" when="required">Required</ng-message>
+                    <ng-message class="form-error" when="maxlength">Cannot be longer than 16 characters</ng-message>
+                </ng-messages>
+            </div>
+        </section>
+
+        <button id="migrate" ng-disabled="!migrateForm.$valid" class="primary">Next</button>
+        <span>
+            <a id="back" class="button secondary" ng-click="back()">Back</a>
+            <a id="logout" class="button tertiary" ng-click="signOut()">Sign out</a>
+        </span>
+        
+    </div>
+
+</form>

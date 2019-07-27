@@ -1,0 +1,19 @@
+Small actionable tasks (please remove if you complete them):
+
+- Change module declaration style from current:
+    (function (app) { ... })(angular.module(...));
+  Into more desirable approach:
+    (function () { var module = angular.module(..); ... })();
+  Advantages:
+    - module declaration at the top
+    - variable name more explicit
+    - module variable is scoped to function, no risk of being overridden
+
+========================================================================================================================
+
+Larger tasks (may require prioritisation with PO input):
+
+- Revisit our feature toggle approach:
+  - improve redact to handle embedded ifs - supports "hiding" that we're working on something
+  OR
+  - change feature solution to make 'feature' available at runtime

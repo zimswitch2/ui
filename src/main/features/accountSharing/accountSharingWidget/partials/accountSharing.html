@@ -1,0 +1,11 @@
+<div ng-switch="vm.viewName()">
+    <div ng-switch-when="getStarted">
+        <ng-include src="'features/accountSharing/accountSharingWidget/partials/accountSharingGetStarted.html'"></ng-include>
+    </div>
+    <div ng-switch-when="viewUsers">
+        <ng-include src="'features/accountSharing/accountSharingWidget/partials/accountSharingUsers.html'"></ng-include>
+    </div>
+    <div ng-switch-default>
+        <ng-include src="'features/accountSharing/accountSharingWidget/partials/accountSharingSignUp.html'"></ng-include>
+    </div>
+</div>

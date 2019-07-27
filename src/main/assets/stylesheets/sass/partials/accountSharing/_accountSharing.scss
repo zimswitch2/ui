@@ -1,0 +1,243 @@
+.account-sharing-widget {
+  background: white;
+  border: 1px solid #D2D2D2;
+  padding: 1.5em;
+  text-align: center;
+  width: 24em;
+  font-weight: 300;
+  span {
+    font-size: 1em;
+    color: #787878;
+    padding-top: 10px;
+    padding-bottom: 4px;
+  }
+  .sharing-message {
+    padding-bottom: 10px;
+  }
+  .note {
+    font-weight: bolder;
+    color: #787878;
+  }
+  .note-block {
+    display: inline-block;
+    margin-top: 10px;
+  }
+  .buttons-box {
+    margin-top: 2em;
+    @media #{$medium-up} {
+      padding: 10px;
+    }
+  }
+  .authorisers {
+    padding-top: 10px;
+  }
+  .user-table {
+    position: relative;
+    display: block;
+    top: 18px;
+    text-align: center;
+    margin-right: 18px;
+  }
+  .number-of-operators {
+    position: relative;
+    display: inline-block;
+    padding-left: 5px;
+  }
+  @media #{$medium-only} {
+    margin-top: 1em;
+  }
+  @media #{$small-only} {
+    padding: 1em;
+    margin: 0.6em;
+    .tertiary {
+      width: 100%;
+    }
+  }
+  h3 {
+    padding: 0;
+    color: #666666;
+  }
+  &.last {
+    margin-right: 0;
+  }
+  &.confirmation {
+    margin-right: 0;
+    @media #{$large-up} {
+      margin-right: 2.35765%;
+    }
+  }
+  .information-box {
+    padding-bottom: 0;
+  }
+}
+.account-sharing-widget-main {
+  display: block;
+  float: left;
+  @media #{$large-up} {
+    margin-left: 1.5em;
+  }
+}
+.note-color {
+  color: #787878;
+  padding-top: 10px;
+}
+.well-container {
+  @extend .clearfix;
+  @media #{$large-up} {
+    @include span-columns(6);
+  }
+  &.small-well {
+    @media #{$large-up} {
+      @include span-columns(4);
+    }
+  }
+  &.large-well {
+    @media #{$large-up} {
+      @include span-columns(8);
+    }
+  }
+}
+.add-user-details {
+  section {
+    position: relative;
+    &.medium-width {
+      width: 100%;
+      @media #{$medium-up} {
+        width: 50%;
+      }
+    }
+  }
+}
+.permissions-table {
+  width: 100%;
+  > .table-row.header-row {
+    > .permission-radio-col {
+      > div {
+        font-weight: bold;
+      }
+    }
+  }
+  > .table-row {
+    width: 100%;
+    word-break: normal;
+    @media #{$small-only} {
+      margin-bottom: 0;
+      margin-top: -1px;
+    }
+    @media #{$medium-only} {
+      margin-bottom: 0;
+      margin-top: -1px;
+    }
+    > .permission-account-col {
+      width: 100%;
+      &:before {
+        padding: 0;
+        display: none;
+      }
+      > div {
+        display: block;
+      }
+      > div.accordion-tab-title {
+        width: 100%;
+        > div.account-description {
+          display: inline-block;
+          width: 90%;
+          > div.account-name {
+            font-weight: bold;
+          }
+          > div.account-number {
+            color: $slate-grey;
+          }
+        }
+        > div.account-chevron {
+          display: inline-block;
+          float: right;
+          line-height: 4.5em;
+        }
+      }
+    }
+    > .permission-radio-col {
+      width: 100%;
+      text-align: center;
+      padding: 0;
+      &:before {
+        padding: 1em;
+        display: table-cell;
+        min-width: 15em;
+        background-color: $silver-grey-light;
+        font-weight: bold;
+        text-align: left;
+      }
+      &.collapsed {
+        display: none;
+      }
+      > div {
+        width: 100%;
+        display: table-cell;
+      }
+    }
+    @media #{$small-only} {
+      > .permission-radio-col {
+        background-color: $border-grey;
+      }
+    }
+    @media #{$medium-only} {
+      > .permission-radio-col {
+        background-color: $border-grey;
+      }
+    }
+    @media #{$large-up} {
+      &.header-row {
+        > .permission-radio-col {
+          line-height: 1.5em;
+        }
+      }
+      > .permission-radio-col {
+        width: 18%;
+        line-height: 4.5em;
+        &.collapsed {
+          display: inline-block;
+        }
+      }
+      > .permission-account-col {
+        width: 25%;
+        > div.accordion-tab-title > div.account-chevron {
+          display: none !important;
+        }
+      }
+    }
+  }
+}
+.invitation-header {
+  padding-left: 6em;
+}
+.invitation-image {
+  margin: -19px 15px 10px 10px;
+  @media #{$medium-up} {
+    margin-right: 42px;
+  }
+}
+.invitation-text {
+  color: #999999;
+}
+.invitation-button {
+  float: right;
+  margin-top: 12px;
+}
+
+.account-sharing {
+  .user-status {
+    // color: $font-grey-medium;
+    @media #{$small-only} {
+      margin: 0.5em;
+    }
+  }
+
+  .red-text {
+    color: #A80511;
+  }
+
+  .green-text {
+    color: #339F7B;
+  }
+}

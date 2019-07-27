@@ -1,0 +1,22 @@
+<div class="international-payment-beneficiary-nav">
+    <ul class="tabs">
+        <li class="tab-title small-12 medium-4 large-4 columns" ng-class="{active: currentPage === &apos;details&apos;}">
+            <a class="counter-indicator">1 of 3</a>
+            <a id="beneficiary-details-nav" ng-click="navigate(&apos;details&apos;)" class="title-text">
+                1. Their details
+            </a>
+        </li>
+        <li class="tab-title small-12 medium-4 large-4 columns" ng-class="{&apos;inactive&apos;: !beneficiary.bankDetailsActive, &apos;active&apos;: currentPage === &apos;bank-details&apos;}">
+            <a class="counter-indicator">2 of 3</a>
+            <a id="beneficiary-bank-details-nav" class="title-text" ng-click="navigate(&apos;bank-details&apos;)" ng-class="{&apos;inactive&apos;: !beneficiary.bankDetailsActive}">
+                2. Their bank details
+            </a>
+        </li>
+        <li class="tab-title small-12 medium-4 large-4 columns" ng-class="{&apos;inactive&apos;: !beneficiary.preferencesActive, &apos;active&apos;: currentPage === &apos;preferences&apos;}">
+            <a class="counter-indicator">3 of 3</a>
+            <a id="beneficiary-preferences-nav" ng-click="navigate(&apos;preferences&apos;)" class="title-text" ng-class="{&apos;inactive&apos;: !beneficiary.preferencesActive}">
+                3. Preferences
+            </a>
+        </li>
+    </ul>
+</div>

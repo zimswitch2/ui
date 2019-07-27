@@ -1,0 +1,151 @@
+<h2>Input</h2>
+
+<p class="note">The 'show code' button shows the output html, not the directive you write to get it.</p>
+
+<div class="example">
+    <h3>Checkbox</h3>
+    <div class="demo">
+        <input type="checkbox" id="checkbox"/><label for="checkbox">Check me</label>
+        <show-code></show-code>
+    </div>
+</div>
+
+<div class="example">
+    <h3>Text Input</h3>
+    <p class="description">Primary means of entering short text into a form. A input should always have a label or a
+        placeholder</p>
+
+    <div class="demo">
+        <form>
+            <sb-input name="name"
+                      label="Name"
+                      ng-model="name"
+                      ng-required="true"
+                      ng-maxlength="10"
+                      text-validation
+                      placeholder="Enter your name here..."
+                      pattern-message="Please enter a valid name"
+                      description='What you want us to call you'
+                    >
+            </sb-input>
+        </form>
+        <show-code></show-code>
+    </div>
+</div>
+
+<div class="example">
+    <h3>Password Input</h3>
+    <div class="demo">
+        <form>
+            <sb-input label="Password"
+                      name="password"
+                      ng-model="password"
+                      ng-required="true"
+                      type="password">
+            </sb-input>
+        </form>
+        <show-code></show-code>
+    </div>
+</div>
+
+<div class="example">
+    <h3>Number Input</h3>
+
+    <div class="demo">
+        <form>
+            <sb-input ng-model="someNumber"
+                      type="number"
+                      ng-maxlength="5"
+                      ng-pattern="/^\d+$/"
+                      pattern-message="Please enter a valid number"
+                      label="A number">
+            </sb-input>
+        </form>
+        <show-code></show-code>
+    </div>
+</div>
+
+<div class="example">
+    <h3>Amount Input</h3>
+
+    <div class="demo">
+        <form>
+            <sb-amount ng-model="amount"
+                    label="Amount">
+            </sb-amount>
+        </form>
+        <show-code></show-code>
+    </div>
+</div>
+
+<div class="example">
+    <h3>Radio button group</h3>
+
+    <div class="demo">
+        <form>
+            <label>Which option will you pick?</label>
+            <ul class="radio-button-group">
+                <li>
+                    <input type="radio" id="rb1" ng-model="rb1" ng-value="true">
+                    <label for="rb1">One option</label>
+                </li>
+
+                <li>
+                    <input type="radio" id="rb2" ng-model="rb2" ng-value="false">
+                    <label for="rb2">Another option</label>
+                </li>
+            </ul>
+        </form>
+        <show-code></show-code>
+    </div>
+</div>
+
+<div class="example">
+    <h3>Select</h3>
+    <div class="demo">
+        <div class="styled-select">
+            <select ng-model="selectedItem" ng-options="item.label for item in selectItems"></select>
+        </div>
+        <show-code></show-code>
+    </div>
+</div>
+
+<div class="example">
+    <h3>Filter box</h3>
+    <div class="demo">
+        <form>
+            <filter-box ng-model="query" placeholder="Search this list"></filter-box>
+        </form>
+        <show-code></show-code>
+    </div>
+</div>
+
+<div class="example">
+    <h3>Datepicker</h3>
+    <div class="demo">
+        <form>
+            <sb-datepicker ng-model="something"
+                           ng-required="true"
+                           date-format="DD MMMM YYYY"
+                           skip-year="true"
+                           earliest-date="01 January 1900"
+                           latest-date="01 January 2100">
+            </sb-datepicker>
+        </form>
+        <show-code></show-code>
+    </div>
+</div>
+
+<div class="example">
+    <h3>Typeahead</h3>
+    <p class="note">Why is the text in the dropdown not white when selected?</p>
+    <div class="demo">
+        <form>
+            <sb-typeahead id="bank"
+                          items="banks"
+                          ng-model="bank">
+            </sb-typeahead>
+        </form>
+        <show-code></show-code>
+    </div>
+</div>

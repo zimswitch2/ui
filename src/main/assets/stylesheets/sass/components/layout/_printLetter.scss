@@ -1,0 +1,38 @@
+.print-letter {
+  @extend .print-only;
+
+  @media only print {
+    * {
+      font-family: "Times New Roman", Times, serif;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    p {
+      margin: 0;
+      padding: 0.5em;
+    }
+
+    .nowrap {
+      white-space: nowrap;
+    }
+
+    .large {
+      font-size: large;
+    }
+
+    ul {
+      margin-left: 2em;
+    }
+
+    li {
+      list-style-type: disc;
+    }
+
+    .print-footer p {
+      text-align: left;
+    }
+  }
+}

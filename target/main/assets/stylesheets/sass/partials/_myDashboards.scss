@@ -1,0 +1,43 @@
+.my-dashboards {
+
+  .page-heading-row {
+    line-height: 3.5;
+  }
+
+  .action-table {
+
+    ul {
+      .actions {
+        .action {
+          &[title="delete"] {
+            top: 4.5rem;
+          }
+        }
+      }
+    }
+
+    @media #{$large-up} {
+      ul {
+        .information {
+          > div {
+            &:nth-child(1){
+              width: 23%;
+            }
+            &:nth-child(2){
+              width: 23%;
+            }
+            &:nth-child(3){
+              width: 23%;
+            }
+            &:nth-child(4){
+              width: 23%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  //make-space-for-country-items in phone number dropdown
+  margin-bottom: 26em;
+}

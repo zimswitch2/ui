@@ -1,0 +1,21 @@
+<h2>Add dashboard</h2>
+
+<div success="" notification="" ng-show="successMessage">
+    {{successMessage}}
+</div>
+
+<div class="form-layout-top" flow=""></div>
+
+<div class="my-dashboards form-layout-main">
+
+    <div class="panel">
+        <form name="dashboardForm" novalidate="novalidate" autocomplete="off">
+            <section>
+                <sb-input name="dashboardName" label="New dashboard name" ng-model="channelProfile.channelProfile.profileName" ng-minlength="3" ng-maxlength="25" ng-pattern="&apos;[\\w ]+&apos;" pattern-message="Please enter a dashboard name without special characters" description="Characters allowed: A-Z, 0-9, underscores ( _ ) and spaces" focus-on="" ng-required="true">
+                </sb-input>
+            </section>
+            <a id="save" class="btn" ng-disabled="!dashboardForm.$valid" ng-click="saveDashboardName()">Save</a>
+        </form>
+    </div>
+
+</div>

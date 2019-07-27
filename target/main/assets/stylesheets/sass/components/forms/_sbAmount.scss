@@ -1,0 +1,25 @@
+.sb-amount, sb-amount {
+  input[name='amount'] {
+    padding-left: 40px;
+    @media #{$medium-up} {
+      width: auto;
+      display: inline;
+    }
+  }
+
+  .icon {
+    top: 0.4em;
+    left: 0.4em;
+    color: $gunmetal-light;
+    position: absolute;
+
+    &.icon-rand {
+      color: $slate-grey;
+      display: inline-block;
+      font-size: 1em;
+      width: 2em;
+      padding-top: 0.5em;
+      padding-left: 0.5em;
+    }
+  }
+}

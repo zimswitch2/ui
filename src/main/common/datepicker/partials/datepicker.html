@@ -1,0 +1,26 @@
+<div class="datepicker-input">
+    <input type="text" name="{{name}}" id="{{name}}" ng-model="ngModel" ng-readonly="true" ng-click="showPicker()" ng-focus="showPicker()" />
+</div>
+<div class="datepicker" ng-show="selecting">
+    <div class="header">
+        <i ng-show="skipYear" class="icon icon-lg icon-angle-double-left left" ng-click="previousYear()"></i>
+        <i ng-class="skipYear ? 'left-second' : 'left'" class="previousMonth icon icon-lg icon-angle-left" ng-click="previousMonth()"></i>
+        <button tabindex="-1" type="button" class="month">{{ month() }}</button>
+        <button tabindex="-1" type="button" class="year" ng-hide="isDateOfBirth">{{ year() }}</button>
+        <select tabindex="-1" ng-options="availableYear as availableYear for availableYear in availableYears" ng-model="selectedYear" ng-change="selectYear()" ng-show="isDateOfBirth" ng-style="{'width': '4.5em'}"></select>
+        <i ng-class="skipYear ? 'right-second' : 'right'" class="nextMonth icon icon-lg icon-angle-right" ng-click="nextMonth()"></i>
+        <i ng-show="skipYear" class="icon icon-lg icon-angle-double-right right" ng-click="nextYear()"></i>
+    </div>
+    <ul class="days">
+        <li class="weekend">S</li>
+        <li>M</li>
+        <li>T</li>
+        <li>W</li>
+        <li>T</li>
+        <li>F</li>
+        <li class="weekend">S</li>
+    </ul>
+    <ul class="dates">
+        <li ng-repeat="date in dates()" ng-click="selectDate(date.moment)" ng-class="dateClass(date.moment)">{{ date.date }}</li>
+    </ul>
+</div>

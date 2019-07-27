@@ -1,0 +1,208 @@
+.notification {
+  position: relative;
+  color: white;
+  padding: 0.8em 2.5em 0.8em 3.8em;
+  margin-bottom: 0.5em;
+  max-width: $content-max-width;
+  width: 100%;
+  line-height: 1.25rem;
+
+  span {
+    color: white;
+    display: inline-block;
+  }
+
+  &.ng-hide-add.closing, &.ng-hide-add.closing:before {
+    display: block !important;
+    @include animation(0.5s hideNotificationAnimation);
+  }
+
+  &:before {
+    display: block;
+    font-family: FontAwesome;
+    font-size: 1.5em;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: center;
+    height: 100%;
+    padding: 0.48em 0.5em 0.48em 0.5em;
+    line-height: 1.5rem;
+  }
+
+  .icon-times-circle {
+    cursor: pointer;
+    display: block;
+    font-size: 1.5em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: center;
+    padding: 0.38em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  &.error {
+    background: #A80511;
+
+    &:before {
+      background-color: #CC2B37;
+      content: $fa-var-exclamation-circle;
+    }
+  }
+
+  &.error-inverse {
+    color: #A80511;
+    padding-left: 2.8em;
+
+
+    &:before {
+      content: $fa-var-exclamation-circle;
+    }
+  }
+
+  &.warn {
+    background: #eea236;
+
+    &:before {
+      background-color: #f0ad4e;
+      content: $fa-var-minus-circle;
+    }
+  }
+
+  &.success {
+    background: #339F7B;
+
+    &:before {
+      background-color: #39B189;
+      content: $fa-var-check-circle;
+    }
+  }
+
+  &.info {
+    background: $cerulean;
+
+    &:before {
+      background-color: #1E7CA2;
+      content: $fa-var-info-circle;
+
+    }
+
+    &.important {
+      &:before {
+        content: $fa-var-exclamation-circle;
+      }
+    }
+  }
+
+  &.info-inverse {
+    color: #1E7CA2;
+    padding-left: 2.8em;
+
+
+    &:before {
+      content: $fa-var-exclamation-circle;
+    }
+  }
+}
+
+.text-notification {
+  color: $cerulean;
+
+  .rand-amount {
+    white-space: nowrap;
+    color: $cerulean;
+  }
+
+  &:before {
+    display: inline;
+    color: #1E7CA2;
+    font-family: "FontAwesome";
+    content: $fa-var-info-circle;
+    padding: 0.48em 0.5em 0.48em 0em;
+    font-size: 1.5em;
+  }
+
+  &.error {
+    display: inherit;
+    color: #A80511 !important;
+    background-color: transparent;
+
+    span {
+      color: #A80511;
+    }
+
+    &:before {
+      color: #A80511;
+      content: $fa-var-exclamation-circle;
+    }
+  }
+
+  &.success {
+    color: #339F7B;
+
+    span {
+      color: #339F7B;
+    }
+    &:before {
+      color: #39B189;
+      content: $fa-var-check-circle;
+    }
+  }
+
+  &.check {
+    color: #339F7B;
+
+    span {
+      color: #339F7B;
+    }
+    &:before {
+      color: #39B189;
+      content: $fa-var-check;
+    }
+  }
+}
+
+form {
+  .notification {
+    width: 100%;
+  }
+}
+
+.message {
+  display: inline-block;
+  padding: 0.5em 0.5em;
+  font-size: 1.0em;
+  padding-top: 0.8em;
+}
+
+
+.error.message {
+  color: $cranberry;
+}
+
+.block.message {
+  display: block;
+  padding: 0;
+  padding-bottom: 1.5em;
+  color: #FF2A4C;
+  i {
+    margin-right: 0.5em;
+  }
+}
+
+.information.message {
+  color: $slate-grey;
+}
+
+@include keyframes(hideNotificationAnimation) {
+  0% {
+    opacity: 1;
+    @include transform(translateX(0));
+  }
+  100% {
+    opacity: 0;
+    @include transform(translateX(-100%));
+  }
+}

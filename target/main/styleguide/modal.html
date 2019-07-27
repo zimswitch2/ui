@@ -1,0 +1,23 @@
+<h2>Modal</h2>
+<p class="note">Our modals are inconsistent across the site. Each one has different styling to make them look the same.</p>
+<div class="example">
+    <button ng-click="showModal = true">Show modal</button>
+    <div>
+        <div class="modal-overlay" ng-show="showModal">
+            <div class="modal-container action-modal">
+                <div class="modal-close">
+                    <div class="close-button" ng-click="showModal = false">
+                        <i class="icon icomoon-close-circle"></i>
+                    </div>
+                </div>
+                <div class="center margin-top">
+                    <p>
+                        You do not have Flash Player installed.<br>
+                        Please download Flash Player and try again.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <show-code></show-code>
+</div>

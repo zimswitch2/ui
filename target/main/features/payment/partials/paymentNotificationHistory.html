@@ -1,0 +1,80 @@
+<div class="payment-notification-history wide-content">
+    <h2>Payment Notification History</h2>
+
+    <div class="payment-history info notification">Note that you will be charged a fee each time you resend a payment notification</div>
+    <div class="payment-history info notification" ng-show="warningMessage">{{warningMessage}}</div>
+    <div class="provisional" ng-show="errorMessage" error="" notification="">{{errorMessage}}</div>
+    <div success="" notification="" ng-show="isSuccessful"> {{successMessage}}</div>
+
+    <ng-include src="&apos;features/goToAnchor/partials/scrollOnClick.html&apos;"></ng-include>
+
+    <div class="panel">
+        <div class="filter-controls">
+            <div class="styled-select">
+                <select id="account" ng-model="selectedAccount" ng-change="changeAccountTo(selectedAccount.formattedNumber)" ng-options="item as (item|accountLabel) for item in payFromAccounts">
+                </select>
+            </div>
+            <form class="filter right">
+                <filter-box ng-change="clearSelection()" ng-model="query" placeholder="Search"></filter-box>
+            </form>
+        </div>
+
+        <div class="action-table">
+            <ul class="header">
+                <li>
+                    <div class="information">
+                        <div><a ng-click="sortBy(&apos;paymentDate&apos;)">Payment date <i class="icon icon-sort" ng-class="{active : sort.criteria === &apos;paymentDate&apos;}"></i></a></div>
+                        <div><a ng-click="sortBy(&apos;beneficiaryName&apos;)">Beneficiary name <i class="icon icon-sort" ng-class="{active : sort.criteria === &apos;beneficiaryName&apos;}"></i> </a></div>
+                        <div>Beneficiary reference</div>
+                        <div>Recipient name</div>
+                        <div>Sent to</div>
+                        <div class="currency">Amount</div>
+                    </div>
+                    <div class="actions">
+                        <div class="action">Resend</div>
+                    </div>
+                </li>
+            </ul>
+
+
+            <ul class="data" id="payment-line">
+                <li ng-repeat="paymentNotificationHistoryItem in paymentNotificationHistory | paymentNotification: query | orderBy: sort.criteria:!sort.descending">
+                    <div class="information">
+                        <div data-header="Payment date">
+                            <div class="cell-data">{{paymentNotificationHistoryItem.paymentDate | dateFormat}}</div>
+                        </div>
+                        <div data-header="Beneficiary name">
+                            <div class="cell-data">{{paymentNotificationHistoryItem.beneficiaryName}}</div>
+                        </div>
+                        <div data-header="Beneficiary reference">
+                            <div class="cell-data">{{paymentNotificationHistoryItem.beneficiaryReference}}</div>
+                        </div>
+                        <div data-header="Recipient name">
+                            <div class="cell-data">{{paymentNotificationHistoryItem.recipientName}}</div>
+                        </div>
+                        <div data-header="Sent to">
+                            <div class="cell-data cell-data">{{paymentNotificationHistoryItem.sentTo}}</div>
+                        </div>
+                        <div data-header="Amount">
+                            <div class="cell-data currency">{{paymentNotificationHistoryItem.amount | randAmount}}</div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <a inline-action="resend" ng-click="markForResend(paymentNotificationHistoryItem)" action-message="actionMessage(paymentNotificationHistoryItem.paymentConfirmationMethod)" error-message="&apos;Could not send payment notification, try again later.&apos;" show-when="isAboutToSend(paymentNotificationHistoryItem)" confirm-fn="resend(paymentNotificationHistoryItem)">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+            <div ng-if="paymentNotificationHistory.length === 0">
+                <span class="information message">There is no payment confirmation history for this account.</span>
+            </div>
+            <div ng-if="paymentNotificationHistory.length &gt; 0 &amp;&amp; (paymentNotificationHistory|paymentNotification:query).length ===0">
+                <span class="information message">No matches found.</span>
+            </div>
+        </div>
+    </div>
+
+    <button go-back="" class="secondary">Back</button>
+
+</div>

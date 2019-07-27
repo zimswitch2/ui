@@ -1,0 +1,52 @@
+<div class="summary-row">
+    <div>
+        <span>Voucher type</span>
+        <span id="voucherType">{{recharge.provider.productName}}</span>
+    </div>
+</div>
+<div class="summary-row">
+    <div>
+        <span>Recharge amount (incl. VAT)</span>
+        <span id="amount">{{recharge.provider.product.amount | randAmount}}</span>
+    </div>
+</div>
+<div class="summary-row">
+    <div>
+        <span>Meter number</span>
+        <span id="meterNumber">{{recharge.rechargeNumber}}</span>
+    </div>
+</div>
+<div class="summary-row" ng-if="recharge.results.referenceNumber">
+    <div>
+        <span>Reference number</span>
+        <span id="referenceNumber">{{recharge.results.referenceNumber}}</span>
+    </div>
+</div>
+<div class="summary-row" ng-if="recharge.results.voucherNumber">
+    <div>
+        <span>Voucher number</span>
+        <span id="voucherNumber">{{recharge.results.voucherNumber | voucherNumber }}</span>
+    </div>
+</div>
+<div class="summary-row" ng-if="recharge.results.quantityPurchased">
+    <div>
+        <span>Quantity purchased</span>
+        <span id="quantityPurchased">{{recharge.results.quantityPurchased}}</span>
+    </div>
+</div>
+<div class="summary-row" ng-if="recharge.results.vatRegistrationNumber">
+    <div>
+        <span>VAT registration number</span>
+        <span id="vatRegistrationNumber">{{recharge.results.vatRegistrationNumber}}</span>
+    </div>
+</div>
+<div class="summary-split-row clearfix prepaid-free-voucher" ng-if="recharge.results.freeVoucherNumber &amp;&amp; recharge.results.freeVoucherQuantity">
+    <div>
+        <span>Free voucher number</span>
+        <span id="freeVoucherNumber">{{recharge.results.freeVoucherNumber}}</span>
+    </div>
+    <div>
+        <span>Free units received</span>
+        <span id="freeVoucherQuantity">{{recharge.results.freeVoucherQuantity}}</span>
+    </div>
+</div>

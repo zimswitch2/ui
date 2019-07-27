@@ -1,0 +1,45 @@
+<div>
+    <section>
+        <div>
+            <h3 class="small-only-text-center grey-text">Edit permissions for {{ userName }}</h3>
+        </div>
+    </section>
+    <div class="table permissions-table">
+        <div class="table-row header-row">
+            <div class="permission-account-col"></div>
+
+            <div class="permission-radio-col">
+                <div>None</div>
+                <!-- <div>{{vm.description(role.description)}}</div> -->
+            </div>
+            <div class="permission-radio-col" ng-repeat="role in roles">
+                <div>{{vm.name(role.name)}}</div>
+                <!-- <div>{{vm.description(role.description)}}</div> -->
+            </div>
+        </div>
+        <div class="table-row" ng-repeat="account in accounts">
+            <div class="permission-account-col accordion-tab">
+                <div class="accordion-tab-title" ng-click="vm.openTab(account.number)">
+                    <div class="account-description">
+                        <div class="account-name">{{vm.name(account.productName)}}</div>
+                        <div class="account-type-name">{{account.accountTypeName}}</div>
+                        <div class="account-number">{{account.formattedNumber}}</div>
+                    </div>
+                    <div class="account-chevron">
+                        <i class="icon" ng-class="{&apos;icomoon-chevron-down&apos;: !vm.isOpenTab(account.number), &apos;icomoon-chevron-up&apos;: vm.isOpenTab(account.number)}"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="permission-radio-col accordion-tab-content" data-header="None" ng-class="{ &apos;collapsed&apos;: !vm.isOpenTab(account.number) }">
+                <div>
+                    <input type="radio" name="{{account.formattedNumber}}" ng-model="accountRoles[account.number]" value="None">
+                </div>
+            </div>
+            <div class="permission-radio-col accordion-tab-content" ng-repeat="role in roles" data-header="{{vm.name(role.name)}}" ng-class="{ &apos;collapsed&apos;: !vm.isOpenTab(account.number) }">
+                <div>
+                    <input type="radio" name="{{account.formattedNumber}}" ng-model="accountRoles[account.number]" ng-value="role.name">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

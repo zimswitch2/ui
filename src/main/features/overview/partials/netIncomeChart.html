@@ -1,0 +1,51 @@
+<div class="net-income-doughnut-chart">
+    <h3>Cash flow</h3>
+    <div error notification ng-show="errorMessage">
+        {{errorMessage}}
+    </div>
+    <div id="netIncomeChartContainer" class="row" ng-if="!ErrorOccurred && ShowNetIncomeChartContainer">
+        <div class="large-7 medium-11 small-11 columns">
+            <sb-doughnut-chart data="NetIncomeData" on-segment-clicked="onCashInCashOutSegmentClicked(label)" colours="ChartColours"
+                               options="{animationEasing:'swing',animationSteps:20,maintainAspectRatio:false,percentageInnerCutout:70,customTooltips:true}">
+            </sb-doughnut-chart>
+        </div>
+        <div class="summary large-5 medium-12 small-12 columns">
+            <div class="summary-row">
+                <span class="chart-legend-header-label">Total Change (Since 1 {{FromMonth | monthName}})</span>
+                <h2 class="chart-legend-header-value" ng-style="{color: NetIncomeCashIn >= NetIncomeCashOut ? CashInTextColour : CashOutTextColour}" ng-bind="NetIncomeCashIn - NetIncomeCashOut | absoluteRandAmount"></h2>
+            </div>
+            <div class="summary-row chart-legend-item" ng-click="onCashInCashOutLegendItemClicked('Cash in')">
+                <div class="chart-legend-colour-swab pull-left" ng-style="{backgroundColor: CashInColour}"></div>
+                <span class="pull-left">In</span>
+                <span class="currency pull-right" ng-style="{color: CashInTextColour}" ng-bind="NetIncomeCashIn | randAmount"></span>
+            </div>
+            <div class="summary-row chart-legend-item" ng-click="onCashInCashOutLegendItemClicked('Cash out')">
+                <div class="chart-legend-colour-swab pull-left" ng-style="{backgroundColor: CashOutColour}"></div>
+                <span class="pull-left">Out</span>
+                <span class="currency pull-right" ng-style="{color: CashOutTextColour}" ng-bind="NetIncomeCashOut * -1 | randAmount"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="ShowNoTransactionalProductsPanel">
+        <div info notification>
+            No current accounts linked to your profile
+        </div>
+        <div class="row divider-container">
+            <div class="large-5 columns divider-item">
+                <h4>Need a current account?</h4>
+                <a class="button secondary" href="#/apply">Open account online</a>
+            </div>
+            <div class="divider vertical large-offset-6 hide-for-medium-down">
+                <span class="t">or</span>
+            </div>
+            <div class="show-for-medium-down">&nbsp;</div>
+            <div class="divider horizontal show-for-medium-down">
+                <span class="t">or</span>
+            </div>
+            <div class="large-5 large-offset-2 columns divider-item">
+                <h4>Already have a current account?</h4>
+                <a class="button secondary" href="#/dashboards">Link your card</a>
+            </div>
+        </div>
+    </div>
+</div>

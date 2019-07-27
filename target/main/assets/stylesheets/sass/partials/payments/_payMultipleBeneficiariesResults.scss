@@ -1,0 +1,35 @@
+.pay-multiple-results {
+  .action-table {
+    @media #{$large-up} {
+      ul {
+        .information {
+          > div {
+            width: 11.5%;
+            &:nth-child(2) {
+              width: 10.5%;
+            }
+            &:nth-child(3) {
+              width: 15%;
+            }
+            &:nth-child(5) {
+              width: 13%;
+            }
+            &:nth-child(8) {
+              width: 15.5%;
+            }
+          }
+        }
+        .actions {
+          width: 5em;
+        }
+        &.header .action {
+          width: 4em;
+        }
+
+        &.data > li .actions .action i {
+          font-size: 2em;
+        }
+      }
+    }
+  }
+}

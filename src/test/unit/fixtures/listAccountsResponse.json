@@ -1,0 +1,1312 @@
+{
+  "accounts": [
+    {
+      "accountFeature": [
+        {
+          "feature": "BALANCE",
+          "value": true
+        },
+        {
+          "feature": "PAYMENTFROM",
+          "value": true
+        },
+        {
+          "feature": "STATEMENT",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERFROM",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERTO",
+          "value": true
+        },
+        {
+          "feature": "VOUCHER_PURCHASE",
+          "value": true
+        }
+      ],
+      "accountType": "CURRENT",
+      "arrearStatus": false,
+      "availableBalance": {
+        "amount": 8756.41,
+        "currency": "ZAR"
+      },
+      "branch": {
+        "code": "27",
+        "name": "BALLITO BRANCH      "
+      },
+      "card": {
+        "countryCode": null,
+        "number": "4451221116405778",
+        "type": null
+      },
+      "creditLimit": null,
+      "currentBalance": {
+        "amount": 8756.41,
+        "currency": "ZAR"
+      },
+      "customName": "",
+      "disposalAccount": "",
+      "errorIndicator": false,
+      "goal": {
+        "amount": {
+          "amount": 0.00,
+          "currency": "ZAR"
+        },
+        "name": ""
+      },
+      "holderName": null,
+      "minimumPaymentDue": null,
+      "nextInterestDue": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "noticeAmount": null,
+      "overdraftAmount": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "overdraftBalance": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "primary": true,
+      "productName": "ACCESSACC",
+      "totalInterestEarned": null,
+      "totalLoanAmount": null,
+      "unclearedAmount": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "formattedNumber": "10-00-035-814-0",
+      "keyValueMetadata": [
+        {
+          "key": "BDS_ACCOUNT_TYPE_CODE",
+          "value": "000"
+        },
+        {
+          "key": "BDS_ACCOUNT_TYPE",
+          "value": "CURRENT"
+        },
+        {
+          "key": "ACCOUNT_SUITE_ID",
+          "value": "SP"
+        },
+        {
+          "key": "ACCOUNT_STYLE",
+          "value": "ACA"
+        },
+        {
+          "key": "SOURCE_SYSTEM_ACCOUNT_TYPE_CODE",
+          "value": "000"
+        }
+      ],
+      "name": "Joe Smith",
+      "number": "10000358140",
+      "serialNumber": 0
+    },
+    {
+      "accountFeature": [
+        {
+          "feature": "BALANCE",
+          "value": true
+        },
+        {
+          "feature": "PAYMENTFROM",
+          "value": true
+        },
+        {
+          "feature": "STATEMENT",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERFROM",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERTO",
+          "value": true
+        },
+        {
+          "feature": "VOUCHER_PURCHASE",
+          "value": true
+        }
+      ],
+      "accountType": "CURRENT",
+      "arrearStatus": false,
+      "availableBalance": {
+        "amount": -23.98,
+        "currency": "ZAR"
+      },
+      "branch": {
+        "code": "27",
+        "name": "BALLITO BRANCH      "
+      },
+      "card": {
+        "countryCode": null,
+        "number": "4451221116405778",
+        "type": null
+      },
+      "creditLimit": null,
+      "currentBalance": {
+        "amount": -12.37,
+        "currency": "ZAR"
+      },
+      "customName": "",
+      "disposalAccount": "",
+      "errorIndicator": false,
+      "goal": {
+        "amount": {
+          "amount": 0.00,
+          "currency": "ZAR"
+        },
+        "name": ""
+      },
+      "holderName": null,
+      "minimumPaymentDue": null,
+      "nextInterestDue": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "noticeAmount": null,
+      "overdraftAmount": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "overdraftBalance": {
+        "amount": 0,
+        "currency": "ZAR"
+      },
+      "primary": true,
+      "productName": "ACCESSACC",
+      "totalInterestEarned": null,
+      "totalLoanAmount": null,
+      "unclearedAmount": {
+        "amount": 0,
+        "currency": "ZAR"
+      },
+      "formattedNumber": "10-00-530-418-2",
+      "keyValueMetadata": [
+        {
+          "key": "BDS_ACCOUNT_TYPE_CODE",
+          "value": "000"
+        },
+        {
+          "key": "BDS_ACCOUNT_TYPE",
+          "value": "CURRENT"
+        },
+        {
+          "key": "ACCOUNT_SUITE_ID",
+          "value": "SP"
+        },
+        {
+          "key": "ACCOUNT_STYLE",
+          "value": "ACA"
+        },
+        {
+          "key": "SOURCE_SYSTEM_ACCOUNT_TYPE_CODE",
+          "value": "000"
+        }
+      ],
+      "name": "ACCESSACC",
+      "number": "10005304182",
+      "serialNumber": 0
+    },
+    {
+      "accountFeature": [
+        {
+          "feature": "BALANCE",
+          "value": true
+        },
+        {
+          "feature": "PAYMENTFROM",
+          "value": true
+        },
+        {
+          "feature": "STATEMENT",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERFROM",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERTO",
+          "value": true
+        },
+        {
+          "feature": "VOUCHER_PURCHASE",
+          "value": false
+        }
+      ],
+      "accountType": "CREDIT_CARD",
+      "arrearStatus": false,
+      "availableBalance": {
+        "amount": 99919239.00,
+        "currency": "ZAR"
+      },
+      "branch": {
+        "code": "7505",
+        "name": "                    "
+      },
+      "card": {
+        "countryCode": null,
+        "number": "5592007012041578",
+        "type": null
+      },
+      "creditLimit": 100000000,
+      "currentBalance": {
+        "amount": -80760.17,
+        "currency": "ZAR"
+      },
+      "customName": "",
+      "disposalAccount": "",
+      "errorIndicator": false,
+      "goal": {
+        "amount": {
+          "amount": 0.00,
+          "currency": "ZAR"
+        },
+        "name": ""
+      },
+      "holderName": null,
+      "minimumPaymentDue": null,
+      "nextInterestDue": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "noticeAmount": null,
+      "overdraftAmount": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "overdraftBalance": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "primary": true,
+      "productName": "CREDIT CARD",
+      "totalInterestEarned": null,
+      "totalLoanAmount": null,
+      "unclearedAmount": {
+        "amount": -99999999.17,
+        "currency": "ZAR"
+      },
+      "formattedNumber": "5592-0070-1204-1578",
+      "keyValueMetadata": [
+        {
+          "key": "BDS_ACCOUNT_TYPE_CODE",
+          "value": "000"
+        },
+        {
+          "key": "BDS_ACCOUNT_TYPE",
+          "value": "CREDIT_CARD"
+        },
+        {
+          "key": "ACCOUNT_SUITE_ID",
+          "value": "J1"
+        },
+        {
+          "key": "ACCOUNT_STYLE",
+          "value": "CRC"
+        },
+        {
+          "key": "SOURCE_SYSTEM_ACCOUNT_TYPE_CODE",
+          "value": "000"
+        }
+      ],
+      "name": "CREDIT CARD",
+      "number": "5592007012041578",
+      "serialNumber": 0
+    },
+    {
+      "accountFeature": [
+        {
+          "feature": "BALANCE",
+          "value": true
+        },
+        {
+          "feature": "PAYMENTFROM",
+          "value": true
+        },
+        {
+          "feature": "STATEMENT",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERFROM",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERTO",
+          "value": true
+        },
+        {
+          "feature": "VOUCHER_PURCHASE",
+          "value": false
+        }
+      ],
+      "accountType": "HOME_LOAN",
+      "arrearStatus": false,
+      "availableBalance": {
+        "amount": 10000000.00,
+        "currency": "ZAR"
+      },
+      "branch": {
+        "code": "7505",
+        "name": "                    "
+      },
+      "card": {
+        "countryCode": null,
+        "number": "5592007012041579",
+        "type": null
+      },
+      "creditLimit": 100000000,
+      "currentBalance": {
+        "amount": -80760.17,
+        "currency": "ZAR"
+      },
+      "customName": "",
+      "disposalAccount": "",
+      "errorIndicator": false,
+      "goal": {
+        "amount": {
+          "amount": 0.00,
+          "currency": "ZAR"
+        },
+        "name": ""
+      },
+      "holderName": null,
+      "minimumPaymentDue": null,
+      "nextInterestDue": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "noticeAmount": null,
+      "overdraftAmount": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "overdraftBalance": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "primary": true,
+      "productName": "HOME LOAN",
+      "totalInterestEarned": null,
+      "totalLoanAmount": null,
+      "unclearedAmount": {
+        "amount": -999980000.17,
+        "currency": "ZAR"
+      },
+      "formattedNumber": "5592-0070-1204-1579",
+      "keyValueMetadata": [
+        {
+          "key": "BDS_ACCOUNT_TYPE_CODE",
+          "value": "000"
+        },
+        {
+          "key": "BDS_ACCOUNT_TYPE",
+          "value": "CREDIT_CARD"
+        },
+        {
+          "key": "ACCOUNT_SUITE_ID",
+          "value": "J1"
+        },
+        {
+          "key": "ACCOUNT_STYLE",
+          "value": "CRC"
+        },
+        {
+          "key": "SOURCE_SYSTEM_ACCOUNT_TYPE_CODE",
+          "value": "000"
+        }
+      ],
+      "name": "HOME LOAN",
+      "number": "5592007012041579",
+      "serialNumber": 0
+    },
+    {
+      "accountFeature": [
+        {
+          "feature": "BALANCE",
+          "value": true
+        },
+        {
+          "feature": "PAYMENTFROM",
+          "value": true
+        },
+        {
+          "feature": "STATEMENT",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERFROM",
+          "value": true
+        },
+        {
+          "feature": "VOUCHER_PURCHASE",
+          "value": false
+        }
+      ],
+      "accountType": "TERM_LOAN",
+      "arrearStatus": false,
+      "availableBalance": {
+        "amount": 800000.00,
+        "currency": "ZAR"
+      },
+      "branch": {
+        "code": "7505",
+        "name": "                    "
+      },
+      "card": {
+        "countryCode": null,
+        "number": "5592007012041580",
+        "type": null
+      },
+      "creditLimit": 100000000,
+      "currentBalance": {
+        "amount": -80760.17,
+        "currency": "ZAR"
+      },
+      "customName": "",
+      "disposalAccount": "",
+      "errorIndicator": false,
+      "goal": {
+        "amount": {
+          "amount": 0.00,
+          "currency": "ZAR"
+        },
+        "name": ""
+      },
+      "holderName": null,
+      "minimumPaymentDue": null,
+      "nextInterestDue": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "noticeAmount": null,
+      "overdraftAmount": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "overdraftBalance": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "primary": true,
+      "productName": "TERM LOAN",
+      "totalInterestEarned": null,
+      "totalLoanAmount": null,
+      "unclearedAmount": {
+        "amount": -12399900000.17,
+        "currency": "ZAR"
+      },
+      "formattedNumber": "5592-0070-1204-1580",
+      "keyValueMetadata": [
+        {
+          "key": "BDS_ACCOUNT_TYPE_CODE",
+          "value": "000"
+        },
+        {
+          "key": "BDS_ACCOUNT_TYPE",
+          "value": "CREDIT_CARD"
+        },
+        {
+          "key": "ACCOUNT_SUITE_ID",
+          "value": "J1"
+        },
+        {
+          "key": "ACCOUNT_STYLE",
+          "value": "CRC"
+        },
+        {
+          "key": "SOURCE_SYSTEM_ACCOUNT_TYPE_CODE",
+          "value": "000"
+        }
+      ],
+      "name": "TERM LOAN",
+      "number": "5592007012041580",
+      "serialNumber": 0
+    },
+    {
+      "accountFeature": [
+        {
+          "feature": "BALANCE",
+          "value": true
+        },
+        {
+          "feature": "PAYMENTFROM",
+          "value": true
+        },
+        {
+          "feature": "STATEMENT",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERFROM",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERTO",
+          "value": true
+        },
+        {
+          "feature": "VOUCHER_PURCHASE",
+          "value": false
+        }
+      ],
+      "accountType": "RCP",
+      "arrearStatus": false,
+      "availableBalance": {
+        "amount": 2300000.00,
+        "currency": "ZAR"
+      },
+      "branch": {
+        "code": "7505",
+        "name": "                    "
+      },
+      "card": {
+        "countryCode": null,
+        "number": "5592007012041590",
+        "type": null
+      },
+      "creditLimit": 100000000,
+      "currentBalance": {
+        "amount": -80760.17,
+        "currency": "ZAR"
+      },
+      "customName": "",
+      "disposalAccount": "",
+      "errorIndicator": false,
+      "goal": {
+        "amount": {
+          "amount": 0.00,
+          "currency": "ZAR"
+        },
+        "name": ""
+      },
+      "holderName": null,
+      "minimumPaymentDue": null,
+      "nextInterestDue": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "noticeAmount": null,
+      "overdraftAmount": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "overdraftBalance": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "primary": true,
+      "productName": "REVOLVING CREDIT PLAN",
+      "totalInterestEarned": null,
+      "totalLoanAmount": null,
+      "unclearedAmount": {
+        "amount": -99999999.17,
+        "currency": "ZAR"
+      },
+      "formattedNumber": "5592-0070-1204-1590",
+      "keyValueMetadata": [
+        {
+          "key": "BDS_ACCOUNT_TYPE_CODE",
+          "value": "000"
+        },
+        {
+          "key": "BDS_ACCOUNT_TYPE",
+          "value": "CREDIT_CARD"
+        },
+        {
+          "key": "ACCOUNT_SUITE_ID",
+          "value": "J1"
+        },
+        {
+          "key": "ACCOUNT_STYLE",
+          "value": "CRC"
+        },
+        {
+          "key": "SOURCE_SYSTEM_ACCOUNT_TYPE_CODE",
+          "value": "000"
+        }
+      ],
+      "name": "REVOLVING CREDIT PLAN",
+      "number": "5592007012041590",
+      "serialNumber": 0
+    },
+    {
+      "accountFeature": [
+        {
+          "feature": "BALANCE",
+          "value": true
+        },
+        {
+          "feature": "PAYMENTFROM",
+          "value": true
+        },
+        {
+          "feature": "STATEMENT",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERFROM",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERTO",
+          "value": true
+        },
+        {
+          "feature": "VOUCHER_PURCHASE",
+          "value": false
+        }
+      ],
+      "accountType": "SAVINGS",
+      "arrearStatus": false,
+      "availableBalance": {
+        "amount": 100000.00,
+        "currency": "ZAR"
+      },
+      "branch": {
+        "code": "7505",
+        "name": "                    "
+      },
+      "card": {
+        "countryCode": null,
+        "number": "42144214",
+        "type": null
+      },
+      "creditLimit": 10000,
+      "currentBalance": {
+        "amount": 90000.00,
+        "currency": "ZAR"
+      },
+      "customName": "",
+      "disposalAccount": "",
+      "errorIndicator": false,
+      "goal": {
+        "amount": {
+          "amount": 0.00,
+          "currency": "ZAR"
+        },
+        "name": ""
+      },
+      "holderName": null,
+      "minimumPaymentDue": null,
+      "nextInterestDue": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "noticeAmount": null,
+      "overdraftAmount": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "overdraftBalance": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "primary": true,
+      "productName": "SAVINGS",
+      "totalInterestEarned": null,
+      "totalLoanAmount": null,
+      "unclearedAmount": {
+        "amount": -99999999.17,
+        "currency": "ZAR"
+      },
+      "formattedNumber": "42-14-42-14",
+      "keyValueMetadata": [
+        {
+          "key": "BDS_ACCOUNT_TYPE_CODE",
+          "value": "000"
+        },
+        {
+          "key": "BDS_ACCOUNT_TYPE",
+          "value": "CREDIT_CARD"
+        },
+        {
+          "key": "ACCOUNT_SUITE_ID",
+          "value": "J1"
+        },
+        {
+          "key": "ACCOUNT_STYLE",
+          "value": "CRC"
+        },
+        {
+          "key": "SOURCE_SYSTEM_ACCOUNT_TYPE_CODE",
+          "value": "000"
+        }
+      ],
+      "name": "SAVINGS",
+      "number": "42144214",
+      "serialNumber": 0
+    },
+    {
+      "accountFeature": [
+        {
+          "feature": "BALANCE",
+          "value": true
+        },
+        {
+          "feature": "PAYMENTFROM",
+          "value": true
+        },
+        {
+          "feature": "STATEMENT",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERFROM",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERTO",
+          "value": true
+        },
+        {
+          "feature": "VOUCHER_PURCHASE",
+          "value": false
+        }
+      ],
+      "accountType": "NOTICE",
+      "arrearStatus": false,
+      "availableBalance": {
+        "amount": 300000.00,
+        "currency": "ZAR"
+      },
+      "branch": {
+        "code": "7505",
+        "name": "                    "
+      },
+      "card": {
+        "countryCode": null,
+        "number": "5592007012041560",
+        "type": null
+      },
+      "creditLimit": 100000000,
+      "currentBalance": {
+        "amount": -80760.17,
+        "currency": "ZAR"
+      },
+      "customName": "",
+      "disposalAccount": "",
+      "errorIndicator": false,
+      "goal": {
+        "amount": {
+          "amount": 0.00,
+          "currency": "ZAR"
+        },
+        "name": ""
+      },
+      "holderName": null,
+      "minimumPaymentDue": null,
+      "nextInterestDue": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "noticeAmount": null,
+      "overdraftAmount": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "overdraftBalance": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "primary": true,
+      "productName": "NOTICE",
+      "totalInterestEarned": null,
+      "totalLoanAmount": null,
+      "unclearedAmount": {
+        "amount": -99999999.17,
+        "currency": "ZAR"
+      },
+      "formattedNumber": "5592-0070-1204-1560",
+      "keyValueMetadata": [
+        {
+          "key": "BDS_ACCOUNT_TYPE_CODE",
+          "value": "000"
+        },
+        {
+          "key": "BDS_ACCOUNT_TYPE",
+          "value": "CREDIT_CARD"
+        },
+        {
+          "key": "ACCOUNT_SUITE_ID",
+          "value": "J1"
+        },
+        {
+          "key": "ACCOUNT_STYLE",
+          "value": "CRC"
+        },
+        {
+          "key": "SOURCE_SYSTEM_ACCOUNT_TYPE_CODE",
+          "value": "000"
+        }
+      ],
+      "name": "NOTICE",
+      "number": "5592007012041560",
+      "serialNumber": 0
+    },
+    {
+      "accountFeature": [
+        {
+          "feature": "BALANCE",
+          "value": true
+        },
+        {
+          "feature": "PAYMENTFROM",
+          "value": false
+        },
+        {
+          "feature": "STATEMENT",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERTO",
+          "value": true
+        },
+        {
+          "feature": "VOUCHER_PURCHASE",
+          "value": false
+        }
+      ],
+      "accountType": "FIXED_TERM_INVESTMENT",
+      "arrearStatus": false,
+      "availableBalance": {
+        "amount": 400000.00,
+        "currency": "ZAR"
+      },
+      "branch": {
+        "code": "7505",
+        "name": "                    "
+      },
+      "card": {
+        "countryCode": null,
+        "number": "5592007012041511",
+        "type": null
+      },
+      "creditLimit": 100000000,
+      "currentBalance": {
+        "amount": 400000.00,
+        "currency": "ZAR"
+      },
+      "customName": "",
+      "disposalAccount": "",
+      "errorIndicator": false,
+      "goal": {
+        "amount": {
+          "amount": 0.00,
+          "currency": "ZAR"
+        },
+        "name": ""
+      },
+      "holderName": null,
+      "minimumPaymentDue": null,
+      "nextInterestDue": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "noticeAmount": null,
+      "overdraftAmount": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "overdraftBalance": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "primary": true,
+      "productName": "FIXED TERM",
+      "totalInterestEarned": null,
+      "totalLoanAmount": null,
+      "unclearedAmount": {
+        "amount": -99999999.17,
+        "currency": "ZAR"
+      },
+      "formattedNumber": "5592-0070-1204-0000",
+      "keyValueMetadata": [
+        {
+          "key": "BDS_ACCOUNT_TYPE_CODE",
+          "value": "000"
+        },
+        {
+          "key": "BDS_ACCOUNT_TYPE",
+          "value": "CREDIT_CARD"
+        },
+        {
+          "key": "ACCOUNT_SUITE_ID",
+          "value": "J1"
+        },
+        {
+          "key": "ACCOUNT_STYLE",
+          "value": "CRC"
+        },
+        {
+          "key": "SOURCE_SYSTEM_ACCOUNT_TYPE_CODE",
+          "value": "000"
+        }
+      ],
+      "name": "FIXED TERM",
+      "number": "5592007012041511",
+      "serialNumber": 0
+    },
+    {
+      "accountFeature": [
+        {
+          "feature": "BALANCE",
+          "value": true
+        },
+        {
+          "feature": "STATEMENT",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERFROM",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERTO",
+          "value": true
+        }
+      ],
+      "accountType": "SAVINGS",
+      "arrearStatus": false,
+      "availableBalance": {
+        "amount": 31011.00,
+        "currency": "ZAR"
+      },
+      "branch": {
+        "code": "27",
+        "name": "BALLITO BRANCH      "
+      },
+      "card": {
+        "countryCode": null,
+        "number": "4890611240028414",
+        "type": null
+      },
+      "creditLimit": null,
+      "currentBalance": {
+        "amount": 31011.00,
+        "currency": "ZAR"
+      },
+      "customName": "",
+      "disposalAccount": "",
+      "errorIndicator": false,
+      "goal": {
+        "amount": {
+          "amount": 0.00,
+          "currency": "ZAR"
+        },
+        "name": "",
+        "targetDate": null
+      },
+      "holderName": null,
+      "interestRate": null,
+      "maturityDate": null,
+      "minimumPaymentDue": null,
+      "minimumPaymentDueDate": null,
+      "nextInterestDue": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "nextInterestDueDate": null,
+      "noticeAmount": null,
+      "noticeDate": null,
+      "noticeTerm": null,
+      "openedDate": null,
+      "overdraftAmount": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "overdraftBalance": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "primary": false,
+      "productName": "MONEYMARKET",
+      "remainingTerm": null,
+      "totalInterestEarned": null,
+      "totalLoanAmount": null,
+      "unclearedAmount": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "formattedNumber": "26-845-062-5-2",
+      "keyValueMetadata": [
+        {
+          "key": "BDS_ACCOUNT_TYPE_CODE",
+          "value": "020"
+        },
+        {
+          "key": "BDS_ACCOUNT_TYPE",
+          "value": "INVESTMENT"
+        },
+        {
+          "key": "ACCOUNT_SUITE_ID",
+          "value": "DN"
+        },
+        {
+          "key": "ACCOUNT_STYLE",
+          "value": "BCS"
+        },
+        {
+          "key": "SOURCE_SYSTEM_ACCOUNT_TYPE_CODE",
+          "value": "020"
+        }
+      ],
+      "name": "MONEYMARKET",
+      "number": "268450625",
+      "serialNumber": 2
+    },
+    {
+      "accountFeature": [
+        {
+          "feature": "BALANCE",
+          "value": true
+        },
+        {
+          "feature": "STATEMENT",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERFROM",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERTO",
+          "value": true
+        }
+      ],
+      "accountType": "SAVINGS",
+      "arrearStatus": false,
+      "availableBalance": {
+        "amount": 27100.00,
+        "currency": "ZAR"
+      },
+      "branch": {
+        "code": "27",
+        "name": "BALLITO BRANCH      "
+      },
+      "card": {
+        "countryCode": null,
+        "number": "4890611240028414",
+        "type": null
+      },
+      "creditLimit": null,
+      "currentBalance": {
+        "amount": 27100.00,
+        "currency": "ZAR"
+      },
+      "customName": "",
+      "disposalAccount": "",
+      "errorIndicator": false,
+      "goal": {
+        "amount": {
+          "amount": 0.00,
+          "currency": "ZAR"
+        },
+        "name": "",
+        "targetDate": null
+      },
+      "holderName": null,
+      "interestRate": null,
+      "maturityDate": null,
+      "minimumPaymentDue": null,
+      "minimumPaymentDueDate": null,
+      "nextInterestDue": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "nextInterestDueDate": null,
+      "noticeAmount": null,
+      "noticeDate": null,
+      "noticeTerm": null,
+      "openedDate": null,
+      "overdraftAmount": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "overdraftBalance": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "primary": false,
+      "productName": "MONEYMARKET",
+      "remainingTerm": null,
+      "totalInterestEarned": null,
+      "totalLoanAmount": null,
+      "unclearedAmount": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "formattedNumber": "26-845-062-5-3",
+      "keyValueMetadata": [
+        {
+          "key": "BDS_ACCOUNT_TYPE_CODE",
+          "value": "020"
+        },
+        {
+          "key": "BDS_ACCOUNT_TYPE",
+          "value": "INVESTMENT"
+        },
+        {
+          "key": "ACCOUNT_SUITE_ID",
+          "value": "DN"
+        },
+        {
+          "key": "ACCOUNT_STYLE",
+          "value": "BCS"
+        },
+        {
+          "key": "SOURCE_SYSTEM_ACCOUNT_TYPE_CODE",
+          "value": "020"
+        }
+      ],
+      "name": "MONEYMARKET",
+      "number": "268450625",
+      "serialNumber": 3
+    },
+    {
+      "accountFeature": [
+        {
+          "feature": "BALANCE",
+          "value": true
+        },
+        {
+          "feature": "STATEMENT",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERFROM",
+          "value": true
+        },
+        {
+          "feature": "TRANSFERTO",
+          "value": true
+        }
+      ],
+      "accountType": "SAVINGS",
+      "arrearStatus": false,
+      "availableBalance": {
+        "amount": 20000.00,
+        "currency": "ZAR"
+      },
+      "branch": {
+        "code": "27",
+        "name": "BALLITO BRANCH      "
+      },
+      "card": {
+        "countryCode": null,
+        "number": "4890611240028414",
+        "type": null
+      },
+      "creditLimit": null,
+      "currentBalance": {
+        "amount": 20000.00,
+        "currency": "ZAR"
+      },
+      "customName": "",
+      "disposalAccount": "",
+      "errorIndicator": false,
+      "goal": {
+        "amount": {
+          "amount": 0.00,
+          "currency": "ZAR"
+        },
+        "name": "",
+        "targetDate": null
+      },
+      "holderName": null,
+      "interestRate": null,
+      "maturityDate": null,
+      "minimumPaymentDue": null,
+      "minimumPaymentDueDate": null,
+      "nextInterestDue": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "nextInterestDueDate": null,
+      "noticeAmount": null,
+      "noticeDate": null,
+      "noticeTerm": null,
+      "openedDate": null,
+      "overdraftAmount": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "overdraftBalance": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "primary": false,
+      "productName": "MONEYMARKET",
+      "remainingTerm": null,
+      "totalInterestEarned": null,
+      "totalLoanAmount": null,
+      "unclearedAmount": {
+        "amount": 0.00,
+        "currency": "ZAR"
+      },
+      "formattedNumber": "26-845-062-5-4",
+      "keyValueMetadata": [
+        {
+          "key": "BDS_ACCOUNT_TYPE_CODE",
+          "value": "020"
+        },
+        {
+          "key": "BDS_ACCOUNT_TYPE",
+          "value": "INVESTMENT"
+        },
+        {
+          "key": "ACCOUNT_SUITE_ID",
+          "value": "DN"
+        },
+        {
+          "key": "ACCOUNT_STYLE",
+          "value": "BCS"
+        },
+        {
+          "key": "SOURCE_SYSTEM_ACCOUNT_TYPE_CODE",
+          "value": "020"
+        }
+      ],
+      "name": "MONEYMARKET",
+      "number": "268450625",
+      "serialNumber": 4
+    }
+  ],
+  "cardProfile": {
+    "card": null,
+    "charge": [],
+    "combinedName": null,
+    "dailyWithdrawalLimit": {
+      "amount": 300.00,
+      "currency": "ZAR"
+    },
+    "holderName": "T TEST",
+    "initials": null,
+    "monthlyEAPLimit": {
+      "amount": 10000.00,
+      "currency": "ZAR"
+    },
+    "monthlyWithdrawalLimit": {
+      "amount": 10000.00,
+      "currency": "ZAR"
+    },
+    "usedEAPLimit": {
+      "amount": 4000.00,
+      "currency": "ZAR"
+    },
+    "remainingEAP": {
+      "amount": 6000.00,
+      "currency": "ZAR"
+    }
+  },
+  "keyValueMetadata": [],
+  "stepUp": null
+}

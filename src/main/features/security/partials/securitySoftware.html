@@ -1,0 +1,20 @@
+<div ng-controller="SecuritySoftwareController" class="security-software">
+    <h2>Security Software</h2>
+
+    <div class="panel">
+
+        <p>Your device is currently vulnerable to online banking fraud.</p>
+
+        <p>We recommend installing Trusteer Rapport – free fraud protection software that guards against many of the
+            latest online security threats, especially those that your antivirus or firewall may have missed.</p>
+
+        <p>Trusteer Rapport takes a few seconds to install and requires no updates or system restart.</p>
+        <p></p>
+        <div>
+        <a class="button secondary" id="download-security-software" href="{{securityDownloadLink()}}"
+                ng-if="securityDownloadLink() !== '#'">Download now</a>
+        <img class="right" src="assets/images/trusteer_logo.png">
+        </div>
+    </div>
+</div>
+

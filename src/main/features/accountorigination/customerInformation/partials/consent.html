@@ -1,0 +1,100 @@
+<h2>Your Details</h2>
+
+<flow class="wide"></flow>
+
+<div class="notification error wide" ng-show="serverErrorMessage !== undefined">
+    {{serverErrorMessage}}
+</div>
+
+<div class="customer-info-container">
+    <customer-information-navigation current-page="'submit'"></customer-information-navigation>
+    <div class="customer-info-form">
+        <form name="customerInformationForm" data-frmcontainer="edit application consent form" novalidate>
+
+            <div class="customer-info-scroll">
+                <div class="consent">
+                    <div>
+                        <button id="edit-consent-button" class="btn icon-button action edit"
+                                title="modify marketing options"
+                                ng-click="edit()"
+                                ng-show="customerInformationData.hasMarketingConsent()">
+                            <i class="icon icomoon-edit"></i>
+                            <span class="title">Modify marketing options</span>
+                        </button>
+
+                        <h3 class="title">Submit Application</h3>
+
+                        <h3 class="large-9"
+                            ng-show="customerInformationData.hasMarketingConsent()">
+                            <small>
+                                Sharing your details with Standard Bank will help us improve our service to you, and keep you up to date on
+                                suitable banking solutions and special offers.
+                                Your personal information will always be treated as confidential.
+                            </small>
+                        </h3>
+
+                        <div id="view-consent" ng-show="customerInformationData.hasMarketingConsent()">
+                            <h4>You give consent for us to:</h4>
+
+                            <div>
+                                <ul class="panel">
+                                    <row-field>
+                                        <input type="checkbox" id="view-consent-03"
+                                               ng-model="customerInformationData.getConsent('03').consentFlag" disabled/>
+                                        <label for="view-consent-03">Contact you about Standard Bank products, services and special
+                                            offers.</label>
+                                    </row-field>
+                                    <row-field>
+                                        <input type="checkbox" id="view-consent-01"
+                                               ng-model="customerInformationData.getConsent('01').consentFlag" disabled/>
+                                        <label for="view-consent-01">Contact you about other companies' products, services and special offers. If
+                                            you agree, you may be contacted by these companies.</label>
+                                    </row-field>
+                                    <row-field>
+                                        <input type="checkbox" id="view-consent-04"
+                                               ng-model="customerInformationData.getConsent('04').consentFlag" disabled/>
+                                        <label for="view-consent-04">Share your personal information within the Group for marketing
+                                            purposes.</label>
+                                    </row-field>
+                                    <row-field>
+                                        <input type="checkbox" id="view-consent-02"
+                                               ng-model="customerInformationData.getConsent('02').consentFlag" disabled/>
+                                        <label for="view-consent-02">Contact you for research purposes. Your personal information is
+                                            confidential under a strict code of conduct.</label>
+                                    </row-field>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <button id="submit" class="primary" ng-click="submit()" tabindex="-1" data-dtmid="link_content_account application"
+                                data-dtmtext="get offer button click">{{getOfferButtonText}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-overlay" id="customer-info-validation-modal" ng-show="showValidationModal">
+    <div class="modal-container action-modal">
+        <div class="modal-header">
+            <h3>Completing Your Profile</h3>
+        </div>
+
+        <div class="modal-content">
+            <div>We're missing some of your details in:</div>
+            <ul>
+                <li ng-repeat="section in invalidSections">{{ section.name }}</li>
+            </ul>
+            <div class="margin-top">Add these details now?</div>
+        </div>
+
+        <div class="actions">
+            <button ng-click="validationModalYes()" id="customer-info-validation-yes" class="primary">Yes</button>
+            <button ng-click="toggleValidationModal(false)" id="customer-info-validation-no" class="secondary">No
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,166 @@
+.add-beneficiary-to-group {
+  .status {
+    padding: 8px 8px;
+    background: #1E7CA2;
+    color: white;
+  }
+
+  .actions-mobile {
+    margin-top: 1em;
+
+    button {
+      vertical-align: top;
+    }
+
+    display: inline-block;
+    @media #{$large-up} {
+      display: none;
+    }
+
+    @media #{$small-only} {
+      display: block;
+    }
+  }
+
+  .group-list {
+    ul {
+      max-height: 440px;
+      overflow-y: auto;
+    }
+
+    @media #{$medium-up} {
+      &.fixed .well {
+        position: fixed;
+        top: 0;
+        right: 3%;
+        width: 46%;
+      }
+    }
+
+    .well {
+      padding: 0;
+
+      @media #{$small-only} {
+        padding: 1em;
+      }
+    }
+    display: none;
+    @media #{$large-up} {
+      display: block;
+    }
+
+    &.show-page {
+      display: block;
+    }
+  }
+
+  .input-group-button {
+    padding: 0.7em;
+
+    @media #{$small-only} {
+      padding: 0;
+      padding-top: 1em;
+
+      .primary {
+        margin-top: 1em;
+        padding: 1em;
+      }
+    }
+
+    input, button {
+      display: inline-block;
+    }
+
+    input[type='text'], input[type='number'] {
+      width: auto;
+
+      @media #{$small-only} {
+        width: 100%;
+      }
+
+    }
+  }
+
+  beneficiaries-list {
+    background: white;
+    border: 0.2em solid #f3f3f3;
+    position: relative;
+    display: none;
+    width: 100%;
+
+    @media #{$large-up} {
+      display: block;
+    }
+
+    ul {
+      max-height: 65vh;
+      overflow-y: auto;
+
+      @media #{$large-up} {
+        max-height: 75vh;
+      }
+
+      @media #{$small-only} {
+        max-height: 100%;
+      }
+    }
+
+    .input-group {
+      float: none;
+      margin-bottom: 5px;
+      position: relative;
+      margin-left: 3px;
+      width: auto;
+      margin-right: 3px;
+
+      @media #{$xlarge-up} {
+        position: absolute;
+        width: 17em;
+        right: -0.5em;
+        top: -4em;
+        z-index: 1;
+      }
+    }
+
+    em {
+      font-weight: normal;
+
+    }
+
+    .members {
+      font-size: 0.8em;
+    }
+
+    .left {
+      display: inline-block;
+    }
+
+    .reference {
+      font-size: 0.8em;
+    }
+
+    &.well {
+      padding: 0;
+    }
+
+    &.show-page {
+      display: block;
+    }
+  }
+
+  .back-beneficiaries {
+    @media #{$large-up} {
+      margin-top: 1em;
+    }
+  }
+
+  h4 {
+    color: $slate-grey;
+    font-weight: bold;
+  }
+
+  .selectable-header {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+  }
+}

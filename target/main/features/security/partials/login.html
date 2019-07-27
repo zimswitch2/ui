@@ -1,0 +1,81 @@
+<script type="text/javascript">
+    (function () {
+        var scriptUrl = ["dspk.standardbank.co.za", "811652", "sunSvs14.js"].join("/");
+        window.loadTrusteerScript(scriptUrl);
+    })();
+</script>
+
+<script type="text/javascript">
+    (function () {
+        var scriptUrl = ["cdn.standardbank.co.za", "811652", "waveForm3.js"].join("/");
+        window.loadTrusteerScript(scriptUrl);
+    })();
+</script>
+
+<div class="login">
+    <h2>Service Delivery Platform</h2>
+
+    <div ng-show="isSuccessful" success="" notification="">Your password has been successfully changed.</div>
+
+    <div ng-show="errorMessage" error="" notification="">{{errorMessage}}</div>
+
+    <div>
+        <div class="panel">
+            <div class="row">
+                <ng-include src="&apos;features/security/partials/loginFormWithSimplifiedMobileView.html&apos;"></ng-include>
+
+            </div>
+        </div>
+        <div class="map">
+            <img id="map" src="assets/images/standardbank_map.png" alt="Standard bank South Africa">
+        </div>
+
+        <div class="panel-row" ng-show="showWidgets()">
+            <div class="medium-6 columns">
+                <div class="panel clearfix">
+                    <a href="#/register" data-dtmid="link_content_content link" id="register" data-dtmtext="Create standard bank id link click">
+                        <div class="hide-for-small-only left">
+                            <img id="new-reg-icon" class="register-image" src="assets/images/New_Register_Icon.png" alt="Register">
+                        </div>
+                        <div class="register-text">
+                            <h3 class="small-only-text-center">Register</h3>
+
+                            <div class="small-only-text-center grey-text">
+                                <span>Start here if you are a new customer or use our old Internet banking site</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <div class="right register-button"><a class="button secondary" href="#/register" data-dtmid="link_content_content link" data-dtmtext="Register button click">Register</a></div>
+                </div>
+            </div>
+            <div class="medium-6 columns">
+                <div class="panel clearfix">   
+                    <a data-dtmid="invited_customer_content link" data-dtmtext="Invited customer click">
+                        <div class="hide-for-small-only left">
+                            <img class="register-image" src="assets/images/Account_Sharing_Register_Icon.png" alt="Invited">
+                        </div>
+                        <div class="register-text">
+                            <h3 class="small-only-text-center">Invited user</h3>
+
+                            <div class="small-only-text-center grey-text">
+                                <span>Start here if you have been invited as a user on an Internet banking profile </span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <div class="right register-button">
+                        <a class="button secondary" href="#/account-sharing/invitation-details" ng-click="acceptInvitation()" data-dtmid="obb_content get started button" data-dtmtext="Get started button click"> Get started
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        
+        
+    </div>
+
+
+</div>

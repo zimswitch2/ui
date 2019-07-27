@@ -1,0 +1,14 @@
+<div class="clearfix">
+    <div class="inline-select left">
+        <label for="{{id}}">{{label}}</label>
+        <div class="styled-select">
+            <select id="{{id}}" ng-model="account" ng-change="modelChanged()" ng-options="item | accountLabel for item in items track by item.formattedNumber" ng-class="{&apos;disabled&apos;: isEmpty()}" ng-disabled="isEmpty()">
+            </select>
+        </div>
+    </div>
+
+    <div require-permission="viewAccountBalance" class="inline-info left" ng-class="{&apos;invalid-balance&apos;: highlightBalance()}" ng-show="!isEmpty() &amp;&amp; !noBalance">
+        <b>Available Balance</b>
+        <div id="{{name}}AvailableBalance" class="grey-text amount">{{account.availableBalance.amount | currencyAmount: currencyCode || 'R' }}</div>
+    </div>
+</div>

@@ -1,0 +1,232 @@
+.international-payment-beneficiary-flow.wide {
+  float: none
+}
+
+.international-payment-beneficiary-form-layout {
+  width: 100%;
+  float: left;
+}
+
+.international-payment-beneficiary-container {
+  @include outer-container();
+  max-width: 100em;
+  margin-left: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+  .beneficiary-tooltip {
+    color: #555;
+    &.country-of-bank {
+      margin-left: 0.4em;
+      z-index: 99;
+    }
+    &.iban {
+      margin-left: 3em;
+      position: absolute;
+      z-index: 99;
+    }
+    &.swift-bic {
+      margin-left: 5.7em;
+      position: absolute;
+      z-index: 99;
+    }
+    @media #{$large-up} {
+      display: none;
+    }
+
+    i {
+      font-size: 1.2rem;
+    }
+  }
+
+  .beneficiary-context-help {
+    &:before {
+      @media #{$large-up} {
+        display: none;
+      }
+
+      border: solid;
+      border-color: $primary-light-grey transparent;
+      border-width: 0px 15px 15px 15px;
+      top: -15px;
+      content: "";
+      left: 3.0em;
+      position: absolute;
+      z-index: 99;
+    }
+
+    @media #{$large-up} {
+      margin-left: 0.5625em;
+
+      .margin-top {
+        margin-top: 0rem;
+      }
+    }
+
+    background: $primary-light-grey;
+    margin-top: 19px;
+    border-radius: 5px;
+    padding: 5px 20px;
+
+    &.align-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    &.align-swift {
+      position: absolute;
+      left: 0;
+      top: 275px;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+
+    .telephone-row {
+      @media #{$medium-up}{
+        .telephone-text a {
+          color: $slate-grey;
+          text-decoration: none;
+        }
+      }
+
+      border-top: 1px solid $primary-grey;
+
+      .customer-care-column:nth-child(1) {
+        @media #{$medium-up}{
+          border-right: 1px solid $primary-grey;
+        }
+
+        @media #{$small-only}{
+          border-bottom: 1px solid $primary-grey;
+        }
+      }
+
+      i.icomoon-call {
+        color: #999999;
+        font-size: 2.8rem;
+        padding-right: 1rem;
+      }
+
+      .telephone-icon {
+        display: inline-block;
+      }
+
+      .telephone-number-link a {
+        padding-left: 0rem;
+        color: $font-grey-dark;
+      }
+
+      .telephone-text {
+        color: $slate-grey;
+        display: inline-block;
+      }
+    }
+  }
+
+  .contextual-help-sidebar {
+    height: 400px;
+  }
+
+  div .medium-width {
+    width: 100%;
+
+    @media #{$medium-only} {
+      width: 100%;
+    }
+  }
+
+  sb-input {
+    position: relative;
+
+    &.medium-width input {
+      width: 100%;
+
+      @media #{$medium-only} {
+        width: 100%;
+      }
+    }
+  }
+
+  .styled-select {
+    display: block;
+  }
+}
+
+.international-payment-beneficiary-nav {
+  .tabs {
+    .tab-title {
+      border-top: 5px solid $sb-blue;
+      border-right: 1px solid $dirty-white;
+      padding-left: 0px;
+      padding-right: 0px;
+
+      &.inactive {
+        border-top: 5px solid silver;
+      }
+
+      a {
+        color: $sb-blue;
+        text-decoration: none;
+
+        &.inactive {
+          color: silver;
+          background-color: $primary-grey;
+        }
+      }
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+}
+
+.international-payment-beneficiary-form {
+  @media #{$large-up} {
+    .xbp-beneficiary-details {
+      ul.typeahead {
+        bottom: 100%;
+      }
+    }
+  }
+
+  &form {
+    @media #{$large-up} {
+      @include span-columns(12);
+    }
+  }
+
+  overflow: auto;
+  background: #ffffff;
+
+  .international-payment-beneficiary-scroll {
+    position: relative;
+
+    > div {
+      padding: 1.5em;
+      min-height: 45.6em;
+    }
+  }
+}
+
+@media #{$small-only} {
+  .international-payment-beneficiary-form {
+    height: auto !important;
+
+    .international-payment-beneficiary-scroll {
+      > div {
+        min-height: inherit;
+      }
+    }
+
+    button {
+      &.primary, &.secondary {
+        margin-left: 0em;
+        width: 100%;
+      }
+    }
+  }
+}
+

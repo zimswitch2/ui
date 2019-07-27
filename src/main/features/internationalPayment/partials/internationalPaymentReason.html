@@ -1,0 +1,185 @@
+<h2>International Payment</h2>
+
+<flow class="wide"></flow>
+
+<div class="international-payment-reason-for-payment">
+    <div class="panel">
+        <form>
+            <h3>
+                Select the reason for this payment (BoP code)
+                <a href="javascript:void(0)" class="help-tooltip-indicator"
+                   ng-click="showHelp = true">
+                    <i class="icon icon-question-circle"></i>
+                </a>
+            </h3>
+            <div class="reason-for-payment-search">
+
+                <div>
+                    <a class="search-cue">Search</a>
+                    <div class="search-input-container">
+                        <input type="text" ng-model="search.searchText" ng-required="ngRequired" autocomplete="off" placeholder="Search" ng-change="filterItems()" />
+                        <i class="icon icomoon-search"></i>
+                        <i class="icon icomoon-close close" ng-click="clearSearch()" ng-show="search.searchText.length > 0"></i>
+                    </div>
+                </div>
+
+                <div class="animate-show" ng-show="search.searchText && search.searchText.length > 0">
+                    <h4>Results ({{ filteredItems.length }})</h4>
+
+                    <div class="search-results" >
+                        <ul>
+                            <li class="search-result-item" ng-repeat="result in filteredItems">
+                                <a class="secondary bordered" ng-class="{selected:isItemSelected(result)}" ng-click="selectSearchItem(result)">
+                                    <input id="bop-category-search-{{result.bopCode}}-{{ result.bopSubCategoryCode }}"
+                                           type="radio"
+                                           name="bopSubCategorySearch"
+                                           ng-value="result"
+                                           ng-model="$parent.beneficiary.reasonForPayment"
+                                           ng-checked="$parent.beneficiary.reasonForPayment === result">
+
+                                    <label for="bop-category-search-{{result.bopCode}}-{{ result.bopSubCategoryCode }}"
+                                           ng-bind-html="renderSearchItemHtml(result.bopCode, result.bopSubCategoryCode, result.categoryDescription)"></label>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="no-results" ng-show="search.searchText && search.searchText.length > 0 && filteredItems.length == 0">
+                    There are no results found.
+                </div>
+            </div>
+
+            <div class="help-section" ng-show="showHelp">
+
+
+                <div class="help-text">
+                    <i class="icon icomoon-close close" ng-click="showHelp = false"></i>
+                    <h4>Need help?</h4>
+
+                    <p>A Balance of Payment (BoP) code is a code used by the South African Reserve Bank (SARB) to identify why money is paid overseas. We currently do not support international payments that require documentary evidence or payments initiated by a business.</p>
+                </div>
+
+                <div class="row telephone-row">
+                    <div class=" customer-care-column">
+                        <div class="telephone-icon">
+                            <i class="icomoon-call"></i>
+                        </div>
+                        <div class="telephone-text">
+                            <div class="telephone-text-label">Customer Care</div>
+
+                            <a href="tel:0860 123 000">0860 123 000</a>
+                        </div>
+                    </div>
+                    <div class="customer-care-column">
+                        <div class="telephone-icon">
+                            <i class="icomoon-call"></i>
+                        </div>
+
+                        <div class="telephone-text">
+                            <div class="telephone-text-label">International</div>
+
+                            <a href="tel:+27 11 299 4701">+27 11 299 4701</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="animate-show" ng-hide="search.searchText && search.searchText.length > 0">
+                <div class="international-payment-reason-tabs" ng-hide="visibleBopGroups().length == 1">
+                    <ul class="tabs">
+                        <li class="bop-group tab-title small-3 large-3 columns" ng-class="{active:isOpenTab(group)}" ng-repeat="group in visibleBopGroups()">
+                            <a ng-click="openTab(group)">
+                                {{ group.groupName }}
+                            </a>
+                        </li>
+                        <li class="tab-title small-3 large-3 columns" ng-show="hiddenBopGroups().length > 0" ng-class="{active:isOpenGroupHidden()}">
+                            <a id="viewMoreGroups" ng-click="showMoreGroups()"> More <i class="icon" ng-class="{'icomoon-chevron-down': !pageProperties.hiddenBopGroupsVisible, 'icomoon-chevron-up': pageProperties.hiddenBopGroupsVisible}"></i> </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="hiddenBopGroups" ng-show="pageProperties.hiddenBopGroupsVisible">
+                        <ul>
+                            <li class="bop-group" ng-class="{active:isOpenTab(group)}" ng-repeat="group in hiddenBopGroups()">
+                                <a ng-click="openTab(group)">{{ group.groupName }} </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bop-groups-select-container styled-select"  ng-hide="visibleBopGroups().length == 1">
+                    <select ng-options="group as group.groupName for group in bopGroups track by group.groupName" ng-model="currentGroup">
+                    </select>
+                </div>
+
+                <div>
+                    <div>
+                        <div ng-repeat="item in bopGroups">
+                            <div ng-show="isOpenTab(item)">
+                                <h4>{{ item.groupName }} ({{item.bopCategories.length}})</h4>
+                                <div class="reason-for-payment-accordion">
+                                    <ul>
+                                        <li class="bop-category-item" ng-repeat="i in item.bopCategories">
+                                            <a class="secondary bordered" ng-class="{selected:isItemSelected(i)}" ng-click="selectItem(i, item)">
+                                                <input id="bop-category-list-{{i.bopCode}}-{{ i.bopSubCategoryCode }}"
+                                                       type="radio"
+                                                       name="bopSubCategory"
+                                                       ng-value="i"
+                                                       ng-model="$parent.beneficiary.reasonForPayment"
+                                                       ng-checked="$parent.beneficiary.reasonForPayment === i">
+
+                                                <label for="bop-category-list-{{i.bopCode}}-{{ i.bopSubCategoryCode }}">{{i.bopCode}}-{{ i.bopSubCategoryCode }} - {{ i.categoryDescription }}</label>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="padding-top">
+                <button id="next" class="primary" ng-disabled="!canProceed()" ng-click="showBopDeclaration()">
+                    Next
+                </button>
+
+                <button id="back" class="secondary" ng-click="back()">
+                    Back
+                </button>
+
+            </section>
+        </form>
+
+    </div>
+</div>
+<div class="modal-overlay" ng-show="pageProperties.bopDeclarationIsVisible">
+
+    <div class="modal-container action-modal">
+        <div class="modal-header">
+            <h3>BoP Declaration</h3>
+        </div>
+        <div class="modal-content">
+            <div class="selected-group">
+                <p>You selected:</p>
+                <p>{{beneficiary.reasonForPayment.bopCode}}-{{beneficiary.reasonForPayment.bopSubCategoryCode}} - {{beneficiary.reasonForPayment.categoryDescription}}</p>
+            </div>
+
+
+            <hr />
+            <span>You declare that:</span>
+            <ul>
+                <li>you have read the terms and conditions for the latest version of the App and know and understand its content;</li>
+                <li>the information you provided for this payment is both true and correct;</li>
+                <li>the currency applied for will only be used for the specific purpose stated herein;</li>
+                <li>you have been informed of the limit applicable to this transaction and confirm that you won't exceed it as a result of this transaction; and</li>
+            </ul>
+            <p>You consent to this information being provided to the South African Revenue Service and/or the Financial Surveillance department</p>
+        </div>
+        <div class="actions">
+            <button class="primary" ng-click="next()" data-dtmid="link_content_international payment" data-dtmtext="bop declaration | agree button click">Agree</button>
+            &nbsp;
+            <button class="secondary" ng-click="closeBopDeclaration()" data-dtmid="link_content_international payment" data-dtmtext="bop declaration | cancel button click">Cancel</button>
+        </div>
+    </div>
+</div>

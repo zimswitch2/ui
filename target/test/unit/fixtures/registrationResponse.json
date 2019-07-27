@@ -1,0 +1,27 @@
+{
+  "userProfile": {
+    "channelProfiles": [
+      {
+        "image": "",
+        "imageDate": null,
+        "profileId": "44532",
+        "profileName": "My Personal Dashboard",
+        "profileStyle": "PERSONAL",
+        "systemPrincipalIdentifiers": [],
+        "tileViews": []
+      }
+    ],
+    "channelSettings": [],
+    "defaultProfileId": "44532",
+    "digitalId": {
+      "devices": [],
+      "password": null,
+      "systemPrincipals": [],
+      "username": "testuser@contracttest.com"
+    },
+    "lastLoggedIn": "2014-01-27T08:14:35.000+0000",
+    "preferredName": ""
+  },
+  "keyValueMetadata": [],
+  "stepUp": null
+}

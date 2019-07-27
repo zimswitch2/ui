@@ -1,0 +1,190 @@
+<h2>Your Details</h2>
+
+<flow class="wide"></flow>
+
+<div class="notification error wide" ng-show="serverErrorMessage !== undefined">
+    {{serverErrorMessage}}
+</div>
+
+<div class="customer-info-container">
+    <customer-information-navigation editing="true" current-page="'address'"></customer-information-navigation>
+    <div class="customer-info-form">
+        <form name="customerInformationForm" data-frmcontainer="edit address form" novalidate>
+            <div class="customer-info-scroll">
+                <div class="address">
+                    <ng-form name="addressForm" class="edit-section">
+                        <div class="wide notification error" id="address-notification"
+                             ng-show="getValidationNotificationForSection('addressInfo') && addressForm.$pristine">
+                            {{getValidationNotificationForSection('addressInfo')}}
+                        </div>
+                        <div id="homeAddressSection">
+                            <h3 title-for="homeAddressSection">Home Address</h3>
+                            <ul class="data edit-mode">
+                                <row-field label="Unit Number" label-for="homeUnitNumber">
+                                    <sb-input ng-model="residentialAddress.unitNumber"
+                                              input-id="homeUnitNumber"
+                                              name="Home_Unit_number"
+                                              ng-maxlength="10"
+                                              class="short"></sb-input>
+                                </row-field>
+                                <row-field label="Complex/Flat" label-for="homeComplexFlat">
+                                    <sb-input ng-model="residentialAddress.building"
+                                              input-id="homeComplexFlat"
+                                              name="Home_Complex_Flat"
+                                              ng-maxlength="30"
+                                              class="medium-width"></sb-input>
+                                </row-field>
+                                <row-field label="Street *" label-for="homeStreet">
+                                    <sb-input ng-model="residentialAddress.streetPOBox"
+                                              input-id="homeStreet"
+                                              name="Home_Street"
+                                              ng-maxlength="30"
+                                              ng-required="true"
+                                              ng-change="checkStreetDetails()"
+                                              class="medium-width">
+                                            <span name="external-message" class="form-error"
+                                                  ng-show="errorMessage.streetPOBox">{{errorMessage.streetPOBox}}</span>
+                                    </sb-input>
+                                </row-field>
+                                <row-field label="Suburb *" label-for="homeSuburb">
+                                    <sb-input ng-model="residentialAddress.suburb"
+                                              input-id="homeSuburb"
+                                              name="Home_Suburb"
+                                              ng-minlength="2"
+                                              ng-maxlength="30"
+                                              ng-required="true"
+                                              ng-pattern="'[0-9a-zA-Z -]*'"
+                                              pattern-message="Please enter a valid suburb"
+                                              class="medium-width"></sb-input>
+                                </row-field>
+                                <row-field label="City/town *" label-for="homeCityTown">
+                                    <sb-input ng-model="residentialAddress.cityTown"
+                                              input-id="homeCityTown"
+                                              name="Home_City_Town"
+                                              ng-minlength="2"
+                                              ng-maxlength="30"
+                                              ng-required="true"
+                                              ng-pattern="'[a-zA-Z]+[a-zA-Z -]*'"
+                                              pattern-message="Please enter a valid city"
+                                              class="medium-width"></sb-input>
+                                </row-field>
+                                <row-field label="Postal Code *" label-for="homePostalCode">
+                                    <sb-input ng-model="residentialAddress.postalCode"
+                                              input-id="homePostalCode"
+                                              name="Home_Postal_code"
+                                              ng-maxlength="4"
+                                              class="short"
+                                              ng-pattern="'[0-9]{4}'"
+                                              pattern-message="Please enter a valid postal code"
+                                              ng-required="true"></sb-input>
+                                </row-field>
+                                <row-field label="Residential Status *" label-for="residentialStatus">
+                                    <div class="styled-select medium-width">
+                                        <select ng-model="customerInformationData.accommodationTypeCode"
+                                                id="residentialStatus"
+                                                name="Residential_status"
+                                                ng-required="true"
+                                                fix-ie-select
+                                                ng-options="type.code as type.description for type in accommodationTypes">
+                                            <option value=""
+                                                    ng-hide="customerInformationData.accommodationTypeCode"></option>
+                                        </select>
+                                    </div>
+                                </row-field>
+                            </ul>
+                        </div>
+                        <div class="second-section">
+                            <h3> Postal Address</h3>
+                            <ul class="data edit-mode">
+                                <row-field label="Same as home address *">
+                                    <input id="samePostalAndHomeAddress-yes" type="radio"
+                                           name="Postal_Same_As_Home_Address_Yes" ng-value="true"
+                                           ng-model="isSamePostalAndResidential"
+                                           ng-click="setPostalSameAsResidential(true)">
+                                    <label class="inline-label" for="samePostalAndHomeAddress-yes">Yes</label>
+                                    <input id="samePostalAndHomeAddress-no" type="radio"
+                                           name="Postal_Same_As_Home_Address_No" ng-value="false"
+                                           ng-model="isSamePostalAndResidential"
+                                           ng-click="setPostalSameAsResidential(false)">
+                                    <label class="inline-label" for="samePostalAndHomeAddress-no">No</label>
+                                </row-field>
+                            </ul>
+                            <div ng-if="isSamePostalAndResidential === undefined ? false : !isSamePostalAndResidential">
+                                <ul class="data edit-mode">
+                                    <row-field label="Unit Number">
+                                        <sb-input ng-model="postalAddress.unitNumber"
+                                                  name="Postal_Unit_number"
+                                                  ng-maxlength="10"
+                                                  class="short"></sb-input>
+                                    </row-field>
+                                    <row-field label="Complex/Flat">
+                                        <sb-input ng-model="postalAddress.building"
+                                                  name="Postal_Complex_Flat"
+                                                  ng-maxlength="30"
+                                                  class="medium-width"></sb-input>
+                                    </row-field>
+                                    <row-field label="Street/PO Box *">
+                                        <sb-input ng-model="postalAddress.streetPOBox"
+                                                  name="Postal_Street"
+                                                  ng-maxlength="30"
+                                                  ng-required="true"
+                                                  class="medium-width">
+                                        </sb-input>
+                                    </row-field>
+                                    <row-field label="Suburb *">
+                                        <sb-input ng-model="postalAddress.suburb"
+                                                  name="Postal_Suburb"
+                                                  ng-minlength="2"
+                                                  ng-maxlength="30"
+                                                  ng-required="true"
+                                                  ng-pattern="'[0-9a-zA-Z -]*'"
+                                                  pattern-message="Please enter a valid suburb"
+                                                  class="medium-width"></sb-input>
+                                    </row-field>
+                                    <row-field label="City/town *">
+                                        <sb-input ng-model="postalAddress.cityTown"
+                                                  name="Postal_City_Town"
+                                                  ng-minlength="2"
+                                                  ng-maxlength="30"
+                                                  ng-required="true"
+                                                  ng-pattern="'[a-zA-Z]+[a-zA-Z -]*'"
+                                                  pattern-message="Please enter a valid city"
+                                                  class="medium-width"></sb-input>
+                                    </row-field>
+                                    <row-field label="Postal Code *">
+                                        <sb-input ng-model="postalAddress.postalCode"
+                                                  name="Postal_Postal_code"
+                                                  ng-maxlength="4"
+                                                  class="short"
+                                                  ng-pattern="'[0-9]{4}'"
+                                                  pattern-message="Please enter a valid postal code"
+                                                  ng-required="true"></sb-input>
+                                    </row-field>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <button id="save-address" class="primary" ng-click="save()"
+                                    ng-disabled="!addressForm.$valid || isSamePostalAndResidential === undefined">
+                                Save
+                            </button>
+                            <button id="cancel-address" class="secondary" ng-click="cancel()">
+                                {{cancelButtonText}}
+                            </button>
+                        </div>
+                        <ul class="data">
+                            <div class="nav-arrow hide-for-medium-up">
+                                <a ng-click="next()">
+                                    <i class="icon icon-angle-down"></i>
+                                    <span>Next section</span>
+                                </a>
+                            </div>
+                        </ul>
+                    </ng-form>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<cancel-confirmation edit-form="addressForm"></cancel-confirmation>
+<ng-include src="'features/accountorigination/customerInformation/partials/existingCustomerModal.html'"></ng-include>

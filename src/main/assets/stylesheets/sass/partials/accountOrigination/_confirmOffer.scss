@@ -1,0 +1,40 @@
+.confirm-offer {
+  .row {
+    max-width: none;
+  }
+
+  .account-information {
+    @extend .medium-5;
+    @extend .columns;
+  }
+
+  .documents-request {
+    @extend .medium-7;
+    @extend .columns;
+
+    @media #{$medium-up} {
+      padding-left: 2em;
+    }
+
+    .happens-next-section {
+      padding: 0.5em 0;
+
+      p {
+        font-weight: bold;
+      }
+    }
+
+    .happens-next-private-banking-section{
+      padding: 0.5em 0;
+    }
+
+    ul {
+      padding: 0.5em;
+    }
+
+    li {
+      @include bullet-list;
+      margin-top: 0;
+    }
+  }
+}

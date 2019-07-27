@@ -1,0 +1,23 @@
+<div class="icon-summary" ng-if="hasPendingOffer()">
+    <div class="icon-summary-item" ng-show="application.aboutToExpire">
+        <i class="icon icomoon-pending"></i>
+
+        <div class="with-icon">
+            <p>Offer expires soon</p>
+        </div>
+    </div>
+    <div class="icon-summary-item wider" ng-class="{only: !application.aboutToExpire}">
+        <i class="icon icomoon-scheduled"></i>
+
+        <div class="with-icon">
+            <p>Applied on</p>
+            <small id="pendingApplicationDate">{{application.date | dateFormat }}
+                (Offer valid for 30 days)
+            </small>
+        </div>
+    </div>
+    <div class="icon-summary-button">
+        <button ng-click="viewOffer()" class="btn" id="viewOffersButton" track-click="Return to pending offer">View
+        </button>
+    </div>
+</div>

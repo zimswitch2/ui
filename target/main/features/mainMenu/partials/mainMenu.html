@@ -1,0 +1,44 @@
+<div>
+    <a ng-class="{&apos;active&apos;: showMenu}" ng-if="shouldDisplayMenu() &amp;&amp; shouldDisplayProfileDropdown()" ng-click="toggleBurgerMenu()" class="menu-link">
+        <i class="icon icon-bars"></i>
+    </a>
+
+    <leaving-feedback class="dropdown-menu switch-to-old-site" dropdown-menu="" ng-show="displayModal"></leaving-feedback>
+
+    <nav ng-class="{&apos;active&apos;: showMenu}" class="main" id="menu" role="navigation" ng-show="displayMenu() &amp;&amp; shouldDisplayMenu()">
+        <ul>
+            <li ng-repeat="menuItem in menuItems | orderBy:&apos;position&apos;" ng-if="hasCard()">
+                <a ng-click="toggleBurgerMenu()" href="#{{menuItem.url}}" ng-class="activeClass(menuItem)" data-dtmid="header_nav_link" data-dtmtext="{{menuItem.title}}">{{menuItem.title}}</a>
+            </li>
+
+            <li class="show-for-small-only">
+                <a id="change-password" href="#/change-password" data-dtmid="header_nav_link" data-dtmtext="Change password">Change password</a>
+            </li>
+            <li class="show-for-small-only" ng-if="hasCard()">
+                <a id="profile-settings" href="#/dashboards" data-dtmid="header_nav_link" data-dtmtext="Profile and settings">Profile and settings</a>
+            </li>
+            <li class="show-for-small-only" ng-if="hasMultipleDashboards()">
+                <a id="choose-dashboard" href="#/choose-dashboard" data-dtmid="header_nav_link" data-dtmtext="Switch dashboard">Switch dashboard</a>
+            </li>
+            <li class="show-for-small-only" ng-if="isBusinessUser()">
+                <a href="#/account-sharing/operators" data-dtmid="header_nav_link" data-dtmtext="Account sharing">Online Banking for Business</a>
+            </li>
+            <!-- li id="link-to-full-site" not-feature="captureSiteLeavingFeedback" class="show-for-medium-up" ng-if="hasCard() && !isMobileDevice()">
+                <a ng-click="displayLinkToFullSiteModal()" data-dtmid="header_nav_link" data-dtmtext="Switch to old site">Switch to old site</a>
+            </li>
+            <li id="link-to-full-site" feature="captureSiteLeavingFeedback" class="show-for-medium-up" ng-if="!isMobileDevice()">
+                <a ng-click="displayLinkToFullSiteModal()" data-dtmid="header_nav_link" data-dtmtext="Switch to old site">Switch to old site</a>
+            </li -->
+            <!-- li id="send-secure-message" class="right" feature="secureMessage" ng-if="hasCard()">
+                <a id="sendSecureMessageSmallOnly" href="#/secure-message" ng-class="activeSecureMessageItem()"
+                   track-click="Access Profile.send secure message" data-dtmid="header_nav_link" data-dtmtext="Send secure message">Send secure message</a>
+            </li -->
+            <li class="show-for-small-only">
+                <a ng-click="logout()" ng-controller="LogoutController" ng-show="shouldDisplayLogoutOption()" track-click="Sign out" data-dtmid="header_nav_link" data-dtmtext="Sign out">Sign out</a>
+            </li>
+        </ul>
+
+    </nav>
+
+    
+</div>

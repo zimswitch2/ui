@@ -1,0 +1,100 @@
+.entitlement-pending-transactions-table {
+  .action-table {
+    ul {
+      .actions {
+        .action {
+
+          &[title="modify"] {
+            top: 4.5rem;
+          }
+
+          &[title="delete"] {
+            top: 9rem;
+          }
+        }
+      }
+    }
+    @media #{$large-up} {
+      ul {
+        .information {
+          width: 84%;
+          > div {
+            width: 20%;
+          }
+        }
+        .actions {
+          width: 12em;
+        }
+      }
+    }
+  }
+}
+
+.entitlement-pending-table {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border: 0;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem;
+  background: #FFFFFF;
+  .page-heading-row {
+    line-height: 3.5;
+    @media #{$large-up} {
+      width: 100%;
+    }
+  }
+}
+
+.pending-beneficiary-payments-action-table {
+
+  @media #{$large-up} {
+    width: 80%;
+    margin-top: 23px;
+    ul {
+      .information {
+        width: 80%;
+        > div {
+          &:nth-child(1) {
+            width: 16.66%;
+          }
+          &:nth-child(2) {
+            width: 66.40%;
+          }
+          &:nth-child(3) {
+            width: 16.66%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.rejected-beneficiary-payments-action-table {
+
+  @media #{$large-up} {
+    width: 80%;
+    margin-top: 23px;
+    ul {
+      .information {
+        width: 80%;
+        > div {
+          &:nth-child(1) {
+            width: 23.53%;
+          }
+          &:nth-child(2) {
+            width: 17.65%;
+          }
+          &:nth-child(3) {
+            width: 58.82%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.rejected-beneficiary-payments-toast {
+  width: 100%;
+  max-width: 100%;
+}
+
+

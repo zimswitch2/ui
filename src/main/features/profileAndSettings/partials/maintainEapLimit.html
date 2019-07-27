@@ -1,0 +1,50 @@
+<h2>Profile and Settings</h2>
+
+<div class="error notification profile-and-settings"
+     ng-if="hasZeroEAPLimit"
+     ng-include="'common/monthlyPaymentLimits/partials/noEAPLimitMessage.html'">
+</div>
+
+<div success notification class="profile-and-settings" ng-show="isSuccessful">
+    {{successMessage}}
+</div>
+<div error notification class="profile-and-settings" ng-show="errorMessage">
+    {{errorMessage}}
+</div>
+
+<div class="row">
+<sb-accordion items="menuItems" partial="common/accordion/partials/profileAccordion.html"></sb-accordion>
+
+<div class="profile-and-settings-monthly-limits panel medium-12 large-9 columns">
+
+    <monthly-payment-limits class="as-main-content"></monthly-payment-limits>
+
+    <div class="decrease-eap-limit">
+        <button id="maintainLimitButton" class="secondary" ng-click="edit()" ng-hide="isDecreasingLimit" data-dtmid="link_content_content link" data-dtmtext="Change Limit button click">Change Limit</button>
+
+        <form ng-submit="save()"
+              name="decreaseEAPLimitForm"
+              ng-if="isDecreasingLimit"
+              novalidate>
+
+            <section class="text-notification warning" ng-show="infoMessage" id="infoMessage">{{infoMessage}}</section>
+
+            <section>
+                <sb-amount
+                    ng-model="newEAPLimit.amount"
+                    enforcer="enforcer"
+                    ng-change="newEAPLimitChange()"
+                    label="Change limit">
+                </sb-amount>
+            </section>
+
+            <button id="saveButton" ng-disabled="!decreaseEAPLimitForm.$valid" track-click="Change monthly payment limit" data-dtmid="link_content_content link" data-dtmtext="save button click">Save</button>
+            <button class="secondary" ng-click="cancel()" ng-show="isDecreasingLimit" ata-id="link_content_content link" data-dtmtext="cancel button click">Cancel</button>
+        </form>
+    </div>
+
+</div>
+</div>
+
+
+

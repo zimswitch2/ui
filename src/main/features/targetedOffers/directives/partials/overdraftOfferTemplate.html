@@ -1,0 +1,18 @@
+<p>{{templateData.description}}</p>
+<br/>
+<div class='row divider-container'>
+    <div class='show-for-large-up'>
+        <div ng-if='offer.interestRate !== null || offer.productCode === OD || (offer.productCode === RCP && offer.qualifyingAmount !== null && offer.interestRate !== null)'
+             class='medium-offset-4 divider vertical'></div>
+    </div>
+    <div ng-if='offer.qualifyingAmount !== null' class='medium-4 columns'><span class='grey-text'>{{templateData.qualifyingAmountText}}</span>
+        <span class='offerValue'>{{offer.qualifyingAmount | randAmountNoCents}}</span></div>
+    <div ng-if='offer.interestRate !== null' class='medium-4 columns left'><span
+            class='grey-text'>{{templateData.interestRateText}}</span><span class='offerValue'>{{offer.interestRate | formatProductInterestRate}}%</span>
+    </div>
+    <div class='medium-4 columns left'></div>
+</div>
+<div ng-if="offer.hasPdf">
+    <br/><a ng-href='{{templateData.pdfLink}}'
+            target='_blank'>More details (PDF)</a>
+</div>

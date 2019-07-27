@@ -1,0 +1,208 @@
+<h2 ng-if="addBeneficiary">Add Beneficiary</h2>
+<h2 ng-if="editBeneficiary">Edit Beneficiary</h2>
+<div class="form-layout-top">
+    <div flow></div>
+    <ng-include src="'features/payment/partials/beneficiaryAccountValidationDisclaimer.html'"></ng-include>
+    <div notification error ng-show="errorMessage && editing">{{errorMessage}}</div>
+    <div notification error ng-show="!errorMessage && hasScheduledPayments">
+        Please delete any scheduled payment/s to this beneficiary before editing their details
+    </div>
+</div>
+
+<div class="form-layout-main">
+    <form class="add-beneficiary" name="addBeneficiaryForm" ng-show="editing"
+          ng-submit="proceed()"
+          novalidate="novalidate">
+
+        <section ng-hide="editBeneficiary" class="panel">
+            <h3>Search for a listed beneficiary</h3>
+            <sb-typeahead id="listedBeneficiary"
+                          placeholder="e.g. Woolworths, City of Joburg, Telkom"
+                          items="cdi"
+                          ng-model="listedBeneficiary"
+                          ng-required="!editBeneficiary && isListedBeneficiary()"
+            >
+            </sb-typeahead>
+        </section>
+
+        <div ng-hide="editBeneficiary || isListedBeneficiary()" class="panel-break">
+            <span>or</span>
+        </div>
+
+        <div class="panel">
+            <h3 ng-hide="editBeneficiary || isListedBeneficiary()">Add your own beneficiary</h3>
+            <section ng-show="isListedBeneficiary()" class="beneficiary-name">
+                <div>Beneficiary name</div>
+                <div id="beneficiaryName">{{listedBeneficiary.name}}</div>
+            </section>
+
+            <section ng-if="isPrivateBeneficiary()">
+                <sb-input name="name"
+                          label="Name"
+                          ng-model="beneficiary.name"
+                          ng-required="isPrivateBeneficiary()"
+                          ng-maxlength="20"
+                          text-validation
+                          pattern-message="Please enter a valid beneficiary name"
+                >
+                </sb-input>
+            </section>
+
+            <section ng-show="isPrivateBeneficiary()">
+                <label for="bank-input">Bank</label>
+                <sb-typeahead
+                        id="bank"
+                        placeholder="Select a bank"
+                        items="banks"
+                        ng-model="beneficiary.bank"
+                        ng-required="isPrivateBeneficiary()"
+                        sort-by="name"
+                >
+                </sb-typeahead>
+            </section>
+
+            <section ng-show="isPrivateBeneficiary()">
+                <span ng-class="spinnerClass" class="inline-block pace pace-inactive branch-inline-spinner">
+                    <span class="inline-spinner"></span>
+                </span>
+                <label for="branch-input">Branch</label>
+                <sb-typeahead
+                        id="branch"
+                        placeholder="Select a branch"
+                        items="selectedBankBranches()"
+                        ng-model="beneficiary.bank.branch"
+                        ng-required="isPrivateBeneficiary()"
+                        sort-by="name"
+                        lazy-load="true"
+                >
+                </sb-typeahead>
+            </section>
+            <section ng-show="isPrivateBeneficiary()">
+                <sb-input name="accountNumber"
+                          label="Account number"
+                          ng-model="beneficiary.accountNumber"
+                          ng-required="isPrivateBeneficiary()"
+                          ng-maxlength="16"
+                          ng-pattern="'[0-9]*'"
+                          ng-class="{invalid:existingListedBeneficiary}"
+                          pattern-message="Please enter a number">
+                </sb-input>
+                <div ng-show="existingListedBeneficiary" class="error-text">
+                    Use bank-approved account details for <a ng-click="useExistingPublicBeneficiary()">{{ existingListedBeneficiary.name }}</a>?
+                </div>
+            </section>
+
+            <section>
+                <sb-input name="myReference"
+                          label="Your reference"
+                          ng-model="beneficiary.customerReference"
+                          ng-required="true"
+                          ng-maxlength="12"
+                          text-validation
+                          pattern-message="Please enter a valid reference"
+                          tooltip="This text will appear on your statement"
+                >
+                </sb-input>
+            </section>
+
+            <section>
+                <sb-input name="beneficiaryReference"
+                          label="Beneficiary reference"
+                          ng-model="beneficiary.recipientReference"
+                          ng-required="true"
+                          ng-maxlength="25"
+                          text-validation
+                          pattern-message="Please enter a valid beneficiary reference"
+                          tooltip="This text will appear on your beneficiary's statement"
+                >
+                </sb-input>
+            </section>
+
+            <section ng-show="beneficiaryGroups.length > 0">
+                <label for="group">Add beneficiary to an existing group (optional)</label>
+
+                <div class="styled-select">
+                    <select id="group"
+                            ng-model="beneficiary.recipientGroup"
+
+                            ng-required="false"
+                            ng-options="group.name for group in beneficiaryGroups track by group.name">
+                        <option value="">-- No group --</option>
+                    </select>
+                </div>
+            </section>
+
+            <ng-include src="'features/beneficiaries/partials/paymentConfirmation.html'"></ng-include>
+
+            <button id="proceed" ng-disabled="!addBeneficiaryForm.$valid || hasScheduledPayments || existingListedBeneficiary"
+                    data-dtmid="link_content_add beneficiary" data-dtmtext="step1 | next button click">Next
+            </button>
+            <button go-back id="cancel" class="secondary" data-dtmid="link_content_add beneficiary"
+                    data-dtmtext="step1 | cancel button click">Cancel
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="form-layout-main" ng-hide="editing">
+    <div id="beneficiaryDetails" class="summary panel">
+        <div class="summary-row">
+            <div>
+                <span>Beneficiary name </span>
+                <span id="summaryBeneficiaryName">{{isPrivateBeneficiary() ? beneficiary.name : listedBeneficiary.name}}</span>
+
+                <div class="text-notification" ng-show="flags.cdiBeneficiaryAsPrivateBeneficiary">
+                    We recognised this account number and filled in the correct details for you
+                </div>
+            </div>
+        </div>
+        <div ng-show="isPrivateBeneficiary()" class="summary-row">
+            <div>
+                <span>Bank </span>
+                <span id="bankSummary">{{beneficiary.bank.name}}</span></div>
+        </div>
+        <div ng-show="isPrivateBeneficiary()" class="summary-row">
+            <div>
+                <span>Branch </span>
+                <span id="branchSummary">{{beneficiary.bank.branch.name}} ({{beneficiary.bank.branch.code}})</span>
+            </div>
+        </div>
+        <div ng-show="beneficiary.accountNumber" class="summary-row">
+            <div>
+                <span>Account number </span>
+                <span id="accountNumberSummary">{{beneficiary.accountNumber}}</span>
+            </div>
+        </div>
+        <div class="summary-row">
+            <div>
+                <span>Your reference </span>
+                <span id="customerReference">{{beneficiary.customerReference}}</span>
+            </div>
+        </div>
+        <div class="summary-row">
+            <div><span>Beneficiary reference </span><span id="beneficiaryReference">{{beneficiary.recipientReference}}</span></div>
+        </div>
+        <div ng-if="beneficiary.recipientGroup.name" class="summary-row">
+            <div><span>Beneficiary group </span><span id="beneficiaryGroup">{{beneficiary.recipientGroup.name}}</span></div>
+        </div>
+        <div ng-if="paymentConfirmation" class="summary-row">
+            <div>
+                <span class="summary-confirmation-method">
+                    {{beneficiary.paymentConfirmation.recipientName}} will receive payment notifications by
+                    {{beneficiary.paymentConfirmation.confirmationType | sentenceCaseForNotificationTypeFilter}}
+                    {{beneficiary.paymentConfirmation.confirmationType | prepositionForNotificationTypeFilter}}
+                </span>
+                <span class="summary-confirmation-detail">{{beneficiary.paymentConfirmation.address}}</span>
+            </div>
+        </div>
+        <button id="confirm" ng-click="confirm(beneficiary, card)" data-dtmid="link_content_add beneficiary"
+                data-dtmtext="step2 | Confirm button click">Confirm
+        </button>
+        <button id="modify" class="secondary" ng-click="modify()" data-dtmid="link_content_add beneficiary"
+                data-dtmtext="step2 | Modify button click">Modify
+        </button>
+        <button go-back id="confirmCancel" class="tertiary" data-dtmid="link_content_add beneficiary"
+                data-dtmtext="step2 | Cancel button click">Cancel
+        </button>
+    </div>
+</div>

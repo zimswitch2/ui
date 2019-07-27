@@ -1,0 +1,84 @@
+<div class="prepaid-history wide-content">
+<ng-include src="&apos;features/prepaid/partials/prepaidHistoryPrintHeader.html&apos;"></ng-include>
+<h2>Prepaid History</h2>
+<div class="page-heading-row hide-on-print margin-bottom">
+    <h3>Last 30 days</h3>
+    <div>
+        <print-button ng-show="(ctrl.transactions | filter:query).length &gt; 0" button-click="ctrl.print()" button-track-click="Prepaid.View prepaid history.Print"></print-button>
+    </div>
+</div>
+
+<div ng-show="ctrl.errorMessage" error="" notification="">{{ctrl.errorMessage}}</div>
+
+<div class="panel">
+    <div class="action-table" ng-class="ctrl.selectedTransaction ? &apos;hide-on-print&apos; : &apos;&apos;">
+        <ul class="header">
+            <li>
+                <div class="information">
+                    <div>
+                        <span>Purchase date</span>
+                    </div>
+                    <div>
+                        <span>Service provider</span>
+                    </div>
+                    <div ng-class="ctrl.printHasInvoiceTransactionType ? &apos;&apos; : &apos;hide-on-print&apos;">
+                        <span>Voucher type</span>
+                    </div>
+                    <div>
+                        <span>Purchased for</span>
+                    </div>
+                    <div>
+                        <span>Invoice number</span>
+                    </div>
+                    <div>
+                        <span>Amount</span>
+                    </div>
+                </div>
+                <div ng-if="!$root.isMobileDevice" class="actions hide-on-print">
+                    <div class="action">Print</div>
+                </div>
+            </li>
+        </ul>
+
+        <ul class="data not-clickable">
+            <li ng-repeat="transaction in ctrl.transactions | filter:query | orderBy:sort.criteria:!sort.descending">
+
+                <div class="information" ng-click="viewBeneficiary(beneficiary.recipientId)">
+                    <div data-header="Purchase date">
+                        <div>{{transaction.rechargeDate | dateFormat}}</div>
+                    </div>
+                    <div data-header="Service provider">
+                        <div>{{transaction.prepaidProviderType}}</div>
+                    </div>
+                    <div data-header="Voucher type">
+                        <div>{{transaction.rechargeType || '&nbsp;'}}</div>
+                    </div>
+                    <div data-header="Purchased for">
+                        <div>{{transaction.rechargeNumber}}</div>
+                    </div>
+                    <div data-header="Invoice number">
+                        <div>{{transaction.invoiceNumber}}</div>
+                    </div>
+                    <div data-header="Amount">
+                        <div>{{transaction.amount.amount | randAmount}}</div>
+                    </div>
+                </div>
+
+                <div class="actions" ng-if="!$root.isMobileDevice">
+                    <print-button button-click="ctrl.print(transaction.invoiceNumber)" button-track-click="Prepaid.View prepaid receipt.Print" action-button="true">
+                    </print-button>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <ng-include class="print-receipt" src="&apos;features/prepaid/partials/printPrepaidReceipt.html&apos;" ng-class="!ctrl.selectedTransaction ? &apos;hide-on-print&apos; : &apos;print-only&apos;">
+    </ng-include>
+
+    <span class="information message" ng-show="ctrl.informationMessage !== undefined">
+        {{ctrl.informationMessage}}
+    </span>
+</div>
+<div ng-if="ctrl.transactions &amp;&amp; ctrl.transactions.length &gt; 5" ng-include="&apos;features/goToAnchor/partials/scrollOnClick.html&apos;"></div>
+<button go-back="" class="secondary">Back</button>
+<ng-include src="&apos;common/print/partials/printFooter.html&apos;"></ng-include></div>

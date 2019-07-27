@@ -1,0 +1,12 @@
+Vagrant.configure("2") do |c|
+  c.vm.box = "redhat"
+  c.vm.box_url = "https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_RHEL_65_vagrant_box_chef-provisionerless.box"
+  c.vm.hostname = "default-RHEL-65-vagrant-box.vagrantup.com"
+  c.vm.network(:private_network, {:ip=>"192.168.56.107"})
+  c.vm.synced_folder ".", "/vagrant", disabled: true
+  c.vm.synced_folder "/Users/fernando/chop/utils", "/mnt/share", disabled: false
+  c.vm.provider :virtualbox do |p|
+    p.customize ["modifyvm", :id, "--cpus", "1"]
+    p.customize ["modifyvm", :id, "--memory", "2048"]
+  end
+end

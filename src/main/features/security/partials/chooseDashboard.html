@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="medium-7 large-9 columns">
+        <div class="page-heading-row">
+            <h2>Choose a dashboard</h2>
+        </div>
+
+        <div class="info notification" ng-show="hasInfo">
+            {{infoMessage}}
+        </div>
+
+        <ul class="switch-cards">
+            <li ng-repeat="dashboard in dashboards" class="cards">
+                <div ng-click="switchToDashboard(dashboard)" class="card">
+                    <h2>{{dashboard.dashboardName}} <span class="dashboard-status"
+                                                          ng-class="{active: dashboard.card, blocked: dashboard.isBlocked(), activate: dashboard.canBeActivated()}">
+                <i class="icon icon-check-circle"
+                   ng-class="{'icon-check-circle': dashboard.card, 'icon-exclamation-circle': dashboard.isBlocked(), 'icon-info-circle': dashboard.canBeActivated()}"></i>
+                {{dashboard.cardStatus()}}</span></h2>
+
+                    <div class="information">
+                        <span class="name">{{dashboard.cardNumber}}</span>
+                        <span class="name">{{dashboard.cardError.message}}</span>
+                    </div>
+                </div>
+            </li>
+
+            <a id="linkCard" ng-if="showLinkCard" class="button secondary" href="#/addDashboard">Link card</a>
+            <a id="logout" class="button secondary" ng-click="logout()" data-dtmid="link_content_content link" data-dtmtext="Sign out button click" ng-controller="LogoutController">Sign out</a>
+        </ul>
+    </div>
+</div>

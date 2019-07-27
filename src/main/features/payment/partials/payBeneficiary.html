@@ -1,0 +1,292 @@
+<div class="error notification" ng-if="hasZeroEAPLimit"
+     ng-include="'common/monthlyPaymentLimits/partials/noEAPLimitMessage.html'"></div>
+
+<h2 ng-init="initialize()">Pay a Beneficiary</h2>
+<ng-include src="'features/beneficiaries/partials/printBeneficiaryReceiptHeader.html'"></ng-include>
+
+<h3 ng-if="!paymentDetail.isRecurringPayment() && !result.isFutureDatedPayment" class="print-only"></h3>
+<h3 ng-if="paymentDetail.isRecurringPayment()" class="print-only">Repeat payment confirmation</h3>
+<h3 ng-if="result.isFutureDatedPayment && !paymentDetail.isRecurringPayment()" class="print-only">Future dated payment
+    confirmation</h3>
+<span ng-if="result.isFutureDatedPayment && !paymentDetail.isRecurringPayment()" class="print-only">Please note that this payment is scheduled to be processed on the date below</span>
+
+<div class="form-layout-top">
+    <div flow ng-hide="state == 'done' || state == 'successWithWarning'"></div>
+    <div success notification ng-show="isSuccessful">{{successMessage}}</div>
+    <div class="info notification" ng-show="hasInfo">{{infoMessage}}</div>
+    <div error notification ng-show="errorMessage && (state == 'paymentDetails' || state == 'successWithWarning')">
+        {{errorMessage}}
+    </div>
+</div>
+<div ng-show="state == 'paymentDetails'">
+    <div class="form-layout-main">
+        <form class="panel pay-beneficiary" name="paySingleBeneficiaryForm" ng-submit="proceed()"
+              novalidate="novalidate">
+            <div id="paymentDetails">
+                <section>
+                    <sb-account-dropdown
+                            name="From_Account"
+                            label="From account"
+                            ng-model="account"
+                            ng-required="true"
+                            items="payFromAccounts"
+                            highlight-balance="highlightBalance()">
+                    </sb-account-dropdown>
+                </section>
+
+                <section>
+                    <label>Beneficiary name</label>
+                    <span class="display-block">{{beneficiary.name}}</span>
+                </section>
+
+                <section ng-show="isListedBeneficiary()">
+                    <label for="Beneficiary_Reference">Beneficiary reference</label>
+                    <span class="display-block">{{beneficiary.recipientReference}}</span>
+                </section>
+
+                <section ng-hide="isListedBeneficiary()">
+                    <div class="text-input-container">
+                        <label for="Beneficiary_Reference">Beneficiary reference</label>
+                        <a href="javascript:void(0)"
+                           name="This will appear on your beneficiary's statement for this payment only"
+                           class="sb-tooltip">
+                            <i class="icon icon-question-circle"></i>
+                        </a>
+                        <input id="Beneficiary_Reference"
+                               name="Beneficiary_Reference"
+                               type="text"
+                               ng-model="beneficiary.recipientReference"
+                               ng-change="updateSelectedBeneficiaries(currentBeneficiary)"
+                               ng-maxlength="25"
+                               payment-reference-validation
+                               required
+                               ng-class="{'show-validation-styles':
+                                               paySingleBeneficiaryForm.Beneficiary_Reference.$touched ||
+                                               paySingleBeneficiaryForm.Beneficiary_Reference.$dirty ||
+                                               paySingleBeneficiaryForm.$submitted}"
+                        >
+                        <ng-messages for="paySingleBeneficiaryForm.Beneficiary_Reference.$error">
+                            <ng-message class="form-error" when="required">Required</ng-message>
+                            <ng-message class="form-error" when="maxlength">Cannot be longer than 25 characters</ng-message>
+                            <ng-message class="form-error" when="paymentReference">Please enter a valid beneficiary reference</ng-message>
+                        </ng-messages>
+                    </div>
+                    <input type="checkbox" id="saveBeneficiaryReference" ng-model="saveReferences.saveRecipientRef"
+                           ng-hide="paySingleBeneficiaryForm.Beneficiary_Reference.$pristine"
+                           feature="updateBeneficiaryReferencesOnPay">
+                    <label for="saveBeneficiaryReference"
+                           ng-hide="paySingleBeneficiaryForm.Beneficiary_Reference.$pristine"
+                           feature="updateBeneficiaryReferencesOnPay">
+                        Always use this reference
+                    </label>
+                </section>
+
+                <section>
+                    <div class="text-input-container">
+                        <label for="Your_Reference">Your reference</label>
+                        <a href="javascript:void(0)"
+                           name="This will appear on your statement for this payment only"
+                           class="sb-tooltip">
+                            <i class="icon icon-question-circle"></i>
+                        </a>
+                        <input id="Your_Reference"
+                               name="Your_Reference"
+                               type="text"
+                               ng-model="beneficiary.customerReference"
+                               ng-change="updateSelectedBeneficiaries(currentBeneficiary)"
+                               ng-maxlength="12"
+                               payment-reference-validation
+                               required
+                               ng-class="{'show-validation-styles':
+                                               paySingleBeneficiaryForm.Your_Reference.$touched ||
+                                               paySingleBeneficiaryForm.Your_Reference.$dirty ||
+                                               paySingleBeneficiaryForm.$submitted}"
+                        >
+                        <ng-messages for="paySingleBeneficiaryForm.Your_Reference.$error">
+                            <ng-message class="form-error" when="required">Required</ng-message>
+                            <ng-message class="form-error" when="maxlength">Cannot be longer than 12 characters</ng-message>
+                            <ng-message class="form-error" when="paymentReference">Please enter a valid reference</ng-message>
+                        </ng-messages>
+                    </div>
+                    <input type="checkbox" id="saveYourReference" ng-model="saveReferences.saveCustomerRef"
+                           ng-hide="paySingleBeneficiaryForm.Your_Reference.$pristine"
+                           feature="updateBeneficiaryReferencesOnPay">
+                    <label for="saveYourReference"
+                           ng-hide="paySingleBeneficiaryForm.Your_Reference.$pristine"
+                           feature="updateBeneficiaryReferencesOnPay">
+                        Always use this reference
+                    </label>
+                </section>
+
+                <ng-include src="'features/beneficiaries/partials/paymentConfirmation.html'"></ng-include>
+                <section feature="accountSharing" ng-show="isCapture()">
+                    <sb-input name="reasonForPayment"
+                              label="Reason for payment"
+                              ng-model="beneficiary.reasonForPayment"
+                              ng-required="false"
+                              ng-maxlength="50"
+                              tooltip="This information will be seen by the cardholder on approval of payment"
+                    >
+                    </sb-input>
+                </section>
+
+                <ng-include src="'common/recurringPayments/partials/recurringPayments.html'"></ng-include>
+
+                <section>
+                    <sb-amount
+                            ng-model="amount.value"
+                            enforcer="enforcer"
+                            label="Amount">
+                    </sb-amount>
+                </section>
+
+                <section feature="increaseEapLimitInPayment" ng-show="showIncreaseEapLimitSection()">
+                    <div class="increase-limit-container">
+                        Do you want to increase your monthly payment limit?
+
+                        <div class="action-buttons">
+                            <a class="button primary" ng-click="increaseEapLimit()">Yes, increase limit</a>
+                            <a class="button secondary">No</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <button id="proceed" ng-disabled="!paySingleBeneficiaryForm.$valid"
+                    data-dtmid="link_content_pay single beneficiary" data-dtmtext="step 1 | next button click">Next
+            </button>
+            <a go-back class="btn secondary" data-dtmid="link_content_pay single beneficiary"
+               data-dtmtext="step1 | cancel button click">Cancel</a>
+        </form>
+    </div>
+
+    <div class="form-layout-right" require-permission="view:monthly-payments">
+        <monthly-payment-limits watcher="watcher" feature="viewEAPLimits"></monthly-payment-limits>
+    </div>
+
+</div>
+
+<div ng-if="state == 'reviewing' || state == 'done' || state == 'successWithWarning'">
+    <div class="form-layout-main">
+        <div class="panel">
+            <div class="summary" id="paymentDetailsConfirmation">
+                <div ng-if="account" class="summary-split-row hide-on-print">
+                    <div>
+                        <span>From account</span>
+                        <span id="fromAccount">{{account | accountLabel}}</span>
+                    </div>
+                    <div require-permission="viewAccountBalance">
+                        <span>Available balance</span>
+                        <span id="availableBalance" name="confirm-fromBalance">{{account.availableBalance.amount | randAmount}}</span>
+                    </div>
+                </div>
+                <div class="summary-row">
+                    <div>
+                        <span>Beneficiary name</span><span id="beneficiaryName">{{beneficiary.name}}</span>
+                    </div>
+                </div>
+                <div ng-if="beneficiary.accountNumber && !isListedBeneficiary()" class="summary-row print-only">
+                    <div><span>Account number</span><span>{{beneficiary.accountNumber}}</span></div>
+                </div>
+                <div ng-if="beneficiary.bank.name && !isListedBeneficiary()" class="summary-row print-only">
+                    <div><span>Bank</span><span>{{beneficiary.bank.name}}</span></div>
+                </div>
+                <div ng-if="beneficiary.bank.branch && !isListedBeneficiary()" class="summary-row print-only">
+                    <div><span>Branch</span><span>{{beneficiary.bank.branch["name"]}} ({{beneficiary.bank.branch["code"]}})</span>
+                    </div>
+                </div>
+                <div ng-if="beneficiary.recipientReference" class="summary-row">
+                    <div>
+                        <span>Beneficiary reference</span><span id="beneficiaryReference">{{beneficiary.recipientReference}}</span>
+                    </div>
+                </div>
+                <div ng-if="beneficiary.customerReference" class="summary-row">
+                    <div><span>Your reference</span><span id="yourReference">{{beneficiary.customerReference}}</span>
+                    </div>
+                </div>
+                <div class="summary-row" ng-if="paymentConfirmation">
+                    <div>
+                        <span id="confirmationDetails">
+                            {{paymentConfirmationMessage()}}
+                            {{beneficiary.paymentConfirmation.recipientName}} will receive payment notifications by
+                            {{beneficiary.paymentConfirmation.confirmationType | sentenceCaseForNotificationTypeFilter}}
+                            {{beneficiary.paymentConfirmation.confirmationType | prepositionForNotificationTypeFilter}}
+                        </span>
+                        <span id="confirmationAddress">{{beneficiary.paymentConfirmation.address}}</span>
+                    </div>
+                </div>
+                <div feature="accountSharing" ng-if="beneficiary.reasonForPayment" class="summary-row">
+                    <div><span>Reason for payment</span><span
+                            id="reasonForPayment">{{beneficiary.reasonForPayment}}</span></div>
+                </div>
+                <div class="summary-row">
+                    <div id="paymentDateLabelConfirmation"><span>{{paymentDetail.getFromDateLabel()}}</span><span
+                            id="paymentDate">{{paymentDetail.fromDate | dateFormat}}</span></div>
+                </div>
+                <div class="summary-row" id="repeatPaymentDescription" ng-show="paymentDetail.isRecurringPayment()">
+                    <div><span>Repeat Payment</span><span>{{paymentDetail.getPaymentDescription()}}</span></div>
+                </div>
+                <div class="summary-row" id="lastPaymentDate" ng-show="paymentDetail.isRecurringPayment()">
+                    <div><span>Final payment date</span><span>{{paymentDetail.getToDate(latestTimestampFromServer) | dateFormat}}</span>
+                    </div>
+                </div>
+                <div class="summary-row">
+                    <div id="amount"><span>Amount</span><span class="amount">{{ amount.value | randAmount }}</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <span not-feature="accountSharing" ng-hide="state== 'done' || state == 'successWithWarning'">
+                <button id="confirm" ng-click="confirm()" data-dtmid="link_content_pay single beneficiary"
+                        data-dtmtext="step 2 | confirm button click"  >Confirm</button>
+                <button class="secondary" ng-click="modify()" data-dtmid="link_content_pay single beneficiary"
+                        data-dtmtext="step 2 | modify button click"  >Modify</button>
+                <button go-back id="cancel" class="tertiary" data-dtmid="link_content_pay single beneficiary"
+                        data-dtmtext="step 2 | cancel button click"  >Cancel</button>
+            </span>
+
+            <span feature="accountSharing" ng-hide="state== 'done' || state == 'successWithWarning'">
+                <button ng-hide="isCapture()" require-permission="pay:beneficiary" id="confirm" ng-click="confirm()"
+                        data-dtmid="link_content_pay single beneficiary" data-dtmtext="step 2 | confirm button click"  >Confirm</button>
+                <button ng-show="isCapture()" require-permission="capture:pay-a-beneficiary" id="submitForApproval"
+                        ng-click="submitForApproval()" data-dtmid="link_content_pay single beneficiary"
+                        data-dtmtext="step 2 | confirm button click"  >Submit for approval</button>
+                <button class="secondary" ng-click="modify()" data-dtmid="link_content_pay single beneficiary"
+                        data-dtmtext="step 2 | modify button click"  >Modify</button>
+                <button go-back id="cancel" class="tertiary" data-dtmid="link_content_pay single beneficiary"
+                        data-dtmtext="step 2 | cancel button click"  >Cancel</button>
+            </span>
+
+            <div ng-show="state== 'done' || state == 'successWithWarning'">
+                <button go-back id="done" class="secondary" data-dtmid="link_content_pay single beneficiary"
+                        data-dtmtext="Back to beneficiaries button click">Back to beneficiaries
+                </button>
+
+                <print-button not-feature="accountSharing" button-class="secondary"
+                              button-text="Print receipt"></print-button>
+                <print-button feature="accountSharing" ng-hide="isCapture()" button-class="secondary"
+                              button-text="Print receipt"></print-button>
+
+                <a ng-show="paymentDetail.isRecurringPayment()" class="button secondary"
+                   href="#/payment/scheduled/manage">View
+                    scheduled payments</a>
+            </div>
+        </div>
+    </div>
+    <div class="form-layout-right" require-permission="viewMonthlyPayments">
+        <monthly-payment-limits class="hide-on-print" watcher="watcher"></monthly-payment-limits>
+    </div>
+    <div class="print-only">
+        <ng-include src="'common/print/partials/printFooter.html'"></ng-include>
+    </div>
+
+</div>
+
+<div>
+    <beneficiary-validation-modal title="Deleted beneficiary" show-modal="showInvalidBeneficiaryModal" on-confirm="onceOffPayment()" on-cancel="refreshBeneficiaryList()" confirm-text="Once-off" cancel-text="Cancel">
+        <div>
+            <p>This beneficiary was deleted. No further payments can be made to this beneficiary. Would you like to make a once-off payment?</p>
+        </div>
+    </beneficiary-validation-modal>
+</div>

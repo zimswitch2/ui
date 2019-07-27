@@ -1,0 +1,27 @@
+<h2>Action modal</h2>
+<p class="note">Do we really need two modal components?</p>
+<p class="note">Add an example with an error.</p>
+<div class="example">
+    <h3>With buttons</h3>
+    <button ng-click="showModal = true">Show modal</button>
+    <div>
+        <div class="modal-overlay" ng-show="showModal">
+            <div class="modal-container action-modal">
+                <div class="modal-header">
+                    <h3>This is a modal</h3>
+                </div>
+
+                <div class="modal-content">
+                    This is stuff inside a modal.
+                </div>
+
+                <div class="actions">
+                    <button>Confirm</button>
+                    <button class="secondary" ng-click="showModal = false">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <show-code></show-code>
+</div>
+

@@ -1,0 +1,53 @@
+@mixin product-panel {
+  margin-bottom: 1em;
+
+  h3 {
+    border-bottom: 1px solid;
+    font-weight: normal;
+    font-size: 1.5em;
+    padding: 1em;
+    margin: 0;
+  }
+
+  h2 {
+    background-color: $white;
+    font-weight: 100;
+    font-size: 2.3em;
+    padding: 0.25em;
+    margin: 0;
+  }
+
+  &.transaction {
+    h3, h2 {
+      color: $primary-blue-light;
+    }
+  }
+
+  &.creditcard {
+    h3, h2 {
+      color: $deep-orange;
+    }
+  }
+
+  &.loan {
+    h3, h2 {
+      color: $normal-orange;
+    }
+  }
+
+  &.investment {
+    h3, h2 {
+      color: $success-green;
+    }
+  }
+
+  &.cashflows {
+    h3 {
+      color: $primary-blue-light;
+    }
+
+    div {
+      padding: 0.4em;
+    }
+  }
+}

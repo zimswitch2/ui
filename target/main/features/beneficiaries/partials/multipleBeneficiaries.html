@@ -1,0 +1,174 @@
+<div class="multiple-beneficiaries wide-content">
+    <div class="info result notification" ng-show="hasInfo">{{infoMessage}}</div>
+
+    <div class="error result notification" ng-show="!hasInfo &amp;&amp; invalidAvailableBalance &amp;&amp; monthlyEAPLimit != 0">
+        Total amount exceeds available balance
+    </div>
+    <div class="error result notification" ng-show="!hasInfo &amp;&amp; !invalidAvailableBalance &amp;&amp; invalidAvailableTransferLimit &amp;&amp; monthlyEAPLimit != 0">
+        Total amount exceeds available monthly transfer limit
+    </div>
+
+    <div class="error result notification" ng-show="!hasInfo &amp;&amp; hasZeroEAPLimit &amp;&amp; monthlyEAPLimit == 0">Your electronic
+        account payment (EAP)
+        limit needs to be set in order to make payments. Please call Customer Care (0860 123 000) for further
+        assistance.
+    </div>
+
+    <div class="panel">
+        <div id="pay-multiple-beneficiaries" class="action-table" ng-form="payMultipleBeneficiariesForm" ng-init="initialize()">
+
+            <div class="filter-controls selected-account">
+                <label class="left">From account</label>
+
+                <div class="left styled-select" ng-class="{&apos;disabled&apos;: payFromAccounts.length === 0}">
+                    <select id="fromAccountSelect" ng-model="account" ng-required="true" ng-options="(item | accountLabel) for item in payFromAccounts track by item.formattedNumber" ng-change="updateFromAccount(account)" ng-disabled="payFromAccounts.length === 0"></select>
+                </div>
+                <form class="filter right">
+                    <filter-box ng-show="filterable" ng-model="query" placeholder="Search"></filter-box>
+                </form>
+            </div>
+            <ul class="header">
+                <li>
+                    <div class="information">
+                        <div>Name</div>
+                        <div>Your reference</div>
+                        <div>Beneficiary reference</div>
+                        <div class="mul-last-payment">Last payment</div>
+                        <div class="mul-notif">Notification</div>
+                        <div>Amount</div>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="information" ng-show="informationMessage">
+                <span class="information message">{{informationMessage}}</span>
+            </div>
+            <ul class="data not-clickable">
+                <li ng-repeat="currentBeneficiary in beneficiaryList()" ng-form="beneficiaryPaymentForm">
+                    <div class="information">
+                        <div data-header="Name">
+                            <div class="cell-data">
+                                <strong>{{currentBeneficiary.name}}</strong>
+                                <div class="beneficiary-group-name">{{currentBeneficiary.recipientGroupName}}</div>
+                            </div>
+                        </div>
+                        <div class="show-hide" ng-class="{ &apos;mobile-hidden&apos; : !toggleDetails(currentBeneficiary.recipientId) }" data-header="Your reference">
+                            <div class="cell-data">
+                                <input name="myReference" type="text" ng-model="currentBeneficiary.customerReference" ng-change="updateSelectedBeneficiaries(currentBeneficiary)" ng-maxlength="12" payment-reference-validation="" required ng-class="{&apos;show-validation-styles&apos;:
+                                               beneficiaryPaymentForm.myReference.$touched ||
+                                               beneficiaryPaymentForm.myReference.$dirty}">
+                                <ng-messages for="beneficiaryPaymentForm.myReference.$error">
+                                    <ng-message class="form-error" when="required">{{'Required'}}</ng-message>
+                                    <ng-message class="form-error" when="maxlength">{{'Cannot be longer than ' +
+                                        ngMaxlength + ' characters'}}
+                                    </ng-message>
+                                    <ng-message class="form-error" when="paymentReference">
+                                        Please enter a valid reference
+                                    </ng-message>
+                                </ng-messages>
+
+                            </div>
+                        </div>
+                        <div class="show-hide" ng-class="{ &apos;mobile-hidden&apos; : !toggleDetails(currentBeneficiary.recipientId) }" data-header="Beneficiary reference">
+                            <div class="cell-data">
+
+                                <div ng-show="isCompany(currentBeneficiary)">
+                                    <span>{{currentBeneficiary.recipientReference}}</span>
+                                </div>
+
+                                <div ng-hide="isCompany(currentBeneficiary)">
+                                    <input name="beneficiaryReference" type="text" ng-model="currentBeneficiary.recipientReference" ng-change="updateSelectedBeneficiaries(currentBeneficiary)" ng-maxlength="25" payment-reference-validation="" required ng-class="{&apos;show-validation-styles&apos;:
+                                               beneficiaryPaymentForm.beneficiaryReference.$touched ||
+                                               beneficiaryPaymentForm.beneficiaryReference.$dirty}">
+                                    <ng-messages for="beneficiaryPaymentForm.beneficiaryReference.$error">
+                                        <ng-message class="form-error" when="required">{{'Required'}}</ng-message>
+                                        <ng-message class="form-error" when="maxlength">{{'Cannot be longer than ' +
+                                            ngMaxlength + ' characters'}}
+                                        </ng-message>
+                                        <ng-message class="form-error" when="paymentReference">
+                                            Please enter a valid beneficiary reference
+                                        </ng-message>
+                                    </ng-messages>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="show-hide mul-last-payment" ng-class="{ &apos;mobile-hidden&apos; : !toggleDetails(currentBeneficiary.recipientId) }" data-header="Last payment">
+                            <div class="cell-data">
+                            <span id="last-payment" ng-show="currentBeneficiary.amountPaid &gt; 0">
+                                {{currentBeneficiary.amountPaid | randAmount}} on {{currentBeneficiary.lastPaymentDate | dateFormat}}
+                            </span>
+                            </div>
+                        </div>
+                        <div class="show-hide mul-notif" ng-class="{ &apos;mobile-hidden&apos; : !toggleDetails(currentBeneficiary.recipientId) }" data-header="Notification">
+                            <div class="cell-data"><a id="{{currentBeneficiary.recipientId}}" ng-click="editNotificationPreferences(currentBeneficiary);" class="notification-preference">{{currentBeneficiary.paymentConfirmation.confirmationType}}</a>
+                            </div>
+                        </div>
+                        <div class="amount" data-dtmid="{{currentBeneficiary.recipientId}}" data-header="Amount">
+
+                            <div class="cell-data">
+                                <input type="text" id="{{currentBeneficiary.name}}" name="amount" size="12" ng-model="amounts[currentBeneficiary.recipientId]" ng-change="updateSelectedBeneficiaries(currentBeneficiary)" placeholder="0.00" class="currency amount" currency-field="" allow-blank="">
+                          <span class="form-error" ng-show="beneficiaryPaymentForm.amount.$error.currencyLimit">
+                            The amount cannot exceed <span class="rand-amount">R 5 000 000</span>
+                        </span>
+                          <span class="form-error" ng-show="beneficiaryPaymentForm.amount.$error.currencyFormat">
+                            Please enter the amount in a valid format
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="mobile-show-more-link" ng-class="{ &apos;hide-details&apos; : toggleDetails(currentBeneficiary.recipientId) }" ng-click="setDetailsId(currentBeneficiary.recipientId)"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal-overlay" ng-show="beneficiary">
+        <div class="modal-container action-modal">
+            <div class="modal-header">
+                <h3>Change notification details</h3>
+            </div>
+
+            <div class="info result notification">Selected notification method will apply to this payment only</div>
+
+            <div class="modal-content">
+                <ng-form name="paymentConfirmationForm">
+                    <ng-include src="&apos;features/beneficiaries/partials/paymentConfirmation.html&apos;"></ng-include>
+                    <button ng-click="closeNotificationPreferences()" ng-disabled="!paymentConfirmationForm.$valid" id="continue" class="primary">Continue
+                    </button>
+                    <button ng-click="updateSelectedBeneficiaries(originalBeneficiary.beneficiary); cancel();" id="cancel" class="secondary">Cancel
+                    </button>
+                </ng-form>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="pay-multiple-beneficiaries-footer row">
+            <div class="small-12 medium-3 columns">
+                <button id="next" ng-click="next()" ng-disabled="invalid() || !payMultipleBeneficiariesForm.$valid">
+                    Next
+                </button>
+                <button go-back="" class="secondary">Cancel</button>
+            </div>
+            <div class="small-12 medium-3 columns" ng-class="{&apos;invalid-balance&apos;: invalidAvailableBalance}">
+                <span>Available balance</span>
+                <span id="balance" class="amount">
+                    {{account.availableBalance.amount | nonNegativeRandAmount}}
+                </span>
+            </div>
+            <div class="small-12 medium-3 columns" ng-class="{&apos;invalid-balance&apos;: !invalidAvailableBalance &amp;&amp; invalidAvailableTransferLimit}">
+                <span>Available monthly limit</span>
+                <span id="transfer" class="amount">
+                    {{availableEAPLimit | nonNegativeRandAmount}}
+                </span>
+            </div>
+            <div class="small-12 medium-3 columns">
+                <span>Total</span>
+                <span class="total-amount" ng-class="{&apos;invalid-balance&apos;: invalidAvailableBalance || invalidAvailableTransferLimit}">
+                    {{totalAmount | nonNegativeRandAmount}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

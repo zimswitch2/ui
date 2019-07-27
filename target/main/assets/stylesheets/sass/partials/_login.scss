@@ -1,0 +1,96 @@
+.login {
+
+  .panel-row {
+    @extend .row;
+
+    .column, .columns {
+      @media #{$small-only} {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      @media #{$medium-up} {
+        &:first-child {
+          padding-left: 0;
+        }
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+
+      .register-text {
+        div {
+          min-height: 4.4em;
+        }
+      }
+    }
+  }
+
+  .terms-text {
+    margin: 0;
+    float: none;
+
+    @media #{$medium-up} {
+      margin: 0.5rem 0 0 1rem;
+      float: left;
+    }
+  }
+
+  .cancel-button{
+    margin: 0;
+    float: none;
+
+    @media #{$medium-up} {
+      margin: 0px 0px 0px 1rem;
+      float: left;
+    }
+
+  }
+
+  .register-image {
+    padding-right: 1em;
+    height: 90%;
+    width: 90%;
+  }
+
+  .register-text {
+    width: 60%;
+    display: inline-block;
+    float: left;
+    @media #{$small-only} {
+      width: 100%;
+      display: block;
+      margin-bottom: 1em;
+    }
+
+  }
+
+  .register-button {
+    @media #{$medium-up} {
+      padding-left: 3em;
+      padding-top: 0.5em;
+    }
+
+    @media #{$small-only} {
+      width: 100%;
+    }
+  }
+
+  .map {
+    display: none;
+
+    @media #{$large-up} {
+      display: block;
+    }
+
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    top: 8em;
+  }
+
+  button {
+    z-index: 1;
+  }
+}

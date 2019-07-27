@@ -1,0 +1,239 @@
+.title-print {
+  h2 p {
+    padding: 0;
+    font-size: 0.5em;
+    color: $slate-grey;
+  }
+
+  button, a.btn, #downloadify {
+    float: right;
+  }
+}
+
+.product-row {
+  @include outer-container();
+  max-width: 100%;
+
+  img {
+    @include span-columns(3);
+  }
+
+  ul {
+    padding: 0.5em;
+
+    li {
+      @include bullet-list;
+      @extend .columns;
+    }
+  }
+
+  button.primary,
+  a.primary {
+    float: right;
+
+    @media #{$small-only} {
+      float: none;
+      margin: 1em 0 0 0;
+      width: 100%;
+    }
+  }
+
+  button.secondary {
+    margin-top: 1em;
+
+    @media #{$small-only} {
+      float: right;
+      width: 100%;
+    }
+  }
+
+  p {
+    padding: 0;
+    margin-top: 1em;
+    margin-bottom: 0;
+
+    @media #{$small-only} {
+      margin-top: 0;
+      margin-bottom: 1em;
+    }
+  }
+
+  .happens-next-section {
+    a {
+      word-break: break-word;
+    }
+  }
+
+  i {
+    &.icomoon-scheduled {
+      color: $turquoise;
+    }
+
+    &.icomoon-pending {
+      color: $cranberry;
+    }
+
+    &.icomoon-account-number {
+      color: $azure-blue;
+    }
+
+    &.icomoon-overdraft {
+      color: $bright-amber;
+    }
+
+    &.icomoon-products {
+      color: $mustard-yellow;
+    }
+  }
+
+  .application-status-text {
+    @include span-columns(12);
+    clear: both;
+
+    @media #{$large-up} {
+      @include span-columns(9);
+      clear: none;
+      margin-right: 0;
+
+      p {
+        margin-top: 1em;
+      }
+    }
+
+    ul {
+      padding: 0 0.5em;
+    }
+
+    li {
+      float: none;
+    }
+
+    .happens-next-section {
+      p {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.apply-now {
+  @media #{$medium-up} {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+.relative {
+  position: relative;
+}
+
+.account-origination {
+  h1 {
+    font-size: 2.3em;
+    font-weight: normal;
+    color: $gunmetal;
+    padding-top: 0;
+    padding-left: 0;
+  }
+
+  label {
+    display: inline;
+  }
+
+  @include separated-sections;
+}
+
+.product-information {
+  background-color: $background-color;
+  padding: 2em;
+
+  .small-well {
+    p {
+      margin-left: 0;
+    }
+    button.primary,
+    a.primary {
+      float: none;
+      margin: 1em 0 0 0;
+      width: 100%;
+    }
+  }
+
+  i {
+    &.icomoon-scheduled {
+      color: $turquoise;
+    }
+
+    &.icomoon-pending {
+      color: $cranberry;
+    }
+  }
+
+  a.pricing-guide {
+    width: 100%;
+  }
+
+  section {
+    margin-bottom: 20px;
+
+    h3 {
+      color: $azure-blue;
+    }
+
+    p, small {
+      color: $slate-grey;
+      padding-left: 0;
+    }
+
+    ul {
+      margin-left: 20px;
+    }
+
+    ul li {
+      color: $slate-grey;
+      list-style: disc;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+    }
+  }
+}
+
+.modal-container.offer-details {
+  width: 100%;
+  max-width: $content-max-width;
+  text-align: left;
+  padding: 0;
+
+  .offer-header {
+    border-bottom: 1px solid $azure-blue;
+    padding: 2em;
+
+    i {
+      color: $azure-blue;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      color: $gunmetal;
+    }
+  }
+}
+
+.pre-screening.well {
+  @media #{$small-only} {
+
+    .secondary {
+      width: 95%;
+    }
+  }
+}
+
+.text-light {
+  color: $slate-grey;
+}
+
+.font-weight-normal {
+  font-weight: normal !important;
+  color: $gunmetal !important;
+}

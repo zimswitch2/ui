@@ -1,0 +1,39 @@
+<h2>Instant Money</h2>
+<div class="form-layout-top">
+<div flow=""></div>
+</div>
+<div class="form-layout-main">
+    <div class="panel">
+        <div class="summary">
+            <div class="summary-split-row hide-on-print">
+                <div>
+                    <span>From Account</span>
+                    <span id="fromAccount">{{voucher.account.productName}} - {{voucher.account.formattedNumber}}</span>
+                </div>
+                <div>
+                    <span>Available balance</span>
+                    <span id="availableBalance" name="confirm-fromBalance">{{voucher.account.availableBalance.amount | randAmount}}</span>
+                </div>
+            </div>
+            <div class="summary-row">
+                <div>
+                    <span>Cell phone number </span><span id="cellPhoneNumber">{{voucher.cellNumber}}</span>
+                </div>
+            </div>
+            <div class="summary-row">
+                <div>
+                    <span>Amount</span><span id="amount">{{voucher.amount  | randAmountNoCents}}</span>
+                </div>
+            </div>
+        </div>
+
+        <button ng-click="confirm()" data-dtmid="link_content_Instant Money" data-dtmtext="send money step 2 | Confirm button click">Confirm</button>
+        <button class="secondary" ng-click="modify()" data-dtmid="link_content_Instant Money" data-dtmtext="send money step 2 | Modify button click">Modify</button>
+        <a class="btn secondary" href="#/instant-money" data-dtmid="link_content_Instant Money" data-dtmtext="send money step 2 | Cancel button click">Cancel</a>
+    </div>
+</div>
+
+<div class="form-layout-right">
+    <monthly-payment-limits watcher="watcher"></monthly-payment-limits>
+</div>
+

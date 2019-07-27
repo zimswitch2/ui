@@ -1,0 +1,12 @@
+international-phone-number {
+  .countrySelector {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+  }
+
+  .warn {
+    color: #eea236;
+    float: right;
+  }
+}

@@ -1,0 +1,21 @@
+<div ng-repeat="item in items">
+    <div>
+        <div id="{{item.title}}" ng-click="openTab(item.title)">
+            <a>
+                <i class="icon icomoon-{{item.icon}}"></i>
+                <div>{{item.title}}</div>
+                <i class="icon-right" ng-class="isOpenTab(item.title)?'icomoon-chevron-down':'icomoon-chevron-right'"></i>
+            </a>
+        </div>
+        <div ng-show="isOpenTab(item.title)">
+            <ul>
+                <li ng-repeat="i in item.items">
+                    <a href="{{i.url}}" class="secondary {{i.class}}">
+                        <i class="icon icomoon-{{i.icon}}"></i>
+                        {{i.title}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

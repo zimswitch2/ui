@@ -1,0 +1,401 @@
+.list-page {
+  margin-top: 1.25rem;
+  .accountAndAmountPanel {
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.12), 0 0 0 rgba(0, 0, 0, 0.24);
+    max-width: inherit;
+    background-color: white;
+    margin-bottom: 0;
+    @extend .panel;
+    .summary-row {
+      line-height: 0.6;
+      h3 {
+        margin-bottom: 0;
+      }
+      &:nth-child(1) {
+        color: #333333;
+      }
+      &:nth-child(2) {
+        color: #999999;
+      }
+    }
+  }
+  .dates-panel {
+    @extend .panel;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.12), 0 0 0 rgba(0, 0, 0, 0.24);
+    background-color: #F6F6F6;
+    margin-bottom: 0;
+    line-height: 2.5em;
+    padding-left: 1em;
+    padding-top: 1em;
+    height: 4.188em;
+    max-width: 100%;
+    button.secondary {
+      height: 2.5em;
+      width: 3.438em;
+      background-color: #F6F6F6;
+      color: #00AADD;
+      line-height: 0.4em;
+      border: 1px solid #00aadd;
+    }
+    button.active {
+      color: white;
+      background-color: #00aadd;
+    }
+
+    .dateLoc {
+      padding-left: 3rem;
+    }
+  }
+  .centered-action-table {
+    ul.header {
+      height: 4em;
+      line-height: 3rem;
+      padding-top: 1.0em;
+      margin-bottom: 0;
+      .information {
+        .currency {
+          text-align: right
+        }
+      }
+    }
+    .narrative {
+      color: #333333;
+    }
+    .type {
+      color: #999999;
+      span {
+        height: 0.688em;
+      }
+    }
+  }
+  .search-print-download-search-controls {
+    padding-right: 1em;
+    height: 3.5em;
+    background-color: white;
+  }
+
+  @media #{$small-only} {
+    .search-print-download-search-controls {
+      padding-right: 0.5rem;
+      width: 95%;
+      margin-right: auto;
+      margin-left: auto;
+
+    }
+
+    .accountAndAmountPanel {
+      .styled-select {
+        margin-top: 1.25rem;
+        margin-right: 1rem;
+        width: 100%;
+      }
+      margin-bottom: 0;
+      .summary-row {
+        line-height: 1.6rem;
+        small {
+          color: #999999 ;
+        }
+        span {
+          color: #333333;
+        }
+      }
+    }
+    .dates-panel {
+      width: 95%;
+    }
+    .centered-action-table {
+      width: 95%;
+      margin-right: auto;
+      margin-left: auto;
+      .data {
+        li {
+          .yearHeader {
+            line-height: 1.5rem !important;
+          }
+        }
+      }
+      ul.header {
+        padding-top: 1.0em;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      }
+    }
+    .styled-select {
+      width: auto;
+    }
+  }
+  @media #{$medium-up} {
+    .accountAndAmountPanel {
+      .styled-select {
+        margin-right: 1rem;
+      }
+    }
+    .centered-action-table {
+      ul {
+        .yearHeader {
+          border-bottom: 1px solid #e5e5e1;
+          line-height: 3.5rem;
+          div > div {
+            color: black;
+          }
+        }
+
+        li {
+          padding-left: 0;
+        }
+        .information {
+          .month {
+            line-height: 0;
+            margin-top: -0.5rem;
+          }
+          width: 100%;
+        }
+      }
+      ul.header {
+        padding-top: 1.0em;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      }
+    }
+    .styled-select {
+      width: auto;
+    }
+  }
+  @media #{$large-up} {
+    .centered-action-table {
+      ul {
+        .information {
+          .month {
+            line-height: 0;
+            margin-top: -0.5rem;
+          }
+          width: 100%;
+        }
+      }
+      ul.header {
+        padding-top: 1.0em;
+        padding-right: 0.5rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 0 rgba(0, 0, 0, 0.24);
+      }
+    }
+  }
+  .loading-text {
+    color: $azure-blue;
+    margin-left: 8px;
+  }
+
+  .loading {
+    padding: 0.8em;
+    text-align: center;
+
+    @media #{$small-only} {
+      border: 0 solid #e5e5e1 !important;
+      padding: 1.4em !important;
+    }
+
+    @media #{$medium-only} {
+      border: 0 solid #e5e5e1 !important;
+      padding: 1.0em !important;
+    }
+  }
+
+  .retry, .retry:hover {
+    background-color: $error-background !important;
+    color: $error;
+    border: 0 solid $error !important;
+    span {
+      color: $error;
+    }
+  }
+
+  .load-next {
+    background-color: $azure-blue-light;
+    color: $azure-blue;
+    border: 1px solid $azure-blue !important;
+    span {
+      color: $azure-blue;
+    }
+  }
+  .bottom-text {
+    text-align: center;
+    font-size: 0.9em;
+    z-index: 9999;
+    cursor: pointer;
+    position: relative;
+    padding-top: 1.2em !important;;
+    padding-bottom: 1.2em;
+
+    @media #{$large-up} {
+      position: absolute;
+    }
+
+    span {
+      text-decoration: underline;
+    }
+
+  }
+
+  .download-button-icon {
+    width: 17%;
+  }
+
+  .print-button-icon {
+    width: 12%;
+  }
+
+  hidden-form-button {
+    padding: 1em 1em 1em 2em;
+    button {
+      background-color: transparent;
+      border: 0;
+      padding: 1em 1em 1em 1.5em;
+      span {
+        color: $font-grey-dark !important;
+      }
+    }
+  }
+
+  .dropdown-menu {
+    width: 9.5em;
+  }
+
+  @media #{$small-up} {
+    .centered-action-table {
+      .information > div > div {
+        display: block;
+        vertical-align: middle;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      ul.data {
+        > li {
+          margin: 0;
+          padding-top: 0;
+          border: 0 solid #e5e5e1;
+          border-bottom: 1px solid #e5e5e1;
+          .actions {
+            border: none;
+            background-color: transparent;
+            padding: 0;
+
+            .action {
+              .title {
+                display: none;
+              }
+            }
+          }
+
+          .yearHeader {
+            border-bottom: 1px solid #e5e5e1;
+            line-height: 3.5rem;
+            div > div {
+              color: black;
+            }
+          }
+
+          .rowInformation {
+            line-height: 3rem;
+          }
+          .information {
+            .currency {
+              text-align: right
+            }
+
+            > a, > span, > div {
+
+              border: none;
+              &:before {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+
+      .information > div {
+        min-height: 1em;
+        padding-right: 0.5rem;
+      }
+
+      ul {
+        li {
+          min-height: $line-height;
+          overflow: hidden;
+          .information > div {
+            padding-left: 1rem;
+            float: left;
+          }
+        }
+
+        &.header {
+          display: block;
+          background: white;
+          position: relative;
+          padding-top: 0.5em;
+          margin-bottom: 0.2rem;
+
+          height: 4em;
+          line-height: 3rem;
+
+          div {
+            color: $gunmetal-light;
+          }
+
+          .action {
+            background-color: #dadada;
+            font-size: 0.8em;
+            margin-right: 0.6em;
+            text-align: center;
+          }
+
+          li {
+            width: 100%;
+            .actions {
+              margin-top: 0.7em;
+              position: absolute;
+              right: 0;
+              padding: 0;
+              .action {
+                float: right;
+                background-color: #dadada;
+                font-size: 0.8em;
+                margin-right: 0.6em;
+                text-align: center;
+                z-index: 10;
+                padding-right: 0;
+                line-height: 1rem;
+                margin-left: 0.8em;
+              }
+            }
+          }
+          @include sortable_headers;
+        }
+        &.data {
+          li {
+            .information {
+              min-height: 3.5rem;
+              .currency {
+                text-align: right;
+              }
+            }
+            .actions {
+              position: absolute;
+              bottom: 0;
+              right: 0.4em;
+              margin: 0;
+
+              .action {
+
+              }
+            }
+          }
+        }
+      }
+      ul.data .action {
+        float: left;
+        padding: 0.2em 0 0.2em 0;
+        margin-left: 0.95em;
+        font-size: 1.2em;
+      }
+    }
+  }
+}

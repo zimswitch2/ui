@@ -1,0 +1,17 @@
+<div class="display-number-items">
+    <div class="input-group typeahead-container">
+        <div class="no-padding">
+            <input type="text" id="{{id}}-input" lazy-load="{{lazyLoad}}" name="{{name}}" ng-model="itemText" ng-required="ngRequired" autocomplete="off" placeholder="{{placeholder}}" ng-focus="ngFocus()" ng-blur="ngBlur()">
+            <i class="icon icomoon-search"></i>
+            <i class="icon icomoon-close close" ng-click="selectNone()" ng-show="itemText != &apos;&apos;"></i>
+            <span ng-class="dirtyClass(id)" ng-show="invalid(&apos;itemRequired&apos;) &amp;&amp; !invalid(&apos;itemNotInList&apos;)">Required</span>
+            <span ng-class="dirtyClass(id)" class="item-not-in-list" ng-show="invalid(&apos;itemNotInList&apos;)">{{invalidItemMessage || 'No matches found'}}</span>
+        </div>
+    </div>
+    <ul class="typeahead items" data-results-for="{{id}}-input" ng-hide="itemsHidden">
+        <li class="item" ng-repeat="item in filteredItems | limitTo: 10 track by item.label()" ng-mousedown="selectItem(item, true)" ng-mouseover="current.item.instance = null" ng-class="{&apos;current&apos;: item.label() === current.item.instance.label()}">
+            {{item.label()}}
+        </li>
+        <li ng-show="filteredItems.length &gt; 10">Displaying 10 of {{ filteredItems.length }} items</li>
+    </ul>
+</div>

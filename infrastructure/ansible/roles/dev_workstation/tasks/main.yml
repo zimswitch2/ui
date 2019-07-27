@@ -1,0 +1,29 @@
+---
+
+- name: install fish
+  apt: pkg=fish state=latest
+
+- name: set fish as the default shell for vagrant user
+  user: name=vagrant shell=/usr/bin/fish
+  
+- name: create developer user
+  user: name=developer comment="Developer" generate_ssh_key=yes shell=/usr/bin/fish
+  
+- name: make developer a sudoer
+  command: usermod -aG sudo developer
+
+- name: checkout source code
+  git: repo=http://10.144.82.168:7990/scm/ibr/ib.git
+       dest=/home/developer/projects/refresh
+  
+- name: chown home to developer
+  file: path=/home/developer recurse=true owner=developer
+
+- name: install g++
+  apt: pkg=g++ state=latest
+
+- name: install npm dependencies
+  command: chdir=/home/developer/projects/refresh/ui su developer -c 'npm install'
+
+- name: symlink chromium to google-chrome
+  file: src=/usr/bin/chromium-browser dest=/usr/bin/google-chrome state=link

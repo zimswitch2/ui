@@ -1,0 +1,9 @@
+angular.module('refresh.prepaid',
+    [
+        'refresh.prepaid.history.controller',
+        'refresh.prepaid.history.services.service',
+        'refresh.prepaid.history.services.request',
+        'refresh.prepaid.recharge.controllers',
+        'refresh.prepaid.recharge.services'
+    ]
+);

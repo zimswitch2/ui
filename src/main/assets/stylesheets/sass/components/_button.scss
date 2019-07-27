@@ -1,0 +1,133 @@
+button, .button {
+  width: 95%;
+  margin-left: $input-padding;
+}
+
+.panel {
+  button, .button {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+@media #{$medium-up} {
+  button, .button {
+    width: auto;
+    margin: 0;
+  }
+  .panel {
+    button, .button {
+      width: auto;
+      margin: 0;
+    }
+  }
+}
+
+.btn.label-button {
+  width: 100%;
+  height: 2.8em;
+  margin-bottom: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+
+  @media #{medium-up} {
+    margin-bottom: 1.25rem;
+  }
+}
+
+button, .button {
+  padding: $input-padding 1em $input-padding 1em;
+  border: 1px solid $azure-blue;
+  vertical-align: top;
+
+  @media #{$medium-up} {
+    &.tertiary {
+      margin-left: 1em;
+    }
+  }
+
+  &.secondary, &.tertiary {
+    background-color: #fff;
+    color: $azure-blue;
+    border: 1px solid $azure-blue;
+
+    &:hover, &:focus {
+      color: $azure-blue;
+      background-color: lighten($azure-blue, 40%);
+      border: 1px solid $azure-blue;
+    }
+
+    &.disabled {
+      color: #ddd;
+      border-color: #ddd;
+      cursor: default;
+
+      &:hover {
+        background-color: white;
+      }
+    }
+  }
+
+  &.danger-confirm {
+    color: #FFF;
+    background-color: #CE1936;
+    border: solid 1px #BA4D30;
+    &:hover {
+      background-color: #E01C3C;
+    }
+  }
+
+  &.icon-button {
+    background-color: #fff;
+    position: relative;
+    padding: 0.3em 0.5em;
+    border: solid 1px $silver-grey-light;
+
+    @media #{$small-only} {
+      text-align: center;
+    }
+
+    i {
+      font-size: 1.7em;
+      float: left;
+      padding: 0.15em 0;
+    }
+    .title {
+      float: left;
+      padding-top: 0.5em;
+      padding-left: 0.5em;
+      color: #232323;
+    }
+
+    &:hover {
+      background-color: $azure-blue-light;
+    }
+  }
+}
+
+a:focus {
+  outline:0;
+}
+
+button[disabled] {
+  border: solid 1px #ccc;
+  background-color: $silver-grey;
+  &:hover {
+    background-color: $silver-grey;
+  }
+}
+
+.icon-button, .action-table {
+  .icomoon-delete {
+    color: $icon-red;
+  }
+
+  .icomoon-pay {
+    color: $icon-green;
+  }
+
+  .icomoon-edit, .icomoon-remove {
+    color: $icon-blue;
+  }
+}

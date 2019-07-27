@@ -1,0 +1,35 @@
+<h2 id="rcpProductsTitle">Apply for Loan</h2>
+
+<div class="info notification wide" id="hasRcpAccountMessage" ng-if="hasRcpAccount">
+    You already have a Revolving Credit Plan (RCP). If you want to increase your RCP limit, please visit your nearest
+    branch. Don't forget that you can borrow again up to your original loan amount as soon as you repay 15% of your
+    loan.
+</div>
+
+<div class="account-products well wide">
+    <section class="product-row no-separator relative">
+        <div class="page-heading-row">
+            <h3 class="hide-on-print">Revolving Credit Plan</h3>
+        </div>
+
+        <img class="show-for-large-up" src="assets/images/rcp.jpg" alt="Revolving Credit Plan"/>
+
+        <div class="application-status-text">
+            <p>Need quick access to cash for unplanned expenses? A Revolving Credit Plan (RCP) lets you borrow again up
+                to your original loan amount as soon as you repay 15% of your loan.</p>
+        </div>
+
+        <div>
+            <apply-for-account product-type="rcp" class="apply-now" id="rcpApplyNowMobile" ng-if="canApply" track-click="Apply.Apply for loan.Apply Now"></apply-for-account>
+        </div>
+    </section>
+
+    <section>
+        <div class="product-information">
+            <div ng-include="'features/accountorigination/rcp/screens/products/partials/rcpDetails.html'">
+            </div>
+            <div class="clear"></div>
+        </div>
+    </section>
+</div>
+

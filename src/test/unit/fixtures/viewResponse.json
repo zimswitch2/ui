@@ -1,0 +1,417 @@
+{
+  "beneficiaries": [
+    {
+      "accountNumber": "45640211",
+      "bank": {
+        "branch": {
+          "code": "51001",
+          "name": "SINGL IBT SBSA"
+        },
+        "code": "051",
+        "name": "STANDARD BANK"
+      },
+      "beneficiaryType": "PRIVATE",
+      "recentPayment": [
+        {
+          "amount": {
+            "amount": 21
+          },
+          "date": "2013-11-11T22:00:00.000+0000"
+        },
+        {
+          "amount": {
+            "amount": 1
+          },
+          "date": "2013-11-03T22:00:00.000+0000"
+        },
+        {
+          "amount": {
+            "amount": 21
+          },
+          "date": "2013-11-11T22:00:00.000+0000"
+        },
+        {
+          "amount": {
+            "amount": 1
+          },
+          "date": "2013-11-03T22:00:00.000+0000"
+        },
+        {
+          "amount": {
+            "amount": 2
+          },
+          "date": "2013-11-03T22:00:00.000+0000"
+        }
+      ],
+      "customerReference": "Sister",
+      "favourite": true,
+      "name": "Danielle Ward",
+      "paymentConfirmation": {
+        "address": null,
+        "confirmationType": "None",
+        "recipientName": null,
+        "sendFutureDated": null
+      },
+      "recipientGroup": {
+        "name": "Alegtest",
+        "oldName": "Alegtest",
+        "orderIndex": null
+      },
+      "recipientId": 19,
+      "recipientReference": "Liam Harper"
+    },
+    {
+      "accountNumber": "14420018934",
+      "bank": {
+        "branch": {
+          "code": "51001",
+          "name": "SINGL IBT SBSA"
+        },
+        "code": "051",
+        "name": "STANDARD BANK"
+      },
+      "beneficiaryType": "COMPANY",
+      "recentPayment": [
+        {
+          "amount": {
+            "amount": 0
+          },
+          "date": "2013-09-03T22:00:00.000+0000"
+        }
+      ],
+      "customerReference": "Groceries",
+      "favourite": false,
+      "name": "Woolworths",
+      "paymentConfirmation": {
+        "address": null,
+        "confirmationType": "None",
+        "recipientName": null,
+        "sendFutureDated": null
+      },
+      "recipientGroup": {
+        "name": "Groups Test",
+        "oldName": "Groups Test",
+        "orderIndex": null
+      },
+      "recipientId": 6,
+      "recipientReference": "Fruits"
+    },
+    {
+      "accountNumber": "45640211",
+      "bank": {
+        "branch": {
+          "code": "51001",
+          "name": "SINGL IBT SBSA"
+        },
+        "code": "051",
+        "name": "STANDARD BANK"
+      },
+      "beneficiaryType": "PRIVATE",
+      "recentPayment": [
+        {
+          "amount": {
+            "amount": 56
+          },
+          "date": "2014-02-03T22:00:00.000+0000"
+        },
+        {
+          "amount": {
+            "amount": 56
+          },
+          "date": "2014-02-03T22:00:00.000+0000"
+        },
+        {
+          "amount": {
+            "amount": 0
+          },
+          "date": "2013-09-02T22:00:00.000+0000"
+        }
+      ],
+      "customerReference": "Neighbour",
+      "favourite": false,
+      "name": "Paris McGlashan",
+      "paymentConfirmation": {
+        "address": "0714443212",
+        "confirmationType": "SMS",
+        "recipientName": "Paris",
+        "sendFutureDated": null
+      },
+      "recipientGroup": {
+        "name": "Alegtest",
+        "oldName": "Alegtest",
+        "orderIndex": null
+      },
+      "recipientId": 4,
+      "recipientReference": "Car accident"
+    },
+    {
+      "accountNumber": "66200080764",
+      "bank": {
+        "branch": {
+          "code": "63200500",
+          "name": "ABSA ELECTRONIC SETTLEMENT CNT"
+        },
+        "code": "301",
+        "name": "ABSA"
+      },
+      "beneficiaryType": "PRIVATE",
+      "recentPayment": [
+        {
+          "amount": {
+            "amount": 0
+          },
+          "date": "2013-09-03T22:00:00.000+0000"
+        }
+      ],
+      "customerReference": "Roommate",
+      "favourite": false,
+      "name": "Angela Bowman",
+      "paymentConfirmation": {
+        "address": "0714443212",
+        "confirmationType": "SMS",
+        "recipientName": "Angela",
+        "sendFutureDated": null
+      },
+      "recipientGroup": null,
+      "recipientId": 14,
+      "recipientReference": "Rent"
+    },
+    {
+      "accountNumber": "33530041171",
+      "bank": {
+        "branch": {
+          "code": "51001",
+          "name": "SINGL IBT SBSA"
+        },
+        "code": "051",
+        "name": "STANDARD BANK"
+      },
+      "beneficiaryType": "COMPANY",
+      "recentPayment": [
+        {
+          "amount": {
+            "amount": 12
+          },
+          "date": "2013-11-08T22:00:00.000+0000"
+        },
+        {
+          "amount": {
+            "amount": 12
+          },
+          "date": "2013-11-08T22:00:00.000+0000"
+        },
+        {
+          "amount": {
+            "amount": 0
+          },
+          "date": "2013-07-25T22:00:00.000+0000"
+        }
+      ],
+      "customerReference": "Fancy shoes",
+      "favourite": false,
+      "name": "Edgars",
+      "paymentConfirmation": {
+        "address": null,
+        "confirmationType": "None",
+        "recipientName": null,
+        "sendFutureDated": null
+      },
+      "recipientGroup": null,
+      "recipientId": 3,
+      "recipientReference": "My shoes"
+    },
+    {
+      "accountNumber": "68480083338",
+      "bank": {
+        "branch": {
+          "code": "58300000",
+          "name": "SBSA (FINACLE SBN)"
+        },
+        "code": "583",
+        "name": "STANDARD BANK NAM (FINACLE)"
+      },
+      "beneficiaryType": "COMPANY",
+      "recentPayment": [
+        {
+          "amount": {
+            "amount": 0
+          },
+          "date": "2013-09-03T22:00:00.000+0000"
+        }
+      ],
+      "customerReference": "Mother",
+      "favourite": false,
+      "name": "Hannah Walters",
+      "paymentConfirmation": {
+        "address": null,
+        "confirmationType": "None",
+        "recipientName": null,
+        "sendFutureDated": null
+      },
+      "recipientGroup": {
+        "name": "Test 3",
+        "oldName": "Test 3",
+        "orderIndex": null
+      },
+      "recipientId": 10,
+      "recipientReference": "Liam Harper"
+    },
+    {
+      "accountNumber": "45640211",
+      "bank": {
+        "branch": {
+          "code": "51001",
+          "name": "SINGL IBT SBSA"
+        },
+        "code": "051",
+        "name": "STANDARD BANK"
+      },
+      "beneficiaryType": "PRIVATE",
+      "recentPayment": [
+        {
+          "amount": {
+            "amount": 21
+          },
+          "date": "2013-11-11T22:00:00.000+0000"
+        },
+        {
+          "amount": {
+            "amount": 1
+          },
+          "date": "2013-11-03T22:00:00.000+0000"
+        },
+        {
+          "amount": {
+            "amount": 2
+          },
+          "date": "2013-11-03T22:00:00.000+0000"
+        }
+      ],
+      "customerReference": "CAN NOT EDIT",
+      "favourite": true,
+      "name": "ze demo",
+      "paymentConfirmation": {
+        "address": null,
+        "confirmationType": "None",
+        "recipientName": null,
+        "sendFutureDated": null
+      },
+      "recipientGroup": {
+        "name": "",
+        "oldName": "",
+        "orderIndex": null
+      },
+      "recipientId": 12,
+      "recipientReference": "NO WAY"
+    }
+  ],
+  "contacts": [
+    {
+      "address": "0743467762",
+      "contactMethod": "SMS",
+      "isStandardBankCustomer": false,
+      "customerReference": "by",
+      "favourite": false,
+      "name": "Brinda Send Money",
+      "paymentConfirmation": {
+        "address": "0743467762",
+        "confirmationType": "None",
+        "recipientName": "Brinda Send Money",
+        "sendFutureDated": false
+      },
+      "recipientGroup": {
+        "name": "Alegtest",
+        "oldName": "Alegtest",
+        "orderIndex": null
+      },
+      "recipientId": 6,
+      "recipientReference": "sadf"
+    },
+    {
+      "address": "0745669473",
+      "contactMethod": "SMS",
+      "isStandardBankCustomer": false,
+      "customerReference": "gyg",
+      "favourite": false,
+      "name": "Cell C",
+      "paymentConfirmation": {
+        "address": "",
+        "confirmationType": "None",
+        "recipientName": "",
+        "sendFutureDated": false
+      },
+      "recipientGroup": {
+        "name": "Alegtest",
+        "oldName": "Alegtest",
+        "orderIndex": null
+      },
+      "recipientId": 4,
+      "recipientReference": ""
+    },
+    {
+      "address": "0832190005",
+      "contactMethod": "SMS",
+      "isStandardBankCustomer": false,
+      "customerReference": "nch",
+      "favourite": false,
+      "name": "Mtn",
+      "paymentConfirmation": {
+        "address": "",
+        "confirmationType": "None",
+        "recipientName": "",
+        "sendFutureDated": false
+      },
+      "recipientGroup": {
+        "name": "Groups Test",
+        "oldName": "Groups Test",
+        "orderIndex": null
+      },
+      "recipientId": 1,
+      "recipientReference": ""
+    },
+    {
+      "address": "0789274025",
+      "contactMethod": "SMS",
+      "isStandardBankCustomer": false,
+      "customerReference": "CRJonathan",
+      "favourite": false,
+      "name": "Myvizhi",
+      "paymentConfirmation": {
+        "address": "",
+        "confirmationType": "None",
+        "recipientName": "",
+        "sendFutureDated": false
+      },
+      "recipientGroup": {
+        "name": "Groups Test",
+        "oldName": "Groups Test",
+        "orderIndex": null
+      },
+      "recipientId": 5,
+      "recipientReference": ""
+    },
+    {
+      "address": "0829800000",
+      "contactMethod": "SMS",
+      "isStandardBankCustomer": false,
+      "customerReference": "12",
+      "favourite": false,
+      "name": "Vodacom",
+      "paymentConfirmation": {
+        "address": "",
+        "confirmationType": "None",
+        "recipientName": "",
+        "sendFutureDated": false
+      },
+      "recipientGroup": {
+        "name": "",
+        "oldName": "",
+        "orderIndex": null
+      },
+      "recipientId": 3,
+      "recipientReference": ""
+    }
+  ],
+  "keyValueMetadata": [],
+  "stepUp": null
+}

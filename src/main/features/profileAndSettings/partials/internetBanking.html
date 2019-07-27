@@ -1,0 +1,23 @@
+<h2>Profile and Settings</h2>
+
+<div error notification ng-show="errorMessage">{{errorMessage}}</div>
+<div class="row">
+    <sb-accordion items="menuItems" partial="common/accordion/partials/profileAccordion.html"></sb-accordion>
+
+    <div ng-show="showOTPPreference" class="account-preferences panel medium-12 large-9 columns">
+        <h3>Internet banking</h3>
+
+        <div class="profile-view-container ">
+            <div class="profile-view">
+                <div class="page-heading-row">
+                    <h5>OTP preference</h5>
+                </div>
+                <div>
+                    <span>Send OTP via</span>
+                    <span id="otp-preferences-delivery-method">{{viewOTPPreference.deliveryMethod}} ({{viewOTPPreference.contact}})</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

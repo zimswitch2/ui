@@ -1,0 +1,29 @@
+<div class="page-heading-row wide">
+    <h2>
+        {{ title }}
+    </h2>
+    <div ng-if="isCurrentAccountApplication">
+        <form action="{{declineLetterDocumentURL}}" method="GET" target="_blank">
+            <input type="hidden" name="applicationNumber" value="{{applicationNumber}}">
+            <input type="hidden" name="systemPrincipalId" value="{{systemPrincipalId}}">
+            <input type="hidden" name="systemPrincipalKey" value="{{systemPrincipalKey}}">
+            <button type="submit" class="btn secondary action edit" title="download" track-click="Download decline letter" data-dtmid="link_content_content link" data-dtmtext="Download button click">
+                <div class="inline-block">
+                    <i class="icon icomoon-download"></i>
+                    <span class="title">Download</span>
+                </div>
+            </button>
+        </form>
+    </div>
+</div>
+
+<flow class="wide hide-on-print"></flow>
+
+<div class="declined-offer well wide">
+    <p class="text-notification">{{declinedMessage}}</p>
+</div>
+
+<div class="wide">
+<a go-home="" id="backToAccountSummaryButton" class="btn secondary margin-top" ng-if="!newToBankCustomer">Back</a>
+</div>
+<button ng-click="logout()" class="secondary logout_button margin-top" ng-controller="LogoutController" ng-if="newToBankCustomer">Sign out</button>

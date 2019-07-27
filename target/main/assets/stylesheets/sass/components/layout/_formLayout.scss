@@ -1,0 +1,26 @@
+.form-layout-top {
+  width: 100%;
+
+  @media #{$large-up}{
+    width: $form-layout-main-width;
+  }
+}
+
+.form-layout-main {
+  width: 100%;
+
+  @media #{$large-up}{
+    max-width: $form-layout-main-width;
+    float: left;
+  }
+}
+
+.form-layout-right {
+  width: 100%;
+
+  @media #{$large-up}{
+    margin: 0 0 0 1em;
+    max-width: $form-layout-right-width;
+    float: left;
+  }
+}

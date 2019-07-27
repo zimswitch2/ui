@@ -1,0 +1,79 @@
+<div class="multiple-beneficiaries pay-multiple-confirm wide-content">
+<h2 ng-show="groupOnly()">Pay Beneficiary Group Confirmation</h2>
+<h2 ng-hide="groupOnly()">Pay Multiple Beneficiaries Confirmation</h2>
+
+<div id="pay-multiple-beneficiaries" class="panel confirmation" ng-init="confirmation()">
+    <div class="selected-account"><strong>{{account | accountLabel}}</strong></div>
+    <div class="action-table">
+    <ul class="header">
+        <li>
+            <div class="information">
+                <div>Name</div>
+                <div>Your reference</div>
+                <div>Beneficiary reference</div>
+                <div>Recipient name</div>
+                <div>Notification</div>
+                <div>Payment date</div>
+                <div>Amount</div>
+            </div>
+        </li>
+    </ul>
+
+    <ul class="data not-clickable">
+        <li ng-repeat="selectedPayment in selectedPayments">
+            <div class="information">
+                <div data-header="Name">
+                    <div><span>{{selectedPayment.beneficiary.name}}</span></div>
+                </div>
+                <div data-header="Your reference">
+                    <div><span>{{selectedPayment.beneficiary.customerReference}}</span></div>
+                </div>
+                <div data-header="Beneficiary reference">
+                    <div><span>{{selectedPayment.beneficiary.recipientReference}}</span></div>
+                </div>
+                <div data-header="Recipient name">
+                    <div><span>{{selectedPayment.beneficiary.paymentConfirmation.recipientName}}</span></div>
+                </div>
+                <div data-header="Notification">
+                    <div><span>{{selectedPayment.beneficiary.paymentConfirmation.address}}</span></div>
+                </div>
+                <div data-header="Payment date">
+                    <div><span>{{latestTimestampFromServer | dateFormat}}</span></div>
+                </div>
+                <div data-header="Amount" class="payment-amount">
+                    <div><span class="payment-amount">{{selectedPayment.amount | randAmount}}</span></div>
+                </div>
+            </div>
+        </li>
+    </ul></div>
+</div>
+
+    <div class="panel">
+        <div class="pay-multiple-beneficiaries-footer row">
+            <div class="small-12 medium-12 large-4 columns">
+                <button id="confirm" ng-click="confirm()">Confirm</button>
+                <button go-back="" id="modify" class="secondary">Modify</button>
+                <button go-back="" id="cancel" class="tertiary" number-of-pages="2">Cancel</button>
+            </div>
+            <div class="small-12 medium-4 large-3 columns">
+                <span>Available balance</span>
+                <span id="balance" ng-class="{&apos;invalid-balance&apos;: invalidAvailableBalance}">
+                    {{account.availableBalance.amount | nonNegativeRandAmount}}
+                </span>
+            </div>
+            <div class="small-12 medium-4 large-3 columns">
+                <span>Available monthly limit</span>
+                <span id="transfer" ng-class="{&apos;invalid-balance&apos;: !invalidAvailableBalance &amp;&amp; invalidAvailableTransferLimit}">
+                    {{availableEAPLimit | nonNegativeRandAmount}}
+                </span>
+            </div>
+            <div class="small-12 medium-4 large-2 columns">
+                <span>Total</span>
+                <span ng-class="{&apos;invalid-balance&apos;: invalidAvailableBalance || invalidAvailableTransferLimit}" class="total-amount">
+                    {{totalAmount | nonNegativeRandAmount}}
+                </span>
+            </div>
+        </div>
+    </div>
+
+</div>

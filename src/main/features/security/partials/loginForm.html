@@ -1,0 +1,37 @@
+<form name="loginForm" id="login-form" ng-submit="login(username, password)" novalidate
+      autocomplete="off">
+    <h3 class="small-only-text-center">Enter your Standard Bank ID</h3>
+    <section>
+        <div class="small-only-text-center">
+            <span>Already using our App? Use the same sign in details</span>
+        </div>
+    </section>
+    <section id="login-details" ng-class="{'hide-for-small-only': !showLogin}">
+        <section>
+            <sb-input label="Email address"
+                      name="username"
+                      ng-model="username"
+                      ng-required="true">
+            </sb-input>
+        </section>
+        <section>
+            <sb-input label="Password"
+                      name="password"
+                      ng-model="password"
+                      ng-required="true"
+                      type="password"
+                      show-password-button
+                    >
+            </sb-input>
+        </section>
+        <section class="small-only-text-center">
+            <button id="login" class="left" ng-disabled="!loginForm.$valid">Sign in</button>
+
+                            <span class="terms-text">By signing in you accept the <user-terms-link>terms and conditions</user-terms-link>
+                            </span>
+        </section>
+        <section class="small-only-text-center">
+            <span>Forgot password? <a href="#/reset-password" data-dtmid="link_content_content link" data-dtmtext="Reset password link click">Reset here</a></span>
+        </section>
+    </section>
+</form>

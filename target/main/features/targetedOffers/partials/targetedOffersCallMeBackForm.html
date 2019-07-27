@@ -1,0 +1,44 @@
+<h2>Call Me Back: {{offer.productName | capitalize:true }}</h2>
+
+<div class="customer-info-container">
+    <div class="customer-info-form">
+        <form name="customerInformationForm" novalidate="">
+            <div class="customer-info-scroll">
+                <div class="basic-info">
+                    <div class="wide-content">
+                        <ng-form name="captureCallMeBackForm">
+                            <div ng-if="!$root.isMobileDevice" class="notification info">
+                                Please complete all fields marked with an asterisk *
+                            </div>
+                            <ul class="data edit-mode">
+
+                                <row-field label="Surname">
+                                    {{customerRecord.customerSurname}}
+                                </row-field>
+                                <row-field label="First names">
+                                    {{customerRecord.customerFirstName}}
+                                </row-field>
+                                <row-field label="South African ID number">
+                                    {{customerModel.idNumber}}
+                                </row-field>
+                                <row-field label="Contact number *">
+                                    <sb-input ng-model="customerModel.contact1" ng-maxlength="10" ng-minlength="10" ng-pattern="&apos;(0|\\*)([0-9]|\\*){5}[0-9]{4}&apos;" pattern-message="Please enter a valid contact number" ng-required="true" class="medium-width">
+                                            <span name="external-message" class="form-error" ng-show="errorMessage.contact !== undefined">{{errorMessage.contact}}</span>
+                                    </sb-input>
+                                </row-field>
+
+                            </ul>
+                        </ng-form>
+                        <div>
+                            <button class="primary" ng-click="submit()" ng-disabled="!(captureCallMeBackForm.$valid)" track-click="{{offer.productName}}_Accept offer_DCS to call me" data-dtmid="link_content_targeted offer call me back" data-dtmtext="{{offer.productName}} | Submit button click">
+                                Submit
+                            </button>
+                            <button class="secondary" ng-click="back()" track-click="{{offer.productName}}_Cancel Call me back" data-dtmid="link_content_targeted offer call me back" data-dtmtext="{{offer.productName}} | Cancel button click">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<modal-message class="targeted-offers-modal"></modal-message>

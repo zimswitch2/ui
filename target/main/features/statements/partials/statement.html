@@ -1,0 +1,123 @@
+<div class="statements wide-content">
+    <ng-include src="&apos;features/statements/partials/statementPrintHeader.html&apos;"></ng-include>
+
+    <div class="page-heading-row">
+        <h2>Transaction History</h2>
+
+        <div>
+            <button id="download" class="secondary" ng-click="downloadPdf()" track-click="Statement.PDFformat.download" ng-if="!$root.isMobileDevice" ng-show="(statement | statementFilter : query).length &gt; 0" data-dtmid="link_content_content link" data-dtmtext="download button click">Download</button>
+            <print-button feature="printStatement" ng-show="(statement | statementFilter : query).length &gt; 0" button-track-click="Print transaction history"></print-button>
+            <button id="view-notification-history" ng-show="hasPayFromFeature" class="secondary" ng-click="viewPaymentNotificationHistory(selectedAccount.formattedNumber)" data-dtmid="link_content_content link" data-dtmtext="view notification history button click">View notification history
+            </button>
+        </div>
+    </div>
+
+    <div ng-show="errorMessage" error="" notification="">{{errorMessage}}</div>
+
+    <div class="panel">
+        <div class="filter-controls">
+            <div class="left styled-select">
+                <select id="account" ng-model="selectedAccount" ng-change="changeAccountTo(selectedAccount.formattedNumber)" ng-options="item | accountLabel for item in accounts">
+                </select>
+            </div>
+
+            <div class="left styled-select">
+                <select id="statement-type" ng-model="statementType" ng-change="updateStatementType(statementType)" ng-options="type.value as type.description for type in statementTypes">
+                </select>
+            </div>
+
+            <form ng-show="statement" class="filter right">
+                <filter-box ng-model="query" placeholder="Search"></filter-box>
+            </form>
+        </div>
+
+        <div id="statement-table" class="action-table">
+            <ul class="header">
+                <li>
+                    <div class="information">
+                        <div><span>Transaction date</span></div>
+                        <div><span>Transaction description</span></div>
+                        <div class="currency"><span>Amount (R)</span></div>
+                        <div class="currency"><span>Balance (R)</span></div>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="data not-clickable">
+                <li ng-if="!loading &amp;&amp; !statement &amp;&amp; !retry" class="latest balance">
+                 <span class="information">
+                    <div data-header="Transaction date"></div>
+                    <div data-header="Transaction description">
+                        <div class="cell-data">No transactions during this period</div>
+                    </div>
+                    <div data-header="Amount (R)"></div>
+                    <div data-header="Balance (R)" class="currency" ng-class="{&apos;negative&apos;: selectedAccount.currentBalance.amount &lt; 0}">
+                        <div class="cell-data">{{selectedAccount.currentBalance.amount | amount}}</div>
+                    </div>
+                 </span>
+                </li>
+                <li ng-if="openingBalance &amp;&amp; !query" class="opening balance">
+                 <span class="information">
+                    <div data-header="Transaction date"></div>
+                     <div data-header="Transaction description">
+                         <div class="cell-data">Statement opening balance</div>
+                     </div>
+                    <div data-header="Amount (R)"></div>
+                     <div data-header="Balance (R)" class="currency" ng-class="{&apos;negative&apos;: openingBalance.amount &lt; 0}">
+                         <div class="cell-data">{{openingBalance.amount | amount}}</div>
+                     </div>
+                 </span>
+                </li>
+                <li ng-repeat="line in statement | statementFilter: query | orderBy: transactionDate" class="transaction">
+                <span class="information">
+                    <div data-header="Transaction date">
+                        <div class="cell-data">{{line.transactionDate | dateFormat}}</div>
+                    </div>
+                    <div data-header="Transaction description">
+                        <div class="cell-data">{{line.narrative | condenseSpaces}}</div>
+                    </div>
+                    <div data-header="Amount (R)" class="currency" ng-class="{&apos;negative&apos;: line.amount.amount &lt; 0}">
+                        <div class="cell-data">{{line.amount.amount | amount}}</div>
+                    </div>
+                    <div data-header="Balance (R)" class="currency" ng-class="{&apos;negative&apos;: line.runningBalance.amount &lt; 0}">
+                        <div class="cell-data">{{line.runningBalance.amount | amount}}</div>
+                    </div>
+                </span>
+                </li>
+                <li ng-if="loading" class="loading hide-on-print">
+                    <div class="center"><span class="centered-spinner"></span><span class="loading-text">Loading...</span>
+                    </div>
+                </li>
+                <li ng-if="closingBalance &amp;&amp; !query" class="closing balance">
+                <span class="information">
+                    <div data-header="Transaction date"></div>
+                     <div data-header="Transaction description">
+                         <div class="cell-data">Statement closing balance</div>
+                     </div>
+                    <div data-header="Amount (R)"></div>
+                     <div data-header="Balance (R)" class="currency" ng-class="{&apos;negative&apos;: closingBalance.amount &lt; 0}">
+                         <div class="cell-data">{{closingBalance.amount | amount}}</div>
+                     </div>
+                </span>
+                </li>
+                <li ng-show="hasNext" ng-click="loadNext()" track-click="statement.loadNext.{{selectedAccount.accountType}}.{{statementType}}.{{pageNumber}}" class="bottom-text load-next hide-on-print">
+                    <div><span>Load more transactions</span></div>
+                </li>
+                <li ng-show="retry" ng-click="retry()" class="bottom-text retry hide-on-print">
+                    <div>Error loading transactions. <span>Retry?</span></div>
+                </li>
+                <li ng-show="!loading &amp;&amp; statement &amp;&amp; (statement | statementFilter : query).length == 0" class="no-match-search">
+                    <span class="information">
+                        <div></div>
+                        <div id="no-matches-message" class="information message">No matches found</div>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div ng-if="statement &amp;&amp; statement.length &gt; 5" class="always-back-to-top hide-on-print" ng-include="&apos;features/goToAnchor/partials/scrollOnClick.html&apos;"></div>
+
+    <button go-back="" class="secondary">Back</button>
+
+    <ng-include src="&apos;common/print/partials/printFooter.html&apos;"></ng-include>
+</div>

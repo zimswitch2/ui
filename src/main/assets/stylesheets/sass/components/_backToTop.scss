@@ -1,0 +1,20 @@
+.back-to-top {
+  display: block;
+  position: fixed;
+  z-index: 99;
+  right: 0.5em;
+  bottom: 0.2em;
+  font-size: 2.3em;
+  opacity: 0.4;
+  height: 78px;
+
+  @media #{$large-up} {
+    display: none;
+  }
+}
+
+.always-back-to-top {
+  .back-to-top {
+    display: block;
+  }
+}

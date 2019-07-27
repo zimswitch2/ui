@@ -1,0 +1,7 @@
+{peers: [
+  {peer: {
+    name: 'Justin',
+    lastMessageTimestamp: '2017/02/01 10:03',
+    lastMessageText: 'Hi there'
+  }}
+]}

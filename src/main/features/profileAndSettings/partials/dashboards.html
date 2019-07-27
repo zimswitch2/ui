@@ -1,0 +1,79 @@
+<h2>Profile and Settings</h2>
+<div class="row">
+    <sb-accordion items="menuItems" partial="common/accordion/partials/profileAccordion.html"></sb-accordion>
+
+    <div class="medium-12 large-9 columns no-padding">
+
+        <div id="deletedNotification" success notification ng-show="isSuccessful">{{lastDeletedDashboardName}} Successfully Deleted</div>
+
+        <div class="profile-and-settings-content my-dashboards panel">
+            <div class="page-heading-row">
+                <h3>My Dashboards</h3>
+
+                <div>
+                    <a id="addDashboard"
+                       class="button secondary"
+                       href="#/addDashboard" data-dtmid="link_content_content link" data-dtmtext="add dashboard button click">
+                        Add Dashboard
+                    </a>
+                </div>
+            </div>
+
+
+            <div id="viewCardDetails" class="action-table">
+                <ul class="header">
+                    <li>
+                        <div class="information">
+                            <div><span>Dashboard name</span></div>
+                            <div><span>Card number</span></div>
+                            <div><span>Card status</span></div>
+                            <div class="text-center"><span>Current dashboard</span></div>
+                        </div>
+
+                        <div class="actions" feature="deLinkDashboard" ng-hide="userDashboards.length <= 1 ">
+                            <div class="action">Delete</div>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="data">
+                    <li ng-repeat="dashboard in userDashboards" ng-class="currentDashboard(dashboard)" class="{{isAdditionalCardLinked(dashboard)}}">
+                        <div class="information" ng-click="switchDashboard(dashboard)">
+                            <div data-header="Dashboard name">
+                                <div>{{dashboard.dashboardName}}</div>
+                            </div>
+                            <div data-header="Card number">
+                                <div>{{dashboard.cardNumber}}</div>
+                            </div>
+                            <div data-header="Card status">
+                                <div>
+                                    <span ng-class="cardStatusClass(dashboard)">{{cardStatus(dashboard)}}</span>
+                                </div>
+                            </div>
+                            <div data-header="Current dashboard">
+                                <div ng-show="indicatorClass(dashboard)" class="text-center">
+                                    <span ng-class="indicatorClass(dashboard)">{{dashboardIndicator(dashboard)}}</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="actions" feature="deLinkDashboard" ng-show="deletable(dashboard)">
+                            <a inline-action="delete"
+                               action-message="confirmationMessage(dashboard)"
+                               button-track="trackMessage()"
+                               confirm-dtmid="link_content_my dashboards"
+                               confirm-dtmtext="remove dashboard | confirm button click"
+                               cancel-dtmid="link_content_my dashboards"
+                               cancel-dtmtext="remove dashboard | cancel button click"
+                               data-dtmid="link_content_my dashboards"
+                               data-dtmtext="remove dashboard | delete button click"
+                               confirm-fn="deleteDashboard(dashboard)">
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

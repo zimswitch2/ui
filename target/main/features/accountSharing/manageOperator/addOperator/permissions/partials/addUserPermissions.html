@@ -1,0 +1,70 @@
+<div class="add-user-permissions wide">
+    <h2 id="AddUserDetailsTitle" class="clear">{{vm.headerName}}</h2>
+    <div class="add-user-permissions form-layout-top">
+        <flow></flow>
+        <div class="notification error" ng-show="serverErrorMessage !== undefined">
+            {{vm.serverErrorMessage}}
+        </div>
+    </div>
+    <div class="add-user-permissions form-layout-main ">
+        <ng-form name="permissionsTable">
+            <div class="panel">
+                <section>
+                    <div>
+                        <h3 class="small-only-text-center grey-text">Set up permissions for {{vm.user.firstName}}</h3>
+                    </div>
+                </section>
+                <div class="table permissions-table">
+                    <div class="table-row header-row">
+                        <div class="permission-account-col"></div>
+                        <div class="permission-radio-col">
+                            <div>None</div>
+                            <!-- <div>{{vm.description(role.description)}}</div> -->
+                        </div>
+                        <div class="permission-radio-col" ng-repeat="role in vm.roles">
+                            <div>{{vm.name(role.name)}}</div>
+                            <!-- <div>{{vm.description(role.description)}}</div> -->
+                        </div>
+                    </div>
+                    <div class="table-row" ng-repeat="account in vm.accounts">
+                        <div class="permission-account-col accordion-tab">
+                            <div class="accordion-tab-title" ng-click="vm.openTab(account.number)">
+                                <div class="account-description">
+                                    <div class="account-name">{{vm.name(account.productName)}}</div>
+                                    <div class="account-type-name">{{account.accountTypeName}}</div>
+                                    <div class="account-number">{{account.formattedNumber}}</div>
+                                </div>
+                                <div class="account-chevron">
+                                    <i class="icon" ng-class="{&apos;icomoon-chevron-down&apos;: !vm.isOpenTab(account.number), &apos;icomoon-chevron-up&apos;: vm.isOpenTab(account.number)}"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="permission-radio-col accordion-tab-content" data-header="None" ng-class="{ &apos;collapsed&apos;: !vm.isOpenTab(account.number) }">
+                            <div>
+                                <input type="radio" name="{{account.formattedNumber}}" ng-model="vm.accountRoles[account.number]" value="None">
+                            </div>
+                        </div>
+                        <div class="permission-radio-col accordion-tab-content" ng-repeat="role in vm.roles" data-header="{{vm.name(role.name)}}" ng-class="{ &apos;collapsed&apos;: !vm.isOpenTab(account.number) }">
+                            <div>
+                                <input type="radio" name="{{account.formattedNumber}}" ng-model="vm.accountRoles[account.number]" ng-value="role.name">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button id="next-basic" class="primary" ng-click="vm.next()" ng-disabled="vm.allAccountsHaveNoRole()" data-dtmid="obb_content permissions next button" data-dtmtext="Next button click">
+                    Next
+                </button>
+                <button id="cancel-basic" class="secondary" ng-click="vm.back()" data-dtmid="obb_content permissions back button" data-dtmtext="Back button click">
+                    Back
+                </button>
+                <button id="cancel-basic" class="secondary" ng-click="vm.cancel()" data-dtmid="obb_content permissions cancel button" data-dtmtext="Cancel button click">
+                    Cancel
+                </button>
+            </div>
+        </ng-form>
+        <cancel-dialog>
+            
+    </cancel-dialog></div>
+</div>

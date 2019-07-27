@@ -1,0 +1,45 @@
+---
+
+- name: set locale
+  command: update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+
+- name: update apt cache
+  apt: update_cache=yes
+
+- name: setup git ppa
+  apt_repository: repo='ppa:git-core/ppa' update_cache=yes
+
+- name: install git
+  apt: pkg=git state=latest
+
+- name: setup oracle jdk ppa
+  apt_repository: repo=ppa:webupd8team/java update_cache=yes
+
+- name: accept oracle jdk 7 license
+  shell: echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+
+- name: install oracle jdk 7
+  apt: pkg=oracle-java7-installer state=latest
+
+- name: set oracle jdk 7 environment
+  apt: pkg=oracle-java7-set-default state=latest
+
+- name: install apt packages
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - xvfb
+    - chromium-browser
+
+- name: install apt dependencies for phantomjs
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - libfontconfig1
+
+- name: setup nodejs ppa
+  apt_repository: repo='ppa:chris-lea/node.js' update_cache=yes
+
+- name: install nodejs
+  apt: pkg=nodejs state=latest
+
+- name: install grunt-cli globally
+  npm: name=grunt-cli version=latest global=yes state=latest

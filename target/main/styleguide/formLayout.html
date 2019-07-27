@@ -1,0 +1,45 @@
+<h2>Form layout</h2>
+<div class="example" id="form-layout-example">
+    <p>You'll need the whole screen for this to work, so <a ng-click="toggleMenu()">toggle the menu</a>.</p>
+    <div>
+        <div class="form-layout-top">
+            <ol class="steps" data-progtrckr-steps="3">
+                <li class="step-done">Details</li>
+                <li class="step-todo step-current">Confirm details</li>
+                <li class="step-todo">OTP confirmation</li>
+            </ol>
+        </div>
+        <div class="form-layout-main">
+            <form class="panel">
+                <section>
+                    <label>Something</label>
+                    <input type="text">
+                </section>
+                <section>
+                    <label>Which option will you pick?</label>
+                    <ul class="radio-button-group">
+                        <li>
+                            <input type="radio" id="rb1" ng-model="rb1" ng-value="true">
+                            <label for="rb1">One option</label>
+                        </li>
+
+                        <li>
+                            <input type="radio" id="rb2" ng-model="rb2" ng-value="false">
+                            <label for="rb2">Another option</label>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <label>Some options</label>
+                    <div class="styled-select">
+                        <select ng-model="selectedItem" ng-options="item.label for item in selectItems"></select>
+                    </div>
+                </section>
+            </form>
+        </div>
+        <div class="form-layout-right">
+            <div class="panel">I hang out to the right of a form</div>
+        </div>
+        <show-code></show-code>
+    </div>
+</div>

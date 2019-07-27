@@ -1,0 +1,90 @@
+@mixin vendor-hover($vendor-color){
+  -webkit-box-shadow: 0px 0px 6px $vendor-color;
+  -moz-box-shadow: 0px 0px 6px $vendor-color;
+  box-shadow: 0px 0px 6px $vendor-color;
+}
+
+.prepaid-provider-list {
+  .prepaid-vendors {
+    margin: 0 auto;
+    padding: 1em 0px 0px 1.1em;
+
+    a {
+      border: 2px solid;
+      display: inline-block;
+      margin-right: 0.5em;
+      @include transition(all, 0.20s, ease-in-out);
+      min-height: 150px;
+      background-size: 9em;
+      width: 47%;
+      background-repeat: no-repeat;
+      background-position: center;
+
+      @media #{$medium-up} {
+        background-size: 70%;
+        min-height: 180px;
+        width: 31.5%;
+      }
+
+      @media #{$large-up} {
+        min-height: 220px;
+        background-size: 75%;
+        width: 32%;
+      }
+
+      &.vodacom {
+        background-image: url("../../../assets/images/prepaid/vodacom.png");
+        border-color: #ed3125;
+
+        &:hover { @include vendor-hover(#ed3125); }
+      }
+
+      &.mtn {
+        background-image: url("../../../assets/images/prepaid/mtn.png");
+        border-color: #ffca08;
+
+        &:hover { @include vendor-hover(#ffca08); }
+      }
+
+      &.cellc {
+        background-image: url("../../../assets/images/prepaid/cellc.png");
+        border-color: #000;
+
+        &:hover { @include vendor-hover(#000); }
+      }
+
+      &.telkom, &.telkom-mobile {
+        border-color: #008ac9;
+
+        &:hover { @include vendor-hover(#008ac9); }
+      }
+      &.telkom {
+        background-image: url("../../../assets/images/prepaid/telkom.png");
+      }
+      &.telkom-mobile {
+        background-image: url("../../../assets/images/prepaid/telkommobile.png");
+      }
+
+      &.virgin {
+        background-image: url("../../../assets/images/prepaid/virgin.png");
+        border-color: #ff0e39;
+
+        &:hover { @include vendor-hover(#ff0e39); }
+      }
+
+      &.worldcall {
+        background-image: url("../../../assets/images/prepaid/worldcall.png");
+        border-color: #dbac24;
+
+        &:hover { @include vendor-hover(#dbac24); }
+      }
+
+      &.electricity {
+        background-image: url("../../../assets/images/prepaid/electricity.png");
+        border-color: #015da8;
+
+        &:hover { @include vendor-hover(#015da8); }
+      }
+    }
+  }
+}

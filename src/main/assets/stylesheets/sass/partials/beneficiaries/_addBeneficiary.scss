@@ -1,0 +1,10 @@
+.add-beneficiary {
+  .beneficiary-name {
+    div {
+      padding-bottom: 0;
+    }
+    div:nth-child(2) {
+      color: $slate-grey;
+    }
+  }
+}

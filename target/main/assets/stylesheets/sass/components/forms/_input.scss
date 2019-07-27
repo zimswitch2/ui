@@ -1,0 +1,86 @@
+$input-font-size: 1em;
+$input-padding: 0.7em;
+$input-margin: 0em;
+
+sb-input label {
+  display: inline-block;
+  width: 100%;
+}
+
+input[type='text'], input[type='password'], input[type='number'], input[name='amount'], textarea {
+  @include transition(background 0.30s ease-in-out);
+  font-size: $input-font-size;
+  background: none;
+  background-color: $dirty-white;
+  border: 1px solid $silver-grey;
+  padding: $input-padding;
+  margin: $input-margin;
+  height: $input-height;
+  width: 100%;
+  outline: none;
+
+  &.error, &.ng-dirty.ng-invalid, &.has-been-visited.ng-invalid {
+    border: 1px solid #FF2A4C;
+  }
+
+  &.ng-dirty.ng-valid {
+    border: 1px solid $grass-green;
+  }
+
+  &:focus {
+    border: 1px solid $sb-blue;
+  }
+
+  &.filter {
+    padding: 0.5em;
+    font-size: 0.9em;
+  }
+}
+
+input[type='radio'] {
+  margin-right: 0.35em;
+}
+
+textarea {
+  height: $input-height * 3;
+}
+
+span.showOrHideLabel {
+  position: absolute;
+  right: 0em;
+  top: 1.2em;
+  color: $azure-blue;
+  padding: 0.8em 1em 0.8em 1.4em;
+  font-size: 15px;
+}
+
+.form-error {
+  color: #FF2A4C;
+
+  @media #{$medium-up} {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  &.pristine {
+    color: $slate-grey;
+    display: none;
+  }
+
+  &.small {
+    position: relative;
+    padding-left: 0.2em;
+  }
+}
+
+.icon.input-leading-icon {
+  position: absolute;
+  left: 0.5em;
+  top: 1.4em;
+  color: $slate-grey;
+  + input {
+    padding-left: 3em;
+  }
+}

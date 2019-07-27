@@ -1,0 +1,42 @@
+<div class="page-heading-row">
+	<h2>Confirm</h2>
+</div>
+<flow class="wide"></flow>
+<div class="offer well wide savings-origination-form">
+    <ng-form name="savingsAcceptForm">
+        <h3>Your {{ProductName}} Account</h3>
+        <div class="summary-ao">
+            <div class="summary-ao-row">
+                <span class="summary-ao-label" id="openingAccountLable">Transfer opening amount from</span>
+                <span class="summary-ao-value" id="openingAccountNo">{{offerDetails.sourceAccount | accountLabel}}</span>
+            </div>
+            <div class="summary-ao-row">
+                <span class="summary-ao-label" id="Amountlable">Amount</span>
+                <span class="summary-ao-value" id="selectedAmount">{{ offerDetails.initialDepositAmount | randAmount}}</span>
+            </div>
+        </div>
+        <br>
+        <div class="terms-conditions">
+            <div class="box">
+                <div class="inner">
+                    <input id="termsAndConditions" type="checkbox" ng-model="agreedToTermsAndConditions">
+                    <!-- put links outside the label so ie9 won't toggle the checkbox -->
+                    <label for="termsAndConditions">You have read, understood and agree to the </label>
+                    <a href="https://www.standardbank.co.za/secure/applications/wcf/generictc.pdf" target="_blank">general</a>
+                    <label for="termsAndConditions"> and </label>
+                    <a href="{{ProductTermsAndConditionsLink}}" target="_blank">product</a>
+                    <label for="termsAndConditions"> terms and conditions</label>
+                </div>
+            </div>
+        </div>
+        <section>
+            <div class="actions">
+                <button id="proceed" ng-disabled="!agreedToTermsAndConditions" class="btn primary" ng-click="proceed()" track-click="Confirm {{ProductName}} application" data-dtmid="link_content_account application" data-dtmtext="{{ProductName}} Confirm button click">Confirm</button>
+                &nbsp;
+                <button id="Back" class="btn secondary" ng-click="backToTransfer()" data-dtmid="link_content_account application" data-dtmtext="{{ProductName}} back button click">Back</button>
+                &nbsp;
+                <button go-back="" id="cancel" class="btn secondary" data-dtmid="link_content_account application" data-dtmtext="{{ProductName}} Cancel button click">Cancel</button>
+            </div>
+        </section>
+    </ng-form>
+</div>

@@ -1,0 +1,44 @@
+.panel-break, .panel-break-vertical {
+  position: relative;
+  background-color: $silver-grey;
+
+  span {
+    position: absolute;
+    color: $silver-grey;
+    border: solid 1px $silver-grey;
+    border-radius: 20em;
+    height: 3em;
+    width: 3em;
+    padding-top: 0.7em;
+    background-color: $primary-grey;
+    text-align: center;
+  }
+}
+
+.panel-break {
+  margin-top: 3em;
+  margin-bottom: 3em;
+  padding-bottom: 1px;
+  width: 100%;
+  max-width: $content-max-width;
+
+  span {
+    left: 45%;
+    top: -1.5em;
+  }
+}
+
+.panel-break-vertical {
+  border-right: 1px solid $silver-grey;
+  background-color: transparent;
+  height: 21em;
+
+  &.small-vertical-height {
+    height: 18em;
+  }
+
+  span {
+    top: 43%;
+    right: -1.5em;
+  }
+}

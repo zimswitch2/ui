@@ -1,0 +1,41 @@
+<div ng-show="hasOnlyOnePendingTransaction()" ng-repeat="pendingTransaction in pendingTransactions" class="account row">
+    <div class="information medium-12 small-12 columns">
+        <span class="name transaction-type medium-12 small-12 columns">{{pendingTransaction.transactionType}}</span>
+    </div>
+
+    <div class="medium-6 small-12 columns">
+        <div class="reference medium-6 small-12 columns">
+            <span>
+                From
+            </span>
+            <span>
+                {{pendingTransaction.beneficiaryAccount}}
+            </span>
+        </div>
+        <div class="reference medium-6 small-12 columns">
+            <span>
+                 To
+            </span>
+            <span>
+                {{pendingTransaction.toAccount}}
+            </span>
+        </div>
+    </div>
+
+
+    <div class="transfer-button medium-6 small-12 columns">
+        <div class="transfer-button medium-4 small-12 columns">
+            <span>
+                {{pendingTransaction.amount | randAmount}}
+            </span>
+        </div>
+        <div class="transfer-button medium-8 small-12 columns">
+            <div class="row">
+                <div class="button-group even-2">
+                    <button ng-hide="false" class="button primary tny">Approve</button>
+                    <button ng-hide="false" class="button secondary tny">Reject</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

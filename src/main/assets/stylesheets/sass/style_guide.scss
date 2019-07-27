@@ -1,0 +1,139 @@
+@import "rainbow";
+@import "app";
+
+.style-guide {
+
+  .row {
+    max-width: 90em;
+  }
+
+  .color {
+    position: relative;
+    display: inline-block;
+    width: 15%;
+    height: 5em;
+    margin-right: 0;
+    span {
+      color: #fff;
+    }
+    .name {
+      position: absolute;
+      top: 1em;
+      left: 1em;
+    }
+    .code {
+      position: absolute;
+      bottom: 1em;
+      right: 1em;
+    }
+
+    .darker {
+      color: #d2d2d2;
+    }
+  }
+
+  #icons {
+    .icon {
+      font-size: 3em;
+      margin: 0.3em;
+    }
+
+    .title {
+      display: block;
+      font-size: .6em;
+      text-align: center;
+      color: $gunmetal;
+    }
+
+    .demo {
+      display: inline-block;
+      width: auto;
+    }
+  }
+
+  pre {
+    padding: 0;
+    margin: 0;
+    code.hljs {
+      padding: 0.75em;
+      width: 100%;
+      display: inline-block;
+      margin: 0;
+    }
+  }
+
+  .code-example {
+    position: relative;
+    border: 1px solid #efefef;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+  }
+
+  .demo {
+    @extend .panel;
+  }
+
+  p.note {
+    color: $azure-blue;
+    font-size: 0.8em;
+    &:before {
+      content: "To fix: ";
+    }
+  }
+
+  .show-code {
+    margin-top: 1em;
+  }
+
+  #style-guide-table {
+    @media #{$large-up} {
+      .table-row {
+        > div {
+          width: 24%;
+        }
+      }
+    }
+  }
+
+  .styleguide-action-table {
+    @media #{$large-up} {
+      ul {
+        .information {
+          width: 100%;
+          > div {
+            &:nth-child(1) {
+              width: 15%;
+            }
+            &:nth-child(2) {
+              width: 50%;
+            }
+            &:nth-child(3) {
+              width: 10%;
+            }
+            &:nth-child(4) {
+              width: 20%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .styleguide-action-table-actions {
+    @media #{$large-up} {
+      ul {
+        .information {
+          width: 84%;
+          > div {
+            width: 20%;
+          }
+        }
+        .actions {
+          width: 12em;
+        }
+      }
+    }
+  }
+}

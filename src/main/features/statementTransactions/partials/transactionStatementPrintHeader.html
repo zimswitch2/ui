@@ -1,0 +1,47 @@
+<div class="print-only print-header">
+    <div class="bank-info">
+        Customer Care: 0860 123 000<br/>
+        Website: <a href="www.standardbank.co.za">www.standardbank.co.za</a><br/>
+        {{statementDate | dateFormat}}
+    </div>
+
+    <div class="row">
+        <div class="large-12 columns">
+            <h3>Transactions</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="large-3 columns">
+            <span>Name of account holder:</span>
+        </div>
+        <div class="large-9 columns">
+            <span>{{accountHolderName}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-3 columns">
+            <span>Account:</span>
+        </div>
+        <div class="large-9 columns">
+            <span>{{selectedAccount | accountLabel}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-3 columns">
+            <span>Transactions date range:</span>
+        </div>
+        <div class="large-9 columns">
+            <span>{{ firstTransactionDate | dateFormat }} - {{ lastTransactionDate | dateFormat }}</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="large-3 columns">
+            <span>Available balance:</span>
+        </div>
+        <div class="large-9 columns">
+            <span>{{selectedAccount.availableBalance.amount | currencyAmount: currencyCode || 'R' }}</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,281 @@
+<div class="page-heading-row wide hide-on-print">
+    <h2>Our Banking Solution for You</h2>
+
+    <div>
+        <print-button button-track-click="{{'Print offer: ' + offer.productFamily.name}}"></print-button>
+    </div>
+</div>
+
+<flow class="hide-on-print wide"></flow>
+
+<div class="offer well wide hide-on-print">
+    <ng-form name="selectOfferForm">
+        <section class="product-row">
+            <h3 id="productFamilyName">We are pleased to offer you our {{offer.productFamily.name}} solution</h3>
+            <img class="show-for-large-up" ng-src="{{offer.productFamily.imageUrl}}"/>
+
+            <p>{{offer.productFamily.tagLine}}</p>
+            <button class="secondary" ng-click="showDetails = true"
+                    track-click="{{'Details: ' + offer.productFamily.name}}">Details
+            </button>
+        </section>
+
+        <section class="product">
+            <h3 id="productOptionTitle" ng-if="moreThanOne">Choose your preferred option:</h3>
+
+            <div class="product-wrapper">
+                <div ng-repeat="product in offer.products track by product.number" class="option-box"
+                     ng-class="{'option-box-single': moreThanOne === false , 'chosen-box': $index === selectedProductIndex && moreThanOne === true}">
+                    <div class="box" id="productOption{{$index}}">
+                        <div class="option-box-title">
+                            <h3 title-for="productOption{{$index}}">{{product.name | capitalize}}</h3>
+                            <h4>{{product.feeStructure.name}}</h4>
+                        </div>
+
+                        <ng-include src="product.partial"></ng-include>
+
+                        <div class="choose-offer" ng-if="moreThanOne">
+                            <button class="primary" ng-click="chooseProduct($index)"
+                                    ng-hide="$index === selectedProductIndex">
+                                Choose
+                            </button>
+                            <div class="chosen" ng-show="$index === selectedProductIndex">
+                                <i class="icon icon-check-circle"></i>
+                                Selected
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" ng-model="selectedProductIndex" ng-required="true"/>
+        </section>
+
+        <section id="currentAccountOverdraft" class="overdraft" ng-show="allowOverdraftApplication()">
+            <h3>
+                Congratulations you also qualify for an overdraft
+            </h3>
+
+            <div class="notification info wide" ng-show="offer.overdraft.selected">Note that this overdraft offer is valid for 5 days.
+                This offer constitutes approval in principle and is subject to the Bank verifying the information
+            </div>
+
+            <div class="box">
+                <div class="choose-overdraft-container">
+                    <input id="currentAccountSelectOverdraft"
+                           type="checkbox"
+                           class="choose-overdraft"
+                           ng-model="offer.overdraft.selected"
+                           ng-change="overdraftToggle()"
+                           track-click="Apply:Current-Account:Offer:Add-Overdraft" />
+                    <label for="currentAccountSelectOverdraft">Add an overdraft to your account</label>
+                </div>
+                <div class="row overdraft-properties-group">
+                    <div class="small-8 medium-3 medium-push-6 columns overdraft-property">
+                        <p>Maximum overdraft limit</p>
+
+                        <p id="currentAccountOverdraftLimit" class="limit emphasis-amount">{{offer.overdraft.limit |
+                            randAmount}}</p>
+                    </div>
+                    <div class="small-4 medium-3 medium-push-7 columns overdraft-property">
+                        <p>Interest rate</p>
+
+                        <p id="currentAccountOverdraftRate" class="rate emphasis-amount">
+                            {{offer.overdraft.interestRate}}%</p>
+                    </div>
+                    <div class="small-12 medium-6 medium-pull-6 columns">
+                        <sb-amount
+                                ng-model="offer.overdraft.amount"
+                                enforcer="enforcer"
+                                class="amount"
+                                name="amount"
+                                label="Amount"
+                                hinter="hinter"
+                                convert-to-int
+                                ng-disabled="!offer.overdraft.selected">
+                        </sb-amount>
+                    </div>
+                </div>
+                <div class="overdraft-consent " ng-show="offer.overdraft.selected">
+                    <div class="margin-bottom">
+                        <h3>Want to speed things up?</h3>
+                        <input id="currentAccountGiveConsent"
+                               type="checkbox"
+                               ng-model="offer.overdraft.statementsConsent.selected"
+                               class="choose-overdraft"
+                               track-click="Apply:Current-Account:Offer:Add-Overdraft:{{overdraftConsentAnalytics()}}"/>
+                        <label for="currentAccountGiveConsent">You consent to Standard Bank electronically obtaining
+                            your account statements</label>
+                        <p id="currentAccountGiveConsentNotification" class="text-notification" ng-show="!offer.overdraft.statementsConsent.selected">
+                            Note that manually sending your statements may delay the process
+                        </p>
+                    </div>
+
+                    <div id="currentAccountGiveConsentFields" ng-show="offer.overdraft.statementsConsent.selected">
+                        <p class="margin-bottom">Enter your bank account details below and we'll do the rest:</p>
+                        <section>
+                            <div class="wide-input-field">
+                                <label for="bank-input">Bank *</label>
+                                <sb-typeahead
+                                        id="bank"
+                                        placeholder="Select a bank"
+                                        items="banks"
+                                        ng-model="offer.overdraft.statementsConsent.bank"
+                                        ng-change="onBankChanged()"
+                                        ng-required="offer.overdraft.statementsConsent.selected"
+                                        sort-by="name"
+                                        >
+                                </sb-typeahead>
+                            </div>
+                        </section>
+
+                        <section class="branch">
+                            <div class="wide-input-field">
+                                <span ng-class="spinnerClass" class="inline-block pace pace-inactive branch-inline-spinner">
+                                    <span class="inline-spinner"></span>
+                                </span>
+                                <label for="branch-input">Branch *</label>
+                                <sb-typeahead
+                                    id="branch"
+                                    placeholder="Select a branch"
+                                    items="selectedBankBranches()"
+                                    ng-model="offer.overdraft.statementsConsent.branch"
+                                    ng-required="offer.overdraft.statementsConsent.selected"
+                                    sort-by="name"
+                                    xlazy-load="true">
+                                </sb-typeahead>
+                            </div>
+                        </section>
+                        <section>
+                            <sb-input name="accountNumber"
+                                      label="Account number*"
+                                      ng-model="offer.overdraft.statementsConsent.accountNumber"
+                                      ng-required="offer.overdraft.statementsConsent.selected"
+                                      ng-maxlength="16"
+                                      ng-pattern="'[0-9]*'"
+                                      pattern-message="Please enter a number"
+                                      class="wide-input-field"
+                                    >
+                            </sb-input>
+                        </section>
+                        <section>
+                            <div class="wide-input-field">
+                                <label for="accountType-input">Account type *</label>
+                                <sb-typeahead id="accountType"
+                                              placeholder="Select a account type"
+                                              items="bankAccountTypes"
+                                              ng-model="offer.overdraft.statementsConsent.accountType"
+                                              ng-required="offer.overdraft.statementsConsent.selected"
+                                              sort-by="name"
+                                              xlazy-load="true"
+                                        >
+                                </sb-typeahead>
+                            </div>
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="branch" ng-if="!isPrivateBankingProduct">
+            <h3>
+                Choose your preferred branch:
+            </h3>
+
+            <div class="wide-input-field">
+                <sb-typeahead id="preferredBranch"
+                              items="walkInBranches"
+                              placeholder="Your preferred branch"
+                              ng-model="selection.branch"
+                              ng-if="walkInBranches"
+                              ng-required="true"
+                              sort-by="name">
+                </sb-typeahead>
+            </div>
+        </section>
+
+        <section class="actions">
+            <button id="accept" class="primary action-button" ng-disabled="!selectOfferForm.$valid" ng-click="accept()" data-dtmid="link_content_account application" data-dtmtext="Accept offer  button click">
+                Accept offer
+            </button>
+            <button class="secondary action-button" track-click="Decide later" ng-click="decideLater = true" data-dtmid="link_content_account application" data-dtmtext="Save for later button click">Save for
+                Later
+            </button>
+        </section>
+    </ng-form>
+</div>
+
+<div class="modal-overlay" ng-show="showDetails">
+    <div class="modal-container offer-details">
+        <div class="offer-header">
+            <div class="modal-close">
+                <div class="close-button" ng-click="showDetails = false">
+                    <i class="icon icomoon-close-circle"></i>
+                </div>
+            </div>
+
+            <h2>{{offer.productFamily.name}}</h2>
+            <small>{{offer.productFamily.tagLine}}</small>
+        </div>
+
+        <ng-include src="offer.productFamily.partial"></ng-include>
+    </div>
+</div>
+
+<div class="modal-overlay" ng-show="decideLater">
+    <div class="modal-container action-modal">
+        <div class="modal-header">
+            <h3>Save for later</h3>
+        </div>
+
+        <div class="modal-content">You can save your offer now and come back later to finish your application.</div>
+
+        <div class="actions">
+            <a go-home class="btn primary">OK</a>
+            <button ng-click="decideLater = false" id="cancel" class="secondary">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div class="print-letter">
+    <ng-include src="'features/accountorigination/common/screens/printheader/partials/printHeader.html'"></ng-include>
+
+    <p class="text-center"><b>Current account offer</b></p>
+
+    <p>Thank you for choosing Standard Bank to provide you with an account offer.</p>
+
+    <p>{{moreThanOne ? 'Choose one of these banking solutions': 'We are pleased to offer you the following banking solution'}}:</p>
+
+    <table class="offers-print">
+        <tbody>
+        <tr class="thead">
+            <td><b>Product</b></td>
+            <td><b>Fee Structure</b></td>
+        </tr>
+        <tr ng-repeat="product in offer.products track by product.number">
+            <td>{{product.name | capitalize}}</td>
+            <td>{{product.feeStructure.name}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <p ng-if="offer.overdraft.selected">You also qualify for an overdraft of {{offer.overdraft.limit | randAmount}}
+            at an interest rate of {{offer.overdraft.interestRate}}%. Adding an overdraft to your current account is
+            optional.</p>
+
+        <p ng-show="offer.overdraft.selected"><b>Note that this overdraft offer is valid for 5 days. This offer
+            constitutes approval in principle and is subject to the Bank verifying the information</b>.</p>
+
+        <p>If you have any questions, please don't hesitate to call us on <b>{{isPrivateBankingProduct ? '0860 123 101'
+            : '0860 123 000'}}</b>.</p>
+
+        <p>
+            Yours sincerely,<br/>
+            Self-Service Banking Team
+        </p>
+
+    </div>
+
+    <ng-include src="'common/print/partials/printFooter.html'"></ng-include>
+</div>

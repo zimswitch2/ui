@@ -1,0 +1,23 @@
+.prepaid-history {
+  @media #{$large-up}, print {
+    .action-table {
+      ul {
+        .information {
+          width: 100%;
+          > div {
+            width: 14%;
+            &:nth-child(1) {
+              width: 20%;
+            }
+            &:nth-child(5) {
+              width: 20%;
+            }
+            &:nth-child(6) {
+              width: 18%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

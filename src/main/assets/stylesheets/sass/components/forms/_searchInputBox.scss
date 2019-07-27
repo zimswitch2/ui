@@ -1,0 +1,12 @@
+$icon-pos-adjust: 0.28em;
+
+.filter, .typeahead-container {
+  width: 100%;
+  input {
+    padding-left: 2.5em;
+    padding-right: 2.5em;
+  }
+  @media #{$large-up} {
+    width: auto;
+  }
+}

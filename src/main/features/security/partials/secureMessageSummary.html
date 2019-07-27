@@ -1,0 +1,29 @@
+<div class="summary">
+
+    <div class="summary-row">
+        <div>
+            <span>Account</span>
+            <span id="account">{{secureMessage.account | accountLabel}}</span>
+        </div>
+    </div>
+    <div class="summary-row" ng-if="secureMessage.account.branch.name.trim()">
+        <div>
+            <span>Branch</span><span id="branch">{{secureMessage.account.branch.name}}</span>
+        </div>
+    </div>
+    <div class="summary-row" ng-if="secureMessage.homeTelephone">
+        <div>
+            <span>Home telephone</span><span id="homeTelephone">{{secureMessage.homeTelephone}}</span>
+        </div>
+    </div>
+    <div class="summary-row" ng-if="secureMessage.businessTelephone">
+        <div>
+            <span>Business telephone</span><span id="businessTelephone">{{secureMessage.businessTelephone}}</span>
+        </div>
+    </div>
+    <div class="summary-row">
+        <div>
+            <span>Secure message</span><span id="message">{{secureMessage.content}}</span>
+        </div>
+    </div>
+</div>

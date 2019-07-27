@@ -1,0 +1,78 @@
+<h2>Instant Money</h2>
+
+<div class="form-layout-top">
+<div flow=""></div>
+<div notification="" error="" ng-show="errorMessage">{{errorMessage}}</div>
+    <div class="error result notification" ng-show="!hasInfo &amp;&amp; hasZeroEAPLimit &amp;&amp; monthlyEAPLimit == 0">Your electronic
+        account payment (EAP)
+        limit needs to be set in order to make payments. Please call Customer Care (0860 123 000) for further
+        assistance.
+    </div>
+
+</div>
+<div class="form-layout-main">
+    <div class="info notification" ng-show="hasInfo">{{infoMessage}}</div>
+    <form name="voucherForm" class="panel">
+        <section>
+            <sb-account-dropdown name="account" label="From account" ng-model="voucher.account" items="aliveAccounts" highlight-balance="amountExceedsAvailableBalance()" ng-required="true">
+                </sb-account-dropdown>
+                </section>
+
+                <section>
+                    <sb-input name="CellNumber" label="Cell phone number" ng-model="voucher.cellNumber" ng-required="true" exact-length="10" required-message="Please enter the recipient&apos;s cell phone number" ng-pattern="&apos;(0)[0-9]{9}&apos;" pattern-message="Please enter a 10-digit cell phone number">
+                    </sb-input>
+                </section>
+
+                <section>
+                    <sb-input name="VoucherPin" label="Create cash collection PIN" ng-model="voucher.voucherPin" ng-required="true" required-message="Please create a PIN which the recipient will use" ng-pattern="&apos;[0-9]{4}&apos;" type="password" pattern-message="Please enter a valid cash collection PIN" tooltip="Create a unique PIN and send it to the recipient of the transfer" prevent-consecutive-numbers="3" prevent-consecutive-numbers-message="Please do not use sequential numbers (e.g. 4321)" prevent-repetitive-numbers="2" prevent-repetitive-numbers-message="Please do not repeat numbers (e.g. 1223)" ng-maxlength="4" description="Create a PIN of 4 digits which does not include consecutive or repeated numbers (e.g. 1234, 1112)">
+                    </sb-input>
+                </section>
+
+                <section>
+                    <sb-input name="ConfirmVoucherPin" label="Confirm cash collection PIN" ng-model="voucher.confirmVoucherPin" ng-required="true" required-message="Please re-enter the cash collection PIN" confirm-input-name="VoucherPin" confirmation-message="The two PINs do not match" type="password">
+                    </sb-input>
+                </section>
+
+                <section>
+                    <sb-amount ng-model="voucher.amount" enforcer="enforcer" hinter="hinter" placeholder="0" label="Amount">
+                    </sb-amount>
+                </section>
+                <section>
+                    <label for="instant-money-terms">
+                        <input required type="checkbox" id="instant-money-terms" ng-model="voucher.agree">
+                        You agree to the Instant Money <a ng-click="showDisclaimer()">terms and conditions</a>
+                    </label>
+                </section>
+        <button ng-disabled="!voucherForm.$valid" ng-click="next()" data-dtmid="link_content_instant money" data-dtmtext="send money step 1 | next button click">
+            Next
+        </button>
+
+        <a class="btn secondary" href="#/instant-money" data-dtmid="link_content_instant money" data-dtmtext="send money step 1 | cancel button click">Cancel</a>
+                </form>
+        </div>
+
+        <div class="form-layout-right">
+            <monthly-payment-limits watcher="watcher"></monthly-payment-limits>
+            <daily-payment-limits limit="dailyWithdrawalLimit"></daily-payment-limits>
+
+        </div>
+
+        <div id="hide-on-print" class="instant-money-disclaimer modal-overlay" ng-show="isDisclaimerVisible">
+            <div class="modal-container action-modal">
+                <div class="modal-header">
+                    <h3>Disclaimer</h3>
+                </div>
+
+                <div class="modal-content">
+                    <p>You use the Service at your own risk. The Bank's liability for any loss or damage, delay, non-delivery, non-payment of money transfered, no matter how it is caused, will be limited to the amount of the money sent.</p>
+
+                    <p>The bank does not accept liability for delays in the Service caused by circumstances beyond the control of the Bank.</p>
+
+                    <p>The bank may not be held liable for indirect damages, no matter how they are caused.</p>
+        </div>
+
+        <div class="actions">
+            <button class="primary" ng-click="hideDisclaimer()">Close</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+{
+  "name": "ibrefresh",
+  "description": "",
+  "version": "0.0.1",
+  "homepage": "",
+  "license": "",
+  "private": true,
+  "dependencies": {
+    "jquery": "2.0.3",
+    "jquery.scrollTo": "1.4.14",
+    "jquery-color": "~2.1.2",
+    "angular": "1.5.3",
+    "angular-animate": "1.5.3",
+    "angular-cache": "3.1.0",
+    "angular-cookie": "4.0.6",
+    "angular-route": "1.5.3",
+    "angular-base64": "2.0.4",
+    "angular-mocks": "1.5.3",
+    "angular-sanitize": "1.5.3",
+    "lodash": "3.10.0",
+    "moment": "2.5.1",
+    "offline": "0.7.2",
+    "chartjs": "1.0.2",
+    "pdfmake": "rouanw/pdfmake#bower",
+    "flux-angular": "~2.3.5",
+    "angular-messages": "~1.5.5"
+  },
+  "resolutions": {
+    "angular": "1.5.3"
+  }
+}

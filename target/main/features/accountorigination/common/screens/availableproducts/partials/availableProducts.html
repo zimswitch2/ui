@@ -1,0 +1,29 @@
+<h2 id="availableProductsTitle">Banking Solutions for You</h2>
+<div class="account-products well wide" ng-class="{&apos;add-product-content-height&apos;: applications.current.status === &apos;EXISTING&apos; || applications.rcp.status === &apos;EXISTING&apos; }">
+
+    <ul class="large-block-grid-3 small-block-grid-1">
+        <li>
+            <product-tile product-title="{{currentAccountTitle}}" product-description="Easy day-to-day banking with an overdraft" product-image-url="assets/images/current-account.jpg" product-type="current-account" details-page-url="/apply/current-account" account-number-label="Your Current account number" application="applications.current" continue-application="continueCurrentAccount()"></product-tile>
+        </li>
+        <li>
+            <product-tile product-title="Revolving credit plan" product-description="Borrow again after paying back part of your loan" product-image-url="assets/images/rcp.jpg" product-type="rcp" details-page-url="/apply/rcp" account-number-label="Your RCP account number" application="applications.rcp" continue-application="rcpViewOffer()"></product-tile>
+        </li>
+        <li ng-if="showSavingsAndInvestmentOptions">
+            <div class="product-information product-container" id="savingsAndInvestmentsProductContainer">
+                <img class="show-for-large-up" src="assets/images/SavingsAndInvestments.jpg" alt="Savings and Investments">
+
+                <div class="product-content">
+                    <h3>Savings and Investments</h3>
+
+                    <p>Save for today, invest for tomorrow</p>
+                </div>
+
+                <div class="buttons-container">
+                    <a id="savingsAndInvestmentsOptions" class="btn primary" href="#/apply/savings-and-investments" track-click="Banking solutions for you_View savings and investment options" data-dtmid="link_content_account application" data-dtmtext="savings and investment browse button click">
+                        &nbsp;&nbsp;Browse&nbsp;&nbsp;&nbsp;
+                    </a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

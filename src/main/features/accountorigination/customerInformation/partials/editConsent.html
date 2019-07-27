@@ -1,0 +1,54 @@
+<h2>Your Details</h2>
+
+<flow class="wide"></flow>
+
+<div class="notification error wide" ng-show="serverErrorMessage !== undefined">
+    {{serverErrorMessage}}
+</div>
+
+<div class="customer-info-container">
+    <customer-information-navigation editing="true" current-page="'submit'"></customer-information-navigation>
+    <div class="customer-info-form">
+        <form name="customerInformationForm" data-frmcontainer="edit application consent form" novalidate>
+            <div class="customer-info-scroll">
+                <div class="consent">
+                    <ng-form name="consentForm">
+                        <div class="edit-section">
+                            <h3 class="title">Submit Application</h3>
+
+                            <h3 class="large-9">
+                                <small>
+                                    Sharing your details with Standard Bank will help us improve our service to you,
+                                    and keep
+                                    you up to date on
+                                    suitable banking solutions and special offers.
+                                    Your personal information will always be treated as confidential.
+                                </small>
+                            </h3>
+                            <ul class="panel">
+                                <row-field ng-repeat="consent in consents">
+                                    <input type="checkbox" id="edit-consent-{{consent.code}}"
+                                           name="Consent_{{consent.analytics_name}}"
+                                           ng-model="customerInformationData.getConsent(consent.code).consentFlag"/>
+                                    <label for="edit-consent-{{consent.code}}">{{consent.description}}</label>
+                                </row-field>
+                            </ul>
+                            <div>
+                                <button id="save-consent" class="primary" ng-click="save()"
+                                        ng-disabled="!consentForm.$valid">
+                                    Save
+                                </button>
+                                <button id="cancel-consent" ng-hide="hasNoMarketingConsent" class="secondary"
+                                        ng-click="cancel()">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </ng-form>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<cancel-confirmation edit-form="consentForm"></cancel-confirmation>
+<ng-include src="'features/accountorigination/customerInformation/partials/existingCustomerModal.html'"></ng-include>

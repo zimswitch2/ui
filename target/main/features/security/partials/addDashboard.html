@@ -1,0 +1,44 @@
+    <h2>Add dashboard</h2>
+
+<div class="form-layout-top">
+    <div notification="" error="" ng-show="errorMessage">{{errorMessage}}</div>
+    <did flow=""></did>
+</div>
+
+<div class="my-dashboards form-layout-main">
+
+    <div class="panel make-space-for-country-items">
+        <form name="linkCardForm" novalidate="novalidate" autocomplete="off" ng-submit="linkAdditionalCard()">
+            <section>
+                <div>
+                    <label for="cardnumber">Card number</label>
+                    <input type="text" id="cardnumber" name="cardnumber" ng-model="cardData.cardNumber" ng-class="{&apos;show-validation-styles&apos;: linkCardForm.cardnumber.$touched || linkCardForm.cardnumber.$dirty || linkCardForm.$submitted}" exact-lengths="16,18" ng-pattern="&apos;[0-9]*&apos;" focus-on="">
+                    <ng-messages for="linkCardForm.cardnumber.$error" ng-show="linkCardForm.cardnumber.$touched || linkCardForm.cardnumber.$dirty || linkCardForm.$submitted">
+                        <ng-message class="form-error" when="pattern">Please enter a valid card number</ng-message>
+                        <ng-message class="form-error" when="exactLengths">Must be 16 or 18 numbers long</ng-message>
+                    </ng-messages>
+                </div>
+            </section>
+
+            <section>
+                <div>
+                    <label for="atmpin">ATM PIN</label>
+                    <input type="password" id="atmpin" name="atmpin" ng-model="cardData.atmPIN" ng-class="{&apos;show-validation-styles&apos;: linkCardForm.atmpin.$touched || linkCardForm.atmpin.$dirty || linkCardForm.$submitted}" exact-lengths="5" ng-pattern="&apos;[0-9]*&apos;">
+                    <ng-messages for="linkCardForm.atmpin.$error" ng-show="linkCardForm.atmpin.$touched || linkCardForm.atmpin.$dirty || linkCardForm.$submitted">
+                        <ng-message class="form-error" when="pattern">Please enter a valid ATM PIN</ng-message>
+                        <ng-message class="form-error" when="exactLengths">Must be 5 numbers long</ng-message>
+                    </ng-messages>
+                </div>
+            </section>
+
+            <section>
+                <div>
+                    <international-phone-number ng-model="cardData.contactDetails"></international-phone-number>
+                </div>
+            </section>
+            <button id="next" type="submit" ng-disabled="linkCardForm.$invalid">Next</button>
+            <button id="cancel" class="secondary" ng-click="cancel()">Cancel</button>
+        </form>
+    </div>
+
+</div>

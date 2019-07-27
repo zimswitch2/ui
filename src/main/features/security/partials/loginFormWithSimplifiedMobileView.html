@@ -1,0 +1,11 @@
+<div feature="enhancedSignInPage">
+    <ng-include src="'features/security/partials/enhancedLoginForm.html'"></ng-include>
+</div>
+
+<div not-feature="enhancedSignInPage">
+    <ng-include src="'features/security/partials/loginForm.html'"></ng-include>
+</div>
+
+<div class="show-for-small-only">
+    <button id="sign-in-mobile" ng-hide="showLogin" ng-click="showLogin = true">Sign in</button>
+</div>

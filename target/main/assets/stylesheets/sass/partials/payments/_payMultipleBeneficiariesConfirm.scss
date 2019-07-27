@@ -1,0 +1,14 @@
+.pay-multiple-confirm {
+  .action-table {
+    @media #{$large-up} {
+      ul {
+        .information {
+          > div {
+            $number_of_columns: 7;
+            width: percentage(1/$number_of_columns);
+          }
+        }
+      }
+    }
+  }
+}

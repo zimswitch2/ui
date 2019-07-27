@@ -1,0 +1,214 @@
+$main-navbar-bg-color: $powder-blue;
+$main-navbar-border-color: $silver-grey;
+$main-navbar-color: $air-force-blue;
+
+.main-nav-container {
+  background: #fff;
+}
+
+nav {
+  @include clearfix();
+  background: #fff;
+
+  ul {
+    li {
+      margin: 0;
+      padding: 0;
+      float: left;
+      > a {
+        color: #779db4;
+        position: relative;
+        display: inline-block;
+        font-size: 1em;
+        text-decoration: none;
+        margin-bottom: 0;
+        outline: 0;
+
+        &:after {
+          content: "";
+          border-right: solid 2px rgba(255,255,255, 0.6);
+          position: absolute;
+          right: 0;
+          top: 0.5em;
+          bottom: 0.5em;
+          color: rgba(255,255,255, 0.6);
+        }
+
+        &.active {
+          color: $primary-blue;
+
+          &:hover {
+            color: $primary-blue;
+          }
+        }
+        &:hover {
+          color: $primary-blue-light;
+        }
+      }
+    }
+  }
+}
+
+@media #{$medium-up} {
+  #link-to-full-site {
+    float: right;
+  }
+}
+
+a.menu-link {
+  float: right;
+  display: block;
+  padding: 0.5em;
+  position: absolute;
+  right: 5px;
+  top: 6px;
+
+  i {
+    font-size: 2.3em;
+    color: white;
+  }
+}
+
+nav[role=navigation] {
+  clear: both;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+nav[role=navigation] {
+  overflow: hidden;
+  max-height: 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+nav[role=navigation].active {
+  max-height: 36em;
+}
+
+nav[role=navigation] ul {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+nav[role=navigation] li {
+  width: 100%;
+  text-align: left;
+}
+
+nav[role=navigation] li >a {
+  display: block;
+  padding: 1em;
+  width: 100%;
+  @media #{$medium-only} {
+    padding: 1em 0.8em;
+  }
+}
+
+@media #{$small-only} {
+  nav.main ul li >a.active {
+    border-bottom: none;
+    color: white;
+
+    &:hover {
+      color: #0093FF;
+    }
+  }
+
+  #signedinas {
+    display: none;
+  }
+
+  nav.main ul li >a {
+    color: white;
+    border-top: 1px solid #34444D;
+
+    &:after {
+      content: none;
+    }
+
+    &:hover {
+      color: #0093FF;
+      background-color: #273E49;
+    }
+  }
+
+  nav.main ul li {
+    background: #1d2d35;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+@media #{$medium-up} {
+  a.menu-link {
+    display: none;
+  }
+
+  #signedinas {
+    display: block;
+  }
+
+  nav.main ul li {
+    background: white;
+  }
+
+  nav.main ul li >a {
+    color: $font-grey-light;
+    border-top: none;
+
+    &:after {
+      content: none;
+    }
+
+    &:hover {
+      color: $secondary_blue;
+      background-color: white;
+    }
+
+    &.active {
+      color: $primary-blue;
+
+      &:hover {
+        color: $primary-blue;
+        background-color: white;
+      }
+    }
+  }
+
+  nav[role=navigation] {
+    max-height: none;
+    padding-left: 1em;
+    border-top: none;
+  }
+
+  nav[role=navigation] ul {
+    padding-left: 1.5em;
+    margin: 0 0 0 -0.25em;
+    border: 0;
+  }
+
+  nav[role=navigation] li {
+    display: inline-block;
+    margin: 0 0.25em;
+    width: auto;
+  }
+
+  nav[role=navigation] li >a {
+    border: 0;
+    width: auto;
+
+    &.active {
+      border-bottom: 0.3em solid $primary-blue;
+    }
+  }
+
+  nav[role=navigation] li.only-mobile {
+    display: none;
+  }
+}

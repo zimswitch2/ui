@@ -1,0 +1,10 @@
+<div class="recharge-balances">
+    <div class="recharge-balances-header">
+        Limits
+    </div>
+
+    <div class="recharge-balances-body panel" ng-class="{&apos;invalid-balance&apos;: amountExceedsDailyWithdrawalLimit()}">
+        <span>Available daily withdrawal limit</span>
+        <span id="availableDailyLimit" class="withdrawal-limit amount">{{recharge.dailyWithdrawalLimit | nonNegativeRandAmount}}</span>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+// USED in AO and Add beneficiary to group
+
+.well.wide, .wide {
+  @include span-columns(12);
+  max-width: 100em;
+}
+
+.well {
+  background: white;
+  border: 0.2em solid #f3f3f3;
+  padding: 1.5em;
+
+  @media #{$small-only} {
+
+    padding: 1em;
+
+    .tertiary {
+      width: 100%;
+    }
+
+    .search {
+      width:100%;
+      margin-right: 0;
+    }
+  }
+
+  @media #{$large-up} {
+    @include span-columns(6);
+  }
+
+  &.small-well {
+    @media #{$large-up} {
+      @include span-columns(4);
+    }
+  }
+
+  &.large-well {
+    @media #{$large-up} {
+      @include span-columns(8);
+    }
+  }
+
+  &.hide-top {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  &.hide-bottom {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  h1, h2, h3, h4, h5 {
+    padding: 0.5em;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  img#trusteer{
+    width: 20%;
+    float: right;
+  }
+
+  h3 {
+    padding: 0;
+    padding-bottom: 0.5em;
+  }
+
+  &.last {
+    margin-right: 0;
+  }
+
+  &.confirmation {
+    margin-right: 0;
+    @media #{$large-up} {
+      margin-right: 2.35765%;
+    }
+  }
+
+  .information-box {
+    padding-bottom: 0em;
+  }
+}
+.well-container {
+  @extend .clearfix;
+
+  @media #{$large-up} {
+    @include span-columns(6);
+  }
+
+  &.small-well{
+    @media #{$large-up} {
+      @include span-columns(4);
+    }
+  }
+
+  &.large-well{
+    @media #{$large-up} {
+      @include span-columns(8);
+    }
+  }
+}

@@ -1,0 +1,140 @@
+<h2>International Payment</h2>
+
+<flow class="international-payment-beneficiary-flow wide"></flow>
+
+<div class="international-payment-beneficiary-container">
+    <international-payment-beneficiary-navigation
+            current-page="'preferences'"></international-payment-beneficiary-navigation>
+    <div class="international-payment-beneficiary-form">
+        <form class="xbp-beneficiary-preferences" name="xbpBeneficiaryPreferencesForm" novalidate>
+            <div class="international-payment-beneficiary-scroll">
+                <div class="row wide-content">
+                    <div class="large-7 medium-12 small-12 columns">
+                        <ng-form name="xbpBeneficiaryPreferencesForm">
+                            <section>
+                                <label for="beneficiaryFee">Payment fees</label>
+                                <a href="javascript:void(0)" class="beneficiary-tooltip" ng-click="showFeeHelp = true">
+                                    <i class="icon icon-question-circle"></i>
+                                </a>
+
+                                <div class="styled-select medium-width">
+                                    <select id="beneficiaryFee"
+                                            ng-model="beneficiary.preferences.fee"
+                                            ng-required="true"
+                                            ng-focus="showFeeHelp = true"
+                                            ng-blur="showFeeHelp = false"
+                                            fix-ie-select
+                                            ng-options="beneficiaryFee as beneficiaryFee.description for beneficiaryFee in beneficiaryFees track by beneficiaryFee.code">
+                                    </select>
+                                </div>
+                                <div class="hide-for-large-up">
+                                    <div class="beneficiary-context-help medium-width" ng-show="showFeeHelp">
+                                        <i class="icon icomoon-close close" ng-click="showFeeHelp = false"></i>
+
+                                        <div class="center margin-top">
+                                            <p class="padding-bottom">
+                                                <strong>You pay all the fees</strong><br/>
+                                                You pay both the Standard Bank fees and the beneficiary’s bank fees. The
+                                                beneficiary’s
+                                                bank fees will be debited separately. Please make sure there are enough
+                                                funds in
+                                                your
+                                                account.
+                                            </p>
+
+                                            <p class="padding-bottom">
+                                                <strong>Split the fees</strong><br/>
+                                                You pay for the Standard Bank fees and the beneficiary will pay for
+                                                their
+                                                own
+                                                bank fees.
+                                            </p>
+
+                                            <p class="padding-bottom">
+                                                <strong>Pricing</strong><br/>
+                                                Commission fee: minimum R140 and maximum R640 <br />
+                                                (0.5% of transaction amount) <br />
+                                                SWIFT fee: R100 <br />
+
+                                            </p>
+
+                                            <p class="padding-bottom">
+                                                Special pricing does not apply to international payments.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="medium-width">
+                                <sb-input name="yourReference"
+                                          label="Your reference"
+                                          ng-model="beneficiary.preferences.yourReference"
+                                          ng-required="true"
+                                          ng-minlength="1"
+                                          ng-maxlength="35"
+                                          ng-pattern="^[0-9a-zA-Z' -]*"
+                                          pattern-message="Please enter a valid reference">
+                                </sb-input>
+                            </section>
+                            <section class="medium-width">
+                                <sb-input name="theirReference"
+                                          label="Their reference"
+                                          ng-model="beneficiary.preferences.theirReference"
+                                          ng-required="true"
+                                          ng-minlength="1"
+                                          ng-maxlength="35"
+                                          ng-pattern="^[0-9a-zA-Z' -]*"
+                                          pattern-message="Please enter a valid reference">
+                                </sb-input>
+                            </section>
+                            <div>
+                                <button id="next" class="primary" ng-click="next()"
+                                        ng-disabled="!xbpBeneficiaryPreferencesForm.$valid">
+                                    Next
+                                </button>
+                                <button id="back" class="secondary" ng-click="back()">
+                                    Back
+                                </button>
+                            </div>
+                        </ng-form>
+                    </div>
+                    <div class="large-5 columns show-for-large-up">
+                        <div class="beneficiary-context-help" ng-show="showFeeHelp">
+                            <div class="center margin-top">
+                                <i class="icon icomoon-close close" ng-click="showFeeHelp = false"></i>
+                                <p class="padding-bottom">
+                                    <strong>You pay all the fees</strong><br/>
+                                    You pay both the Standard Bank fees and the beneficiary’s bank fees. The
+                                    beneficiary’s
+                                    bank fees will be debited separately. Please make sure there are enough
+                                    funds in
+                                    your
+                                    account.
+                                </p>
+
+                                <p class="padding-bottom">
+                                    <strong>Split the fees</strong><br/>
+                                    You pay for the Standard Bank fees and the beneficiary will pay for their
+                                    own
+                                    bank fees.
+                                </p>
+
+                                <p class="padding-bottom">
+                                    <strong>Pricing</strong><br/>
+                                    Commission fee: minimum R140 and maximum R640 <br />
+                                    (0.5% of transaction amount) <br />
+                                    SWIFT fee: R100 <br />
+
+                                </p>
+
+                                <p class="padding-bottom">
+                                    Special pricing does not apply to international payments.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

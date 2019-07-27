@@ -1,0 +1,32 @@
+<div ng-switch="viewName()">
+    <div>
+        <div ng-show="hasPendingTransactions()" class="panel pendingTransaction accounts">
+            <div class="row">
+                <div class="medium-10 small-10 columns">
+                    <h3>Pending transactions</h3>
+                </div>
+                <div class="medium-2 small-2 columns">
+                    <div class="number-of-pending-transactions-padding">
+                        <button ng-hide="hasOnlyOnePendingTransaction()" class="number-of-pending-transactions-badge">
+                            {{numberOfPendingTransactions}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-switch-when="interAccountPayment">
+                <ng-include src="&apos;features/accountSharing/beneficiaryPayments/pendingPaymentsWidget/partials/interAccountPayment.html&apos;"></ng-include>
+            </div>
+
+
+            <div ng-switch-when="repeatPayment">
+                <ng-include src="&apos;features/accountSharing/beneficiaryPayments/pendingPaymentsWidget/partials/repeatPayment.html&apos;"></ng-include>
+            </div>
+
+
+            <div ng-switch-default="">
+                <ng-include src="&apos;features/accountSharing/beneficiaryPayments/pendingPaymentsWidget/partials/beneficiaryPayment.html&apos;"></ng-include>
+            </div>
+        </div>
+    </div>
+</div>

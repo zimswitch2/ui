@@ -1,0 +1,148 @@
+<h2>Your Details</h2>
+
+<flow class="wide"></flow>
+
+<div class="notification error wide" ng-show="serverErrorMessage !== undefined">
+    {{serverErrorMessage}}
+</div>
+<div class="customer-info-container">
+    <customer-information-navigation editing="true" current-page="&apos;profile&apos;"></customer-information-navigation>
+    <div class="customer-info-form">
+        <form name="customerInformationForm" data-frmcontainer="edit basic information form" novalidate="">
+            <div class="customer-info-scroll">
+                <div class="basic-info" ng-class="{&apos;with-date-picker-at-bottom&apos;: customerInformationData.getPassport()}">
+                    <ng-form name="editBasicForm">
+                        <div class="edit-section">
+                            <div>
+                                <h3>Your Profile</h3>
+                            </div>
+                            <div class="notification wide" ng-if="!(customerInformationData.needAdditionalPermitInfo())" ng-class="{&apos;error&apos;: getValidationNotification()!==undefined, &apos;info&apos;: getValidationNotification()===undefined}" id="incompleteInfoNotification">
+                                Please enter all the additional required information to complete your profile
+                            </div>
+                            <div ng-if="customerInformationData.needAdditionalPermitInfo()" class="notification info wide">Your permit details are outstanding. Please visit your nearest branch to update this information
+                            </div>
+
+                            <ul class="data edit-mode">
+                                <row-field label="Title">
+                                    {{customerInformationData.customerTitleCode | map:'title' | capitalize}}
+                                </row-field>
+                                <row-field label="Surname">
+                                    {{customerInformationData.customerSurname | capitalize}}
+                                </row-field>
+                                <row-field label="First names">
+                                    {{customerInformationData.customerFirstName | capitalize}}
+                                </row-field>
+                                <row-field label="Initials">
+                                    {{customerInformationData.customerInitials}}
+                                </row-field>
+                                <row-field label="ID number" ng-show="customerInformationData.getNationalId()">
+                                    {{customerInformationData.getNationalId().identityNumber}}
+                                </row-field>
+                                <row-field label="Date of birth">
+                                    {{customerInformationData.dateOfBirth | dateFormat}}
+                                </row-field>
+                                <row-field label="Gender">
+                                    {{customerInformationData.gender | map:'gender'}}
+                                </row-field>
+                                <row-field label="Passport" ng-show="customerInformationData.getPassport()">
+                                    {{customerInformationData.getPassport().identityNumber}}
+                                </row-field>
+                                <row-field label="Passport origin" ng-show="customerInformationData.getPassport()">
+                                    {{customerInformationData.getPassport().countryCode | map:'country' |
+                                    capitalizeCountry}}
+                                </row-field>
+                                <row-field label="Passport expiry date" ng-show="customerInformationData.getPassport() &amp;&amp; customerInformationData.getPassport().expiryDate">
+                                    {{customerInformationData.getPassport().expiryDate | dateFormat}}
+                                </row-field>
+                                <row-field label="Nationality *" id="editNationalityCountry" ng-if="!originalCustomer.nationalityCountryCode">
+                                    <div class="medium-width">
+                                        <sb-typeahead ng-model="customerInformationData.nationalityCountryCode" name="Nationality" items="countries" ng-required="true" sort-by="name" value-property="code">
+                                        </sb-typeahead>
+                                    </div>
+                                </row-field>
+                                <row-field label="Nationality *" id="editNationalityCountry" ng-if="originalCustomer.nationalityCountryCode">
+                                    {{customerInformationData.nationalityCountryCode | map:'country' |
+                                    capitalizeCountry}}
+                                </row-field>
+                                <row-field label="Country of residence *" id="editResidenceCountry" ng-if="!originalCustomer.residenceCountryCode">
+                                    <div class="medium-width">
+                                        <sb-typeahead ng-model="customerInformationData.residenceCountryCode" name="Country_of_residence" items="countries" ng-required="true" sort-by="name" value-property="code">
+                                        </sb-typeahead>
+                                    </div>
+                                </row-field>
+                                <row-field label="Country of residence *" id="editResidenceCountry" ng-if="originalCustomer.residenceCountryCode">
+                                    {{customerInformationData.residenceCountryCode | map:'country' | capitalizeCountry}}
+                                </row-field>
+                                <row-field label="Country of citizenship *" id="editCitizenshipCountry" ng-if="!originalCustomer.citizenshipCountryCode">
+                                    <div class="medium-width">
+                                        <sb-typeahead ng-model="customerInformationData.citizenshipCountryCode" name="Country_of_citizenship" items="countries" ng-required="true" sort-by="name" value-property="code">
+                                        </sb-typeahead>
+                                    </div>
+                                </row-field>
+                                <row-field label="Country of citizenship *" id="editCitizenshipCountry" ng-if="originalCustomer.citizenshipCountryCode">
+                                    {{customerInformationData.citizenshipCountryCode | map:'country' | capitalizeCountry}}
+                                </row-field>
+                                <row-field label="Country of birth *" label-for="editBirthCountry-input" ng-if="!originalCustomer.birthCountryCode">
+                                    <div class="medium-width">
+                                        <sb-typeahead ng-model="customerInformationData.birthCountryCode" name="Country_of_birth" id="editBirthCountry" items="countries" ng-required="true" sort-by="name" value-property="code">
+                                        </sb-typeahead>
+                                    </div>
+                                </row-field>
+                                <row-field label="Country of birth *" id="editBirthCountry" ng-if="originalCustomer.birthCountryCode">
+                                    {{customerInformationData.birthCountryCode | map:'country' | capitalizeCountry}}
+                                </row-field>
+
+                                
+                                
+                                
+                                
+
+                                <row-field label="Permit type" ng-if="customerInformationData.getPassport() &amp;&amp;!customerInformationData.needAdditionalPermitInfo()">
+                                    {{customerInformationData.getPermit().identityTypeCode | map: 'permitType'}}
+                                </row-field>
+                                <row-field label="Permit number" ng-if="customerInformationData.getPassport()  &amp;&amp;!customerInformationData.needAdditionalPermitInfo()">
+                                    {{customerInformationData.getPermit().identityNumber}}
+                                </row-field>
+                                <row-field label="Permit issue date" ng-if="customerInformationData.getPassport() &amp;&amp;!customerInformationData.needAdditionalPermitInfo()">
+                                    {{customerInformationData.getPermit().issuedDate | dateFormat}}
+                                </row-field>
+                                <row-field label="Permit expiry date" ng-if="customerInformationData.getPassport() &amp;&amp;!customerInformationData.needAdditionalPermitInfo()">
+                                    {{customerInformationData.getPermit().expiryDate | dateFormat}}
+                                </row-field>
+
+                                <row-field label="Marital status">
+                                    {{customerInformationData.maritalStatusCode | map:'maritalStatus'}}
+                                </row-field>
+                                <row-field label="Marital type" ng-show="customerInformationData.maritalStatusCode === &apos;2&apos;">
+                                    {{customerInformationData.maritalTypeCode | map:'maritalType'}}
+                                </row-field>
+                                <row-field label="Your branch">
+                                    {{customerInformationData.branchCode | map:'branch' | capitalize}}
+                                </row-field>
+                            </ul>
+                        </div>
+                    </ng-form>
+                    <div>
+                        <button id="save-basic" class="primary" ng-click="save()" ng-disabled="!(editBasicForm.$valid &amp;&amp; allDatesValid())" track-click="Update AML Basic information">
+                            Save
+                        </button>
+                        <button id="cancel-basic" class="secondary" ng-click="cancel()">
+                            Back
+                        </button>
+                    </div>
+
+                    <ul class="data">
+                        <div class="nav-arrow hide-for-medium-up">
+                            <a ng-click="next()">
+                                <i class="icon icon-angle-down"></i>
+                                <span>Next section</span>
+                            </a>
+                        </div>
+                    </ul>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<cancel-confirmation edit-form="editBasicForm"></cancel-confirmation>

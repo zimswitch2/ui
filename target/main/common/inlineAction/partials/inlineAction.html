@@ -1,0 +1,26 @@
+<a class="action {{action}}" title="{{action}}" ng-click="actionState = &apos;doing&apos;">
+    <span class="title">{{action | capitalize}}</span>
+    <i class="icon icomoon-{{action}}"></i>
+</a>
+
+<div class="action-item">
+    <div ng-show="actionState === &apos;doing&apos;" class="action-doing" ng-class="{&apos;danger&apos;:isDanger}">
+        <div ng-hide="spinnerActive" class="prompt row">
+            <span id="{{action}}Message" ng-bind-html="htmlMessage" class="pull-left small-12 medium-8 columns"></span>
+            <div class="confirm-actions pull-right small-12 medium-4 columns">
+                <button class="confirm" ng-class="{&apos;danger-confirm&apos;:isDanger}" ng-click="execAction()">Confirm</button>
+                <button id="cancelButton" class="cancel secondary" ng-click="actionState=&apos;&apos;">Cancel</button>
+            </div>
+        </div>
+        <inline-spinner></inline-spinner>
+    </div>
+
+    <div class="action-failure" ng-show="actionState === &apos;failed&apos; ">
+        <div class="prompt">
+            <span>{{errorMessage}}</span>
+            <div class="cancel-action">
+                <button class="secondary cancel" ng-click="actionState=&apos;&apos;"><i class="icon icon-times"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

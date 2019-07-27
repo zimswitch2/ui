@@ -1,0 +1,172 @@
+<script type="text/javascript">
+    (function () {
+        var scriptUrl = ["trk.standardbank.co.za", "811652", "horKlox.js"].join("/");
+        window.loadTrusteerScript(scriptUrl);
+    })();
+</script>
+
+<script type="text/javascript">
+    (function () {
+        var scriptUrl = ["cdn.standardbank.co.za", "811652", "waveForm3.js"].join("/");
+        window.loadTrusteerScript(scriptUrl);
+    })();
+</script>
+<div class="row wide-content">
+
+
+</div>
+<div class="row-account-summary wide-content">
+    
+    <h2>Account Summary</h2>
+    <div info="" notification="" ng-show="hasInfo &amp;&amp; !infoMessage &amp;&amp; !errorMessage &amp;&amp; !customMessage">
+        {{greeting()}}
+    </div>
+    <div info="" notification="" ng-show="customMessage">
+        {{customMessage}}
+    </div>
+    <div info="" notification="" ng-show="infoMessage">
+        {{infoMessage}}
+    </div>
+    <div notification="" error="" ng-show="errorMessage">
+        {{errorMessage}}
+    </div>
+    <div class="account-summary">
+
+
+        <div ng-if="accounts &amp;&amp; accounts.length &gt; 5" ng-include="&apos;features/goToAnchor/partials/scrollOnClick.html&apos;"></div>
+        <div ng-show="isSuccessful" success="" notification="">Password was successfully changed.</div>
+        <pending-payments-widget></pending-payments-widget>
+        <div>
+
+
+            <div ng-show="hasAccounts(transactionAccounts)" class="panel transaction accounts">
+                <h3>Transaction accounts</h3>
+
+                <div ng-repeat="account in transactionAccounts" class="account row" ng-click="showTransactions(account.formattedNumber)" data-dtmid="link_content_account summary" data-dtmtext="View statement link click">
+                    <div class="information medium-5 small-12 columns">
+                        <div class="row">
+                            <span class="name medium-12 small-12 columns">{{account.productName}}</span>
+                        <span class="medium-12 columns">
+                            <span class="type">{{account.accountTypeName}}</span>
+                            <span class="number">{{account.formattedNumber}}</span>
+                        </span>
+                        </div>
+                    </div>
+
+                    <div class="available-balance medium-3 small-6 columns">
+                        <span>Available balance</span>
+                        <span>{{account.availableBalance.amount | randAmount}}</span>
+                    </div>
+                    <div class="latest-balance medium-4 small-6 columns">
+                        <span>Your balance</span>
+                        <span>{{account.currentBalance.amount | randAmount}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-show="hasAccounts(creditCard)" class="panel creditcard accounts">
+                <h3>Credit card</h3>
+
+                <div ng-repeat="account in creditCard" class="account row" ng-click="showTransactions(account.formattedNumber)" data-dtmid="link_content_account summary" data-dtmtext="View statement link click">
+                    <div class="information medium-5 small-12 columns">
+                        <div class="row">
+                            <span class="name medium-12 small-12 columns">{{account.productName}}</span>
+                        <span class="medium-12 columns">
+                            <span class="type">{{account.accountTypeName}}</span>
+                            <span class="number">{{account.formattedNumber}}</span>
+                        </span>
+                        </div>
+                    </div>
+
+                    <div class="available-balance medium-3 small-6 columns">
+                        <span>Available balance</span>
+                        <span>{{account.availableBalance.amount | randAmount}}</span>
+                    </div>
+                    <div class="latest-balance medium-4 small-6 columns">
+                        <span>Your balance</span>
+                        <span>{{account.currentBalance.amount | randAmount}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-show="hasAccounts(loans)" class="panel loan accounts">
+                <h3>Loans</h3>
+
+                <div ng-repeat="account in loans" class="account row" ng-click="showTransactions(account.formattedNumber)" data-dtmid="link_content_account summary" data-dtmtext="View statement link click">
+                    <div class="information medium-5 small-12 columns">
+                        <div class="row">
+                            <span class="name medium-12 small-12 columns">{{account.productName}}</span>
+                        <span class="medium-12 columns">
+                            <span class="type">{{account.accountTypeName}}</span>
+                            <span class="number">{{account.formattedNumber}}</span>
+                        </span>
+                        </div>
+                    </div>
+
+                    <div class="available-balance medium-3 small-6 columns">
+                        <span>Available balance</span>
+                        <span>{{account.availableBalance.amount | randAmount}}</span>
+                    </div>
+                    <div class="latest-balance medium-4 small-6 columns">
+                        <span>Your balance</span>
+                        <span>{{account.currentBalance.amount | randAmount}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-show="hasAccounts(investments)" class="panel investment accounts">
+                <h3>Investments</h3>
+
+                <div ng-repeat="account in investments" class="account row" ng-click="showTransactions(account.formattedNumber)" data-dtmid="link_content_account summary" data-dtmtext="View statement link click">
+                    <div class="information medium-5 small-12 columns">
+                        <div class="row">
+                            <span class="name medium-12 small-12 columns">{{account.productName}}</span>
+                        <span class="medium-12 columns">
+                            <span class="type">{{account.accountTypeName}}</span>
+                            <span class="number">{{account.formattedNumber}}</span>
+                        </span>
+                        </div>
+                    </div>
+
+                    <div class="available-balance medium-3 small-6 columns">
+                        <span>Available balance</span>
+                        <span>{{account.availableBalance.amount | randAmount}}</span>
+                    </div>
+                    <div class="latest-balance medium-4 small-6 columns">
+                        <span>Your balance</span>
+                        <span>{{account.currentBalance.amount | randAmount}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-show="hasAccounts(businessAccount)" class="panel businessAccount accounts">
+                <h3>Business Current Account</h3>
+
+                <div ng-repeat="account in businessAccount" class="account row" ng-click="showTransactions(account.formattedNumber)" data-dtmid="link_content_account summary" data-dtmtext="View statement link click">
+                    <div class="information medium-5 small-12 columns">
+                        <div class="row">
+                            <span class="name medium-12 small-12 columns">{{account.productName}}</span>
+                        <span class="medium-12 columns">
+                            <span class="type">{{account.accountTypeName}}</span>
+                            <span class="number">{{account.formattedNumber}}</span>
+                        </span>
+                        </div>
+                    </div>
+
+                    <div class="available-balance medium-3 small-6 columns">
+                        <span>Available balance</span>
+                        <span>{{account.availableBalance.amount | randAmount}}</span>
+                    </div>
+                    <div class="latest-balance medium-4 small-6 columns">
+                        <span>Your balance</span>
+                        <span>{{account.currentBalance.amount | randAmount}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <targeted-offer-banner template-name-suffix="LARGE"></targeted-offer-banner>
+    
+    <account-sharing-widget class="account-sharing-widget-main" ng-if="isCurrentDashboardCardHolder()"></account-sharing-widget>
+</div>

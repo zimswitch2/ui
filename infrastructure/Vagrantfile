@@ -1,0 +1,51 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.define "devbox", primary: true do |devbox|
+    devbox.vm.box = "saucy64"
+    devbox.vm.network :private_network, ip: "1.2.3.4"
+    devbox.vm.network "public_network", :bridge => 'en0: Ethernet'
+    devbox.vm.provider :virtualbox do |vb|
+      # Use VBoxManage to customize the VM. For example to change memory:
+      vb.customize [
+          "modifyvm", :id,
+          "--memory", "2048",
+          "--name", "PersonalBankingDev"
+      ]
+    end
+    devbox.vm.provision :ansible do |ansible|
+      ansible.playbook = "ansible/vagrant.yml"
+      ansible.sudo = true
+      ansible.verbose = "vvvv"
+      ansible.inventory_path = "ansible/vagrant"
+      ansible.host_key_checking = false
+    end
+  end
+
+  config.vm.define "agentbox" do |agentbox|
+    agentbox.vm.box = "saucy64"
+    agentbox.vm.network :private_network, ip: "2.3.4.5"
+    agentbox.vm.network  "public_network", :bridge => 'en0: Ethernet'
+    agentbox.vm.provider :virtualbox do |vb|
+      # Use VBoxManage to customize the VM. For example to change memory:
+      vb.customize [
+          "modifyvm", :id,
+          "--memory", "2048",
+          "--name", "PersonalBankingAgent"
+      ]
+    end
+
+    agentbox.vm.provision :ansible do |ansible|
+      ansible.playbook = "ansible/agent.yml"
+      ansible.sudo = true
+      ansible.verbose = "vvvv"
+      ansible.inventory_path = "ansible/vagrant"
+      ansible.host_key_checking = false
+    end
+  end
+
+end

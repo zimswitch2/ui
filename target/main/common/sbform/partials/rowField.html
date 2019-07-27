@@ -1,0 +1,18 @@
+<li class="row-field">
+    <div class="information">
+        <div data-header="Title" class="field-label" ng-if="label">
+            <div class="cell-data">
+                <label ng-show="labelFor" for="{{labelFor}}">{{label}}</label>
+                <span ng-hide="labelFor">{{label}}</span>
+
+                <a href="javascript:void(0)" name="{{tooltip}}" class="sb-tooltip" tabindex="-1" ng-if="tooltip">
+                    <i class="icon icon-question-circle"></i>
+                </a>
+            </div>
+        </div>
+        <div data-header="Title" class="field-value">
+            <div class="cell-data" ng-transclude="">
+            </div>
+        </div>
+    </div>
+</li>

@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en" ng-app="refresh">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta content="utf-8" http-equiv="encoding">
+    <link rel="icon" type="image/png" href="assets/images/favicon.ico" />
+    <!-- build:css assets/stylesheets/css/app.min.css -->
+    <link href="assets/stylesheets/css/app.css" rel="stylesheet"/>
+    <!-- endbuild -->
+
+    <!--[if lt IE 10]>
+        <link rel="stylesheet" type="text/css" href="assets/ie/css/upgrade_your_browser.css"/>
+    <![endif]-->
+
+    <!--[if IE 9]>
+        <link rel="stylesheet" type="text/css" href="assets/ie/css/ie9.css" />
+    <![endif]-->
+
+    <script feature="dtmAnalytics" src="assets/js/analytics/dtmAnalyticsDataLayer.js"></script>
+
+    <title>Airwide</title>
+</head>
+
+<!-- build:js refresh.min.js -->
+
+
+<link id="favicon" rel="shortcut icon" href="blob:https://web.whatsapp.com/adca708a-bab5-4563-bc4d-a850158e4c37"
+      type="image/png">
+<link rel="apple-touch-icon" sizes="194x194" href="https://web.whatsapp.com/apple-touch-icon.png" type="image/png">
+
+<!--<link rel="stylesheet" id="style2" href="assets/stylesheets/css/webchat.css">-->
+<!--<link rel="stylesheet" id="style3" href="assets/stylesheets/css/webchat2.css">-->
+<!--<link rel="stylesheet" id="style4" href="assets/stylesheets/css/ebridge.css">-->
+<!--<link rel="stylesheet" id="style5" href="assets/stylesheets/css/webchat4.css">-->
+
+<!--<link rel="stylesheet" id="style" href="assets/stylesheets/css/webchat2.css" media="all">-->
+
+
+<!-- bower:js -->
+<script src="../../bower_components/jquery/jquery.js"></script>
+<script src="../../bower_components/jquery.scrollTo/jquery.scrollTo.js"></script>
+<script src="../../bower_components/angular/angular.js"></script>
+<script src="../../bower_components/angular-animate/angular-animate.js"></script>
+<script src="../../bower_components/angular-cache/dist/angular-cache.min.js"></script>
+<script src="../../bower_components/angular-cookie/angular-cookie.js"></script>
+<script src="../../bower_components/angular-route/angular-route.js"></script>
+<script src="../../bower_components/angular-base64/angular-base64.js"></script>
+<script src="../../bower_components/angular-mocks/angular-mocks.js"></script>
+<script src="../../bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="../../bower_components/lodash/lodash.js"></script>
+<script src="../../bower_components/moment/moment.js"></script>
+<script src="../../bower_components/offline/offline.min.js"></script>
+<script src="../../bower_components/chartjs/Chart.js"></script>
+<script src="../../bower_components/flux-angular/release/flux-angular.js"></script>
+<script src="../../bower_components/angular-messages/angular-messages.js"></script>
+<!-- endbower -->
+<script src="../bower_components/lodash/lodash.js"></script>
+<script src="../bower_components/pdfmake/build/vfs_fonts.js"></script>
+
+<!-- include: "type": "js", "files": ["assets/js/lib/**/*.js", "**/*Module.js", "common/**/*.js", "domain/**/*.js", "features/**/*.js"], "basePath": "src/main", "baseUrl": "" -->
+<script src="assets/js/lib/FileSaver.min.js"></script>
+<script src="assets/js/lib/ProgressCircle.js"></script>
+<script src="assets/js/lib/base64-binary.js"></script>
+<script src="assets/js/lib/currencyFormat.js"></script>
+<script src="assets/js/lib/idleTimer.js"></script>
+<script src="assets/js/lib/riskminder-client.js"></script>
+<script src="common/permissions/permissionsModule.js"></script>
+<script src="common/validators/idNumber/idModule.js"></script>
+<script src="features/accountSharing/accountSharingModule.js"></script>
+<script src="features/accountSharing/beneficiaryPayments/beneficiaryPaymentsModule.js"></script>
+<script src="features/accountSharing/beneficiaryPayments/pendingPayments/pendingPaymentsModule.js"></script>
+<script src="features/accountSharing/beneficiaryPayments/rejectedPayments/rejectedPaymentsModule.js"></script>
+<script src="features/accountSharing/manageOperator/OperatorList/operatorListModule.js"></script>
+<script src="features/accountSharing/manageOperator/addOperator/addUserModule.js"></script>
+<script src="features/accountSharing/manageOperator/editOperator/editOperatorModule.js"></script>
+<script src="features/accountSharing/manageOperator/invitationDetailsView/invitationDetailsViewModule.js"></script>
+<script src="features/accountSharing/manageOperator/inviteOperator/operatorInvitationModule.js"></script>
+<script src="features/accountSharing/manageOperator/operatorModule.js"></script>
+<script src="features/accountSharing/manageOperator/userDetails/userDetailsModule.js"></script>
+<script src="features/accountSharing/manageOperator/userPermissions/userPermissionsModule.js"></script>
+<script src="features/accountSharing/manageOperator/viewOperatorDetails/operatorDetailsModule.js"></script>
+<script src="features/accountSharing/manageOperator/viewOperatorInvitationDetails/operatorInvitationDetailsModule.js"></script>
+<script src="features/messenger/messengerModule.js"></script>
+<script src="features/messenger/suggestionBox/suggestionBoxModule.js"></script>
+<script src="features/payment/onceOffPaymentModule.js"></script>
+<script src="features/payment/paymentModule.js"></script>
+<script src="common/accordion/directive/accordion.js"></script>
+<script src="common/accountdropdown/accountDropdown.js"></script>
+<script src="common/amount/amount.js"></script>
+<script src="common/amount/convertToInt.js"></script>
+<script src="common/analytics/formTrackerService.js"></script>
+<script src="common/applicationParameters/applicationParameters.js"></script>
+<script src="common/back/directives/backDirective.js"></script>
+<script src="common/bankAndBranch/walkInBranches.js"></script>
+<script src="common/browserSpecific/ie10.js"></script>
+<script src="common/charts/charts.js"></script>
+<script src="common/charts/doughnut/directives/doughnutChart.js"></script>
+<script src="common/charts/services/chartColours.js"></script>
+<script src="common/charts/services/chartService.js"></script>
+<script src="common/cookies/devicedna.js"></script>
+<script src="common/datepicker/datepicker.js"></script>
+<script src="common/errorLogger/errorLogger.js"></script>
+<script src="common/errors/errorMessages.js"></script>
+<script src="common/filterbox/filterBox.js"></script>
+<script src="common/filters/customizedFilter.js"></script>
+<script src="common/filters/filters.js"></script>
+<script src="common/filters/mapFilter.js"></script>
+<script src="common/flow/flow.js"></script>
+<script src="common/header/header.js"></script>
+<script src="common/helpers/baseUrlHelper.js"></script>
+<script src="common/helpers/dateHelper.js"></script>
+<script src="common/helpers/elementHelper.js"></script>
+<script src="common/hiddenFormButton/hiddenFormButtonDirective.js"></script>
+<script src="common/home/homeDirective.js"></script>
+<script src="common/home/homeService.js"></script>
+<script src="common/inlineAction/inlineAction.js"></script>
+<script src="common/internationalPhoneNumber/directives/internationalPhoneNumber.js"></script>
+<script src="common/invitationMenu/invitaionMenuService.js"></script>
+<script src="common/lithium/flows/lithiumAuthenticationFlow.js"></script>
+<script src="common/lithium/flows/lithiumRegistrationFlow.js"></script>
+<script src="common/lithium/lithium.js"></script>
+<script src="common/lithium/services/lithiumHelper.js"></script>
+<script src="common/lithium/services/lithiumService.js"></script>
+<script src="common/lithium/services/referrerProvider.js"></script>
+<script src="common/main.js"></script>
+<script src="common/meniga/services/menigaUserCategoriesService.js"></script>
+<script src="common/metadata/lookups.js"></script>
+<script src="common/metadata/metadata.js"></script>
+<script src="common/mobile/services/mobileService.js"></script>
+<script src="common/modalMessage/modalMessage.js"></script>
+<script src="common/monthlyPaymentLimits/monthlyPaymentLimits.js"></script>
+<script src="common/monthlyPaymentLimits/monthlyPaymentLimitsDirective.js"></script>
+<script src="common/navigator/services/navigator.js"></script>
+<script src="common/newFlow/services/flowConstructor.js"></script>
+<script src="common/notificationCost/directives/notificationCost.js"></script>
+<script src="common/notificationCost/services/notificationCostService.js"></script>
+<script src="common/permissions/directive/requirePermissionsDirective.js"></script>
+<script src="common/permissions/permissionsService.js"></script>
+<script src="common/print/directives/printButtonDirective.js"></script>
+<script src="common/routing/routingForAllowedFrom.js"></script>
+<script src="common/sbform/amountKeyCodeValidator.js"></script>
+<script src="common/sbform/directives/currencyField.js"></script>
+<script src="common/sbform/directives/exactLengths.js"></script>
+<script src="common/sbform/directives/fixIeSelect.js"></script>
+<script src="common/sbform/directives/focusOn.js"></script>
+<script src="common/sbform/directives/inputLeadingIcon.js"></script>
+<script src="common/sbform/directives/invalidAmount.js"></script>
+<script src="common/sbform/directives/mustEqual.js"></script>
+<script src="common/sbform/directives/numberRange.js"></script>
+<script src="common/sbform/directives/paymentReferenceValidation.js"></script>
+<script src="common/sbform/directives/rowField.js"></script>
+<script src="common/sbform/directives/sbInput.js"></script>
+<script src="common/sbform/directives/sbInteger.js"></script>
+<script src="common/sbform/directives/showHidePassword.js"></script>
+<script src="common/sbform/directives/textValidation.js"></script>
+<script src="common/sbform/inputValidationController.js"></script>
+<script src="common/sbform/sbForm.js"></script>
+<script src="common/sbform/validations/preventConsecutiveNumbers.js"></script>
+<script src="common/sbform/validations/preventRepetitiveNumbers.js"></script>
+<script src="common/serviceError/serviceError.js"></script>
+<script src="common/serviceError/serviceErrorDirective.js"></script>
+<script src="common/singleSignOn/services/singleSignOnFlow.js"></script>
+<script src="common/sorter/sorter.js"></script>
+<script src="common/spinner/spinner.js"></script>
+<script src="common/typeahead/typeahead.js"></script>
+<script src="common/urlUtilities/services/queryStringUtility.js"></script>
+<script src="common/userTermsLink/userTermsLink.js"></script>
+<script src="common/validators/idNumber/idNumberDirective.js"></script>
+<script src="common/validators/idNumber/idNumberValidator.js"></script>
+<script src="common/validators/inputConfirm.js"></script>
+<script src="common/validators/limits.js"></script>
+<script src="common/webServices/configuration.js"></script>
+<script src="common/webServices/endpointDefinition.js"></script>
+<script src="common/webServices/mcaHttp.js"></script>
+<script src="domain/address.js"></script>
+<script src="domain/dashboard.js"></script>
+<script src="domain/paymentDetail.js"></script>
+<script src="features/accountSharing/accountSharingWidget/accountSharingWidgetController.js"></script>
+<script src="features/accountSharing/accountSharingWidget/accountSharingWidgetDirective.js"></script>
+<script src="features/accountSharing/beneficiaryPayments/EntitlementsBeneficiaryPaymentsService.js"></script>
+<script src="features/accountSharing/beneficiaryPayments/pendingPayments/addPendingPaymentsRoute.js"></script>
+<script src="features/accountSharing/beneficiaryPayments/pendingPayments/pendingPaymentsController.js"></script>
+<script src="features/accountSharing/beneficiaryPayments/pendingPaymentsWidget/pendingPaymentsWidgetController.js"></script>
+<script src="features/accountSharing/beneficiaryPayments/pendingPaymentsWidget/pendingPaymentsWidgetDirective.js"></script>
+<script src="features/accountSharing/beneficiaryPayments/rejectedPayments/addRejectedPaymentsRoute.js"></script>
+<script src="features/accountSharing/beneficiaryPayments/rejectedPayments/rejectedPaymentsController.js"></script>
+<script src="features/accountSharing/beneficiaryPayments/rejectedPayments/viewRejectedPaymentsController.js"></script>
+<script src="features/accountSharing/manageOperator/OperatorList/operatorListController.js"></script>
+<script src="features/accountSharing/manageOperator/OperatorList/operatorListControllerRoute.js"></script>
+<script src="features/accountSharing/manageOperator/addOperator/addUserRouteListener.js"></script>
+<script src="features/accountSharing/manageOperator/addOperator/addUserService.js"></script>
+<script src="features/accountSharing/manageOperator/addOperator/cancel/cancelDialogController.js"></script>
+<script src="features/accountSharing/manageOperator/addOperator/cancel/cancelDialogDirective.js"></script>
+<script src="features/accountSharing/manageOperator/addOperator/cancel/cancelDialogService.js"></script>
+<script src="features/accountSharing/manageOperator/addOperator/confirm/confirmRoute.js"></script>
+<script src="features/accountSharing/manageOperator/addOperator/confirm/confirmUserDetailsController.js"></script>
+<script src="features/accountSharing/manageOperator/addOperator/details/addUserDetailsController.js"></script>
+<script src="features/accountSharing/manageOperator/addOperator/details/addUserDetailsRoute.js"></script>
+<script src="features/accountSharing/manageOperator/addOperator/finish/finishAddUserController.js"></script>
+<script src="features/accountSharing/manageOperator/addOperator/finish/finishAddUserRoute.js"></script>
+<script src="features/accountSharing/manageOperator/addOperator/permissions/permissionsController.js"></script>
+<script src="features/accountSharing/manageOperator/addOperator/permissions/permissionsRoute.js"></script>
+<script src="features/accountSharing/manageOperator/editOperator/confirmDetails/confirmOperatorDetailsController.js"></script>
+<script src="features/accountSharing/manageOperator/editOperator/confirmDetails/confirmOperatorDetailsRoute.js"></script>
+<script src="features/accountSharing/manageOperator/editOperator/confirmPermissions/confirmOperatorPermissionsController.js"></script>
+<script src="features/accountSharing/manageOperator/editOperator/confirmPermissions/confirmOperatorPermissionsRoute.js"></script>
+<script src="features/accountSharing/manageOperator/editOperator/details/editOperatorDetailsController.js"></script>
+<script src="features/accountSharing/manageOperator/editOperator/details/editOperatorDetailsRoute.js"></script>
+<script src="features/accountSharing/manageOperator/editOperator/editOperator.js"></script>
+<script src="features/accountSharing/manageOperator/editOperator/editOperatorPermissions.js"></script>
+<script src="features/accountSharing/manageOperator/editOperator/permissions/editOperatorPermissionsController.js"></script>
+<script src="features/accountSharing/manageOperator/editOperator/permissions/editOperatorPermissionsRoute.js"></script>
+<script src="features/accountSharing/manageOperator/editOperator/permissions/editUserPermissionsDirective/editUserPermissionsDirective.js"></script>
+<script src="features/accountSharing/manageOperator/invitationDetailsView/invitationDetailsViewDirective.js"></script>
+<script src="features/accountSharing/manageOperator/inviteOperator/OperatorInvitationService.js"></script>
+<script src="features/accountSharing/manageOperator/inviteOperator/acceptDeclineInvitations/acceptDeclineController.js"></script>
+<script src="features/accountSharing/manageOperator/inviteOperator/acceptDeclineInvitations/acceptDeclineControllerRoute.js"></script>
+<script src="features/accountSharing/manageOperator/inviteOperator/invitationDetails/operatorInvitationController.js"></script>
+<script src="features/accountSharing/manageOperator/inviteOperator/invitationDetails/operatorInvitationControllerRoutes.js"></script>
+<script src="features/accountSharing/manageOperator/operatorService.js"></script>
+<script src="features/accountSharing/manageOperator/userDetails/userDetailsDirective.js"></script>
+<script src="features/accountSharing/manageOperator/userDetailsModal/userDetailsModalDirective.js"></script>
+<script src="features/accountSharing/manageOperator/userPermissions/userPermissionsDirective.js"></script>
+<script src="features/accountSharing/manageOperator/viewOperatorDetails/operatorDetailsController.js"></script>
+<script src="features/accountSharing/manageOperator/viewOperatorDetails/operatorDetailsRoute.js"></script>
+<script src="features/accountSharing/manageOperator/viewOperatorInvitationDetails/OperatorInvitationDetailsController.js"></script>
+<script src="features/accountSharing/manageOperator/viewOperatorInvitationDetails/operatorInvitationDetailsRoute.js"></script>
+<script src="features/accountorigination/accountOrigination.js"></script>
+<script src="features/accountorigination/common/directives/acceptedOffer.js"></script>
+<script src="features/accountorigination/common/directives/applyForAccount.js"></script>
+<script src="features/accountorigination/common/directives/cancelConfirmation.js"></script>
+<script src="features/accountorigination/common/directives/pendingOffer.js"></script>
+<script src="features/accountorigination/common/directives/productTile.js"></script>
+<script src="features/accountorigination/common/screens/availableproducts/availableProductsController.js"></script>
+<script src="features/accountorigination/common/services/accountOriginationProvider.js"></script>
+<script src="features/accountorigination/common/services/applicationLoader.js"></script>
+<script src="features/accountorigination/common/services/itemsForApprovalService.js"></script>
+<script src="features/accountorigination/common/services/quotationsService.js"></script>
+<script src="features/accountorigination/currentaccount/directives/whatHappensNext.js"></script>
+<script src="features/accountorigination/currentaccount/domain/acceptedOfferResponseParser.js"></script>
+<script src="features/accountorigination/currentaccount/domain/currentAccountApplication.js"></script>
+<script src="features/accountorigination/currentaccount/domain/currentAccountOfferDecorator.js"></script>
+<script src="features/accountorigination/currentaccount/domain/currentAccountProductContent.js"></script>
+<script src="features/accountorigination/currentaccount/screens/acceptoffer/currentAccountAcceptOfferController.js"></script>
+<script src="features/accountorigination/currentaccount/screens/chequecard/chequeCardController.js"></script>
+<script src="features/accountorigination/currentaccount/screens/debitorderswitching/debitOrderSwitchingController.js"></script>
+<script src="features/accountorigination/currentaccount/screens/declinedoffer/currentAccountDeclinedOfferController.js"></script>
+<script src="features/accountorigination/currentaccount/screens/finish/currentAccountFinishApplicationController.js"></script>
+<script src="features/accountorigination/currentaccount/screens/offers/currentAccountOffersController.js"></script>
+<script src="features/accountorigination/currentaccount/screens/prescreening/currentAccountPrescreeningController.js"></script>
+<script src="features/accountorigination/currentaccount/screens/products/currentAccountProductController.js"></script>
+<script src="features/accountorigination/currentaccount/services/acceptCardCrossSellService.js"></script>
+<script src="features/accountorigination/currentaccount/services/currentAccountOffersService.js"></script>
+<script src="features/accountorigination/currentaccount/services/debitOrderSwitchingService.js"></script>
+<script src="features/accountorigination/currentaccount/services/overdraftLimits.js"></script>
+<script src="features/accountorigination/customerInformation/addressController.js"></script>
+<script src="features/accountorigination/customerInformation/captureBasicController.js"></script>
+<script src="features/accountorigination/customerInformation/consentController.js"></script>
+<script src="features/accountorigination/customerInformation/customerInfoValidations/CustomerInformationErrors.js"></script>
+<script src="features/accountorigination/customerInformation/customerInfoValidations/addressValidation.js"></script>
+<script src="features/accountorigination/customerInformation/customerInfoValidations/basicInfoValidation.js"></script>
+<script src="features/accountorigination/customerInformation/customerInfoValidations/customerInfoValidation.js"></script>
+<script src="features/accountorigination/customerInformation/customerInfoValidations/employmentValidation.js"></script>
+<script src="features/accountorigination/customerInformation/customerInfoValidations/incomeAndExpenseValidation.js"></script>
+<script src="features/accountorigination/customerInformation/customerInformationData.js"></script>
+<script src="features/accountorigination/customerInformation/customerInformationLoader.js"></script>
+<script src="features/accountorigination/customerInformation/customerService.js"></script>
+<script src="features/accountorigination/customerInformation/directive/customerInformationNavigation.js"></script>
+<script src="features/accountorigination/customerInformation/editAddressController.js"></script>
+<script src="features/accountorigination/customerInformation/editBasicController.js"></script>
+<script src="features/accountorigination/customerInformation/editConsentController.js"></script>
+<script src="features/accountorigination/customerInformation/editContactController.js"></script>
+<script src="features/accountorigination/customerInformation/editEmploymentController.js"></script>
+<script src="features/accountorigination/customerInformation/editIncomeAndExpenseController.js"></script>
+<script src="features/accountorigination/customerInformation/employmentController.js"></script>
+<script src="features/accountorigination/customerInformation/incomeAndExpenseController.js"></script>
+<script src="features/accountorigination/customerInformation/personalDetailsController.js"></script>
+<script src="features/accountorigination/customerInformation/profileController.js"></script>
+<script src="features/accountorigination/rcp/domain/debitOrder.js"></script>
+<script src="features/accountorigination/rcp/domain/loanCalculator.js"></script>
+<script src="features/accountorigination/rcp/domain/newAccountDetails.js"></script>
+<script src="features/accountorigination/rcp/domain/rcpApplication.js"></script>
+<script src="features/accountorigination/rcp/domain/rcpCalculator.js"></script>
+<script src="features/accountorigination/rcp/screens/confirm/rcpConfirmOfferController.js"></script>
+<script src="features/accountorigination/rcp/screens/finish/rcpFinishOfferController.js"></script>
+<script src="features/accountorigination/rcp/screens/offer/rcpOfferController.js"></script>
+<script src="features/accountorigination/rcp/screens/prescreen/rcpPreScreenController.js"></script>
+<script src="features/accountorigination/rcp/screens/products/rcpProductController.js"></script>
+<script src="features/accountorigination/rcp/services/rcpDebitOrderLimits.js"></script>
+<script src="features/accountorigination/rcp/services/rcpOfferService.js"></script>
+<script src="features/accountorigination/rcp/services/rcpRequestLimits.js"></script>
+<script src="features/accountorigination/savings/directives/savingsPrescreening.js"></script>
+<script src="features/accountorigination/savings/directives/savingsProductTile.js"></script>
+<script src="features/accountorigination/savings/domain/savingsAccountApplication.js"></script>
+<script src="features/accountorigination/savings/screens/accept/savingsAcceptController.js"></script>
+<script src="features/accountorigination/savings/screens/finish/savingsFinishController.js"></script>
+<script src="features/accountorigination/savings/screens/products/marketLink/marketLinkProductController.js"></script>
+<script src="features/accountorigination/savings/screens/products/pureSave/pureSaveProductController.js"></script>
+<script src="features/accountorigination/savings/screens/products/savingsAndInvestments/savingsAndInvestmentsOptions.js"></script>
+<script src="features/accountorigination/savings/screens/products/taxFreeCallAccount/taxFreeCallAccountProductController.js"></script>
+<script src="features/accountorigination/savings/screens/transfer/savingsTransferController.js"></script>
+<script src="features/accountorigination/savings/services/savingsAccountOffersService.js"></script>
+<script src="features/accountorigination/savings/services/savingsApplicationStartService.js"></script>
+<script src="features/accounts/accounts.js"></script>
+<script src="features/accounts/limits.js"></script>
+<script src="features/accounts/services/accountsService.js"></script>
+<script src="features/accounts/services/accountsValidationService.js"></script>
+<script src="features/accountsummary/accountSummary.js"></script>
+<script src="features/accountsummary/directives/accountsCashflowsChart.js"></script>
+<script src="features/accountsummary/services/accountsCashflowsChartColours.js"></script>
+<script src="features/analytics/analytics.js"></script>
+<script src="features/analytics/analyticsContainer.js"></script>
+<script src="features/analytics/dtmAnalytics.js"></script>
+<script src="features/analytics/trackClick.js"></script>
+<script src="features/beneficiaries/addBeneficiaries.js"></script>
+<script src="features/beneficiaries/beneficiaries.js"></script>
+<script src="features/beneficiaries/common/beneficiariesFlow.js"></script>
+<script src="features/beneficiaries/controllers/beneficiariesTableController.js"></script>
+<script src="features/beneficiaries/controllers/payBeneficiaryGroupController.js"></script>
+<script src="features/beneficiaries/controllers/payMultipleBeneficiariesController.js"></script>
+<script src="features/beneficiaries/controllers/viewBeneficiaryDetailsController.js"></script>
+<script src="features/beneficiaries/controllers/viewBeneficiaryGroupsController.js"></script>
+<script src="features/beneficiaries/directives/beneficiariesListDirective.js"></script>
+<script src="features/beneficiaries/directives/beneficiariesTableDirective.js"></script>
+<script src="features/beneficiaries/directives/beneficiaryValidationModalDirective.js"></script>
+<script src="features/beneficiaries/directives/multipleBeneficiariesDirective.js"></script>
+<script src="features/beneficiaries/editBeneficiaries.js"></script>
+<script src="features/beneficiaries/filters/beneficiaryFilter.js"></script>
+<script src="features/beneficiaries/filters/prepositionForNotificationTypeFilter.js"></script>
+<script src="features/beneficiaries/filters/sentenceCaseForNotificationTypeFilter.js"></script>
+<script src="features/beneficiaries/groups.js"></script>
+<script src="features/beneficiaries/models/beneficiary.js"></script>
+<script src="features/beneficiaries/payMultiple.js"></script>
+<script src="features/beneficiaries/services/baseMultipleBeneficiariesService.js"></script>
+<script src="features/beneficiaries/services/beneficiariesListService.js"></script>
+<script src="features/beneficiaries/services/beneficiariesService.js"></script>
+<script src="features/beneficiaries/services/beneficiaryFlowService.js"></script>
+<script src="features/beneficiaries/services/groupsService.js"></script>
+<script src="features/cache/cacher.js"></script>
+<script src="features/feedback/leavingFeedbackDirective.js"></script>
+<script src="features/formalStatement/controllers/formalStatementController.js"></script>
+<script src="features/formalStatement/formalStatement.js"></script>
+<script src="features/formalStatement/services/formalStatementService.js"></script>
+<script src="features/goToAnchor/goToAnchorController.js"></script>
+<script src="features/idleTimeout/idleTimeout.js"></script>
+<script src="features/instantMoney/controllers/instantMoneyChangePinConfirmController.js"></script>
+<script src="features/instantMoney/controllers/instantMoneyChangePinController.js"></script>
+<script src="features/instantMoney/controllers/instantMoneyChangePinSuccessController.js"></script>
+<script src="features/instantMoney/controllers/instantMoneyConfirmController.js"></script>
+<script src="features/instantMoney/controllers/instantMoneyController.js"></script>
+<script src="features/instantMoney/controllers/instantMoneyDetailsController.js"></script>
+<script src="features/instantMoney/controllers/instantMoneySuccessController.js"></script>
+<script src="features/instantMoney/dailyPaymentLimits/dailyPaymentLimitsDirective.js"></script>
+<script src="features/instantMoney/instantMoney.js"></script>
+<script src="features/instantMoney/services/instantMoneyLimits.js"></script>
+<script src="features/instantMoney/services/instantMoneyService.js"></script>
+<script src="features/internationalPayment/controllers/internationalPaymentBeneficiaryBankDetailsController.js"></script>
+<script src="features/internationalPayment/controllers/internationalPaymentBeneficiaryDetailsController.js"></script>
+<script src="features/internationalPayment/controllers/internationalPaymentBeneficiaryPreferencesController.js"></script>
+<script src="features/internationalPayment/controllers/internationalPaymentConfirmController.js"></script>
+<script src="features/internationalPayment/controllers/internationalPaymentController.js"></script>
+<script src="features/internationalPayment/controllers/internationalPaymentPayController.js"></script>
+<script src="features/internationalPayment/controllers/internationalPaymentPersonalDetailsController.js"></script>
+<script src="features/internationalPayment/controllers/internationalPaymentReasonController.js"></script>
+<script src="features/internationalPayment/controllers/internationalPaymentUpdateDetailsController.js"></script>
+<script src="features/internationalPayment/directive/internationalPaymentBeneficiaryNavigation.js"></script>
+<script src="features/internationalPayment/domain/internationalPaymentBeneficiary.js"></script>
+<script src="features/internationalPayment/domain/internationalPaymentCustomer.js"></script>
+<script src="features/internationalPayment/domain/reasonForPaymentSearch.js"></script>
+<script src="features/internationalPayment/internationalPayment.js"></script>
+<script src="features/internationalPayment/services/internationalPaymentService.js"></script>
+<script src="features/mainMenu/mainMenuController.js"></script>
+<script src="features/messenger/messagingService.js"></script>
+<script src="features/messenger/suggestionBox/SuggestionBoxController.js"></script>
+<script src="features/messenger/suggestionBox/WhatsApp_files/app_38fc5c95fd44feb095e5.js"></script>
+<script src="features/messenger/suggestionBox/WhatsApp_files/main_4bacc5889d734635d1df.js"></script>
+<script src="features/messenger/suggestionBox/WhatsApp_files/progress_eca182ed47925485962135ac6f0e016b.js"></script>
+<script src="features/messenger/suggestionBox/WhatsApp_files/vendor1_07a71fd5a27f982777a2.js"></script>
+<script src="features/messenger/suggestionBox/WhatsApp_files/vendor2_1984a60116d375fa3fb1.js"></script>
+<script src="features/messenger/suggestionBox/addSuggestionBoxRoute.js"></script>
+<script src="features/notifications/notificationService.js"></script>
+<script src="features/notifications/notifications.js"></script>
+<script src="features/otp/activateOtp.js"></script>
+<script src="features/otp/controllers/activateOtpConfirmController.js"></script>
+<script src="features/otp/controllers/activateOtpDetailsController.js"></script>
+<script src="features/otp/controllers/activateOtpSuccessController.js"></script>
+<script src="features/otp/otp.js"></script>
+<script src="features/otp/services/activateOtpService.js"></script>
+<script src="features/overview/controllers/overviewController.js"></script>
+<script src="features/overview/directives/netIncomeChart.js"></script>
+<script src="features/overview/overviewMenu.js"></script>
+<script src="features/overview/services/netIncomeChartColours.js"></script>
+<script src="features/payment/beneficiaryPayment.js"></script>
+<script src="features/payment/controllers/beneficiaryPaymentController.js"></script>
+<script src="features/payment/controllers/manageScheduledPaymentsController.js"></script>
+<script src="features/payment/controllers/modifyScheduledPaymentConfirmController.js"></script>
+<script src="features/payment/controllers/modifyScheduledPaymentDetailsController.js"></script>
+<script src="features/payment/controllers/onceOffPaymentConfirmController.js"></script>
+<script src="features/payment/controllers/onceOffPaymentController.js"></script>
+<script src="features/payment/controllers/onceOffPaymentSuccessController.js"></script>
+<script src="features/payment/controllers/paymentHistoryController.js"></script>
+<script src="features/payment/controllers/viewPaymentNotificationHistoryController.js"></script>
+<script src="features/payment/model/onceOffPaymentModel.js"></script>
+<script src="features/payment/services/beneficiaryPaymentService.js"></script>
+<script src="features/payment/services/branchLazyLoadingService.js"></script>
+<script src="features/payment/services/multiplePaymentsService.js"></script>
+<script src="features/payment/services/onceOffPaymentService.js"></script>
+<script src="features/payment/services/paymentFlowParametersService.js"></script>
+<script src="features/payment/services/paymentLimits.js"></script>
+<script src="features/payment/services/paymentService.js"></script>
+<script src="features/payment/services/resendConformationService.js"></script>
+<script src="features/payment/services/scheduledPaymentsService.js"></script>
+<script src="features/payment/services/vewPaymentNotificationHistoryService.js"></script>
+<script src="features/personalFinancialManagement/meniga.js"></script>
+<script src="features/personalFinancialManagement/services/menigaNetIncomeService.js"></script>
+<script src="features/prepaid/controllers/prepaidHistoryController.js"></script>
+<script src="features/prepaid/controllers/rechargeConfirmController.js"></script>
+<script src="features/prepaid/controllers/rechargeControllers.js"></script>
+<script src="features/prepaid/controllers/rechargeDashboardController.js"></script>
+<script src="features/prepaid/controllers/rechargeDetailsController.js"></script>
+<script src="features/prepaid/controllers/rechargeResultsController.js"></script>
+<script src="features/prepaid/prepaid.js"></script>
+<script src="features/prepaid/services/prepaidHistoryRequest.js"></script>
+<script src="features/prepaid/services/prepaidHistoryService.js"></script>
+<script src="features/prepaid/services/rechargeLimits.js"></script>
+<script src="features/prepaid/services/rechargeService.js"></script>
+<script src="features/profileAndSettings/controllers/InternetBankingSubNavController.js"></script>
+<script src="features/profileAndSettings/controllers/accountPreferences.js"></script>
+<script src="features/profileAndSettings/controllers/cardDashboardsController.js"></script>
+<script src="features/profileAndSettings/controllers/editAccountPreferences.js"></script>
+<script src="features/profileAndSettings/controllers/maintainMonthlyEAPLimitController.js"></script>
+<script src="features/profileAndSettings/directives/ProfileAndSettingsSubNavController.js"></script>
+<script src="features/profileAndSettings/directives/profileAndSettingsSubNav.js"></script>
+<script src="features/profileAndSettings/directives/securitySettingController.js"></script>
+<script src="features/profileAndSettings/directives/securitySettingsSubNavDirective.js"></script>
+<script src="features/profileAndSettings/profileAndSettings.js"></script>
+<script src="features/profileAndSettings/services/AccountPreferencesService.js"></script>
+<script src="features/profileAndSettings/services/eapLimitValidations.js"></script>
+<script src="features/profileAndSettings/services/limitMaintenanceService.js"></script>
+<script src="features/profileAndSettings/services/profileAndSettingsMenu.js"></script>
+<script src="features/profileAndSettings/services/profileService.js"></script>
+<script src="features/registration/controllers/linkCardController.js"></script>
+<script src="features/registration/controllers/newRegisteredController.js"></script>
+<script src="features/registration/controllers/registrationController.js"></script>
+<script src="features/registration/registration.js"></script>
+<script src="features/registration/services/registrationService.js"></script>
+<script src="features/security/changePassword.js"></script>
+<script src="features/security/controllers/addDashboardController.js"></script>
+<script src="features/security/controllers/addDashboardSaveNameController.js"></script>
+<script src="features/security/controllers/changePasswordController.js"></script>
+<script src="features/security/controllers/loginController.js"></script>
+<script src="features/security/controllers/logoutController.js"></script>
+<script src="features/security/controllers/migrationController.js"></script>
+<script src="features/security/controllers/passwordResetController.js"></script>
+<script src="features/security/controllers/passwordResetDetailsController.js"></script>
+<script src="features/security/controllers/resetPasswordController.js"></script>
+<script src="features/security/controllers/secureMessageConfirmController.js"></script>
+<script src="features/security/controllers/secureMessageDetailsController.js"></script>
+<script src="features/security/controllers/secureMessageResultsController.js"></script>
+<script src="features/security/controllers/securitySoftwareController.js"></script>
+<script src="features/security/controllers/switchDashboardController.js"></script>
+<script src="features/security/directives/dropdownMenu.js"></script>
+<script src="features/security/directives/passwordAndConfirmation.js"></script>
+<script src="features/security/login.js"></script>
+<script src="features/security/resetPassword.js"></script>
+<script src="features/security/secureMessage.js"></script>
+<script src="features/security/services/authenticationService.js"></script>
+<script src="features/security/services/card.js"></script>
+<script src="features/security/services/digitalId.js"></script>
+<script src="features/security/services/internetBankingAuthenticationFlow.js"></script>
+<script src="features/security/services/internetBankingRegistrationFlow.js"></script>
+<script src="features/security/services/migrationService.js"></script>
+<script src="features/security/services/principal.js"></script>
+<script src="features/security/services/secureMessageService.js"></script>
+<script src="features/security/services/switchDashboardService.js"></script>
+<script src="features/security/services/updateDashboardService.js"></script>
+<script src="features/security/services/user.js"></script>
+<script src="features/security/services/viewOTPPreferenceService.js"></script>
+<script src="features/statementTransactions/controllers/statementTransactionsController.js"></script>
+<script src="features/statements/controllers/menigaTransactionsPageController.js"></script>
+<script src="features/statements/controllers/statementController.js"></script>
+<script src="features/statements/services/menigaTransactionsPageService.js"></script>
+<script src="features/statements/services/statementPdfGenerator.js"></script>
+<script src="features/statements/services/statementService.js"></script>
+<script src="features/targetedOffers/directives/targetedOfferBanner.js"></script>
+<script src="features/targetedOffers/services/targetedOffersService.js"></script>
+<script src="features/targetedOffers/targetedOfferCurrentAccountController.js"></script>
+<script src="features/targetedOffers/targetedOfferRcpController.js"></script>
+<script src="features/targetedOffers/targetedOffers.js"></script>
+<script src="features/targetedOffers/targetedOffersCallMeBackFormController.js"></script>
+<script src="features/transaction/controllers/transactionDashboard.js"></script>
+<script src="features/transaction/transaction.js"></script>
+<script src="features/transfers/transferLimits.js"></script>
+<script src="features/transfers/transfers.js"></script>
+<script src="features/trusteer/trusteer.js"></script>
+<script src="features/version/version.js"></script>
+<!-- /include -->
+
+<!-- endbuild -->
+<body ng-controller="spinnerController">
+<div class="content-wrapper">
+    <dtm-analytics feature="dtmAnalytics"></dtm-analytics>
+    <analytics not-feature="dtmAnalytics"></analytics>
+
+    <ng-include src="'common/header/partials/header.html'"></ng-include>
+    <ng-include src="'features/notifications/partials/errorNotification.html'"></ng-include>
+
+    <div class="content">
+        <div main-menu></div>
+
+        <!-- hides the content of the entire page-->
+        <main ng-view ng-hide="(spinnerActive && spinnerStyle == 'global') || blockOutPage"></main>
+    </div>
+    <!--footer ng-controller="HeaderController">
+        <img src="assets/images/logo-blue.png" width="23" />
+        <p ng-hide="shouldDisplayProfileDropdown()">Standard Bank is a licensed financial services provider in terms of the Financial Advisory and Intermediary Services Act and a registered credit provider in terms of the National Credit Act, registration number NCRCP15.</p>
+        <ul ng-show="shouldDisplayProfileDropdown()">
+            <li>
+                <a href="mailto:ibsupport@standardbank.co.za?subject=New%20Internet%20banking%20site%20problem" title="ibsupport@standardbank.co.za" target="_blank" data-dtmid="footer_nav_link" data-dtmtext="Report a problem">
+                    Report a problem
+                </a>
+            </li>
+            <li>
+                <a id="download-security-software" ng-if="supportedPlatform()" href="#/security-software" data-dtmid="footer_nav_link" data-dtmtext="Download security software">Download security software</a>
+            </li>
+            <li>
+                <i class="icon icomoon-security"></i>
+            </li>
+        </ul>
+    </footer -->
+
+    <div class="spinner" ng-class="spinnerClass" ng-hide="spinnerStyle != 'global'">
+        <div class="pace-activity"></div>
+        <div class="spinner-message">Loading – please wait a moment</div>
+    </div>
+
+    <div class="ng-hide" idle-notification ng-show="beenIdle"></div>
+
+    <ng-include src="'features/upgradeYourBrowser/partials/upgradeYourBrowser.html'"></ng-include>
+</div>
+<!--[if IE 9]>
+<script src="assets/ie/js/jQueryRotate.js"></script>
+<script src="assets/ie/js/ie9.js"></script>
+<script src="assets/ie/js/placeholders.js"></script>
+<![endif]-->
+
+</body>
+</html>

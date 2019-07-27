@@ -1,0 +1,17 @@
+<h2>Secure Message</h2>
+<div ng-show="isSuccessful" success notification>{{successMessage}}</div>
+<div ng-show="hasInfo" info notification>A branch consultant will contact you within 24 hours to confirm your request</div>
+<div class="panel">
+    <p class="bank-info print-only">
+        Customer Care: 0860 123 000<br/>
+        Website: www.standardbank.co.za<br/>
+        {{currentDate | dateFormat}}
+    </p>
+
+    <ng-include src="'features/security/partials/secureMessageSummary.html'"></ng-include>
+
+    <a go-home class="btn secondary">Back</a>
+
+    <print-button></print-button>
+</div>
+

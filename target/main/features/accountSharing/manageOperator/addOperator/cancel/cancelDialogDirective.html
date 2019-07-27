@@ -1,0 +1,18 @@
+<div ng-show="cancel.shouldShow()" class="modal-overlay" id="confirm-save-modal">
+    <div id="cant-find-modal" class="modal-container action-modal">
+        <div class="modal-header">
+            <h3>Cancel changes?</h3>
+        </div>
+
+        <div class="modal-content">All unsaved changes will be lost.</div>
+
+        <div class="actions">
+            <button ng-click="cancel.confirm()" id="modal-confirm" class="primary" data-dtmid="obb_modal cancel confirm button" data-dtmtext="Confirm button click">
+                Confirm
+            </button>
+            <button ng-click="cancel.back()" id="modal-cancel" class="secondary" data-dtmid="obb_modal cancel back button" data-dtmtext="Back button click">
+                Back
+            </button>
+        </div>
+    </div>
+</div>

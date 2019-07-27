@@ -1,0 +1,79 @@
+<div class="editActions" feature="customerManagementV4" ng-show="customerInformationData.needAdditionalBasicInfo()">
+    <button id="edit-basic-info-button" class="btn icon-button action edit" title="add" ng-click="edit('profile')">
+        <i class="icon icomoon-edit"></i>
+        <span class="title">Modify</span>
+    </button>
+</div>
+<div>
+    <h3>Your Profile</h3>
+</div>
+<div ng-show="!customerInformationData.needAdditionalBasicInfo()"
+     class="notification info wide">Please visit your nearest branch to update your basic information
+</div>
+
+<ul class="data">
+    <row-field label="Title">
+        {{customerInformationData.customerTitleCode | map:'title' | capitalize}}
+    </row-field>
+    <row-field label="Surname">
+        {{customerInformationData.customerSurname | capitalize}}
+    </row-field>
+    <row-field label="First names">
+        {{customerInformationData.customerFirstName | capitalize}}
+    </row-field>
+    <row-field label="Initials">
+        {{customerInformationData.customerInitials}}
+    </row-field>
+    <row-field label="Gender">
+        {{customerInformationData.gender | map:'gender'}}
+    </row-field>
+    <row-field label="ID number" ng-show="customerInformationData.getNationalId()">
+        {{customerInformationData.getNationalId().identityNumber}}
+    </row-field>
+    <row-field label="Date of birth">
+        {{customerInformationData.dateOfBirth | dateFormat}}
+    </row-field>
+    <row-field label="Passport" ng-show="customerInformationData.getPassport()">
+        {{customerInformationData.getPassport().identityNumber}}
+    </row-field>
+    <row-field label="Passport origin" ng-show="customerInformationData.getPassport()">
+        {{customerInformationData.getPassport().countryCode | map:'country' | capitalizeCountry}}
+    </row-field>
+    <row-field label="Passport expiry date"
+               ng-show="customerInformationData.getPassport() && customerInformationData.getPassport().expiryDate">
+        {{customerInformationData.getPassport().expiryDate | dateFormat}}
+    </row-field>
+    <row-field label="Nationality">
+        {{customerInformationData.nationalityCountryCode | map:'country' | capitalizeCountry}}
+    </row-field>
+    <row-field label="Country of birth">
+        {{customerInformationData.birthCountryCode | map:'country' | capitalizeCountry}}
+    </row-field>
+    <row-field label="Country of residence">
+        {{customerInformationData.residenceCountryCode | map:'country' | capitalizeCountry}}
+    </row-field>
+    <row-field label="Country of citizenship">
+        {{customerInformationData.citizenshipCountryCode | map:'country' | capitalizeCountry}}
+    </row-field>
+    <row-field label="Permit type" ng-show="customerInformationData.getPassport()" feature="customerManagementV4">
+        {{customerInformationData.getPermit().identityTypeCode | map:'permitType'}}
+    </row-field>
+    <row-field label="Permit number" ng-show="customerInformationData.getPassport()" feature="customerManagementV4">
+        {{customerInformationData.getPermit().identityNumber}}
+    </row-field>
+    <row-field label="Permit issue date" ng-show="customerInformationData.getPassport()" feature="customerManagementV4">
+        {{customerInformationData.getPermit().issuedDate | dateFormat}}
+    </row-field>
+    <row-field label="Permit expiry date" ng-show="customerInformationData.getPassport()">
+        {{customerInformationData.getPermit().expiryDate | dateFormat}}
+    </row-field>
+    <row-field label="Marital status">
+        {{customerInformationData.maritalStatusCode | map:'maritalStatus'}}
+    </row-field>
+    <row-field label="Marital type" ng-show="customerInformationData.maritalStatusCode === '2'">
+        {{customerInformationData.maritalTypeCode | map:'maritalType'}}
+    </row-field>
+    <row-field label="Your branch">
+        {{customerInformationData.branchCode | map:'branch' | capitalize}}
+    </row-field>
+</ul>

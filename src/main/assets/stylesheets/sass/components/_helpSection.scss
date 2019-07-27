@@ -1,0 +1,92 @@
+.help-section {
+  border: none;
+  background-color: $primary-light-grey;
+
+  .help-text {
+    padding: 1em;
+
+    h4 {
+      font-size: 1.2rem;
+    }
+    p {
+      margin-top: 1em;
+    }
+  }
+
+  .telephone-row {
+    background-color: inherit;
+    border-top: 1px solid $primary-grey;
+
+    .customer-care-column {
+      @include span-columns(12);
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      text-align: center;
+      border-right: 1px solid $primary-grey;
+      border-bottom: 1px solid $silver-grey;
+      float: left;
+
+      @media #{$small-only} {
+        padding-left: 1rem;
+        padding-right: 0rem;
+      }
+
+      @media #{$medium-up} {
+        @include span-columns(6);
+
+        &:nth-child(1) {
+          border-right: 1px solid $silver-grey;
+          border-bottom: none;
+        }
+      }
+
+      .telephone-icon {
+        display: inline-block;
+
+        i.icomoon-call {
+          color: $gunmetal-light;
+          font-size: 2.8rem;
+          padding-right: 0.1rem;
+
+          @media #{$small-only} {
+            padding-right: 0.1rem;
+          }
+
+          @media #{$medium-up}{
+            font-size: 2.5em;
+          }
+        }
+      }
+
+      .telephone-text {
+        color: $slate-grey;
+        display: inline-block;
+        text-align: left;
+
+        @media #{$medium-up}{
+
+          .telephone-text-label {
+            display: block;
+          }
+        }
+
+        a {
+
+          @media #{$small-only} {
+            font-size: 0.85rem;
+          }
+
+          @media #{$medium-up}{
+            color: $slate-grey;
+            text-decoration: none;
+          }
+        }
+
+        .telephone-number-link a {
+          padding-left: 0rem;
+          color: $font-grey-dark;
+        }
+      }
+    }
+  }
+}

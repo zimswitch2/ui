@@ -1,0 +1,46 @@
+.payment-notification-history {
+  .action-table {
+    ul {
+      .actions {
+        .action {
+          &[title="resend"] {
+            top: 4.5rem;
+            .icon {
+              color: $azure-blue;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media #{$large-up} {
+    ul {
+      .information {
+        > div {
+          width: 100%;
+          &:nth-child(1) {
+            width: 16%;
+          }
+          &:nth-child(2) {
+            width: 16%;
+          }
+          &:nth-child(3) {
+            width: 17%;
+          }
+          &:nth-child(4) {
+            width: 20%;
+          }
+          &:nth-child(5) {
+            width: 15%;
+          }
+          &:nth-child(6) {
+            width: 11%;
+          }
+        }
+      }
+      .actions {
+        width: 4em;
+      }
+    }
+  }
+}

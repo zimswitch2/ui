@@ -1,0 +1,29 @@
+<div class="account-sharing-widget">
+    <h3>Online Banking for Business</h3>
+
+    <img src="assets/images/account-sharing-blue.png"
+        width="140">
+    <div class="user-table">
+        <span>{{vm.numberOfOperators}}</span>
+        <div class="number-of-operators">
+            <span>Active users</span>
+        </div>
+    </div>
+    <div class="user-table">
+        <span>{{vm.numberOfPendingOperators}}</span>
+        <div class="number-of-operators">
+            <span>Pending users</span>
+        </div>
+    </div>
+
+
+
+    <div class="buttons-box">
+        <div ng-click="vm.addUser()"
+            class="button secondary">
+            <i class="icon icomoon-add"
+               data-dtmid="obb_widget invite a User"
+               data-dtmtext="Invite a user button click"
+        ></i>Invite a user</div>
+    </div>
+</div>

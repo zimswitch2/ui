@@ -1,0 +1,223 @@
+$chosen-font-size-scale: 1.2;
+$chosen-default-padding: 0.7;
+$chosen-default-margin: 0.7;
+
+.offer {
+
+
+  ng-form >, form > {
+    @include separated-sections;
+  }
+
+  section.product {
+    div.product-wrapper {
+      padding: 0;
+      overflow: auto;
+    }
+  }
+
+  section.overdraft {
+    p {
+      padding: 0;
+    }
+
+    .wide{
+      float: none;
+    }
+  }
+
+  .option-box {
+    @media #{$small-only} {
+      @include span-columns(12);
+    }
+
+    @media #{$medium-only} {
+      @include span-columns(6);
+      @include nth-child(2n, right);
+
+      .option-box-content {
+        height: 25em;
+      }
+
+      &.option-box-single{
+        @include span-columns(12);
+      }
+    }
+
+    @media #{$large-up} {
+      @include span-columns(6);
+      @include nth-child(2n, right);
+
+      .option-box-content {
+        height: 18em;
+      }
+
+      &.option-box-single{
+        @include span-columns(12);
+
+          &:hover {
+            border: 3px solid transparent;
+          }
+      }
+    }
+
+    padding-bottom: 0;
+    border: 3px solid transparent;
+
+    p {
+      padding: 0;
+    }
+
+    h3 {
+      color: $azure-blue;
+      padding: 0;
+      margin: 0.3em 0;
+    }
+
+    button {
+      margin-top: 1em;
+    }
+
+    .option-box-title {
+      border-bottom: 1px solid $slate-grey-light;
+      margin-bottom: 1em;
+
+      h3 {
+        color: $gunmetal;
+        padding: 0;
+        margin: 0;
+      }
+
+      h4 {
+        color: $azure-blue;
+        padding: 0 0 1em;
+        font-size: 1.2em;
+      }
+    }
+
+    .option-box-content {
+      h4 {
+        color: $azure-blue;
+        padding-left: 0;
+        font-weight: normal;
+        font-size: 1.2em;
+      }
+
+      ul li {
+        list-style: disc;
+        color: $gunmetal-light;
+        margin-left: 1.5em;
+        padding: 0 0 0.2em 0;
+      }
+    }
+
+    &:hover {
+      border: 3px solid $azure-blue;
+    }
+
+    &.chosen-box {
+      border: 3px solid $azure-blue;
+
+      .box {
+        border: 1px solid transparent;
+        background: none;
+      }
+
+      .chosen {
+        margin-top: ($chosen-default-margin / $chosen-font-size-scale) * 1em;
+        margin-bottom: $button-margin-bottom;
+        padding: ($chosen-default-padding / $chosen-font-size-scale) * 1em;
+        font-size: $chosen-font-size-scale * 1em;
+        color: $azure-blue;
+        line-height: normal;
+        border: 1px solid transparent;
+
+        i {
+          margin-right: 0.5em;
+        }
+
+      }
+    }
+    
+    @media #{$medium-up} {
+      &.chosen-box {
+        .chosen {
+          margin-bottom: 0;
+          border-bottom: 1px solid transparent;
+        }
+      }
+    }
+    
+  }
+
+  .choose-overdraft-container {
+    @include row;
+    margin-bottom: 1em;
+
+    label {
+      display: inline;
+    }
+  }
+
+  .overdraft-properties-group {
+    padding-left: 1.6em;
+  }
+
+  .overdraft-consent {
+    border-top: 1px solid #EEE;
+    padding-top: 1em;
+    margin-bottom: 0;
+    margin-top: 1em;
+  }
+
+  .overdraft-property {
+    @media #{$small-only} {
+      padding-bottom: 1em;
+    }
+  }
+
+  .wide-input-field {
+    padding: 0;
+    margin: 0;
+    position: relative;
+
+    @include span-columns(12);
+
+    @media #{$large-up} {
+      @include span-columns(8);
+    }
+  }
+
+  .emphasis-amount {
+    font-weight: lighter;
+    font-size: 1.5em;
+  }
+
+  input[disabled="disabled"] {
+    background-color: $silver-grey;
+  }
+
+  .action-button {
+    @media #{$small-only} {
+      width: 100%;
+      margin-left: 0em;
+      margin-right: 0em;
+    }
+  }
+}
+
+@media only print {
+  .offers-print {
+    * {
+      font-size: 1em;
+    }
+
+    .thead {
+      background-color: #f0f0ef !important;
+    }
+
+    td, th {
+      border: 1px solid $silver-grey;
+    }
+  }
+}

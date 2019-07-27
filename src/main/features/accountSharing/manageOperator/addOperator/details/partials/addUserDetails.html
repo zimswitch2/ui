@@ -1,0 +1,103 @@
+<div class="add-user-details wide">
+    <h2 id="AddUserDetailsTitle"
+        class="clear">{{userDetails.headerName}}</h2>
+    <div class="form-layout-top">
+        <flow></flow>
+
+        <div ng-show="errorMessage" error notification>{{errorMessage}}</div>
+
+    </div>
+    <div class="form-layout-main add-user-details">
+        <form name="userForm"
+            id="user-details-form"
+            novalidate
+            autocomplete="off">
+            <div class="panel">
+                <section>
+                    <div>
+                        <h3 class="small-only-text-center grey-text">Enter this user's details</h3>
+                    </div>
+                </section>
+                <section>
+                    <sb-input name="firstName"
+                              input-id="firstName"
+                              label="First name"
+                              ng-model="userDetails.user.firstName"
+                              ng-minlength="2"
+                              min-length-message="Please enter a first name which is at least 2 characters in length"
+                              ng-maxlength="40"
+                              max-length-message="Please enter a first name up to 40 characters in length"
+                              ng-pattern="'[a-zA-Z]+[a-zA-Z\' -]*'"
+                              pattern-message="Please enter only alphabetical characters, spaces, apostrophes and hyphens"
+                              ng-required="true"
+                    >
+                    </sb-input>
+                </section>
+                <section>
+                    <sb-input name="surname"
+                              input-id="surname"
+                              label="Surname"
+                              ng-model="userDetails.user.surname"
+                              ng-minlength="2"
+                              min-length-message="Please enter a surname which is at least 2 characters in length"
+                              ng-maxlength="40"
+                              max-length-message="Please enter a surname up to 40 characters in length"
+                              ng-pattern="'[a-zA-Z]+[a-zA-Z\' -]*'"
+                              pattern-message="Please enter only alphabetical characters, spaces, apostrophes and hyphens"
+                              ng-required="true"
+                    >
+                    </sb-input>
+                </section>
+                <section>
+                    <sb-input name="idnumber"
+                              input-id="idnumber"
+                              label="South African ID"
+                              ng-model="userDetails.user.idNumber"
+                              ng-pattern="'[0-9]{13}'"
+                              pattern-message="Please enter a valid 13-digit South African ID number"
+                              ng-required="true"
+                              id-number
+                    >
+                    </sb-input>
+                </section>
+                <section>
+                    <sb-input name="email"
+                              input-id="email"
+                              label="Email address"
+                              ng-model="userDetails.user.email"
+                              ng-maxlength="configuration.email.maxLength"
+                              max-length-message="Cannot be longer than {{configuration.email.maxLength}} characters<"
+                              ng-pattern="'{{configuration.email.pattern}}'"
+                              pattern-message="Please enter a valid email address"
+                              ng-required="true"
+                    >
+                    </sb-input>
+                </section>
+                <section>
+                    <div>
+                        <international-phone-number ng-model="userDetails.user.cellPhone"></international-phone-number>
+                    </div>
+                </section>
+                </ul>
+            </div>
+            <div class="btn-container">
+                <button id="next-basic"
+                        class="primary"
+                        ng-click="userDetails.next()"
+                        ng-disabled="! userForm.$valid"
+                        data-dtmid="obb_form add user next button"
+                        data-dtmtext="Next button click">
+                    Next
+                </button>
+                <button id="cancel-basic"
+                        class="secondary"
+                        ng-click="userDetails.cancel()"
+                        data-dtmid="obb_form add user cancel button"
+                        data-dtmtext="Cancel button click">
+                    Cancel
+                </button>
+            </div>
+            <cancel-dialog></cancelDialog>
+        </form>
+    </div>
+</div>

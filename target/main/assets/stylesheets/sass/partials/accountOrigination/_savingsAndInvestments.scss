@@ -1,0 +1,18 @@
+.savings-and-investments {
+  ul li div.product-information.product-container div.product-content   {
+    height: 6.25em;
+  }
+}
+
+.savings-origination-form, savings-prescreening {
+  .btn, button {
+    min-width: 7em;
+  }
+
+  .text-notification {
+    &:before {
+      padding-right: 0;
+    }
+  }
+}
+

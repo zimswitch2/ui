@@ -1,0 +1,21 @@
+/*
+  separates sections with spacing and an optional horizontal line
+*/
+@mixin separated-sections($horizontal-rule: true, $separation: 2em) {
+  section {
+    padding: $separation 0;
+
+    @if $horizontal-rule {
+      border-bottom: 1px solid $silver-grey-light;
+    }
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+      border: 0;
+    }
+  }
+}

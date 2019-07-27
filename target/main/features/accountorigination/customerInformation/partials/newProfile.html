@@ -1,0 +1,37 @@
+<h2>Your Details</h2>
+
+<flow class="wide"></flow>
+
+<!--<div class="notification error wide" ng-show="serverErrorMessage !== undefined">-->
+    <!--{{serverErrorMessage}}-->
+<!--</div>-->
+
+<div class="customer-info-container">
+    <div class="customer-info-form">
+        <form name="customerInformationForm" data-frmcontainer="edit basic information form" novalidate="">
+            <div class="customer-info-scroll">
+                <div class="basic-info" ng-class="{&apos;with-date-picker-at-bottom&apos;: customerInformationData.getPassport()}">
+                    <div class="wide-content">
+                        <ng-form name="capturePersonalDetailsForm">
+                            <ng-include ng-if="!hasBasicInformation" ng-controller="PersonalDetailsController" src="&apos;features/accountorigination/customerInformation/partials/personalDetails.html&apos;">
+
+                            </ng-include>
+                            <ng-include ng-if="hasBasicInformation" ng-controller="EditBasicController" src="&apos;features/accountorigination/customerInformation/partials/editPersonalDetails.html&apos;">
+
+                            </ng-include>
+                            <div>
+                                <button id="save-basic" class="primary" ng-click="save()" ng-disabled="!(capturePersonalDetailsForm.$valid &amp;&amp; allDatesValid())">
+                                    Save
+                                </button>
+                                <button id="cancel-basic" class="secondary" ng-click="cancel()">
+                                    Cancel
+                                </button>
+                            </div>
+                        </ng-form>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<cancel-confirmation edit-form="capturePersonalDetailsForm"></cancel-confirmation>

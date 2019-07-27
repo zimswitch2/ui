@@ -1,0 +1,43 @@
+---
+driver:
+  name: vagrant
+  synced_folders:
+  - ["~/chop/utils", "/mnt/share", "disabled: false"]
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: 12.0.3
+  chef_omnibus_url: file:///mnt/share/install_chef.sh
+
+platforms:
+  - name: RHEL_65_vagrant_box
+    driver:
+      box: redhat
+      network:  
+      - ["private_network", {ip: "192.168.56.107"}]
+      customize:
+        cpus: 1
+        memory: 2048
+
+suites:
+  - name: default
+    data_bags_path: "~/chop/databags"
+    run_list:
+      - recipe[java-wrapper::default]
+      - recipe[jboss-eap::default]
+      - recipe[logrotate::global]
+      - recipe[ibrapp::setup]
+      - recipe[ibrapp::continousdeliveryinstall]
+    attributes:
+      env: SIT1
+      jboss-eap:
+        console: 
+          authentication: PROPS
+        jvm:
+          heapmin: 1G,
+          heapmax: 1G,
+          permmax: 512M,
+          permsize: 512M
+        additional_java_opts: -DdisableOtp=12345 -DclientTraces=true
+      ibrapp:
+        logstash: false

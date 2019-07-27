@@ -1,0 +1,220 @@
+<div class="error notification" ng-if="onceOffPaymentModel.hasZeroEAPLimit()" ng-include="&apos;common/monthlyPaymentLimits/partials/noEAPLimitMessage.html&apos;"></div>
+
+<h2>Once-off Payment</h2>
+<div class="form-layout-top">
+    <div flow=""></div>
+    <ng-include src="&apos;features/payment/partials/beneficiaryAccountValidationDisclaimer.html&apos;"></ng-include>
+</div>
+
+
+<div class="form-layout-main">
+
+    <div class="info notification" ng-show="hasInfo">{{infoMessage}}</div>
+
+    <div success="" notification="" cancelfield="beneficiaryAdded" ng-show="onceOffPaymentModel.beneficiaryAdded">Beneficiary has been successfully added
+    </div>
+
+    <div error="" notification="" ng-show="onceOffPaymentModel.errorMessage">{{onceOffPaymentModel.errorMessage}}</div>
+
+    <form name="payPrivateBeneficiaryOnceOffForm" ng-submit="proceed()" novalidate="novalidate">
+
+        <div class="panel" ng-class="{&apos;hide-bottom&apos;: onceOffPaymentModel.isListedBeneficiary()}">
+            <h3>Search for a listed beneficiary</h3>
+            <sb-typeahead id="listedBeneficiary" ng-change="changeListedBeneficiary()" placeholder="e.g. Woolworths, City of Joburg, Telkom" items="cdi" ng-model="onceOffPaymentModel.listedBeneficiary" ng-required="onceOffPaymentModel.isListedBeneficiary()">
+            </sb-typeahead>
+        </div>
+
+        <div ng-hide="onceOffPaymentModel.isListedBeneficiary()" class="panel-break">
+            <span>or</span>
+        </div>
+
+        <div class="panel">
+            <section>
+                <sb-account-dropdown name="From_Account" label="From account" ng-model="onceOffPaymentModel.account" ng-required="true" class="clearfix" items="payFromAccounts" highlight-balance="highlightBalance()">
+                </sb-account-dropdown>
+            </section>
+
+            <section ng-show="onceOffPaymentModel.isListedBeneficiary()">
+                <label>Beneficiary name</label>
+                <span id="beneficiarySection" class="display-block">{{onceOffPaymentModel.listedBeneficiary.name}}</span>
+            </section>
+
+            <section ng-if="onceOffPaymentModel.isPrivateBeneficiary()">
+                <div class="text-input-container">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" ng-model="onceOffPaymentModel.beneficiary.name" ng-change="changeBeneficiaryName()" ng-maxlength="20" payment-reference-validation="" required ng-class="{&apos;show-validation-styles&apos;:
+                                               payPrivateBeneficiaryOnceOffForm.name.$touched ||
+                                               payPrivateBeneficiaryOnceOffForm.name.$dirty ||
+                                               payPrivateBeneficiaryOnceOffForm.$submitted}">
+                    <ng-messages for="payPrivateBeneficiaryOnceOffForm.name.$error">
+                        <ng-message class="form-error" when="required">Required</ng-message>
+                        <ng-message class="form-error" when="maxlength">Cannot be longer than 20 characters</ng-message>
+                        <ng-message class="form-error" when="paymentReference">Please enter a valid beneficiary name</ng-message>
+                    </ng-messages>
+                </div>
+            </section>
+
+            <section ng-if="onceOffPaymentModel.isPrivateBeneficiary()">
+                <label for="bank-input">Bank</label>
+                <sb-typeahead id="bank" ng-change="changeBank()" items="banks" ng-model="onceOffPaymentModel.beneficiary.bank" ng-required="onceOffPaymentModel.isPrivateBeneficiary()" sort-by="name">
+                </sb-typeahead>
+            </section>
+
+            <section ng-if="onceOffPaymentModel.isPrivateBeneficiary()">
+                <span ng-class="spinnerClass" class="inline-block pace pace-inactive branch-inline-spinner">
+                    <span class="inline-spinner"></span>
+                </span>
+                <label for="branch-input">Branch</label>
+                <sb-typeahead id="branch" items="selectedBankBranches()" ng-model="onceOffPaymentModel.beneficiary.bank.branch" ng-required="onceOffPaymentModel.isPrivateBeneficiary()" sort-by="name" lazy-load="true">
+                </sb-typeahead>
+            </section>
+            <section ng-if="onceOffPaymentModel.isPrivateBeneficiary()">
+                <sb-input name="accountNumber" label="Account number" ng-model="onceOffPaymentModel.beneficiary.accountNumber" ng-required="onceOffPaymentModel.isPrivateBeneficiary()" ng-maxlength="16" ng-pattern="&apos;[0-9]*&apos;" pattern-message="Please enter a number">
+                </sb-input>
+            </section>
+            <section>
+                <div class="text-input-container">
+                    <label for="myReference">Your reference</label>
+                    <a href="javascript:void(0)" name="This text will appear on your statement" class="sb-tooltip">
+                        <i class="icon icon-question-circle"></i>
+                    </a>
+                    <input id="myReference" name="myReference" type="text" ng-model="onceOffPaymentModel.beneficiary.customerReference" ng-maxlength="12" payment-reference-validation="" required ng-class="{&apos;show-validation-styles&apos;:
+                                               payPrivateBeneficiaryOnceOffForm.myReference.$touched ||
+                                               payPrivateBeneficiaryOnceOffForm.myReference.$dirty ||
+                                               payPrivateBeneficiaryOnceOffForm.$submitted}">
+                    <ng-messages for="payPrivateBeneficiaryOnceOffForm.myReference.$error">
+                        <ng-message class="form-error" when="required">Required</ng-message>
+                        <ng-message class="form-error" when="maxlength">Cannot be longer than 12 characters</ng-message>
+                        <ng-message class="form-error" when="paymentReference">Please enter a valid reference</ng-message>
+                    </ng-messages>
+                </div>
+            </section>
+
+            <section>
+                <div class="text-input-container">
+                    <label for="beneficiaryReference">Beneficiary reference</label>
+                    <a href="javascript:void(0)" name="This text will appear on your beneficiary&apos;s statement" class="sb-tooltip">
+                        <i class="icon icon-question-circle"></i>
+                    </a>
+                    <input id="beneficiaryReference" name="beneficiaryReference" type="text" ng-model="onceOffPaymentModel.beneficiary.recipientReference" ng-maxlength="25" payment-reference-validation="" required ng-class="{&apos;show-validation-styles&apos;:
+                                               payPrivateBeneficiaryOnceOffForm.beneficiaryReference.$touched ||
+                                               payPrivateBeneficiaryOnceOffForm.beneficiaryReference.$dirty ||
+                                               payPrivateBeneficiaryOnceOffForm.$submitted}">
+                    <ng-messages for="payPrivateBeneficiaryOnceOffForm.beneficiaryReference.$error">
+                        <ng-message class="form-error" when="required">Required</ng-message>
+                        <ng-message class="form-error" when="maxlength">Cannot be longer than 25 characters</ng-message>
+                        <ng-message class="form-error" when="paymentReference">Please enter a valid reference</ng-message>
+                    </ng-messages>
+                </div>
+            </section>
+
+            <section>
+                <label>Save as a beneficiary</label>
+                <ul class="radio-button-group">
+                    <li>
+                        <input id="save-as-beneficiary-yes" type="radio" name="save-as-beneficiary" ng-value="true" ng-model="onceOffPaymentModel.saveAsBeneficiary">
+                        <label for="save-as-beneficiary-yes">Yes</label>
+                    </li>
+
+                    <li>
+                        <input id="save-as-beneficiary-no" type="radio" name="save-as-beneficiary" ng-value="false" ng-model="onceOffPaymentModel.saveAsBeneficiary">
+                        <label for="save-as-beneficiary-no">No</label>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="payment-notification">
+                <label>Send a payment notification?</label>
+
+                <a href="javascript:void(0)" ng-show="confirmationTypeNotification" name="{{confirmationTypeNotification}}" class="sb-tooltip"><i class="icon icon-info-circle"></i></a>
+
+                <ul class="radio-button-group">
+                    <div>
+                        <li>
+                            <input id="yes" type="radio" name="Notification_Yes" ng-value="true" ng-change="changePaymentConfirmation(true)" ng-model="onceOffPaymentModel.paymentConfirmation">
+                            <label for="yes">Yes</label>
+                        </li>
+
+                        <li>
+                            <input id="no" type="radio" name="Notification_No" ng-value="false" ng-change="changePaymentConfirmation(false)" ng-model="onceOffPaymentModel.paymentConfirmation">
+                            <label for="no">No</label>
+                        </li>
+                    </div>
+                </ul>
+            </section>
+
+            <div id="payment-confirmation" ng-if="onceOffPaymentModel.paymentConfirmation">
+
+                <section>
+                    <label class="display-inline">Payment notification method</label>
+
+                    <notification-cost ng-model="onceOffPaymentModel.beneficiary.paymentConfirmation.confirmationType"></notification-cost>
+                    <ul class="radio-button-group">
+                        <li>
+                            <input id="emailpayment-confirmation" name="Notification_Email" value="Email" ng-checked="onceOffPaymentModel.beneficiary.paymentConfirmation.confirmationType===&apos;Email&apos; || onceOffPaymentModel.beneficiary.paymentConfirmation.confirmationType===&apos;None&apos;" ng-change="changeConfirmationType(&apos;Email&apos;)" type="radio" ng-model="onceOffPaymentModel.beneficiary.paymentConfirmation.confirmationType">
+                            <label for="emailpayment-confirmation">Email</label>
+                        </li>
+
+                        <li>
+                            <input id="smspayment-confirmation" type="radio" name="Notification_SMS" value="SMS" ng-checked="onceOffPaymentModel.beneficiary.paymentConfirmation.confirmationType===&apos;SMS&apos;" ng-change="changeConfirmationType(&apos;SMS&apos;)" ng-model="onceOffPaymentModel.beneficiary.paymentConfirmation.confirmationType">
+                            <label for="smspayment-confirmation">SMS</label>
+                        </li>
+
+                        <li>
+                            <input id="faxpayment-confirmation" type="radio" name="Notification_Fax" value="Fax" ng-checked="onceOffPaymentModel.beneficiary.paymentConfirmation.confirmationType===&apos;Fax&apos;" ng-change="changeConfirmationType(&apos;Fax&apos;)" ng-model="onceOffPaymentModel.beneficiary.paymentConfirmation.confirmationType">
+                            <label for="faxpayment-confirmation">Fax</label>
+                        </li>
+                    </ul>
+                </section>
+
+                <section ng-if="onceOffPaymentModel.beneficiary.paymentConfirmation.confirmationType">
+                    <div class="text-input-container">
+                        <label for="Recipient_Name">Recipient name</label>
+                        <input id="Recipient_Name" name="Recipient_Name" type="text" ng-model="onceOffPaymentModel.beneficiary.paymentConfirmation.recipientName" ng-maxlength="25" payment-reference-validation="" required ng-class="{&apos;show-validation-styles&apos;:
+                                               payPrivateBeneficiaryOnceOffForm.Recipient_Name.$touched ||
+                                               payPrivateBeneficiaryOnceOffForm.Recipient_Name.$dirty ||
+                                               payPrivateBeneficiaryOnceOffForm.$submitted}">
+                        <ng-messages for="payPrivateBeneficiaryOnceOffForm.Recipient_Name.$error">
+                            <ng-message class="form-error" when="required">Required</ng-message>
+                            <ng-message class="form-error" when="maxlength">Cannot be longer than 25 characters</ng-message>
+                            <ng-message class="form-error" when="paymentReference">Please enter a valid recipient name</ng-message>
+                        </ng-messages>
+                    </div>
+                </section>
+
+                <section class="payment-confirmation-preference" ng-if="onceOffPaymentModel.beneficiary.paymentConfirmation.confirmationType===&apos;Email&apos; || onceOffPaymentModel.beneficiary.paymentConfirmation.confirmationType===&apos;None&apos;">
+                    <sb-input name="Recipient_Email" label="Recipient email address" ng-model="onceOffPaymentModel.beneficiary.paymentConfirmation.address" ng-required="onceOffPaymentModel.beneficiary.paymentConfirmation.confirmationType===&apos;Email&apos; &amp;&amp; onceOffPaymentModel.paymentConfirmation" ng-maxlength="40" ng-pattern="&apos;{{configuration.email.pattern}}&apos;" pattern-message="Please enter a valid email address">
+                    </sb-input>
+                </section>
+
+                <section class="payment-confirmation-preference" ng-if="onceOffPaymentModel.beneficiary.paymentConfirmation.confirmationType===&apos;SMS&apos;">
+                    <sb-input name="Recipient_SMS" label="Recipient cell phone number" ng-model="onceOffPaymentModel.beneficiary.paymentConfirmation.address" ng-required="onceOffPaymentModel.beneficiary.paymentConfirmation.confirmationType===&apos;SMS&apos; &amp;&amp; onceOffPaymentModel.paymentConfirmation" ng-pattern="&apos;(0)[6-8][0-9]{8}&apos;" pattern-message="Please enter a 10-digit cell phone number">
+                    </sb-input>
+
+                </section>
+
+                <section class="payment-confirmation-preference" ng-if="onceOffPaymentModel.beneficiary.paymentConfirmation.confirmationType===&apos;Fax&apos;">
+                    <sb-input name="Recipient_Fax" label="Recipient fax number" ng-model="onceOffPaymentModel.beneficiary.paymentConfirmation.address" ng-required="onceOffPaymentModel.beneficiary.paymentConfirmation.confirmationType===&apos;Fax&apos; &amp;&amp; onceOffPaymentModel.paymentConfirmation" ng-pattern="&apos;(0)[0-9]{9}&apos;" pattern-message="Please enter a valid 10-digit fax number">
+                    </sb-input>
+
+                </section>
+            </div>
+
+            <section>
+                <label>Payment date</label>
+                <span class="display-block">{{latestTimestampFromServer | dateFormat }}</span>
+            </section>
+
+            <section>
+                <sb-amount ng-model="onceOffPaymentModel.amount" enforcer="enforcer" label="Amount">
+                </sb-amount>
+            </section>
+
+            <button id="proceed" ng-disabled="!payPrivateBeneficiaryOnceOffForm.$valid">Next</button>
+            <a id="cancel" class="button secondary" href="#/transaction/dashboard">Cancel</a>
+        </div>
+    </form>
+</div>
+<div class="form-layout-right">
+    <monthly-payment-limits watcher="watcher"></monthly-payment-limits>
+</div>

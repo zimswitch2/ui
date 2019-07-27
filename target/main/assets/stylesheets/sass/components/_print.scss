@@ -1,0 +1,175 @@
+$normal-font-size: 0.8rem !important;
+
+@media only print {
+  h2,
+  .notification,
+  .btn,
+  button,
+  .limits.pay-multiple-beneficiaries,
+  .balances,
+  #balances,
+  .profile-dropdown-container,
+  .dropdown-menu,
+  .main,
+  .main-nav-container,
+  .selected-account,
+  footer,
+  .button,
+  input,
+  select,
+  .styled-select,
+  .icon,
+  footer,
+  iframe
+  ul .inline-info,
+  .offline-ui,
+  .offline-ui-up {
+    display: none !important;
+  }
+
+  @page { margin: 1.5cm 1cm 2cm 1.5cm; }
+
+  header {
+    background: white;
+    img {
+      max-width: 220px !important;
+      margin-left: 0 !important;
+      padding-left: 0 !important;
+    }
+    margin-bottom: 1.5em;
+  }
+
+  /* foundation overrides - start here */
+
+  a[href]:after {
+    content: "" !important;
+  }
+
+  .panel ul, .switch-cards .cards ul, footer ul, ol, dl {
+    font-size: $normal-font-size;
+  }
+
+  .panel {
+    border: 0 !important;
+    padding: 0 !important;
+    font-size: $normal-font-size;
+  }
+
+  .columns, .column {
+    padding: 0 !important;
+  }
+
+  @for $i from 1 through $total-columns {
+    .large-#{$i} {
+      width: grid-calc($i, $total-columns);
+    }
+  }
+
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  p {
+    margin-bottom: 1.25em;
+  }
+
+  /* foundation overrides - end here */
+
+  .bank-info {
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: right;
+    font-size: 12px;
+    margin: 0.5em;
+  }
+
+  .customer-address {
+    font-size: 12px;
+  }
+
+  .print-header {
+    margin-bottom: 1em !important;
+    background-color: #fff !important;
+
+    h3 {
+      margin: 0 0 1em 0 !important;
+      font-size: 1.5em !important;
+    }
+
+    span {
+      font-size: 0.8em;
+      font-weight: normal !important;
+      height: 0.6em !important;
+    }
+  }
+
+  .print-footer {
+    padding-top: 1em;
+    p {
+      font-size: 0.5em;
+    }
+  }
+
+  .print-receipt {
+    ul {
+      margin: 0;
+      padding: 0;
+      li {
+        list-style: none;
+      }
+    }
+
+    ul.header{
+      display: none !important;
+      li{
+        div.information{
+          display: none !important;
+        }
+      }
+    }
+
+    ul.data > li .information > a:before,
+    ul.data > li .information > span:before,
+    ul.data > li .information > div:before {
+      font-weight: bold !important;
+      font-size: 1.2em !important;
+      min-width: 13em !important;
+      content: attr(data-header) !important;
+      display: block !important;
+      border-top: 1px solid #eee !important;
+      padding-top: 10px !important;
+    }
+
+    ul.data {
+      li{
+        div.information {
+          .cell-data {
+            padding-bottom: 10px !important;
+            font-size: 1.2em !important;
+          }
+          div.currency {
+            text-align: left !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* only for chrome */
+@media only print and (-webkit-min-device-pixel-ratio: 0) {
+  header img {
+    margin-left: 0;
+    padding: 0;
+  }
+}
+
+/* only chrome and safari force background colours */
+@media only print and (color) {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

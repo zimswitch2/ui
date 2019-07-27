@@ -1,0 +1,134 @@
+<script type="text/javascript">
+    (function () {
+        var scriptUrl = ["dspk.standardbank.co.za", "811652", "sunSvs14.js"].join("/");
+        window.loadTrusteerScript(scriptUrl);
+    })();
+</script>
+
+<script type="text/javascript">
+    (function () {
+        var scriptUrl = ["cdn.standardbank.co.za", "811652", "waveForm3.js"].join("/");
+        window.loadTrusteerScript(scriptUrl);
+    })();
+</script>
+
+<h2 ng-show="!showHeader()">Getting Started</h2>
+<h2 ng-show="showHeader()">Accept/ decline invitation</h2>
+
+<div flow></div>
+<div notification error ng-show="errorMessage">{{errorMessage}}</div>
+<form name="registerForm" ng-show="editing" ng-submit="createDigitalId()" class="panel"
+      novalidate="novalidate" autocomplete="off">
+    <section>
+        Get started with Internet Banking in just a few steps. Begin by entering your details
+    </section>
+    <section>
+        <div>
+            <label for="username">Email address</label>
+            <input type="text" id="username" name="username" ng-model="registrationDetails.username"
+                   required
+                   ng-class="{'show-validation-styles': registerForm.username.$touched || registerForm.$submitted}"
+                   ng-maxlength="configuration.email.maxLength" ng-pattern="'{{configuration.email.pattern}}'"
+                   focus-on/>
+            <ng-messages for="registerForm.username.$error"
+                         ng-show="registerForm.username.$touched || registerForm.$submitted">
+                <ng-message class="form-error" when="required">Required</ng-message>
+                <ng-message class="form-error" when="maxlength">Cannot be longer than {{configuration.email.maxLength}}
+                    characters
+                </ng-message>
+                <ng-message class="form-error" when="pattern">Please enter a valid email address</ng-message>
+            </ng-messages>
+        </div>
+    </section>
+    <section>
+        <div>
+            <label for="password">Enter your new password</label>
+            <a href="javascript:void(0)"
+               name="For extra security, choose a unique password that you don't use anywhere else"
+               aria-label="For extra security, choose a unique password that you don't use anywhere else"
+               class="sb-tooltip" tabindex="-1">
+                <i class="icon icon-question-circle"></i>
+            </a>
+            <input type="password" id="password" name="password" ng-model="registrationDetails.password"
+                   required
+                   ng-class="{'show-validation-styles': registerForm.password.$touched || registerForm.$submitted}"
+                   ng-minlength="configuration.password.minLength" ng-maxlength="configuration.password.maxLength"
+                   ng-pattern="'{{configuration.password.pattern}}'"/>
+            <ng-messages for="registerForm.password.$error"
+                         ng-show="registerForm.password.$touched || registerForm.$submitted">
+                <ng-message class="form-error" when="required">Required</ng-message>
+                <ng-message class="form-error" when="minlength">Must be {{configuration.password.minLength}} characters
+                    or longer
+                </ng-message>
+                <ng-message class="form-error" when="maxlength">Cannot be longer than
+                    {{configuration.password.maxLength}} characters
+                </ng-message>
+                <ng-message class="form-error" when="pattern">Please enter a valid password</ng-message>
+            </ng-messages>
+            <div class="description"
+                 ng-class="{ 'invalid-input': (registerForm.password.$dirty || registerForm.password.$touched || registerForm.$submitted) && registerForm.password.$invalid }">
+                Must contain at least 1 UPPERCASE, 1 lowercase, 1 number and a minimum of 8 alphanumeric characters
+            </div>
+        </div>
+    </section>
+    <section>
+        <div>
+            <label for="confirmPassword">Confirm password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword"
+                   ng-model="registrationDetails.confirmPassword"
+                   required
+                   ng-class="{'show-validation-styles': registerForm.confirmPassword.$touched || registerForm.$submitted}"
+                   ng-minlength="configuration.password.minLength" ng-maxlength="configuration.password.maxLength"
+                   must-equal="password"/>
+            <ng-messages for="registerForm.confirmPassword.$error"
+                         ng-show="registerForm.confirmPassword.$touched || registerForm.$submitted">
+                <ng-message class="form-error" when="required">Required</ng-message>
+                <ng-message class="form-error" when="mustEqual">The two passwords do not match</ng-message>
+                <ng-message class="form-error" when="minlength">Must be {{configuration.password.minLength}} characters
+                    or longer
+                </ng-message>
+                <ng-message class="form-error" when="maxlength">Cannot be longer than
+                    {{configuration.password.maxLength}} characters
+                </ng-message>
+            </ng-messages>
+        </div>
+    </section>
+    <section>
+        <div>
+            <label for="preferredName">Preferred name</label>
+            <input type="text" id="preferredName" name="preferredName" ng-model="registrationDetails.preferredName"
+                   required
+                   ng-class="{'show-validation-styles': registerForm.preferredName.$dirty || registerForm.preferredName.$touched || registerForm.$submitted}"
+                   ng-maxlength="15" ng-pattern="'[A-Za-z0-9 ]*[A-Za-z][A-Za-z0-9 ]*'"/>
+            <ng-messages for="registerForm.preferredName.$error"
+                         ng-show="registerForm.preferredName.$dirty || registerForm.preferredName.$touched || registerForm.$submitted">
+                <ng-message class="form-error" when="required">Required</ng-message>
+                <ng-message class="form-error" when="maxlength">Cannot be longer than 15 characters</ng-message>
+                <ng-message class="form-error" when="pattern">Please enter a valid preferred name</ng-message>
+            </ng-messages>
+            <div class="description"
+                 ng-class="{ 'invalid-input': (registerForm.preferredName.$dirty || registerForm.preferredName.$touched || registerForm.$submitted) && registerForm.preferredName.$invalid }">
+                What you want us to call you
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <label for="registration-user-agree-enhanced">
+            <input type="checkbox" id="registration-user-agree-enhanced" ng-model="user.agree" name="userAgree"
+                   required/>
+            You accept the
+        </label>
+        <user-terms-link>terms and conditions</user-terms-link>
+    </section>
+
+    <button
+            id="continue"
+            ng-disabled="!registerForm.$valid"
+            data-dtmid="new_user_registration_form register now button"
+            data-dtmtext="Register now button click">Register now
+    </button>
+    <a class="button secondary" ng-click="cancel()" href=""
+       data-dtmid="new_user_registration_form cancel button"
+       data-dtmtext="Cancel button click">{{errorMessage ? 'Back to sign-in' : 'Cancel'}}</a>
+</form>

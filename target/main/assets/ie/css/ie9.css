@@ -1,0 +1,55 @@
+ul.data > li > a.actions .action img,
+ul.data > li > span.actions .action img,
+ul.data > li > div.actions .action img {
+  height: 1.3em; }
+
+.styled-select select:focus {
+  outline: none; }
+
+.get-flash img {
+  width: 300px; }
+
+.get-flash .modal-close .close-button i {
+  margin-top: 0.5em;
+  margin-right: 0.5em; }
+
+.styled-select select {
+  width: 120%;
+  background-position: 83%; }
+
+div.medium-width select {
+  width: 142%;
+  background-position: 67%; }
+
+.inline-select .styled-select select {
+  width: 130%;
+  background-position: 76%; }
+  @media (max-width: 71em) {
+    .inline-select .styled-select select {
+      width: 120%;
+      background-position: 83% center; } }
+
+.filter-controls .styled-select select {
+  width: 136%;
+  background-position: 71%; }
+  @media (max-width: 71em) {
+    .filter-controls .styled-select select {
+      width: 120%;
+      background-position: 83% center; } }
+
+#statement-type select {
+  width: 145%;
+  background-position: 65% center; }
+  @media (max-width: 71em) {
+    #statement-type select {
+      width: 115%;
+      background-position: 87% center; } }
+
+.title-buttons {
+  text-align: right;
+  padding-bottom: 1em; }
+  @media (max-width: 40em) {
+    .title-buttons {
+      padding-bottom: 0; } }
+
+/*# sourceMappingURL=ie9.css.map */

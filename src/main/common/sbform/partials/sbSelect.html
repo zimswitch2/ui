@@ -1,0 +1,10 @@
+<div>
+    <select id="{{id || name}}"
+            name="{{name}}"
+            ng-model="ngModel"
+            selected="selected"
+            ng-options="c.{{element}} for c in collection"
+            ng-required="ngRequired">
+    </select>
+    <span ng-class="dirtyClass()" ng-show="invalid('required')">Required</span>
+</div>

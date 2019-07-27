@@ -1,0 +1,29 @@
+@import "mixins/common";
+@import "accountOrigination";
+@import "accountProducts";
+@import "customerInfo";
+@import "offer";
+@import "acceptOffer";
+@import "confirmOffer";
+@import "chequeCards";
+@import "declinedOffer";
+@import "rcpOffer";
+@import "loanAgreement";
+@import "debitOrderSwitching";
+
+.btn {
+  @extend button;
+}
+
+.clear {
+  @extend .clearfix;
+}
+
+.customer-info-nav a {
+  text-decoration: none;
+  font-size: 0.8em;
+}
+
+.wide ol.steps {
+  max-width: none;
+}

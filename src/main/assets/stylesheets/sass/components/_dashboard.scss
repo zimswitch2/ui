@@ -1,0 +1,143 @@
+.dashboard {
+  overflow: hidden;
+  max-width: $content-max-width;
+
+  .header {
+    font-size: 2em;
+    margin-bottom: 0.3em;
+  }
+
+  li {
+    padding: 0;
+    border-bottom: 1px solid #e5e5e1;
+  }
+
+  a {
+    display: block;
+    position: relative;
+    min-height: 4em;
+    border: 1px solid white;
+    overflow: hidden;
+    text-decoration: none;
+    font-size: 1.5em;
+    color: white;
+    background: #2F91FF;
+    padding-left: 4.5em;
+    padding-top: 1.2em;
+    padding-right: 1em;
+    line-height: 1.2em;
+
+    div {
+      padding-bottom: 1em;
+    }
+
+    &.disabled {
+      color: #59A6FF;
+      cursor: default;
+
+      &:hover {
+        background-color: #2F91FF;
+      }
+    }
+
+    &.secondary {
+      font-size: 1em;
+      color: #2F91FF;
+      background: white;
+      padding-left: 6.6em;
+
+      .icon {
+        left: 1em;
+      }
+
+      &:hover{
+        background-color: #2F91FF;
+        color: white;
+        cursor: pointer;
+      }
+
+      &.disabled {
+        color: $slate-grey-light;
+        cursor: default;
+        background-color: white;
+
+        &:hover {
+          background-color: white;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: #1d71d3;
+      cursor: pointer;
+    }
+
+    .icon {
+      font-size: 2.7em;
+      position: absolute;
+      top: 0.2em;
+      left: 0.2em;
+    }
+
+    .icon-right {
+      font-size: 2em;
+      position: absolute;
+      top: 0.5em;
+      right: 0.2em;
+    }
+  }
+
+  @media #{$medium-up} {
+    ul {
+      margin-bottom: 1.4em;
+    }
+
+    li {
+      border-bottom: none;
+    }
+
+    a {
+      width: 10.7em;
+      height: 8.7em;
+      padding-left: 1.2em;
+      padding-top: 0.8em;
+
+      .icon {
+        font-size: 3.7em;
+        position: absolute;
+        top: auto;
+        left: auto;
+        bottom: 0.15em;
+        right: 0.15em;
+        background-color: #1d71d3;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  @media #{$large-up} {
+    .header {
+      font-size: 1.4em;
+    }
+
+    .row {
+      height: 37em;
+    }
+
+    .columns {
+      height: 100%;
+      border-left: 1px solid #e5e5e1;
+    }
+
+    .columns:first-child {
+      border: none;
+    }
+
+    a {
+      font-size: 1em;
+
+      width: 9.7em;
+      height: 8.7em;
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "debitOrderSwitching": {
+    "target": "eaglet"
+  },
+  "newRegisteredPage": {
+    "target": "eaglet"
+  },
+  "dtmAnalytics": {
+    "target": "eaglet"
+  },
+  "enhancedSignInPage": {
+    "target": "eaglet"
+  },
+  "generateCostOfCredit": {
+    "target": "eaglet"
+  },
+  "rcp": {
+    "target": "eaglet"
+  },
+  "captureSiteLeavingFeedback": {
+    "target": "nemo"
+  },
+  "customerManagementV4": {
+    "target": "nemo"
+  },
+  "editFormalStatementPreferences": {
+    "target": "tinkerbell"
+  },
+  "statementPreferences": {
+    "target": "tinkerbell"
+  },
+  "newCaptureCustomerInformation": {
+    "target": "dogmatix",
+    "ready": false
+  },
+  "deLinkDashboard": {
+    "target": "dogmatix"
+  },
+  "viewTransactions": {
+    "target": "dogmatix",
+    "ready": true
+  },
+  "downloadTransactionsCsv": {
+    "target": "dogmatix",
+    "ready": true
+  },
+  "printTransactions": {
+    "target": "dogmatix",
+    "ready": true
+  },
+  "searchTransactions": {
+    "target": null,
+    "ready": true
+  },
+  "addBasicInformationAML": {
+    "target": "dogmatix",
+    "ready": true
+  },
+  "updateBeneficiaryReferencesOnPay": {
+    "target": "dogmatix",
+    "ready": true
+  },
+  "instantMoney": {
+    "target": null
+  },
+  "paymentHistory": {
+    "target": null,
+    "ready": true
+  },
+  "viewFormalStatementList": {
+    "target": null
+  },
+  "downloadTunleyFormalStatement": {
+    "target": null
+  },
+  "emailTunleyFormalStatement": {
+    "target": null
+  },
+  "caterForInternationalOnActivateOtp": {
+    "target": null
+  },
+  "migrateWithAtmPin": {
+    "target": null,
+    "ready": false
+  },
+  "overviewPage": {
+    "target": null,
+    "ready": false
+  },
+  "personalFinanceManagement": {
+    "target": null,
+    "ready": false
+  },
+  "menigaTransactionsHistory": {
+    "target": null,
+    "ready": false
+  },
+  "secureMessage": {
+    "target": null
+  },
+  "accountSharing": {
+    "target": null
+  },
+  "internationalPayment": {
+    "target": null,
+    "ready": true
+  },
+  "dynamicTargetOfferTemplates": {
+    "target": null,
+    "ready": true
+  },
+  "verifyCompanyDepositIdentifier": {
+    "target": null,
+    "ready": true
+  },
+  "increaseEapLimitInPayment": {
+    "target": null,
+    "ready": true
+  },
+  "modifyScheduledPayment": {
+    "target": "dogmatix",
+    "ready": true
+  }
+}

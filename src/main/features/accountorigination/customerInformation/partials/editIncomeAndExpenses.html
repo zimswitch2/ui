@@ -1,0 +1,144 @@
+<h2>Your Details</h2>
+
+<flow class="wide"></flow>
+
+<div class="notification error wide" ng-show="serverErrorMessage !== undefined">
+    {{serverErrorMessage}}
+</div>
+
+<div class="customer-info-container">
+    <customer-information-navigation editing="true" current-page="'income'"></customer-information-navigation>
+    <div class="customer-info-form">
+        <form name="customerInformationForm" data-frmcontainer="edit income and expenses form" novalidate>
+            <div class="customer-info-scroll">
+                <div class="income">
+                    <ng-form name="incomeAndExpensesForm"
+                             class="edit-section"
+                             ng-init="loadIncomeAndExpensesForm(incomeAndExpensesForm)">
+                        <div ng-show="getValidationNotification() !== undefined && incomeAndExpensesForm.$pristine"
+                             id="income-notification"
+                             class="wide notification error">
+                            {{getValidationNotification()}}
+                        </div>
+
+                        <div>
+                            <h3>Monthly Income</h3>
+                            <ul class="data edit-mode editIncomeExpenses" ng-form="incomeForm">
+                                <li id="incomeItem{{$index}}" class="data row-field"
+                                    ng-repeat="incomeItem in customerInformationData.getIncomes()"
+                                    ng-form="additionalIncomeForm">
+                                    <div class="information">
+                                        <div data-header="Title" class="field-label">
+                                            <div class="data">
+                                                <div class="styled-select medium-width">
+                                                    <select id="incomeItemList{{$index}}"
+                                                            name="Income_type_{{$index}}"
+                                                            ng-model="incomeItem.itemTypeCode"
+                                                            ng-required="true"
+                                                            ng-options="type.code as type.description for type in incomeTypes | typesFilter:customerInformationData.getIncomes():incomeItem.itemTypeCode"
+                                                            fix-ie-select
+                                                            ng-change="fixIeDynamicOption()"
+                                                            class="styled-select">
+                                                        <option value="" ng-hide="incomeItem.itemTypeCode"></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div data-header="Title" class="field-value">
+                                            <div class="cell-data">
+                                                <input type="text"
+                                                       id="incomeAmount{{$index}}"
+                                                       name="Income_amount_{{$index}}"
+                                                       ng-model="incomeItem.itemAmount"
+                                                       ng-required="true"
+                                                       class="currency"
+                                                       placeholder="0.00"
+                                                       currency-field
+                                                       max-limit="9999999999999.99"
+                                                       allow-blank/>
+                                                <button id="remove-income{{$index}}"
+                                                        class="btn icon-button action remove"
+                                                        title="remove"
+                                                        ng-click="removeItem(incomeItem)"
+                                                        ng-show="customerInformationData.getIncomes().length > 1">
+                                                    <i class="icon icomoon-remove"></i>
+                                                    <span class="title">Remove</span>
+                                                </button>
+
+                                            <span class="form-error"
+                                                  ng-show="additionalIncomeForm.amount.$dirty && additionalIncomeForm.amount.$error.required">Required</span>
+                                            <span class="form-error"
+                                                  ng-show="additionalIncomeForm.amount.$error.currencyLimit">The amount cannot exceed <span
+                                                    class="rand-amount">R 9 999 999 999 999.99</span></span>
+                                            <span class="form-error"
+                                                  ng-show="additionalIncomeForm.amount.$error.currencyFormat">Please enter the amount in a valid format</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <row-field ng-show="incomeForm.$valid">
+                                    <a id="add-additional-income" href="" ng-click="addItem('I')"
+                                       class="notification-preference add-detail" ng-show="showAddIncomeItemLink()">
+                                        + Add additional income
+                                    </a>
+                                </row-field>
+
+                                <row-field id="grossIncome" label="Total income">
+                                    {{customerInformationData.getGrossIncome() | randAmount}}
+                                </row-field>
+
+                            </ul>
+                        </div>
+                        <div class="second-section">
+                            <h3>Monthly Expenses</h3>
+                            <ul class="data edit-mode editIncomeExpenses margin-top">
+                                <li id="totalExpense" class="data row-field"
+                                    ng-form="additionalExpensesForm">
+                                    <row-field id="totalExpenses" class="information" label="Total expenses" label-for="totalExpenseAmount"
+                                               tooltip="Includes medical aid, taxes, investments, pension, loans, rent, bills and other day-to-day expenses">
+                                        <input type="text"
+                                               id="totalExpenseAmount"
+                                               name="Total_expenses"
+                                               ng-model="customerInformationData.getTotalExpenseItem().itemAmount"
+                                               ng-required="true"
+                                               class="currency"
+                                               placeholder="0.00"
+                                               currency-field
+                                               max-limit="9999999999999.99"
+                                               allow-blank/>
+                                        <span class="form-error"
+                                              ng-show="additionalExpensesForm.amount.$dirty && additionalExpensesForm.amount.$error.required">Required</span>
+                                        <span class="form-error"
+                                              ng-show="additionalExpensesForm.amount.$error.currencyLimit">The amount cannot exceed <span
+                                                class="rand-amount">R 9 999 999 999 999.99</span></span>
+                                        <span class="form-error"
+                                              ng-show="additionalExpensesForm.amount.$error.currencyFormat">Please enter the amount in a valid format</span>
+                                    </row-field>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <button id="save-income-expenses" class="primary" ng-click="save()"
+                                    ng-disabled="!incomeAndExpensesForm.$valid || !customerInformationData.hasAnyIncome() || !customerInformationData.hasOnlyTotalExpense()">
+                                Save
+                            </button>
+                            <button id="cancel-income-expenses" class="secondary" ng-click="cancel()">
+                                {{cancelButtonText}}
+                            </button>
+                        </div>
+                <ul class="data">
+                    <div class="nav-arrow hide-for-medium-up">
+                        <a ng-click="next()">
+                            <i class="icon icon-angle-down"></i>
+                            <span>Next section</span>
+                        </a>
+                    </div>
+                </ul>
+                </ng-form>
+            </div>
+    </div>
+    </form>
+</div>
+</div>
+<cancel-confirmation edit-form="incomeAndExpensesForm"></cancel-confirmation>

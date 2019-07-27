@@ -1,0 +1,62 @@
+.switch-cards {
+
+  .cards {
+    @extend .panel;
+    padding: 0;
+    margin-bottom: 1em;
+
+    h2 {
+      background-color: #f3f3f3;
+      color: $slate-grey;
+      font-weight: normal;
+      font-size: 1.5em;
+      padding: 0.5em;
+      margin: 0;
+    }
+
+    .card {
+      @include clearfix;
+      border-bottom: 2px solid rgb(240, 240, 239);
+
+      &:hover {
+        background-color: $azure-blue-light;
+        cursor: pointer;
+      }
+
+      span {
+        display: block;
+        font-weight: normal;
+        color: $slate-grey;
+      }
+
+      .name {
+        font-size: 1.2em;
+      }
+
+      .type {
+        padding-bottom: 0.2em;
+        margin-top: 0.5em;
+      }
+
+      .information {
+        padding: 1em;
+      }
+
+      .dashboard-status {
+        display: inline-block;
+        font-size: 0.7em;
+        float: right;
+
+        &.active {
+          color: #339F7B;
+        }
+        &.blocked {
+          color: #A80511;
+        }
+        &.activate {
+          color: #1E7CA2;
+        }
+      }
+    }
+  }
+}

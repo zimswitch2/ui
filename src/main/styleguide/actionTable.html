@@ -1,0 +1,203 @@
+<h2>Action table</h2>
+<div class="example">
+    <h3>An action table with no actions</h3>
+    <p>
+        Because the number of columns varies between tables, each usage needs to set the width of its columns.
+        Have a look at #styleguide-action-table in the style guide CSS.
+    </p>
+    <div class="demo">
+        <div class="action-table styleguide-action-table">
+            <ul class="header">
+                <li>
+                    <div class="information">
+                        <div><span>A heading</span></div>
+                        <div><span>Another heading</span></div>
+                        <div><span>Something</span></div>
+                        <div class="currency"><span>A currency header</span></div>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="data">
+                <li>
+                    <div class="information">
+                        <div data-header="A heading">
+                            <div>Another value</div>
+                        </div>
+                        <div data-header="Another heading">
+                            <div>A value</div>
+                        </div>
+                        <div data-header="Something">
+                            <div>Value</div>
+                        </div>
+                        <div data-header="Something" class="currency">
+                            <div>R 22.00</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <show-code></show-code>
+    </div>
+</div>
+
+<div class="example">
+    <h3>An action table with actions</h3>
+    <p>
+        Because the number of columns varies between tables, each usage needs to set the width of its columns.
+        Have a look at #styleguide-action-table-actions in the style guide CSS.
+    </p>
+    <div class="demo">
+        <div class="action-table" id="styleguide-action-table-actions">
+            <ul class="header">
+                <li>
+                    <div class="information">
+                        <div><span>A heading</span></div>
+                        <div><span>Another heading</span></div>
+                        <div><span>Something</span></div>
+                        <div class="currency"><span>A currency header</span></div>
+                    </div>
+                    <div class="actions">
+                        <div class="action">Action</div>
+                        <div class="action">Modify</div>
+                        <div class="action">Pay</div>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="data">
+                <li>
+                    <div class="information">
+                        <div data-header="A heading">
+                            <div>Another value</div>
+                        </div>
+                        <div data-header="Another heading">
+                            <div>A value</div>
+                        </div>
+                        <div data-header="Something">
+                            <div>Value</div>
+                        </div>
+                        <div data-header="Something" class="currency">
+                            <div>R 22.00</div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <a class="action" title="action">
+                            <span class="title">Action</span>
+                            <i class="icon icomoon-edit"></i>
+                        </a>
+                       <a class="action" title="modify">
+                            <span class="title">Modify</span>
+                            <i class="icon icomoon-edit"></i>
+                        </a>
+                        <a class="action" title="pay">
+                            <span class="title">Pay</span>
+                            <i class="icon icomoon-pay"></i>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <show-code></show-code>
+    </div>
+</div>
+
+<div class="example">
+    <h3>An action table a row being deleted</h3>
+    <p class="note">Why are the buttons not aligned in the middle?</p>
+    <p>Click delete to see what happens.</p>
+    <div class="demo">
+        <div class="action-table styleguide-action-table-actions">
+            <ul class="header">
+                <li>
+                    <div class="information">
+                        <div><span>A heading</span></div>
+                        <div><span>Another heading</span></div>
+                        <div><span>Something</span></div>
+                        <div class="currency"><span>A currency header</span></div>
+                    </div>
+                    <div class="actions">
+                        <div class="action">Action</div>
+                        <div class="action">Modify</div>
+                        <div class="action">Delete</div>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="data">
+                <li>
+                    <div class="information">
+                        <div data-header="A heading">
+                            <div>Another value</div>
+                        </div>
+                        <div data-header="Another heading">
+                            <div>A value</div>
+                        </div>
+                        <div data-header="Something">
+                            <div>Value</div>
+                        </div>
+                        <div data-header="Something" class="currency">
+                            <div>R 22.00</div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <a class="action" title="action">
+                            <span class="title">Action</span>
+                            <i class="icon icomoon-edit"></i>
+                        </a>
+                        <a class="action" title="modify">
+                            <span class="title">Modify</span>
+                            <i class="icon icomoon-edit"></i>
+                        </a>
+                        <a delete
+                           delete-message="'Are you sure you want to delete this?'">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <show-code></show-code>
+    </div>
+</div>
+
+<div class="example">
+    <h3>An action table with sortable headers</h3>
+    <div class="demo">
+        <div class="action-table styleguide-action-table">
+            <ul class="header">
+                <li>
+                    <div class="information">
+                        <div>
+                            <a>Sort me <i class="icon icon-sort"></i></a>
+                        </div>
+                        <div>
+                            <a>Currently sorted <i class="active icon icon-sort"></i></a>
+                        </div>
+                        <div><span>Something</span></div>
+                        <div class="currency"><span>A currency header</span></div>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="data">
+                <li>
+                    <div class="information">
+                        <div data-header="A heading">
+                            <div>Another value</div>
+                        </div>
+                        <div data-header="Another heading">
+                            <div>A value</div>
+                        </div>
+                        <div data-header="Something">
+                            <div>Value</div>
+                        </div>
+                        <div data-header="Something" class="currency">
+                            <div>R 22.00</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <show-code></show-code>
+    </div>
+</div>

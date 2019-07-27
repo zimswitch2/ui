@@ -1,0 +1,159 @@
+<div class="payment-history list-page wide-content">
+    <h2>Online Payments History</h2>
+
+    <div ng-show="errorMessage" error="" notification="">{{errorMessage}}</div>
+    <div ng-show="hasInfo" info="" notification="">{{message}}</div>
+
+    <div class="hide-on-print accountAndAmountPanel">
+        <div class="left styled-select">
+            <select id="account" ng-model="ctrl.selectedAccount" ng-change="ctrl.loadHistoryList()" ng-options="item | accountLabel for item in ctrl.accounts" data-dtmid="link_content_payments account" fix-ie-select="" data-dtmtext="{{ctrl.selectedAccount.accountType}}">
+            </select>
+        </div>
+
+        <div class="summary-row hide-for-small-only">
+            <span>
+                <h3>{{ctrl.selectedAccount.availableBalance.amount | currencyAmount: currencyCode || 'R' }}</h3>
+            </span>
+            <span>
+                <small>
+                    Available balance
+                </small>
+            </span>
+        </div>
+        <div class="summary-row show-for-small-only">
+            <small>
+                Available balance
+            </small>
+
+            <span>
+                {{ctrl.selectedAccount.availableBalance.amount | currencyAmount: currencyCode || 'R' }}
+            </span>
+        </div>
+    </div>
+
+    <div class="dates-panel hide-on-print">
+        <span>Last</span>
+        <button class="secondary" ng-click="ctrl.getPaymentsForTheLast(30)" ng-class="{active:ctrl.isNumberOfDaysSelected(30)}">30
+        </button>
+        <button class="secondary" ng-click="ctrl.getPaymentsForTheLast(60)" ng-class="{active:ctrl.isNumberOfDaysSelected(60)}">60
+        </button>
+        <button class="secondary" ng-click="ctrl.getPaymentsForTheLast(90)" ng-class="{active:ctrl.isNumberOfDaysSelected(90)}">90
+        </button>
+        <button class="secondary" ng-click="ctrl.getPaymentsForTheLast(180)" ng-class="{active:ctrl.isNumberOfDaysSelected(180)}">
+            180
+        </button>
+
+        <span>Days</span>
+
+        <form>
+            <sb-datepicker class="dateLoc date-picker" ng-model="ctrl.dateFrom" name="Date_from" on-select="ctrl.updateFromDate(date)" ng-required="false" date-format="DD/MM/YYYY" skip-year="true" earliest-date="{{ ctrl.earliestSelectableDate() }}" latest-date="{{ ctrl.dateTo }}">
+            </sb-datepicker>
+
+            <sb-datepicker class="dateLoc date-picker" ng-model="ctrl.dateTo" name="Date_to" on-select="ctrl.updateToDate(date)" ng-required="false" date-format="DD/MM/YYYY" skip-year="true" earliest-date="{{ ctrl.dateFrom }}" latest-date="{{ ctrl.currentDate }}">
+            </sb-datepicker>
+        </form>
+    </div>
+    <div class="filter-container">
+        <form>
+            <div class="filter">
+                <input type="text" id="filter" name="filter" ng-model="ctrl.filterText" placeholder="Search by Date, Month, From account, Beneficiary, Statement reference, Amount">
+                <i class="icon icomoon-search"></i>
+                <i class="icon icomoon-close close" ng-click="clearFilter()" ng-show="ctrl.filterText"></i>
+            </div>
+        </form>
+    </div>
+
+    <div class="centered-action-table hide-for-small-only">
+        <ul class="header">
+            <li>
+                <div class="information">
+                    <div><span>
+                        <a ng-click="ctrl.switchSortOrder()">Latest</a>
+                        <i ng-class="ctrl.isReverseSortOrder?&apos;icomoon-chevron-down&apos;:&apos;icomoon-chevron-up&apos;"></i>
+                    </span></div>
+                    <div><span>From</span></div>
+                    <div><span>To</span></div>
+                    <div><span>Notification</span></div>
+                    <div class="currency"><span>Amount (R)</span></div>
+                </div>
+            </li>
+        </ul>
+
+        <ul class="data not-clickable">
+            <div class="Description">
+                <li ng-show="spinnerActive" class="loading hide-on-print">
+                    <div class="center"><span class="centered-spinner"></span><span class="loading-text">Loading...</span>
+                    </div>
+                </li>
+            </div>
+            <li ng-if="ctrl.historyList.length &lt;= 0 &amp;&amp; !spinnerActive">
+                    <span class="information">
+                        <div data-header="Latest"></div>
+                        <div data-header="Description">
+                            <div class="cell-data">No payments during this period</div>
+                        </div>
+                        <div data-header="Amount (R)"></div>
+                    </span>
+            </li>
+
+
+            <li ng-repeat="line in ctrl.historyList | filter:ctrl.filterText | orderBy:&apos;date&apos;:ctrl.isReverseSortOrder" class="transaction" ng-hide="spinnerActive &amp;&amp; !ctrl.loadingPaginated" ng-class="ctrl.isTransactionSelected()">
+                <div>
+                    <div class="information rowInformation">
+                        <div data-header="Latest">
+                            <div class="cell-data narrative">{{line.dayOfPayment}}</div>
+                            <div class="cell-data type month">
+                                <small>{{line.monthName}}</small>
+                            </div>
+                        </div>
+                        <div data-header="From">
+                            <div class="cell-data narrative">{{line.account.name}} - {{line.account.number}}
+                            </div>
+                            <div class="type month">
+                                <small>{{line.description}}</small>
+                            </div>
+                        </div>
+                        <div data-header="To">
+                            <div class="cell-data narrative">{{line.recipient.name}}
+                            </div>
+                            <div class="type month">
+                                <small>{{line.recipientReference}}</small>
+                            </div>
+                        </div>
+                        <div data-header="Notification">
+                            <div class="cell-data narrative">{{line.lastPaymentConfirmation.recipientName}}
+                            </div>
+                            <div class="type month">
+                                <small>{{line.lastPaymentConfirmation.confirmationMethod}}</small>
+                            </div>
+                        </div>
+                        <div data-header="Amount (R)" class="currency">
+                            <div class="cell-data">{{line.amount | amount}}</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li ng-show="ctrl.loadingPaginated" class="loading hide-on-print">
+                <div class="center"><span class="centered-spinner"></span><span class="loading-text">Loading...</span>
+                </div>
+            </li>
+            <li ng-show="ctrl.nextPaymentHistoryPageDetails &amp;&amp; !ctrl.loadingPaginated" ng-click="ctrl.loadMorePayments()" class="bottom-text load-next hide-on-print">
+                <div><span>Load more payments</span></div>
+            </li>
+            <li ng-show="!loading &amp;&amp; statement &amp;&amp; (statement | statementFilter : query).length == 0" class="no-match-search">
+                    <span class="information">
+                        <div></div>
+                        <div id="no-matches-message" class="information message">No matches found</div>
+                    </span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="show-for-small-only">
+        <ng-include src="&apos;features/payment/partials/paymentHistoryMobileView.html&apos;"></ng-include>
+    </div>
+
+    <div class="back-button-container">
+        <a class="btn secondary" href="#/transaction/dashboard">Back to transact</a>
+    </div>
+</div>

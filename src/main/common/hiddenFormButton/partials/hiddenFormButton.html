@@ -1,0 +1,8 @@
+<!-- as in angular v1.2, if action is empty it will prevent default submit event listener,
+ so have to give some non-empty value for initialization -->
+<form action="{{actionUrl || '#'}}" method="{{actionMethod}}" target="_blank">
+    <input ng-repeat="formItem in formItems" type="hidden" name="{{formItem.name}}" value="{{formItem.value}}"/>
+    <button type="submit">
+        <span ng-transclude></span>
+    </button>
+</form>

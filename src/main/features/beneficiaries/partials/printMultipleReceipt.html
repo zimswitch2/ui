@@ -1,0 +1,50 @@
+<ul class="data">
+    <li>
+        <div class="information">
+            <div data-header="Beneficiary Name">
+                <div class="cell-data">{{printSelectedTransaction.beneficiary.name}}</div>
+            </div>
+            <div ng-hide="isCompanyBeneficiary(printSelectedTransaction)" class="print-only" data-header="Account">
+                <div class="cell-data">{{printSelectedTransaction.beneficiary.accountNumber}}</div>
+            </div>
+            <div ng-hide="isCompanyBeneficiary(printSelectedTransaction)" class="print-only" data-header="Bank">
+                <div class="cell-data">{{printSelectedTransaction.beneficiary.bank.name}}</div>
+            </div>
+            <div ng-hide="isCompanyBeneficiary(printSelectedTransaction)" class="print-only" data-header="Branch">
+                <div class="cell-data">
+                    {{printSelectedTransaction.beneficiary.bank.branch["name"]}}
+                    ({{printSelectedTransaction.beneficiary.bank.branch["code"]}})
+                </div>
+            </div>
+            <div data-header="Your reference">
+                <div class="cell-data">{{printSelectedTransaction.beneficiary.customerReference}}</div>
+            </div>
+            <div data-header="Beneficiary reference">
+                <div class="cell-data"><span>{{printSelectedTransaction.beneficiary.recipientReference}}</span></div>
+            </div>
+            <div ng-class="showColumn(printSelectedTransaction.beneficiary.paymentConfirmation)"
+                 data-header="Recipient name">
+                <div class="cell-data">{{printSelectedTransaction.beneficiary.paymentConfirmation.recipientName}}</div>
+            </div>
+            <div ng-show="printSelectedTransaction.hasConfirmationWarning"
+                 ng-class="showColumn(printSelectedTransaction.beneficiary.paymentConfirmation)"
+                 data-header="Payment notification">
+                <div class="cell-data">
+                    <span class="text-notification error">Your notification could not be delivered because the email address was invalid</span>
+                </div>
+            </div>
+
+            <div data-header="Payment date">
+                <div class="cell-data">
+                    <span>{{latestTimestampFromServer | dateFormat}}</span>
+                    <span>{{latestTimestampFromServer | dateFormat}}</span>
+                </div>
+            </div>
+            <div data-header="Payment amount">
+                <div class="cell-data">
+                    <span>{{printSelectedTransaction.amount | randAmount}}</span>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>

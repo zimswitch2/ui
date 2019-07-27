@@ -1,0 +1,122 @@
+<h2>International Payment</h2>
+
+<div class="international-payment">
+    <div class="panel">
+        <div ng-if="customerDetails.isResident() && customerDetails.isOver18 && hasValidAccount">
+            <form>
+                <section>
+                    <h3>What you'll need</h3>
+                </section>
+                <section>
+                    <i class="icomoon-tick padding-right"></i><span
+                        class="large-text">Your beneficiary's bank details</span>
+                </section>
+                <section>
+                    <i class="icomoon-tick padding-right"></i><span class="large-text">Your beneficiary's address</span>
+                </section>
+                <section>
+                    <i class="icomoon-tick padding-right"></i><span
+                        class="large-text">A reason for payment (BoP code)</span>
+                </section>
+                <section>
+                    <i class="icomoon-tick padding-right"></i><span
+                        class="large-text">A personal current or savings account</span>
+                </section>
+                <section class="large-text padding-top" id="residentAnnualLimitNote">
+                    Note:<span class="padding-left">Payments count towards your R 1 million annual international payment limit</span>
+                </section>
+                <section>
+                    <a class="large-text" id="internationalPaymentFAQLink"
+                       href="http://sbgmobile.standardbank.co.za/SBGMobileApp/International-Payments/FAQ"
+                       target="_blank">Learn more</a>
+                </section>
+
+                <section class="padding-top" ng-hide="hideTermsAndConditions">
+                    <label for="internationalPaymentTermsAndConditions">
+                        <input required type="checkbox" id="internationalPaymentTermsAndConditions"
+                               ng-model="internationalPaymentTermsAndConditions"/>
+                        You agree to the <a id="internationalPaymentTermsAndConditionsLink"
+                                            href="http://sbgmobile.standardbank.co.za/SBGMobileApp/International-Payments/Terms-and-conditions"
+                                            target="_blank">terms and conditions</a>
+                    </label>
+                </section>
+
+                <section class="padding-top">
+                    <button id="confirm" class="primary" ng-click="submit()"
+                            ng-disabled="!internationalPaymentTermsAndConditions"
+                            track-click="">Get Started
+                    </button>
+                    <a go-back id="cancel" class="btn secondary">Back</a>
+                </section>
+            </form>
+            <div class="help-section">
+                <div class="row telephone-row">
+                    <div class="customer-care-column">
+                        <div class="telephone-icon">
+                            <i class="icomoon-call padding-right"></i>
+                        </div>
+                        <div class="telephone-text">
+                            <div class="telephone-text-label">Customer Care</div>
+
+                            <a href="tel:0860 123 000">0860 123 000</a>
+                        </div>
+                    </div>
+                    <div class="customer-care-column">
+                        <div class="telephone-icon">
+                            <i class="icomoon-call padding-right"></i>
+                        </div>
+
+                        <div class="telephone-text">
+                            <div class="telephone-text-label">International</div>
+
+                            <a href="tel:+27 11 299 4701">+27 11 299 4701</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="!customerDetails.isResident() || !customerDetails.isOver18 || !hasValidAccount">
+            <div ng-if="(!customerDetails.isResident() || !customerDetails.isOver18) && hasValidAccount">
+                <h3 id="youngerThan18">Payment error</h3>
+
+                <div class="padding-top">You are unable to make international payments on the App. Only South
+                    African individuals over 18 years of age may
+                    use this functionality. Please contact the customer care centre or visit
+                    your nearest branch.
+                </div>
+            </div>
+
+            <div ng-if="!hasValidAccount">
+                <h3 id="noValidAccount">No valid accounts</h3>
+
+                <div class="padding-top">You are unable to make international payments as you don't have any valid
+                    accounts. You may only use personal savings and current accounts that are active. Please contact the
+                    customer care centre or visit your nearest branch.
+                </div>
+            </div>
+
+            <section class="padding-top">
+                <a href="http://locator.standardbank.co.za/"
+                   target="_blank">Find your nearest branch</a>
+            </section>
+
+            <section class="padding-top padding-bottom">
+                <div class="telephone-icon">
+                    <i class="icomoon-call icomoon-call-large"></i>
+                </div>
+                <div class="telephone-text">
+                    <div class="telephone-text-label">Customer Care</div>
+                    <div class="telephone-number-link"><a href="tel:0860 123 000">0860 123 000</a></div>
+                </div>
+            </section>
+
+            <section class="padding-top">
+                <a class="btn primary" go-home track-click="">Done</a>
+                <a id="applyAccount" class="btn secondary" track-click="" ng-show="!hasValidAccount" href="#/apply">Apply
+                    for account</a>
+                <a go-back class="btn secondary">Back</a>
+            </section>
+        </div>
+    </div>
+</div>

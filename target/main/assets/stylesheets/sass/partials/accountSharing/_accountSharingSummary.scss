@@ -1,0 +1,24 @@
+.summary {
+  &.account-sharing-summary {
+    .summary-row, .summary-split-row {
+      border-bottom: none;
+    }
+
+    .summary-split-row {
+      div:nth-child(1) {
+        border-right: none;
+
+        @media #{$medium-up} {
+          width: 37%
+        }
+      }
+    }
+
+    .account-summary-action {
+      a {
+        display: block;
+        text-align: right;
+      }
+    }
+  }
+}

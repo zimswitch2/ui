@@ -1,0 +1,80 @@
+<div class="account-sharing">
+    <h2 ng-show="vm.showFlowHeader()">{{ vm.finishAddUserHeader() }}</h2>
+
+    <!--ol class="steps" data-progtrckr-steps="4" ng-show="vm.showFlowHeader()">
+        <li class="step-done">Details</li>
+        <li class="step-done">Permissions</li>
+        <li class="step-done">Confirm</li>
+        <li class="step-todo step-current">Finish</li>
+    </ol-->
+
+    <div ng-show="isSuccessful" success notification >{{vm.successMessage}}</div>
+    <div ng-show="vm.errorMessage" error notification>{{vm.errorMessage}}</div>
+    <form name="finishForm"
+          id="user-finish-form"
+          novalidate
+          autocomplete="off">
+        <div class="panel">
+
+            <div class="summary account-sharing-summary">
+                <div class="summary-row">
+                    <div>
+                        <span>Details</span>
+                        <span>{{ vm.userDetails.firstName }} {{ vm.userDetails.surname }}</span>
+                        <span>{{ vm.userDetails.cellPhone.cellPhoneNumber }}</span>
+                        <span>{{ vm.userDetails.email }}</span>
+                    </div>
+                </div>
+
+                <div class="summary-row">
+                    <div>
+                        <span>Reference code</span>
+                        <span class="reference-number">{{ vm.invitation.referenceNumber }}</span>
+                        <span>(Expires in {{ vm.invitation.timeToExpiry }} for security reasons)</span>
+                        <span><strong>Note:</strong> {{ vm.userDetails.firstName }} will need this reference code to get started</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <h3>Instructions to provide to an invited user</h3>
+
+                <strong>{{ vm.userDetails.firstName }} needs to:</strong>
+
+                <ol>
+                    <li>Visit the Standard Bank internet banking website</li>
+                    <li>Select "Invited users"</li>
+                    <li>Follow the instructions</li>
+                </ol>
+            </div>
+
+            <div class="share-reference">
+                <span>Send the above instructions to {{ vm.userDetails.firstName }}</span><br/>
+
+                <div class="styled-select" ng-required="true">
+                    <select
+                            ng-required="true"
+                            fix-ie-select
+                            ng-model="vm.sendReferenceNumberDetails.channelType"
+                            ng-options="type.code as type.description for type in vm.communicationChannels">
+                    </select>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="btn-container">
+        <button class="primary"
+                ng-click="vm.finishUserDetails()"
+                data-dtmid="obb_content add-user finish done button"
+                data-dtmtext="Done button click">
+            Done
+        </button>
+        <button class="secondary"
+                data-dtmid="obb_content add-user finish print button"
+                data-dtmtext="Print button click">
+            Print
+        </button>
+    </div>
+
+</div>

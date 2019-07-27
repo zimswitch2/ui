@@ -1,0 +1,92 @@
+
+    <div class="edit-section">
+        <div>
+            <h3>Your Profile</h3>
+        </div>
+        <div class="notification wide" ng-class="{&apos;error&apos;: getValidationNotification()!==undefined, &apos;info&apos;: getValidationNotification()===undefined}" id="incompleteInfoNotification">
+            Please enter all the additional required information to complete your profile
+        </div>
+
+        <ul class="data edit-mode">
+            <row-field label="Title">
+                {{customerInformationData.customerTitleCode | map:'title' | capitalize}}
+            </row-field>
+            <row-field label="Surname">
+                {{customerInformationData.customerSurname | capitalize}}
+            </row-field>
+            <row-field label="First names">
+                {{customerInformationData.customerFirstName | capitalize}}
+            </row-field>
+            <row-field label="Initials">
+                {{customerInformationData.customerInitials}}
+            </row-field>
+            <row-field label="Gender">
+                {{customerInformationData.gender | map:'gender'}}
+            </row-field>
+            <row-field label="ID number" ng-show="customerInformationData.getNationalId()">
+                {{customerInformationData.getNationalId().identityNumber}}
+            </row-field>
+            <row-field label="Date of birth">
+                {{customerInformationData.dateOfBirth | dateFormat}}
+            </row-field>
+            <row-field label="Passport" ng-show="customerInformationData.getPassport()">
+                {{customerInformationData.getPassport().identityNumber}}
+            </row-field>
+            <row-field label="Passport origin" ng-show="customerInformationData.getPassport()">
+                {{customerInformationData.getPassport().countryCode | map:'country' |
+                capitalizeCountry}}
+            </row-field>
+            <row-field label="Passport expiry date" ng-show="customerInformationData.getPassport() &amp;&amp; customerInformationData.getPassport().expiryDate">
+                {{customerInformationData.getPassport().expiryDate | dateFormat}}
+            </row-field>
+            <row-field label="Nationality *" id="editNationalityCountry" ng-if="customerInformationData.getPassport() || !customerInformationData.isSACitizen()">
+                <div class="medium-width">
+                    <sb-typeahead ng-model="customerInformationData.nationalityCountryCode" name="Nationality" items="countries" ng-required="true" sort-by="name" value-property="code">
+                    </sb-typeahead>
+                </div>
+            </row-field>
+            <row-field label="Country of birth *" id="editBirthCountry">
+                <div class="medium-width">
+                    <sb-typeahead ng-model="customerInformationData.birthCountryCode" name="Country_of_birth" items="countries" ng-required="true" sort-by="name" value-property="code">
+                    </sb-typeahead>
+                </div>
+            </row-field>
+            <row-field label="Country of citizenship *" id="editCitizenshipCountry" ng-if="customerInformationData.getPassport() || !customerInformationData.isSACitizen()">
+                <div class="medium-width">
+                    <sb-typeahead ng-model="customerInformationData.citizenshipCountryCode" name="Country_of_citizenship" items="countries" ng-required="true" sort-by="name" value-property="code">
+                    </sb-typeahead>
+                </div>
+            </row-field>
+            <row-field label="Permit type *" label-for="editPermitType" ng-if="customerInformationData.getPassport()">
+                <div class="styled-select medium-width">
+                    <select ng-model="permit.identityTypeCode" id="editPermitType" name="Permit_type" ng-required="true" fix-ie-select="" ng-options="type.code as type.description for type in permitTypes">
+                        <option value="" ng-hide="customerInformationData.workPermitTypeCode"></option>
+                    </select>
+                </div>
+            </row-field>
+            <row-field label="Permit number *" id="editPermitNumber" ng-if="customerInformationData.getPassport()">
+                <sb-input ng-model="permit.identityNumber" ng-required="true" name="Permit_number" class="medium-width">
+                </sb-input>
+            </row-field>
+            <row-field label="Permit issue date *" id="editPermitIssueDate" ng-if="customerInformationData.getPassport()">
+                <sb-datepicker ng-model="permit.issuedDate" ng-required="true" name="Permit_issue_date" view-default-date-format="true" date-format="YYYY-MM-DD" skip-year="true" earliest-date="01 January 1900" latest-date="{{latestDateOfPermitIssue}}">
+                </sb-datepicker>
+            </row-field>
+            <row-field label="Permit expiry date *" id="editPermitExpiryDate" ng-if="customerInformationData.getPassport()">
+                <sb-datepicker ng-model="permit.expiryDate" on-select="checkPermitExpiryDate(date)" ng-required="true" name="Permit_expiry_date" view-default-date-format="true" date-format="YYYY-MM-DD" skip-year="true" ng-class="{&apos;canProceedWithCapture&apos;: errorMessage.permitExpiryDate !== undefined}">
+                </sb-datepicker>
+                <div class="info-label" ng-class="{&apos;message-error&apos;: errorMessage.permitExpiryDate !== undefined}">
+                    {{permitExpiryDateErrorMessage}}
+                </div>
+            </row-field>
+            <row-field label="Marital status">
+                {{customerInformationData.maritalStatusCode | map:'maritalStatus'}}
+            </row-field>
+            <row-field label="Marital type" ng-show="customerInformationData.maritalStatusCode === &apos;2&apos;">
+                {{customerInformationData.maritalTypeCode | map:'maritalType'}}
+            </row-field>
+            <row-field label="Your branch">
+                {{customerInformationData.branchCode | map:'branch' | capitalize}}
+            </row-field>
+        </ul>
+    </div>

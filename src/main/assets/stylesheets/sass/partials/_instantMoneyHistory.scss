@@ -1,0 +1,43 @@
+.instant-money-history {
+  .action-table {
+
+  }
+  .page-heading-row {
+    div {
+      > button {
+        &:first-child {
+          @media screen and (-webkit-min-device-pixel-ratio:0) {
+            margin-right: 0.3em;
+          }
+          @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+  @media #{$large-up} {
+    ul {
+      .information {
+        > div {
+          &:nth-child(1){
+            width: 20%;
+          }
+          &:nth-child(2){
+            width: 30%;
+          }
+          &:nth-child(3){
+            width: 20%;
+          }
+          &:nth-child(4){
+            width: 15%;
+          }
+          &:nth-child(5){
+            width: 15%;
+          }
+        }
+      }
+    }
+  }
+
+}

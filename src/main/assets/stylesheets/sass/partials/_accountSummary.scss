@@ -1,0 +1,104 @@
+.account-summary-header {
+  max-width: 20em;
+  @media #{$large-up} {
+    width: 20em;
+    margin-right: 1.5em;
+  }
+}
+
+
+.account-offer-header {
+  max-width: 20em;
+  @media #{$large-up} {
+    width: 20em;
+    line-height: 0.6;
+    margin-right: 1.5em;
+    margin-bottom: 1.0rem;
+  }
+}
+
+.account-summary {
+  @media #{$medium-up}{
+    min-width: 40em;
+  }
+  max-width: $form-layout-main-width;
+  @media #{$large-up} {
+    //margin-right: 1.5em;
+    float: left;
+  }
+  .notification {
+    max-width: $form-layout-main-width;
+  }
+
+  .panel {
+    padding: 0;
+  }
+
+  .columns {
+    padding-left: 0;
+  }
+
+  .accounts {
+    @include product-panel;
+    .account {
+      @include clearfix;
+      border-bottom: 1px solid $primary-grey;
+      padding: 1em 1.5em;
+      background-color: $white;
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background-color: $azure-blue-light;
+        cursor: pointer;
+      }
+
+      @media #{$medium-up} {
+        .number {
+          display: block;
+        }
+      }
+
+      span {
+        display: block;
+        color: $slate-grey;
+      }
+
+      @media #{$small-only} {
+        span {
+          display: inline;
+        }
+      }
+
+      .name {
+        font-size: 1.2em;
+      }
+
+      .available-balance, .latest-balance {
+        padding-top: 0.8em;
+        font-weight: lighter;
+        letter-spacing: 0.05em;
+        text-align: right;
+        span {
+          display: block;
+          &:nth-child(2) {
+            font-size: 1.2em;
+          }
+          @media #{$small-only} {
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+}
+
+.account-summary-cashflow-chart {
+  max-width: $form-layout-main-width;
+
+  @media #{$large-up} {
+    float: left;
+    min-width: 38.5em;
+  }
+}

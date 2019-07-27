@@ -1,0 +1,12 @@
+<ul class="sub-nav">
+    <li ng-repeat="menuItem in getItems(menuItems)">
+        <a href="{{menuItem.url}}" ng-class="{'current': isCurrentLocation(menuItem)}" ng-if="!menuItem.trackKey">
+            {{menuItem.text}}
+            <i class="icon icomoon-chevron-right"></i>
+        </a>
+        <a href="{{menuItem.url}}" ng-class="{'current': isCurrentLocation(menuItem)}" ng-if="menuItem.trackKey" track-click="{{menuItem.trackKey}}">
+            {{menuItem.text}}
+            <i class="icon icomoon-chevron-right"></i>
+        </a>
+    </li>
+</ul>

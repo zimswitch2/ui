@@ -1,0 +1,19 @@
+<div class="summary-row">
+    <div>
+        <span>Voucher type</span>
+        <span id="voucherType">{{recharge.provider.productName}}</span>
+    </div>
+</div>
+<div class="summary-row">
+    <div>
+        <span>Recharge amount</span>
+        <span ng-hide="recharge.provider.product.bundles" id="amount">{{recharge.provider.product.amount | randAmount}}</span>
+        <span ng-show="recharge.provider.product.bundles" id="bundleName">{{recharge.provider.product.bundle.name}}</span>
+    </div>
+</div>
+<div class="summary-row">
+    <div>
+        <span>Cell phone number</span>
+        <span id="cellNumber">{{recharge.rechargeNumber}}</span>
+    </div>
+</div>

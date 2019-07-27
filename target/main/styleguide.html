@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en" ng-app="refresh.styleGuide">
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <link href="../assets/stylesheets/css/style_guide.css" rel="stylesheet" media="screen">
+
+    <title>Standard Bank Online Banking - Style Guide</title>
+
+    <script src="assets/styleguideOnly/highlight.pack.js" type="text/javascript"></script>
+
+    <!-- bower:js -->
+    <script src="../bower_components/jquery/jquery.js"></script>
+    <script src="../bower_components/jquery.scrollTo/jquery.scrollTo.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.js"></script>
+    <script src="../bower_components/angular-cache/dist/angular-cache.min.js"></script>
+    <script src="../bower_components/angular-cookie/angular-cookie.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-base64/angular-base64.js"></script>
+    <script src="../bower_components/angular-base64/angular-base64.min.js"></script>
+    <script src="../bower_components/angular-mocks/angular-mocks.js"></script>
+    <script src="../bower_components/lodash/lodash.js"></script>
+    <script src="../bower_components/moment/moment.js"></script>
+    <script src="../bower_components/offline/offline.min.js"></script>
+    <script src="../bower_components/angular-messages/angular-messages.js"></script>
+    <!-- endbower -->
+
+    <script src="features/notifications/notifications.js"></script>
+    <script src="common/filters/filters.js"></script>
+    <script src="common/datepicker/datepicker.js"></script>
+    <script src="common/filterbox/filterBox.js"></script>
+    <script src="common/sbform/inputValidationController.js"></script>
+    <script src="common/sbform/directives/showHidePassword.js"></script>
+    <script src="common/sbform/validations/preventConsecutiveNumbers.js"></script>
+    <script src="common/sbform/validations/preventRepetitiveNumbers.js"></script>
+    <script src="common/validators/inputConfirm.js"></script>
+
+    <script src="common/validators/idNumber/idModule.js"></script>
+    <script src="common/validators/idNumber/idNumberDirective.js"></script>
+    <script src="common/validators/idNumber/idNumberValidator.js"></script>
+
+
+
+    <script src="common/sbform/directives/sbInput.js"></script>
+    <script src="common/amount/amount.js"></script>
+    <script src="common/typeahead/typeahead.js"></script>
+    <script src="common/inlineAction/inlineAction.js"></script>
+    <script src="common/analytics/formTrackerService.js"></script>
+
+</head>
+<body class="style-guide" ng-controller="StyleGuideController">
+
+<header id="top">
+    <img class="show-for-small-only hide-on-print" width="60px" src="assets/images/logo-white.png">
+    <img class="hide-for-small-only hide-on-print" src="assets/images/logo.png">
+    <img class="print-only" src="assets/images/logo-black.png">
+</header>
+<div class="row">
+    <div class="large-2 columns">
+        <button class="secondary margin-top" ng-click="toggleMenu()">Toggle menu</button>
+    </div>
+    <div class="large-10 columns">
+        <h1>Internet Banking Style Guide</h1>
+    </div>
+    <hr>
+</div>
+<div class="row">
+    <div class="large-2 columns" ng-if="showMenu">
+        <div class="panel">
+            <ul>
+                <h3>General</h3>
+                <li><a href="#/colors">Colors</a></li>
+                <li><a href="#/icons">Icons</a></li>
+                <li><a href="#/typography">Typography</a></li>
+
+                <h3>Components</h3>
+                <li><a href="#/button">Button</a></li>
+                <li><a href="#/dropdown">Dropdown Button</a></li>
+                <li><a href="#/back-to-top">Back to top</a></li>
+                <li><a href="#/list">List</a></li>
+                <li><a href="#/notification">Notification</a></li>
+                <li><a href="#/tooltip">Tooltip</a></li>
+                <li><a href="#/spinner">Spinner</a></li>
+                <li><a href="#/steps">Steps</a></li>
+                <li><a href="#/summary">Summary</a></li>
+
+                <strong>Forms</strong>
+                <li><a href="#/input">Input</a></li>
+                <li><a href="#/form">Form</a></li>
+                <li><a href="#/filter-controls">Filter controls</a></li>
+                <li><a href="#/label">Label</a></li>
+
+                <strong>Tables</strong>
+                <li><a href="#/table">Table</a></li>
+                <li><a href="#/action-table">Action table</a></li>
+                <li><a href="#/traditional-table">Traditional table</a></li>
+
+                <h3>Layout</h3>
+                <li><a href="#/box">Box</a></li>
+                <li><a href="#/form-layout">Form layout</a></li>
+                <li><a href="#/modal">Modal</a></li>
+                <li><a href="#/action-modal">Action modal</a></li>
+                <li><a href="#/page-heading-row">Page heading row</a></li>
+                <li><a href="#/panel">Panel</a></li>
+                <li><a href="#/panel-break">Panel break</a></li>
+                <li><a href="#/divider">Divider</a></li>
+                <li><a href="#/wide-content">Wide content</a></li>
+
+                <h3>Framework</h3>
+                <li><a href="#/foundation">Foundation</a></li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="content columns" ng-class="contentColumnWidth">
+        <div ng-view=""></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var app = angular.module('refresh.styleGuide', [
+        'ngRoute',
+        //'refresh.notifications',
+        'refresh.filterBox',
+        'refresh.filters',
+        'refresh.datepicker',
+        'refresh.formtracker',
+        'refresh.sbInput',
+        'refresh.amount',
+//        'refresh.inlineAction',
+        'refresh.typeahead'
+    ]);
+
+    app.controller('StyleGuideController', function ($scope) {
+        $scope.selectItems = [{label: 'one thing'}, {label: 'another thing'}, {label: 'three things'}];
+        $scope.banks = _.map([{name: 'Simmonds street'}, {name: 'Sandton'}, {name: 'Constantia'}], function (bank) {
+            bank.label = function () {
+                return bank.name;
+            };
+            return bank;
+        });
+        $scope.showMenu = true;
+        $scope.contentColumnWidth = 'large-10';
+        $scope.toggleMenu = function () {
+            $scope.showMenu = !$scope.showMenu;
+            $scope.contentColumnWidth = $scope.showMenu ? 'large-10' : 'large-12';
+        };
+    });
+
+    app.directive('showCode', function () {
+        return {
+            restrict: 'E',
+            scope: {},
+            template: '<div class="show-code"><a ng-click="showCode()">Show code</a></div>',
+            compile: function(el, attr) {
+                var newLines = el.parent().html().split('\n');
+                var codeText = _.map(newLines, function (line) {
+                    return line.trim();
+                }).slice(1, newLines.length - 2).join('\n');
+
+                return function (scope, element) {
+
+                    scope.showCode = function () {
+                        var parent = element.parent();
+                        parent.find('show-code').remove();
+                        parent.append('<div class="code-example" ng-if="showCode"><pre><code class="html"></code></pre></div>');
+                        parent.find('code').text(codeText);
+                        parent.find('pre code').each(function (i, block) {
+                            hljs.highlightBlock(block);
+                        });
+                    }
+                }
+            },
+            // to make sure this directive will be compiled before any other ones
+            // to capture the origin html of other directives
+            priority: 99999999999
+        };
+    });
+
+    app.config(function ($routeProvider) {
+        $routeProvider.when('/colors', {templateUrl: 'styleguide/colors.html'});
+        $routeProvider.when('/icons', {templateUrl: 'styleguide/icons.html'});
+        $routeProvider.when('/typography', {templateUrl: 'styleguide/typography.html'});
+        $routeProvider.when('/button', {templateUrl: 'styleguide/button.html'});
+        $routeProvider.when('/back-to-top', {templateUrl: 'styleguide/backToTop.html'});
+        $routeProvider.when('/list', {templateUrl: 'styleguide/list.html'});
+        $routeProvider.when('/notification', {templateUrl: 'styleguide/notification.html'});
+        $routeProvider.when('/tooltip', {templateUrl: 'styleguide/tooltip.html'});
+        $routeProvider.when('/spinner', {templateUrl: 'styleguide/spinner.html'});
+        $routeProvider.when('/steps', {templateUrl: 'styleguide/steps.html'});
+        $routeProvider.when('/summary', {templateUrl: 'styleguide/summary.html'});
+        $routeProvider.when('/dropdown', {templateUrl: 'styleguide/dropdown.html'});
+
+        $routeProvider.when('/input', {templateUrl: 'styleguide/input.html'});
+        $routeProvider.when('/form', {templateUrl: 'styleguide/form.html'});
+        $routeProvider.when('/filter-controls', {templateUrl: 'styleguide/filterControls.html'});
+        $routeProvider.when('/label', {templateUrl: 'styleguide/label.html'});
+
+        $routeProvider.when('/table', {templateUrl: 'styleguide/table.html'});
+        $routeProvider.when('/action-table', {templateUrl: 'styleguide/actionTable.html'});
+        $routeProvider.when('/traditional-table', {templateUrl: 'styleguide/traditionalTable.html'});
+
+        $routeProvider.when('/box', {templateUrl: 'styleguide/box.html'});
+        $routeProvider.when('/form-layout', {templateUrl: 'styleguide/formLayout.html'});
+        $routeProvider.when('/modal', {templateUrl: 'styleguide/modal.html'});
+        $routeProvider.when('/action-modal', {templateUrl: 'styleguide/actionModal.html'});
+        $routeProvider.when('/page-heading-row', {templateUrl: 'styleguide/pageHeadingRow.html'});
+        $routeProvider.when('/panel', {templateUrl: 'styleguide/panel.html'});
+        $routeProvider.when('/panel-break', {templateUrl: 'styleguide/panelBreak.html'});
+        $routeProvider.when('/divider', {templateUrl: 'styleguide/divider.html'});
+        $routeProvider.when('/wide-content', {templateUrl: 'styleguide/wideContent.html'});
+
+        $routeProvider.when('/foundation', {templateUrl: 'styleguide/foundation.html'});
+    });
+</script>
+</body>
+</html>

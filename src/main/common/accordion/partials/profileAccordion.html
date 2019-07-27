@@ -1,0 +1,15 @@
+<div class="medium-12 large-3 columns no-padding">
+    <div class="profile-accordion">
+        <div class="profile-accordion-tab" ng-repeat="item in items">
+            <div id="{{item.id}}" class="profile-accordion-tab-title" ng-click="openTab(item.name)">
+                <a>
+                    <i class="icon"
+                       ng-class="{'icomoon-chevron-right selected-icon-profile-right': !isOpenTab(item.name), 'icomoon-chevron-down selected-icon-profile-down': isOpenTab(item.name)}"></i>
+                    <h4 ng-class="{'selected-profile-closed': !isOpenTab(item.name) , 'selected-profile-open': isOpenTab(item.name)}">
+                        {{item.name}}</h4>
+                </a>
+            </div>
+            <div ng-include src="item.partial" ng-show="isOpenTab(item.name)"></div>
+        </div>
+    </div>
+</div>

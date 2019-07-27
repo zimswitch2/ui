@@ -1,0 +1,128 @@
+<h2 id="viewDetailsHeader">Beneficiary Group Details</h2>
+<div error notification ng-show="errorMessage">{{errorMessage}}</div>
+<div success notification ng-show="isSuccessful">{{successMessage}}</div>
+
+<div class="panel">
+    <div>
+        <div class="summary">
+            <div class="summary-row">
+                <div>
+                    <span>Group name</span>
+                    <span ng-hide="isEditing" id="groupName">{{selectedGroup.name}}</span>
+                </div>
+            </div>
+        </div>
+
+        <form name="renameGroupForm" class="inline-form" ng-show="isEditing">
+            <section>
+                <input type="text"
+                   id="name"
+                   name="name"
+                   ng-model="groupNewName"
+                   ng-focus="clearNotifications()"
+                   ng-maxlength="25"
+                   ng-pattern="'[A-Za-z0-9 ]*'"
+                   required/>
+                <span class="form-error" ng-hide="!(renameGroupForm.name.$error.pattern)">Please enter a group name without special characters</span>
+                <span class="form-error" ng-hide="!(renameGroupForm.name.$error.maxlength)">Cannot be longer than 25 characters</span>
+            </section>
+            <section>
+                <button id="renameGroup" ng-click="saveGroup()"
+                    ng-disabled="!renameGroupForm.$valid" class="primary">Save
+                </button>
+                <button id="cancelRename" class="secondary" ng-click="cancelEditingGroupName()">
+                    Cancel
+                </button>
+            </section>
+        </form>
+        <div>
+            <button class="icon-button" ng-hide="isEmptyGroup(selectedGroup)" title="pay" ng-click="payBeneficiaryGroup(selectedGroup)">
+                <i class="icon icomoon-pay"></i>
+                <span class="title">Pay</span>
+            </button>
+
+            <button ng-hide="isEditing" id="edit-beneficiary-group-button" class="icon-button" title="modify"
+                    ng-click="editGroupName()">
+                <i class="icon icomoon-edit"></i>
+                <span class="title">Modify</span>
+            </button>
+
+            <button id="delete-group" ng-click="markForDeletion(selectedGroup)"
+                    class="button icon-button" title="delete group">
+                <i class="icon icomoon-delete"></i>
+                <span class="title">Delete</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="panel">
+    <h3>Members</h3>
+
+    <div ng-show="isRemovingMembers" class="heading-padding">
+        <span>Please select the members you want to remove from the group:</span>
+
+        <div id="memberCheckboxes">
+            <ul class="selectable">
+                <li class="group-members"
+                    ng-class="{selected:hasMember(beneficiary.recipientId)}"
+                    ng-repeat="beneficiary in selectedGroup.beneficiaries"
+                    ng-click="toggleSelected(beneficiary.recipientId)">
+                    {{beneficiary.name}}
+                </li>
+            </ul>
+        </div>
+        <div id="removeBeneficiariesActions" ng-controller="spinnerController" class="margin-top">
+            <button id="remove" ng-click="amendBeneficiariesGroup()" class="primary"
+                    ng-disabled="!hasMembersForRemoval">Remove
+            </button>
+            <button id="cancelRemoval" ng-disabled="spinnerActive" class="secondary"
+                    ng-click="cancelRemoveMembers()">Cancel
+            </button>
+            <inline-spinner></inline-spinner>
+        </div>
+    </div>
+
+    <div ng-hide="isRemovingMembers" class="summary">
+        <div ng-repeat="beneficiary in selectedGroup.beneficiaries" class="summary-row" id="group-member">
+            <div>
+                <div>{{beneficiary.name}}</div>
+            </div>
+        </div>
+        <span class="information" ng-show="selectedGroup.beneficiaries.length == 0">There are no beneficiaries assigned to this group.</span>
+    </div>
+
+    <button id="removeMembers" ng-click="removeMembers()" class="icon-button right-aligned action remove"
+            ng-hide="isRemovingMembers || selectedGroup.beneficiaries.length === 0">
+        <i class="icon icomoon-remove"></i>
+        <span class="title">Remove member(s)</span>
+    </button>
+</div>
+
+<a id="backToBeneficiaryGroups" class="button secondary" href="#/beneficiaries/groups/list">Back to groups</a>
+
+<div class="modal-overlay" ng-show="beingDeleted">
+    <div class="modal-container action-modal">
+        <div class="modal-header">
+            <h3>Are you sure you want to delete the group {{selectedGroup.name}}?</h3>
+
+        </div>
+
+        <div class="modal-content">
+            Any beneficiaries in this group will remain in your profile.
+        </div>
+
+        <div class="actions" ng-hide="deletionError">
+            <button class="danger-confirm" ng-click="confirmDeletion()">Confirm</button>
+            <button class="secondary" ng-click="cancelDeletion()">Cancel</button>
+        </div>
+
+        <div class="deleted-error"
+             ng-show="deletionError">
+            <div class="prompt">
+                Couldn't delete the group {{selectedGroup.name}}. Please try again later.
+                <button class="secondary btn" ng-click="cancelDeletion()"><i class="icon icon-times"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

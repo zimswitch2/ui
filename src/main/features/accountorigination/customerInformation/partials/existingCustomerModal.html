@@ -1,0 +1,26 @@
+<div class="modal-overlay" ng-show="showExistingCustomerModal">
+    <div class="modal-container action-modal">
+        <div class="modal-header">
+            <h3>Welcome Back</h3>
+        </div>
+
+        <div class="modal-content">
+            <div>Our records show that you are an existing Standard Bank customer</div>
+            <div class="margin-top">You can:
+                <ul class="bullet-list">
+                    <li>Link your existing card and start banking; or</li>
+                    <li>Sign in with your existing profile</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button ng-click="showExistingCustomerModal = false; navigateToLinkCard()" id="modal-confirm"
+                    class="primary">Link card
+            </button>
+            <button ng-click="showExistingCustomerModal = false; logout()" ng-controller="LogoutController"
+                    id="modal-cancel" class="secondary">Sign in
+            </button>
+        </div>
+    </div>
+</div>

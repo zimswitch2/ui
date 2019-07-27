@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  haproxy:
+    container_name: ibr-haproxy
+    image: 10.150.3.163:5001/ibr-haproxy
+    ports:
+      - "9000:443"
+
+  apache:
+    container_name: ibr-apache
+    image: 10.150.3.163:5001/ibr-apache
+    volumes:
+      - "./target:/usr/local/apache2/htdocs"
+
+  nginx:
+    container_name: ibr-nginx
+    image: 10.150.3.163:5001/ibr-nginx
+    volumes:
+      - "./target:/var/log/nginx"
+
+networks:
+  default:
+    external:
+      name: ${docker_network}

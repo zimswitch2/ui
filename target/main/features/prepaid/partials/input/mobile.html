@@ -1,0 +1,42 @@
+<div>
+    <section ng-if="recharge.provider.products.length == 1">
+        <div class="input-group clear">
+            <label>Voucher type</label>
+            <span id="product-type" class="display-block">{{recharge.provider.productName}}</span>
+        </div>
+    </section>
+    <section ng-if="recharge.provider.products.length &gt; 1">
+        <label>Voucher type</label>
+        <ul class="radio-button-group">
+            <li ng-repeat="product in recharge.provider.products">
+                <input name="product-type" id="{{product.name.replace(&apos; &apos;, &apos;&apos;)}}" type="radio" ng-model="recharge.provider.productName" value="{{product.name}}">
+                <label for="{{product.name.replace(&apos; &apos;, &apos;&apos;)}}">{{product.name}}</label>
+            </li>
+        </ul>
+    </section>
+    <section ng-show="recharge.provider.product.bundles">
+        <label for="amount">Amount</label>
+
+        <div class="styled-select">
+            <select id="bundle" ng-model="recharge.provider.product.bundle" ng-options="bundle.name for bundle in recharge.provider.product.bundles">
+            </select>
+        </div>
+        <span class="small form-error">
+            {{amountExceedsAvailableBalance()}}
+            {{amountExceedsDailyWithdrawalLimit()}}
+        </span>
+    </section>
+    <section ng-if="!recharge.provider.product.bundles">
+        <sb-amount ng-model="$parent.recharge.provider.product.amount" enforcer="$parent.enforcer" placeholder="0" label="Amount">
+        </sb-amount>
+    </section>
+    <section class="text-notification">Enter an amount from <span class="rand-amount">R {{recharge.provider.product.range.min}}</span> to <span class="rand-amount">R {{recharge.provider.product.range.max}}</span></section>
+    <section>
+        <sb-input name="rechargeNumber" label="Cell phone number" ng-model="recharge.rechargeNumber" ng-required="true" ng-pattern="&apos;(0)[0-9]{9}&apos;" pattern-message="Please enter a 10-digit cell phone number">
+        </sb-input>
+    </section>
+    <section>
+        <label>Transaction date</label>
+        <span id="rechargeDate" class="display-block">{{latestTimestampFromServer | dateFormat}}</span>
+    </section>
+</div>

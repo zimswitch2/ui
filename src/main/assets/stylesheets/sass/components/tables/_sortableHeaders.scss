@@ -1,0 +1,17 @@
+@mixin sortable_headers {
+  .icon {
+    color: $silver-grey;
+    padding-left: 0.3em;
+    text-align: center;
+    font-size: 0.8em;
+
+    &.active {
+      color: $denim-blue;
+    }
+  }
+
+  a {
+    color: $gunmetal-light;
+    text-decoration: none;
+  }
+}

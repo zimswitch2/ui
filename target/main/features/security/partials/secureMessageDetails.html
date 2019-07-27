@@ -1,0 +1,34 @@
+<h2>Secure Message</h2>
+
+<div flow=""></div>
+
+<div ng-show="errorMessage" error="" notification="">{{errorMessage}}</div>
+<form name="secureMessageForm" class="panel" novalidate="">
+    <section>
+        <sb-account-dropdown name="account" label="Account" ng-model="secureMessage.account" ng-required="true" items="aliveAccounts" no-balance="true">
+        </sb-account-dropdown>
+    </section>
+
+    <section>
+        <sb-input name="homeTelephone" label="Home telephone" ng-model="secureMessage.homeTelephone" ng-required="!secureMessage.businessTelephone" required-message="Please enter at least one telephone number" ng-pattern="&apos;(0)[0-9]{9}&apos;" pattern-message="Please enter a valid telephone number">
+        </sb-input>
+    </section>
+
+    <section>
+        <sb-input name="businessTelephone" label="Business telephone" ng-model="secureMessage.businessTelephone" ng-required="!secureMessage.homeTelephone" required-message="Please enter at least one telephone number" ng-pattern="&apos;(0)[0-9]{9}&apos;" pattern-message="Please enter a valid telephone number">
+        </sb-input>
+    </section>
+
+    <section>
+        <sb-input type="textarea" name="message" label="Enter secure message" ng-model="secureMessage.content" ng-required="true" ng-maxlength="200">
+        </sb-input>
+    </section>
+
+    <button id="next" ng-disabled="!secureMessageForm.$valid" ng-click="next()">
+        Next
+    </button>
+
+    <a go-home="" id="cancel" class="btn secondary" track-click="send secure message.cancel">Cancel</a>
+
+</form>
+

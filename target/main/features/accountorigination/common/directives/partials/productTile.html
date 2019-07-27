@@ -1,0 +1,20 @@
+<div id="{{productType}}-section" class="product-information product-container">
+    <img class="show-for-large-up" src="{{productImageUrl}}" alt="{{productTitle}}">
+    <div class="product-content">
+        <h3 title-for="{{productType}}-section">{{productTitle}}</h3>
+        <div class="text-notification" ng-if="application.status === &apos;ACCEPTED&apos;">Application being processed</div>
+        <p ng-if="application.status !== &apos;ACCEPTED&apos;">{{productDescription}}</p>
+        <div class="account-information" ng-if="application.status === &apos;EXISTING&apos;">
+            <label>{{accountNumberLabel}}</label>
+            <div class="row">
+                <a class="account-number" href="#/statements/{{application.reference}}">{{application.reference}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="buttons-container">
+        <apply-for-account product-type="{{productType}}" ng-if="application.status === &apos;NEW&apos;" track-click="Apply.Banking Solutions For You.{{productTitle}} Apply Now"></apply-for-account>
+        <a class="btn secondary" href="#{{detailsPageUrl}}" data-dtmid="link_content_account application" data-dtmtext="{{productTitle}} details button click" ng-if="application.status === &apos;NEW&apos; || application.status === &apos;EXISTING&apos;">Details</a>
+        <pending-offer ng-if="application.status === &apos;PENDING&apos;" view-offer="continueApplication()" application="application" complete-tracking="complete {{productTitle}} application button click"></pending-offer>
+        <accepted-offer ng-if="application.status === &apos;ACCEPTED&apos;" application="application"></accepted-offer>
+    </div>
+</div>

@@ -1,0 +1,181 @@
+<h2>Your Details</h2>
+
+<flow class="wide"></flow>
+
+<div class="notification error wide" ng-show="serverErrorMessage !== undefined">
+    {{serverErrorMessage}}
+</div>
+
+<div class="customer-info-container">
+    <customer-information-navigation editing="true" current-page="&apos;profile&apos;"></customer-information-navigation>
+    <div class="customer-info-form">
+        <form name="customerInformationForm" data-frmcontainer="edit basic information form" novalidate="">
+            <div class="customer-info-scroll">
+                <div class="basic-info">
+                    <div class="wide-content">
+                        <ng-form name="captureBasicForm">
+                            <div ng-if="!$root.isMobileDevice" class="notification info" ng-show="!serverErrorMessage">
+                                Please complete all fields marked with an asterisk *
+                            </div>
+
+                            <ul class="data edit-mode">
+                                <row-field label="Title *" label-for="title">
+                                    <div class="styled-select medium-width">
+                                        <select ng-model="customerInformationData.customerTitleCode" id="title" name="Title" ng-change="changeGender();checkGender()" ng-required="true" fix-ie-select="" ng-options="title.code as title.description for title in titles">
+                                            <option value="" ng-hide="customerInformationData.customerTitleCode"></option>
+                                        </select>
+                                    </div>
+                                    <span class="form-error" ng-show="errorMessage.title !== undefined">{{errorMessage.title}}</span>
+                                </row-field>
+                                <row-field label="Surname *" label-for="captureSurname">
+                                    <sb-input ng-model="customerInformationData.customerSurname" input-id="captureSurname" name="Surname" ng-minlength="2" min-length-message="Please enter a surname which is at least 2 characters in length" ng-maxlength="40" max-length-message="Please enter a surname up to 40 characters in length" ng-pattern="&apos;[a-zA-Z]+[a-zA-Z\&apos; -]*&apos;" pattern-message="Please enter only alphabetical characters, spaces, apostrophes and hyphens" ng-required="true" class="medium-width">
+                                    </sb-input>
+                                </row-field>
+                                <row-field label="First names *" label-for="captureFirstNames">
+                                    <sb-input ng-model="customerInformationData.customerFirstName" input-id="captureFirstNames" name="First_names" ng-change="checkInitial()" ng-minlength="2" min-length-message="Please enter a first name which is at least 2 characters in length" ng-maxlength="40" max-length-message="Please enter a first name up to 40 characters in length" ng-pattern="&apos;[a-zA-Z]+[a-zA-Z\&apos; -]*&apos;" pattern-message="Please enter only alphabetical characters, spaces, apostrophes and hyphens" ng-required="true" class="medium-width">
+                                            <span name="external-message" class="form-error" ng-show="errorMessage.firstName !== undefined">{{errorMessage.firstName}}</span>
+                                    </sb-input>
+                                </row-field>
+                                <row-field label="Initials *" label-for="initials">
+                                    <sb-input ng-model="customerInformationData.customerInitials" input-id="initials" name="Initials" class="short" ng-change="checkInitial()" ng-maxlength="10" max-length-message="Please enter a maximum of 10 characters" ng-pattern="&apos;[a-zA-Z ]*&apos;" pattern-message="Please enter only alphabetical characters" ng-required="true">
+                                            <span name="external-message" class="form-error" ng-show="errorMessage.initial !== undefined">{{errorMessage.initial}}</span>
+                                    </sb-input>
+                                </row-field>
+                                <row-field label="ID type *" label-for="idType">
+                                    <div class="styled-select medium-width">
+                                        <select ng-model="idType.value" id="idType" name="ID_type" ng-change="changeIdType(); checkGender(); checkIdType();" ng-required="true" fix-ie-select="" ng-options="type.code as type.description for type in idTypes">
+                                        </select>
+                                    </div>
+                                    <span class="form-error" ng-show="errorMessage.idType !== undefined">{{errorMessage.idType}}</span>
+                                </row-field>
+                                <row-field label="ID number *" label-for="captureIDNumber" ng-if="! foreign()">
+                                    <sb-input ng-model="customerInformationData.getNationalId().identityNumber" input-id="captureIDNumber" name="ID_number" class="short" ng-change="checkIdNumber(captureBasicForm.ID_number); populateCountries()" ng-pattern="&apos;[0-9]{13}&apos;" pattern-message="Please enter a valid 13-digit South African ID number" ng-required="true">
+                                            <span name="external-message" class="form-error" ng-show="errorMessage.idNumber !== undefined">{{errorMessage.idNumber}}</span>
+                                    </sb-input>
+                                </row-field>
+                                <row-field label="Date of birth *">
+                                    <sb-datepicker ng-model="customerInformationData.dateOfBirth" name="Date_of_birth" on-select="checkDateOfBirth(date);" ng-required="true" view-default-date-format="true" date-format="YYYY-MM-DD" skip-year="true" earliest-date="01 January 1900" latest-date="{{latestDateOfBirth}}" is-date-of-birth="true" ng-class="{&apos;canProceedWithCapture&apos;: errorMessage.dateOfBirth !== undefined}">
+                                    </sb-datepicker>
+                                    <div class="info-label" ng-class="{&apos;message-error&apos;: errorMessage.dateOfBirth !== undefined}">
+                                        {{errorMessage.dateOfBirth ? errorMessage.dateOfBirth :
+                                        dateOfBirthErrorMessage}}
+                                    </div>
+                                </row-field>
+                                <row-field label="Gender *" label-for="gender">
+                                    <div class="styled-select medium-width">
+                                        <select ng-model="customerInformationData.gender" id="gender" name="Gender" ng-change="checkGender()" ng-required="true" fix-ie-select="" ng-options="gender.code as gender.description for gender in genders">
+                                            <option value="" ng-hide="customerInformationData.gender"></option>
+                                        </select>
+                                    </div>
+                                    <span class="form-error" ng-show="errorMessage.gender !== undefined">{{errorMessage.gender}}</span>
+                                </row-field>
+                                <row-field label="Passport number *" label-for="capturePassport" ng-if="foreign()">
+                                    <sb-input ng-model="customerInformationData.getPassport().identityNumber" input-id="capturePassport" name="Passport_number" class="medium-width" ng-pattern="&apos;[0-9a-zA-Z]*&apos;" pattern-message="Please enter a valid passport number" ng-minlength="3" min-length-message="Please enter a passport number with at least three characters (letters and/or numbers)" ng-maxlength="16" ng-required="true">
+                                    </sb-input>
+                                </row-field>
+                                <row-field label="Passport origin *" label-for="capturePassportCountry-input" ng-if="foreign()">
+                                    <div class="medium-width">
+                                        <sb-typeahead id="capturePassportCountry" name="Passport_origin" items="countries" ng-model="customerInformationData.getPassport().countryCode" ng-required="true" sort-by="name" value-property="code" ng-change="populateOriginCountries(); checkIdType()">
+                                        </sb-typeahead>
+                                    </div>
+                                </row-field>
+                                <row-field id="capturePassportExpiryDate" label="Passport expiry date *" ng-if="foreign()">
+                                    <sb-datepicker ng-model="customerInformationData.getPassport().expiryDate" name="Passport_expiry_date" on-select="checkPassportExpiryDate(date)" ng-required="true" view-default-date-format="true" date-format="YYYY-MM-DD" skip-year="true" ng-class="{&apos;canProceedWithCapture&apos;: errorMessage.passportExpiryDate !== undefined}">
+                                    </sb-datepicker>
+                                    <div class="info-label" ng-class="{&apos;message-error&apos;: errorMessage.passportExpiryDate !== undefined}">
+                                        {{passportExpiryDateErrorMessage}}
+                                    </div>
+                                </row-field>
+                                <row-field label="Country of residence *" label-for="captureResidenceCountry-input">
+                                    <div class="medium-width">
+                                        <sb-typeahead ng-model="customerInformationData.residenceCountryCode" id="captureResidenceCountry" name="Country_of_residence" items="countries" ng-required="true" sort-by="name" value-property="code">
+                                        </sb-typeahead>
+                                    </div>
+                <span name="external-message" class="form-error" ng-show="errorMessage.countryOfResidence !== undefined">{{errorMessage.countryOfResidence}}</span>
+                                </row-field>
+                                <row-field label="Country of citizenship *" label-for="captureCitizenshipCountry-input">
+                                    <div class="medium-width">
+                                        <sb-typeahead ng-model="customerInformationData.citizenshipCountryCode" id="captureCitizenshipCountry" name="Country_of_citizenship" items="countries" ng-required="true" sort-by="name" value-property="code" ng-change="checkIdType()">
+                                        </sb-typeahead>
+                                    </div>
+                <span name="external-message" class="form-error" ng-show="errorMessage.countryOfCitizenship !== undefined">{{errorMessage.countryOfCitizenship}}</span>
+                                </row-field>
+                                <row-field label="Nationality *" label-for="captureNationalityCountry-input">
+                                    <div class="medium-width">
+                                        <sb-typeahead ng-model="customerInformationData.nationalityCountryCode" id="captureNationalityCountry" name="Nationality" items="countries" ng-required="true" sort-by="name" value-property="code" ng-change="checkIdType()">
+                                        </sb-typeahead>
+                                    </div>
+                <span name="external-message" class="form-error" ng-show="errorMessage.citizenshipCountryCode !== undefined">{{errorMessage.countryOfCitizenship}}</span>
+                                </row-field>
+                                <row-field label="Country of birth *" label-for="captureBirthCountry-input">
+                                    <div class="medium-width">
+                                        <sb-typeahead ng-model="customerInformationData.birthCountryCode" id="captureBirthCountry" name="Country_of_birth" items="countries" ng-required="true" sort-by="name" value-property="code">
+                                        </sb-typeahead>
+                                    </div>
+                                </row-field>
+                                <row-field label="Permit type *" label-for="editPermitType" ng-if="foreign()">
+                                    <div class="styled-select medium-width">
+                                        <select ng-model="customerInformationData.getPermit().identityTypeCode" id="editPermitType" name="Permit_type" ng-required="true" fix-ie-select="" ng-options="type.code as type.description for type in permitTypes">
+                                            <option value="" ng-hide="customerInformationData.getPermit().identityTypeCode"></option>
+                                        </select>
+                                    </div>
+                                </row-field>
+                                <row-field label="Permit number *" label-for="capturePermitNumber" ng-if="foreign()">
+                                    <sb-input ng-model="customerInformationData.getPermit().identityNumber" ng-required="true" name="Permit_number" input-id="capturePermitNumber" class="medium-width">
+                                    </sb-input>
+                                </row-field>
+                                <row-field id="capturePermitIssueDate" label="Permit issue date *" ng-if="foreign()">
+                                    <sb-datepicker ng-model="customerInformationData.getPermit().issuedDate" ng-required="true" name="Permit_issue_date" view-default-date-format="true" date-format="YYYY-MM-DD" skip-year="true" earliest-date="01 January 1900" latest-date="{{latestDateOfPermitIssue}}">
+                                    </sb-datepicker>
+                                </row-field>
+                                <row-field id="capturePermitExpiryDate" label="Permit expiry date *" ng-if="foreign()">
+                                    <sb-datepicker ng-model="customerInformationData.getPermit().expiryDate" name="Permit_expiry_date" on-select="checkPermitExpiryDate(date)" ng-required="true" view-default-date-format="true" date-format="YYYY-MM-DD" skip-year="true" ng-class="{&apos;canProceedWithCapture&apos;: errorMessage.permitExpiryDate !== undefined}">
+                                    </sb-datepicker>
+                                    <div class="info-label" ng-class="{&apos;message-error&apos;: errorMessage.permitExpiryDate !== undefined}">
+                                        {{permitExpiryDateErrorMessage}}
+                                    </div>
+                                </row-field>
+                                <row-field label="Marital status *" label-for="maritalStatus">
+                                    <div class="styled-select medium-width">
+                                        <select ng-model="customerInformationData.maritalStatusCode" id="maritalStatus" name="Marital_status" ng-required="true" fix-ie-select="" ng-options="status.code as status.description for status in maritalStatuses">
+                                            <option value="" ng-hide="customerInformationData.maritalStatusCode"></option>
+                                        </select>
+                                    </div>
+                                </row-field>
+                                <row-field label="Marital type *" label-for="maritalType" ng-if="customerInformationData.maritalStatusCode === &apos;2&apos;">
+                                    <div class="styled-select medium-width">
+                                        <select ng-model="customerInformationData.maritalTypeCode" id="maritalType" name="Marital_type" ng-required="true" fix-ie-select="" ng-options="type.code as type.description for type in maritalTypes">
+                                            <option value="" ng-hide="customerInformationData.maritalTypeCode"></option>
+                                        </select>
+                                    </div>
+                                </row-field>
+                                <row-field label="Your branch *" label-for="branch-typeahead-input">
+                                    <div class="medium-width">
+                                        <walk-in-branches id="branch" name="Your_branch" ng-model="customerInformationData.branchCode" placeholder="Your branch" ng-required="true" use-branchcode-value="true" default-to-preferred-branch="false">
+                                        </walk-in-branches>
+                                    </div>
+                                </row-field>
+                            </ul>
+
+                            <ng-include ng-controller="EditContactController" src="&apos;features/accountorigination/customerInformation/partials/addContact.html&apos;"></ng-include>
+
+                            <div>
+                                <button id="next-basic" class="primary" ng-click="next()" ng-disabled="!(captureBasicForm.$valid &amp;&amp; customerInformationData.hasCellphoneContact() &amp;&amp; allDatesValid() &amp;&amp; genderTitleIdMatch())">
+                                    Next
+                                </button>
+                                
+                                <button id="cancel-basic" class="secondary" ng-click="cancel()">
+                                    Cancel
+                                </button>
+                            </div>
+
+                            <ng-include src="&apos;features/accountorigination/customerInformation/partials/existingCustomerModal.html&apos;"></ng-include>
+                        </ng-form>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<cancel-confirmation edit-form="captureBasicForm"></cancel-confirmation>

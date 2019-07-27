@@ -1,0 +1,28 @@
+input[type=checkbox] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  border: none;
+
+  &:before {
+    font-family: FontAwesome;
+    font-size: 1.3em;
+    content: "\f096";
+    position: relative;
+    margin-right: 5px;
+    color: #ddd;
+    top: 2px;
+  }
+
+  &:checked {
+    background-color: transparent;
+
+    &:before {
+      font-family: FontAwesome;
+      content: "\f14a";
+      color: $azure-blue;;
+      margin-right: 3px;
+    }
+  }
+}

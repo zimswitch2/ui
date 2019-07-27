@@ -1,0 +1,63 @@
+input[type='text'], input[type='password'], input[type='number'], input[name='amount'] {
+  &.custom-validation {
+    &.ng-valid {
+      border-color: #ccc;
+    }
+    &.ng-valid.error {
+      border: 1px solid #FF2A4C;
+    }
+    &.success {
+      border: 1px solid $grass-green;
+    }
+    &.ng-invalid.success {
+      border: 1px solid $grass-green;
+    }
+  }
+}
+
+.profile-selection {
+  .dashboard-default {
+    border-left: none;
+
+    li {
+      border-bottom: none;
+      padding-right: 10px;
+    }
+  }
+
+  .businessProfileTiles {
+    a {
+      margin-bottom: 20px;
+      position: relative;
+      height: 53px;
+      font-size: 15px;
+      font-weight: normal;
+      padding-top: 6px;
+      width: 264px;
+      padding-left: 49px;
+    }
+
+    i {
+      position: absolute;
+      left: 10px;
+      font-size: 39px;
+    }
+
+    @media #{$medium-up} {
+      a {
+        width: 311px;
+        font-size: 20px;
+        padding-left: 44px;
+      }
+    }
+  }
+
+  .second-panel {
+
+    @media #{$large-up} {
+      left: 59px;
+      padding-right: 9px;
+    }
+  }
+
+}

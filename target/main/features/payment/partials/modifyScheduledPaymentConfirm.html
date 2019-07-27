@@ -1,0 +1,23 @@
+<h2>Modify Scheduled Payment</h2>
+
+<div class="form-layout-top" flow=""></div>
+
+<div class="form-layout-main">
+    <div class="panel">
+        <div class="summary">
+            <ng-include src="&apos;features/payment/partials/displayPaymentDetails.html&apos;"></ng-include>
+            <div>
+                <div>
+                    <button id="confirm" ng-click="confirm()">Confirm</button>
+                    <button id="modify" class="secondary" ng-click="modify()">Modify</button>
+                    <button go-back="" id="cancel" class="tertiary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-layout-right">
+    <monthly-payment-limits watcher="watcher"></monthly-payment-limits>
+</div>
+

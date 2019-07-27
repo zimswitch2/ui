@@ -1,0 +1,665 @@
+{
+  "prepaidProviders": [
+    {
+      "friendlyName": "CellC",
+      "prepaidProduct": [
+        {
+          "friendlyName": "Cell-C Airtime",
+          "prepaidPreset": [
+            {
+              "amount": {
+                "amount": 10,
+                "currency": "ZAR"
+              },
+              "friendlyName": "10 Airtime Bundle @ R10",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 25,
+                "currency": "ZAR"
+              },
+              "friendlyName": "25 Airtime Bundle @ R25",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 35,
+                "currency": "ZAR"
+              },
+              "friendlyName": "35 Airtime Bundle @ R35",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 50,
+                "currency": "ZAR"
+              },
+              "friendlyName": "50 Airtime Bundle @ R50",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 150,
+                "currency": "ZAR"
+              },
+              "friendlyName": "150 Airtime Bundle @ R150",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 300,
+                "currency": "ZAR"
+              },
+              "friendlyName": "300 Airtime Bundle @ R300",
+              "productCode": ""
+            }
+          ],
+          "prepaidType": "Airtime",
+          "range": {
+            "max": 500,
+            "min": 10
+          }
+        }
+      ],
+      "prepaidProviderType": "CellC"
+    },
+    {
+      "friendlyName": "Telkom Mobile",
+      "prepaidProduct": [
+        {
+          "friendlyName": "Telkom Mobile",
+          "prepaidPreset": [
+            {
+              "amount": {
+                "amount": 10,
+                "currency": "ZAR"
+              },
+              "friendlyName": "10 Airtime Bundle @ R10",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 20,
+                "currency": "ZAR"
+              },
+              "friendlyName": "20 Airtime Bundle @ R20",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 30,
+                "currency": "ZAR"
+              },
+              "friendlyName": "30 Airtime Bundle @ R30",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 50,
+                "currency": "ZAR"
+              },
+              "friendlyName": "50 Airtime Bundle @ R50",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 100,
+                "currency": "ZAR"
+              },
+              "friendlyName": "100 Airtime Bundle @ R100",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 250,
+                "currency": "ZAR"
+              },
+              "friendlyName": "250 Airtime Bundle @ R250",
+              "productCode": ""
+            }
+          ],
+          "prepaidType": "Airtime",
+          "range": {
+            "max": 500,
+            "min": 10
+          }
+        }
+      ],
+      "prepaidProviderType": "Heita"
+    },
+    {
+      "friendlyName": "MTN",
+      "prepaidProduct": [
+        {
+          "friendlyName": "MTN Airtime",
+          "prepaidPreset": [
+            {
+              "amount": {
+                "amount": 5,
+                "currency": "ZAR"
+              },
+              "friendlyName": "5 Airtime Bundle @ R5",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 10,
+                "currency": "ZAR"
+              },
+              "friendlyName": "10 Airtime Bundle @ R10",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 15,
+                "currency": "ZAR"
+              },
+              "friendlyName": "15 Airtime Bundle @ R15",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 30,
+                "currency": "ZAR"
+              },
+              "friendlyName": "30 Airtime Bundle @ R30",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 60,
+                "currency": "ZAR"
+              },
+              "friendlyName": "60 Airtime Bundle @ R60",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 180,
+                "currency": "ZAR"
+              },
+              "friendlyName": "180 Airtime Bundle @ R180",
+              "productCode": ""
+            }
+          ],
+          "prepaidType": "Airtime",
+          "range": {
+            "max": 500,
+            "min": 5
+          }
+        },
+        {
+          "friendlyName": "MTN SMS Bundle",
+          "prepaidPreset": [
+            {
+              "amount": {
+                "amount": 25,
+                "currency": "ZAR"
+              },
+              "friendlyName": "50 SMS Bundle @ R25",
+              "productCode": "SMS50"
+            },
+            {
+              "amount": {
+                "amount": 35,
+                "currency": "ZAR"
+              },
+              "friendlyName": "100 SMS Bundle @ R35",
+              "productCode": "SMS100"
+            },
+            {
+              "amount": {
+                "amount": 50,
+                "currency": "ZAR"
+              },
+              "friendlyName": "200 SMS Bundle @ R50",
+              "productCode": "SMS200"
+            },
+            {
+              "amount": {
+                "amount": 114,
+                "currency": "ZAR"
+              },
+              "friendlyName": "500 SMS Bundle @ R114",
+              "productCode": "SMS500"
+            },
+            {
+              "amount": {
+                "amount": 420,
+                "currency": "ZAR"
+              },
+              "friendlyName": "2000 SMS Bundle @ R420",
+              "productCode": "SMS2000"
+            }
+          ],
+          "prepaidType": "SMS",
+          "range": null
+        },
+        {
+          "friendlyName": "MTN Data Bundle",
+          "prepaidPreset": [
+            {
+              "amount": {
+                "amount": 10,
+                "currency": "ZAR"
+              },
+              "friendlyName": "10MB Data Bundle @ R10",
+              "productCode": "DATA10MB"
+            },
+            {
+              "amount": {
+                "amount": 29,
+                "currency": "ZAR"
+              },
+              "friendlyName": "75MB Data Bundle @ R29",
+              "productCode": "DATA75MB"
+            },
+            {
+              "amount": {
+                "amount": 79,
+                "currency": "ZAR"
+              },
+              "friendlyName": "300MB Data Bundle @ R79",
+              "productCode": "DATA300MB"
+            },
+            {
+              "amount": {
+                "amount": 99,
+                "currency": "ZAR"
+              },
+              "friendlyName": "500MB Data Bundle @ R99",
+              "productCode": "DATA500MB"
+            },
+            {
+              "amount": {
+                "amount": 149,
+                "currency": "ZAR"
+              },
+              "friendlyName": "1GB Data Bundle @ R149",
+              "productCode": "DATA1G"
+            },
+            {
+              "amount": {
+                "amount": 245,
+                "currency": "ZAR"
+              },
+              "friendlyName": "2GB Data Bundle @ R245",
+              "productCode": "DATA2G"
+            }
+          ],
+          "prepaidType": "Data",
+          "range": null
+        }
+      ],
+      "prepaidProviderType": "MTN"
+    },
+    {
+      "friendlyName": "Virgin",
+      "prepaidProduct": [
+        {
+          "friendlyName": "Virgin Airtime",
+          "prepaidPreset": [
+            {
+              "amount": {
+                "amount": 10,
+                "currency": "ZAR"
+              },
+              "friendlyName": "10 Airtime Bundle @ R10",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 15,
+                "currency": "ZAR"
+              },
+              "friendlyName": "15 Airtime Bundle @ R15",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 50,
+                "currency": "ZAR"
+              },
+              "friendlyName": "50 Airtime Bundle @ R50",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 80,
+                "currency": "ZAR"
+              },
+              "friendlyName": "80 Airtime Bundle @ R80",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 120,
+                "currency": "ZAR"
+              },
+              "friendlyName": "120 Airtime Bundle @ R120",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 300,
+                "currency": "ZAR"
+              },
+              "friendlyName": "300 Airtime Bundle @ R300",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 500,
+                "currency": "ZAR"
+              },
+              "friendlyName": "500 Airtime Bundle @ R500",
+              "productCode": ""
+            }
+          ],
+          "prepaidType": "Airtime",
+          "range": {
+            "max": 500,
+            "min": 10
+          }
+        }
+      ],
+      "prepaidProviderType": "Virgin"
+    },
+    {
+      "friendlyName": "Vodacom",
+      "prepaidProduct": [
+        {
+          "friendlyName": "Vodacom Airtime",
+          "prepaidPreset": [
+            {
+              "amount": {
+                "amount": 5,
+                "currency": "ZAR"
+              },
+              "friendlyName": "5 Airtime Bundle @ R5",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 12,
+                "currency": "ZAR"
+              },
+              "friendlyName": "12 Airtime Bundle @ R12",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 29,
+                "currency": "ZAR"
+              },
+              "friendlyName": "29 Airtime Bundle @ R29",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 55,
+                "currency": "ZAR"
+              },
+              "friendlyName": "55 Airtime Bundle @ R55",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 110,
+                "currency": "ZAR"
+              },
+              "friendlyName": "110 Airtime Bundle @ R110",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 275,
+                "currency": "ZAR"
+              },
+              "friendlyName": "275 Airtime Bundle @ R275",
+              "productCode": ""
+            }
+          ],
+          "prepaidType": "Airtime",
+          "range": {
+            "max": 500,
+            "min": 5
+          }
+        },
+        {
+          "friendlyName": "Vodacom SMS Bundles",
+          "prepaidPreset": [
+            {
+              "amount": {
+                "amount": 10,
+                "currency": "ZAR"
+              },
+              "friendlyName": "20 SMS Bundle @ R10.00",
+              "productCode": "20"
+            },
+            {
+              "amount": {
+                "amount": 25,
+                "currency": "ZAR"
+              },
+              "friendlyName": "50 SMS Bundle @ R25.00",
+              "productCode": "50"
+            },
+            {
+              "amount": {
+                "amount": 33,
+                "currency": "ZAR"
+              },
+              "friendlyName": "100 SMS Bundle @ R33.00",
+              "productCode": "100"
+            },
+            {
+              "amount": {
+                "amount": 45,
+                "currency": "ZAR"
+              },
+              "friendlyName": "200 SMS Bundle @ R45.00",
+              "productCode": "200"
+            },
+            {
+              "amount": {
+                "amount": 67.5,
+                "currency": "ZAR"
+              },
+              "friendlyName": "300 SMS Bundle @ R67.50",
+              "productCode": "300"
+            },
+            {
+              "amount": {
+                "amount": 112.5,
+                "currency": "ZAR"
+              },
+              "friendlyName": "500 SMS Bundle @ R112.50",
+              "productCode": "500"
+            },
+            {
+              "amount": {
+                "amount": 225,
+                "currency": "ZAR"
+              },
+              "friendlyName": "1000 SMS Bundle @ R225.00",
+              "productCode": "1000"
+            },
+            {
+              "amount": {
+                "amount": 337.5,
+                "currency": "ZAR"
+              },
+              "friendlyName": "1500 SMS Bundle @ R337.50",
+              "productCode": "1500"
+            },
+            {
+              "amount": {
+                "amount": 450,
+                "currency": "ZAR"
+              },
+              "friendlyName": "2000 SMS Bundle @ R450.00",
+              "productCode": "2000"
+            }
+          ],
+          "prepaidType": "SMS",
+          "range": null
+        },
+        {
+          "friendlyName": "Vodacom Data Bundles",
+          "prepaidPreset": [
+            {
+              "amount": {
+                "amount": 12,
+                "currency": "ZAR"
+              },
+              "friendlyName": "30MB Data Bundle @ R12",
+              "productCode": "30"
+            },
+            {
+              "amount": {
+                "amount": 29,
+                "currency": "ZAR"
+              },
+              "friendlyName": "100MB Data Bundle @ R29",
+              "productCode": "100"
+            },
+            {
+              "amount": {
+                "amount": 59,
+                "currency": "ZAR"
+              },
+              "friendlyName": "250MB Data Bundle @ R59",
+              "productCode": "250"
+            },
+            {
+              "amount": {
+                "amount": 99,
+                "currency": "ZAR"
+              },
+              "friendlyName": "500MB Data Bundle @ R99",
+              "productCode": "500"
+            },
+            {
+              "amount": {
+                "amount": 149,
+                "currency": "ZAR"
+              },
+              "friendlyName": "1GB Data Bundle @ R149",
+              "productCode": "1024"
+            },
+            {
+              "amount": {
+                "amount": 249,
+                "currency": "ZAR"
+              },
+              "friendlyName": "2GB Data Bundle @ R249",
+              "productCode": "2048"
+            },
+            {
+              "amount": {
+                "amount": 299,
+                "currency": "ZAR"
+              },
+              "friendlyName": "3GB Data Bundle @ R299",
+              "productCode": "3072"
+            },
+            {
+              "amount": {
+                "amount": 399,
+                "currency": "ZAR"
+              },
+              "friendlyName": "5GB Data Bundle @ R399",
+              "productCode": "5120"
+            },
+            {
+              "amount": {
+                "amount": 599,
+                "currency": "ZAR"
+              },
+              "friendlyName": "10GB Data Bundle @ R599",
+              "productCode": "10240"
+            },
+            {
+              "amount": {
+                "amount": 999,
+                "currency": "ZAR"
+              },
+              "friendlyName": "20GB Data Bundle @ R999",
+              "productCode": "20480"
+            }
+          ],
+          "prepaidType": "Data",
+          "range": null
+        }
+      ],
+      "prepaidProviderType": "Vodacom"
+    },
+    {
+      "friendlyName": "Eskom",
+      "prepaidProduct": [
+        {
+          "friendlyName": "Prepaid Electricity",
+          "prepaidPreset": [],
+          "prepaidType": "Electricity",
+          "range": {
+            "max": 500,
+            "min": 10
+          }
+        }
+      ],
+      "prepaidProviderType": "Electricity"
+    },
+    {
+      "friendlyName": "Telkom",
+      "prepaidProduct": [
+        {
+          "friendlyName": "Telkom",
+          "prepaidPreset": [
+            {
+              "amount": {
+                "amount": 10,
+                "currency": "ZAR"
+              },
+              "friendlyName": "10 Minutes Worldcall @ R10",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 50,
+                "currency": "ZAR"
+              },
+              "friendlyName": "50 Minutes Worldcall @ R50",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 100,
+                "currency": "ZAR"
+              },
+              "friendlyName": "100 Minutes Worldcall @ R100",
+              "productCode": ""
+            },
+            {
+              "amount": {
+                "amount": 200,
+                "currency": "ZAR"
+              },
+              "friendlyName": "200 Minutes Worldcall @ R200",
+              "productCode": ""
+            }
+          ],
+          "prepaidType": "Airtime",
+          "range": {
+            "max": 500,
+            "min": 10
+          }
+        }
+      ],
+      "prepaidProviderType": "Telkom"
+    }
+  ],
+  "keyValueMetadata": [],
+  "stepUp": null
+}

@@ -1,0 +1,12 @@
+.inline-form {
+  @media #{$medium-up} {
+    position: relative;
+    input {
+      width: auto;
+      display: inline;
+    }
+    .form-error {
+      position: static;
+    }
+  }
+}

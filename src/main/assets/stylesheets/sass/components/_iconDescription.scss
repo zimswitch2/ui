@@ -1,0 +1,87 @@
+.icon-description {
+  width: 100%;
+  clear: none;
+
+  small {
+    color: $slate-grey;
+  }
+
+  @media #{$medium-up} {
+    position: relative;
+  }
+
+  .icon-description-button {
+    @extend .columns;
+    @extend .small-12;
+
+    @media #{$medium-up} {
+      padding: 0;
+      margin: 0;
+      width: auto;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+
+  .icon-description-item-accepted {
+    @extend .columns;
+    @extend .small-12;
+
+    padding: 0;
+
+    i {
+      float: left;
+      font-size: 3em;
+    }
+
+    .with-icon {
+      margin-left: 4em;
+      margin-top: 0.5em;
+      p {
+        margin-bottom: 0;
+        width: 100%;
+        color: #232323;
+      }
+    }
+  }
+
+  .icon-description-item {
+    @extend .columns;
+    @extend .small-12;
+
+    p {
+      line-height: 1em;
+    }
+
+    padding: 1.5em;
+
+    @media #{$medium-up} {
+      padding: 0 10em 0 0;
+
+      button {
+        float: right;
+      }
+
+      i, p {
+        width: auto;
+      }
+
+    }
+
+    i {
+      float: left;
+      font-size: 3em;
+    }
+
+    .with-icon {
+      margin-left: 4em;
+      margin-top: 0.5em;
+      p {
+        margin-bottom: 0;
+        width: 100%;
+        color: #232323;
+      }
+    }
+  }
+}
