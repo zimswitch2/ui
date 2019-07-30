@@ -87,17 +87,17 @@ module.exports = function(grunt) {
     var environmentSpecificData = {
         local: _.merge({
             baseUrl: 'localhost',
-            mcaPort: grunt.option('mca-port') || '9100',
+            mcaPort: grunt.option('mca-port') || '9200',
             protractorPort: grunt.option('protractor-port') || 8888
         }, stubEnv),
         docker: _.merge({
             baseUrl: 'ibr-contracts',
-            mcaPort: grunt.option('mca-port') || '9100',
+            mcaPort: grunt.option('mca-port') || '9200',
             protractorPort: grunt.option('protractor-port') || 8888
         }, stubEnv),
         demo: _.merge({
             baseUrl: 'localhost',
-            mcaPort: grunt.option('mca-port') || '9101',
+            mcaPort: grunt.option('mca-port') || '9201',
             protractorPort: grunt.option('protractor-port') || 8887
         }, dev2Env),
         dev1: _.merge({
@@ -148,7 +148,7 @@ module.exports = function(grunt) {
     var currentEnv = envInit();
 
     var reverseProxy = [{
-        context: ['/sbg-ib', '/BusinessBanking'],
+        context: ['/ebridge.payment.gateway-2.0/sbg-ib', '/BusinessBanking'],
         host: currentEnv.baseUrl,
         port: currentEnv.mcaPort,
         https: _.endsWith(currentEnv.mcaPort, '443') || currentEnv.mcaPort === '444',
