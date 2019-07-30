@@ -513,7 +513,7 @@
         <!-- hides the content of the entire page-->
         <main ng-view ng-hide="(spinnerActive && spinnerStyle == 'global') || blockOutPage"></main>
     </div>
-    <!--footer ng-controller="HeaderController">
+    footer ng-controller="HeaderController">
         <img src="assets/images/logo-blue.png" width="23" />
         <p ng-hide="shouldDisplayProfileDropdown()">Standard Bank is a licensed financial services provider in terms of the Financial Advisory and Intermediary Services Act and a registered credit provider in terms of the National Credit Act, registration number NCRCP15.</p>
         <ul ng-show="shouldDisplayProfileDropdown()">
@@ -529,7 +529,7 @@
                 <i class="icon icomoon-security"></i>
             </li>
         </ul>
-    </footer -->
+    </footer>
 
     <div class="spinner" ng-class="spinnerClass" ng-hide="spinnerStyle != 'global'">
         <div class="pace-activity"></div>

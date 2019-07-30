@@ -9,14 +9,14 @@ if (feature.overviewPage) {
     app.config(function ($routeProvider) {
         $routeProvider.when('/home', {
             redirectTo: function () {
-                /*
+
                 if (overviewFeature) {
                     return '/overview';
                 } else {
                     return '/account-summary';
                 }
-                */
-                return '/transaction/dashboard'
+
+                // return '/transaction/dashboard'
             }
         });
 
