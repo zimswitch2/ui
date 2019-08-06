@@ -25,7 +25,9 @@ if (feature.overviewPage) {
                 }
             } else {
                 if (dashboard.systemPrincipalKey === 'SED') {
+		    console.log("switch board, dashboard : " + JSON.stringify(dashboard));
                     PermissionsService.loadPermissionsForDashboard(dashboard).then(function (permissions) {
+			console.log("===== permissions to load : " + JSON.stringify(permissions));
                         dashboard.permissions = permissions;
 
                         User.switchToDashboard(dashboard);

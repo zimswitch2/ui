@@ -72,9 +72,16 @@
                 return Cacher.shortLived
                         .fetch('listBeneficiary', {card: card})
                         .then(function(results){
+			    console.log("======= beneficiaries : " + JSON.stringify(results.data.beneficiaries));
+			    console.log("======= beneficiaries : " + JSON.stringify(results.beneficiaries));
+			    console.log("======= card : " + JSON.stringify(card));
+			    console.log("======= recipientId : " + recipientId);
                             var idx =  _.findIndex(results.data.beneficiaries, function (beneficiary) {
+			                    console.log("======= beneficiary : " + beneficiary);
                                             return beneficiary.recipientId === recipientId;
                                         });
+
+			    console.log("======= idx  " + idx);
                             return idx !== -1;
                         });
 

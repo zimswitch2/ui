@@ -25,18 +25,6 @@
 
 <!-- build:js refresh.min.js -->
 
-
-<link id="favicon" rel="shortcut icon" href="blob:https://web.whatsapp.com/adca708a-bab5-4563-bc4d-a850158e4c37" type="image/png">
-<link rel="apple-touch-icon" sizes="194x194" href="https://web.whatsapp.com/apple-touch-icon.png" type="image/png">
-
-<!--<link rel="stylesheet" id="style2" href="assets/stylesheets/css/webchat.css">-->
-<!--<link rel="stylesheet" id="style3" href="assets/stylesheets/css/webchat2.css">-->
-<!--<link rel="stylesheet" id="style4" href="assets/stylesheets/css/ebridge.css">-->
-<!--<link rel="stylesheet" id="style5" href="assets/stylesheets/css/webchat4.css">-->
-
-<!--<link rel="stylesheet" id="style" href="assets/stylesheets/css/webchat2.css" media="all">-->
-
-
 <!-- bower:js -->
 <script src="../../bower_components/jquery/jquery.js"></script>
 <script src="../../bower_components/jquery.scrollTo/jquery.scrollTo.js"></script>
@@ -52,6 +40,7 @@
 <script src="../../bower_components/moment/moment.js"></script>
 <script src="../../bower_components/offline/offline.min.js"></script>
 <script src="../../bower_components/chartjs/Chart.js"></script>
+<script src="../../bower_components/pdfmake/build/vfs_fonts.js"></script>
 <script src="../../bower_components/flux-angular/release/flux-angular.js"></script>
 <script src="../../bower_components/angular-messages/angular-messages.js"></script>
 <!-- endbower -->
@@ -81,8 +70,6 @@
 <script src="features/accountSharing/manageOperator/userPermissions/userPermissionsModule.js"></script>
 <script src="features/accountSharing/manageOperator/viewOperatorDetails/operatorDetailsModule.js"></script>
 <script src="features/accountSharing/manageOperator/viewOperatorInvitationDetails/operatorInvitationDetailsModule.js"></script>
-<script src="features/messenger/messengerModule.js"></script>
-<script src="features/messenger/suggestionBox/suggestionBoxModule.js"></script>
 <script src="features/payment/onceOffPaymentModule.js"></script>
 <script src="features/payment/paymentModule.js"></script>
 <script src="common/accordion/directive/accordion.js"></script>
@@ -371,14 +358,6 @@
 <script src="features/internationalPayment/internationalPayment.js"></script>
 <script src="features/internationalPayment/services/internationalPaymentService.js"></script>
 <script src="features/mainMenu/mainMenuController.js"></script>
-<script src="features/messenger/messagingService.js"></script>
-<script src="features/messenger/suggestionBox/SuggestionBoxController.js"></script>
-<script src="features/messenger/suggestionBox/WhatsApp_files/app_38fc5c95fd44feb095e5.js"></script>
-<script src="features/messenger/suggestionBox/WhatsApp_files/main_4bacc5889d734635d1df.js"></script>
-<script src="features/messenger/suggestionBox/WhatsApp_files/progress_eca182ed47925485962135ac6f0e016b.js"></script>
-<script src="features/messenger/suggestionBox/WhatsApp_files/vendor1_07a71fd5a27f982777a2.js"></script>
-<script src="features/messenger/suggestionBox/WhatsApp_files/vendor2_1984a60116d375fa3fb1.js"></script>
-<script src="features/messenger/suggestionBox/addSuggestionBoxRoute.js"></script>
 <script src="features/notifications/notificationService.js"></script>
 <script src="features/notifications/notifications.js"></script>
 <script src="features/otp/activateOtp.js"></script>
@@ -512,8 +491,8 @@
         <!-- hides the content of the entire page-->
         <main ng-view="" ng-hide="(spinnerActive &amp;&amp; spinnerStyle == &apos;global&apos;) || blockOutPage"></main>
     </div>
-    <!--footer ng-controller="HeaderController">
-        <img src="assets/images/logo-blue.png" width="23" />
+    <footer ng-controller="HeaderController">
+        <img src="assets/images/logo-blue.png" width="23">
         <p ng-hide="shouldDisplayProfileDropdown()">Standard Bank is a licensed financial services provider in terms of the Financial Advisory and Intermediary Services Act and a registered credit provider in terms of the National Credit Act, registration number NCRCP15.</p>
         <ul ng-show="shouldDisplayProfileDropdown()">
             <li>
@@ -528,7 +507,7 @@
                 <i class="icon icomoon-security"></i>
             </li>
         </ul>
-    </footer -->
+    </footer>
 
     <div class="spinner" ng-class="spinnerClass" ng-hide="spinnerStyle != &apos;global&apos;">
         <div class="pace-activity"></div>

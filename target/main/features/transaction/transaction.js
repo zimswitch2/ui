@@ -21,7 +21,7 @@
             }
         };
 
-        //Menu.add(transactionDashboardMenuItem);
+        Menu.add(transactionDashboardMenuItem);
     });
 })(angular.module('refresh.transaction', ['ngRoute', 'refresh.accounts', 'refresh.flow', 'refresh.mcaHttp', 'refresh.filters', 'refresh.login',
     'refresh.transactionDashboard']));

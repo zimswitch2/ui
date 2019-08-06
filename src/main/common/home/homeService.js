@@ -11,7 +11,6 @@ if (feature.overviewPage) {
     app.factory('HomeService', function ($location, User) {
         return {
             goHome: function () {
-                /*
                 if (overviewFeature) {
                     $location.path('/overview');
                 }
@@ -21,8 +20,7 @@ if (feature.overviewPage) {
                 else {
                     $location.path('/new-registered');
                 }
-                */
-                $location.path('/dashboard/callcenter');
+                // $location.path('/dashboard/callcenter');
             }
         };
     });

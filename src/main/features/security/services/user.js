@@ -26,11 +26,14 @@ if (feature.personalFinanceManagement) {
 
                 var channelProfiles = rawUserData.channelProfile ? [rawUserData.channelProfile] :
                     rawUserData.channelProfiles;
-
+                console.log("channelProfiles : " + channelProfiles);
                 _.each(channelProfiles, function (channelProfile) {
+		    console.log("channelProfile : " + JSON.stringify( channelProfile) );
+		    console.log("channelProfile : " +channelProfile.systemPrincipalIdentifiers );
                     var cardSystemPrincipal = _.find(channelProfile.systemPrincipalIdentifiers, {systemPrincipalKey: SBSA_BANKING});
                     var cardSystemPrincipalSed = _.find(channelProfile.systemPrincipalIdentifiers, {systemPrincipalKey: SED});
 
+		    console.log("cardSystemPrincipal: " + cardSystemPrincipal);
                     if (cardSystemPrincipal) {
                         dashboards.push(new Dashboard({
                             dashboardName: channelProfile.profileName,
@@ -54,12 +57,13 @@ if (feature.personalFinanceManagement) {
                     bpIdSystemPrincipal = _.find(channelProfile.systemPrincipalIdentifiers, {systemPrincipalKey: SBSA_SAP});
                 });
 
+		console.log("dashboards: " + dashboards);
                 dashboards = _.uniq(dashboards, false, 'profileId');
-
+                 
                 dashboards = _.sortBy(dashboards, function (dashboard) {
                     return dashboard.profileId !== defaultProfileId;
                 });
-
+                
                 this.userProfile = {
                     username: username,
                     preferredName: preferredName,
@@ -72,8 +76,10 @@ if (feature.personalFinanceManagement) {
                 }
 
                 if (_.isEmpty(dashboards)) {
+	            console.log("NO DASHBOARDS FOUND");
                     return $q.when();
                 } else {
+		    console.log("DASHBOARDS FOUND");
                     return this.addCardDetailsToDashboards(dashboards);
                 }
             },
@@ -117,6 +123,7 @@ if (feature.personalFinanceManagement) {
             },
 
             addCardDetailsToDashboards: function (dashboards) {
+		console.log("addCardDetailsToDashboards: " + personalFinanceManagementFeature);
                 if(personalFinanceManagementFeature) {
                     return CardService.fetchCards(dashboards).then(function (cards) {
                         _.each(dashboards, function (dashboard) {
@@ -135,7 +142,10 @@ if (feature.personalFinanceManagement) {
 
                     return CardService.fetchCards(principals).then(function (cards) {
                         _.each(dashboards, function (dashboard) {
+			    console.log("dashboard: " + JSON.stringify(dashboard));
+			    console.log("id : " + dashboard.systemPrincipalId);
                             dashboard.setCard(_.find(cards, {systemPrincipalId: dashboard.systemPrincipalId}));
+			    console.log("dashboard after priming : " + JSON.stringify(dashboard));
                         });
                     });
                 }

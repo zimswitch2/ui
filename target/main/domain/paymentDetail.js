@@ -86,6 +86,7 @@ function PaymentDetail(properties) {
         },
 
         getEarliestPaymentDate: function (latestTimestampFromServer) {
+            console.log("====== latestTimestampFromServer : " + latestTimestampFromServer);
             if (this.isRecurringPayment()) {
                 return moment(latestTimestampFromServer).add('Days', 1).format();
             } else {

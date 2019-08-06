@@ -9,7 +9,6 @@ var overviewFeature = false;
     app.factory('HomeService', function ($location, User) {
         return {
             goHome: function () {
-                /*
                 if (overviewFeature) {
                     $location.path('/overview');
                 }
@@ -19,8 +18,7 @@ var overviewFeature = false;
                 else {
                     $location.path('/new-registered');
                 }
-                */
-                $location.path('/dashboard/callcenter');
+                // $location.path('/dashboard/callcenter');
             }
         };
     });

@@ -53,6 +53,9 @@ var accountSharing = false;
     module.filter('TransactTilesPermissions', function(User, PermissionsService) {
         var isCurrentDashboardOfType = function (dashboardKey) {
 
+	    console.log("dashboardKey: " + dashboardKey);
+	    console.log("systemPrincipalKey: " + User.principalForCurrentDashboard().systemPrincipalIdentifier.systemPrincipalKey);
+
             return dashboardKey === undefined ||
                 User.principalForCurrentDashboard().systemPrincipalIdentifier.systemPrincipalKey === dashboardKey;
         };
@@ -61,12 +64,17 @@ var accountSharing = false;
             var clonedItems = _.cloneDeep(items);
             var filteredItems = _.each(clonedItems, function (section) {
                 section.items = _.filter(section.items, function (item) {
+	            console.log("item.excludeCardHolder: " + !item.excludeCardHolder);
+	            console.log("item: " + JSON.stringify(item));
+	            console.log("item.permission: " + item.permission);
+		    console.log("permission: " +  PermissionsService.checkPermission(item.permission));
                     return isCurrentDashboardOfType(item.restrictToDashboardType) && !item.excludeCardHolder && PermissionsService.checkPermission(item.permission);
                 });
             }).filter(function(section) {
                 return section.items && section.items.length > 0;
             });
 
+	    console.log("filteredItems: " + filteredItems);
             return filteredItems;
         };
     });
@@ -74,28 +82,29 @@ var accountSharing = false;
     module.controller('TransactionDashboardController', function ($scope, TransactTilesPermissionsFilter, TransferService, AccountsService, Card, User, OnceOffPaymentModel) {
 
         $scope.items = [
+	    /*
             {
 
-                title: 'POS Terminal',
+                title: 'Payments',
                 icon: 'pay',
                 items: [
                     {
                         icon: 'onceoff',
-                        title: 'Cash Register',
+                        title: 'Pay Beneficiary',
                         url: '#/beneficiaries/list',
                         id: 'manage-beneficiary',
                         permission: 'view:pay-beneficiary-tile'
                     },
                     {
                         icon: 'beneficiary',
-                        title: 'Journal',
+                        title: 'Pay Multiple Beneficiaries',
                         url: '#/beneficiaries/pay-multiple',
                         id: 'pay-multiple',
                         permission: 'view:pay-multiple-beneficiaries-tile'
                     },
                     {
                         icon: 'onceoff',
-                        title: 'Catalogue',
+                        title: 'Once Off Payment',
                         url: '#/payment/onceoff',
                         id: 'once-off-payment',
                         permission: 'view:once-off-payment-tile',
@@ -105,7 +114,7 @@ var accountSharing = false;
                     },
                     {
                         icon: 'pay-group',
-                        title: 'Bank Recorn',
+                        title: 'Pay Beneficiary Group',
                         url: '#/beneficiaries/groups/list',
                         id: 'pay-beneficiary-group',
                         permission: 'view:pay-beneficiary-group-tile'
@@ -118,20 +127,23 @@ var accountSharing = false;
                     },
                     {
                         icon: 'inter',
-                        title: User.isSEDOperator() ? 'Log Book' : 'Log Book',
+                        title: User.isSEDOperator() ? 'Transfer' : 'Transfer',
                         url: '#/transfers',
                         id: 'inter-account-transfer',
                         permission: 'view:transfer-between-accounts-tile'
                     }
                 ]
+	 },
+	 */
 
-                /*
-                title: 'Pay & Transfer',
+	 {
+
+                title: 'Payments',
                 icon: 'pay',
                 items: [
                     {
                         icon: 'beneficiary',
-                        title: 'Pay beneficiary',
+                        title: 'Pay Beneficiary',
                         url: '#/beneficiaries/list',
                         id: 'manage-beneficiary',
                         permission: 'view:pay-beneficiary-tile'
@@ -164,7 +176,8 @@ var accountSharing = false;
                         icon: 'prepaid',
                         title: 'Prepaid',
                         url: '#/prepaid',
-                        id: 'prepaid'
+                        id: 'prepaid',
+                        permission: 'view:pay-beneficiary-tile'
                     },
                     {
                         icon: 'inter',
@@ -174,34 +187,33 @@ var accountSharing = false;
                         permission: 'view:transfer-between-accounts-tile'
                     }
                 ]
-                */
             },
             {
-                title: 'Messenger',
+		/*
+                title: 'Statements And Notifications',
                 icon: 'payment-notifications',
                 id: 'statementsAndNotifications',
                 items: [
                     {
                         icon: 'transaction-history',
-                        title: 'Purchase Orders',
+                        title: 'Transaction History',
                         url: '#/statements/',
                         id: 'statements'
                     },
                     {
                         icon: 'payment-notifications',
-                        title: 'Sales Orders',
+                        title: 'Pyament History',
                         url: '#/payment-notification/history',
                         id: 'payment-notification-history'
                     },
                     {
                         icon: 'prepaid-history',
-                        title: 'Suggestion Box',
+                        title: 'Prepaid History',
                         url: '#/messenger/suggestion-box',
                         id: 'prepaid-history'
                     }
                 ]
-
-                /*
+         	*/       
                  title: 'Statements & Notifications',
                  icon: 'payment-notifications',
                  id: 'statementsAndNotifications',
@@ -210,22 +222,24 @@ var accountSharing = false;
                  icon: 'transaction-history',
                  title: 'Transaction history',
                  url: '#/statements/',
-                 id: 'statements'
+                 id: 'statements',
+                 permission: 'view:pay-beneficiary-tile'
                  },
                  {
                  icon: 'payment-notifications',
                  title: 'Payment notifications',
                  url: '#/payment-notification/history',
-                 id: 'payment-notification-history'
-                 },
+                 id: 'payment-notification-history',
+                 permission: 'view:pay-beneficiary-tile'
+                 }, 
                  {
                  icon: 'prepaid-history',
                  title: 'Prepaid history',
                  url: '#/prepaid/history',
-                 id: 'prepaid-history'
+                 id: 'prepaid-history',
+                 permission: 'view:pay-beneficiary-tile'
                  }
                  ]
-                 */
             },
             {
                 title: 'Manage',
@@ -233,55 +247,57 @@ var accountSharing = false;
                 items: [
                     {
                         icon: 'add-group',
-                        title: 'Merchants',
+                        title: 'Beneficiary Group',
                         url: '#/beneficiaries/groups/add',
-                        id: 'manager-beneficiary-group-1'
+                        id: 'manager-beneficiary-group-1',
+                        permission: 'view:pay-beneficiary-tile'
                     },
                     {
                         icon: 'add-group',
                         title: 'People',
                         url: '#/beneficiaries/groups/add',
-                        id: 'manager-beneficiary-group'
+                        id: 'manager-beneficiary-group',
+                        permission: 'view:pay-beneficiary-tile'
                     },
                     {
                         icon: 'add-group',
                         title: 'Products',
                         url: '#/beneficiaries/groups/add',
-                        id: 'manager-beneficiary-group-2'
+                        id: 'manager-beneficiary-group-2',
+                        permission: 'view:pay-beneficiary-tile'
                     },
-
-
-                    /*
                     {
                         icon: 'add-beneficiary',
                         title: 'Add beneficiary',
                         url: '#/beneficiaries/add',
-                        id: 'add-beneficiary'
+                        id: 'add-beneficiary',
+                        permission: 'view:pay-beneficiary-tile'
                     },
                     {
                         icon: 'add-group',
                         title: 'Add groups',
                         url: '#/beneficiaries/groups/add',
-                        id: 'manage-beneficiary-group'
+                        id: 'manage-beneficiary-group',
+                        permission: 'view:pay-beneficiary-tile'
                     },
                     {
                         icon: 'scheduled',
                         title: 'View scheduled payments',
                         url: '#/payment/scheduled/manage',
-                        id: 'manage-scheduled-payments'
+                        id: 'manage-scheduled-payments',
+                        permission: 'view:pay-beneficiary-tile'
                     },
                     {
                         icon: 'change-monthly-limit',
                         title: 'Change monthly payment limit',
                         url: '#/monthly-payment-limit',
-                        id: 'change-eap-limit'
+                        id: 'change-eap-limit',
+                        permission: 'view:pay-beneficiary-tile'
                     }
-                    */
                 ]
             }
         ];
 
-        /*
         if (viewFormalStatementListFeature) {
 
             var formalStatementItem = {
@@ -336,7 +352,6 @@ var accountSharing = false;
                 id: 'online-payments-and-transfers'
             });
         }
-        */
 
         if(accountSharing) {
             $scope.items[1].items.push({

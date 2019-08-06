@@ -159,6 +159,9 @@ if (feature.viewTransactions) {
 
 
                 AccountsService.list(selectedCard).then(function (response) {
+	            console.log("selectedCard : " + JSON.stringify(selectedCard));
+	            console.log("selectedCard : " + selectedCard.cardNumber);
+	            console.log("selectedCard : " + selectedCard.number);
                     _.each(response.accounts, function (originalAccount) {
                         var loanTypes = ["HOME_LOAN", "TERM_LOAN", "RCP"];
                         var investmentTypes = ["SAVINGS", "NOTICE", "FIXED_TERM_INVESTMENT"];

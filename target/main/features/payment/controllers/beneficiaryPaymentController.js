@@ -64,6 +64,7 @@ var accountSharing = false;
             };
 
             var setAccountData = function (accountData) {
+		console.log("++++ accountData: " + JSON.stringify(accountData));
                 $scope.allAccounts = accountData.accounts;
                 $scope.cardProfile = accountData.cardProfile;
 

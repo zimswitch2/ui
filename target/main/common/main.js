@@ -7,13 +7,13 @@ var overviewFeature = false;
     app.config(function ($routeProvider) {
         $routeProvider.when('/home', {
             redirectTo: function () {
-                /*
+
                 if (overviewFeature) {
                     return '/overview';
-                } else {
+                } /* else {
                     return '/account-summary';
                 }
-                */
+		*/
                 return '/transaction/dashboard'
             }
         });
@@ -114,8 +114,9 @@ var overviewFeature = false;
     'refresh.accountSharing',
     'refresh.invitationMenu',
     'refresh.permissions',
-    'refresh.messenger'
-    //'refresh.dashboard'
+    'refresh.transactionDashboard'
+    //'refresh.messenger'
+    // 'refresh.dashboard'
 ]));
 
 window.Offline.options = {

@@ -8,19 +8,24 @@
     app.config(function ($httpProvider) {
         $httpProvider.interceptors.push(function ($q, $rootScope, $location, LastRequest, Spinner, ApplicationParameters, DigitalId, Card) {
             function httpRequestStarted() {
+		console.log(" ==== httpRequestStarted()");
                 var _pendingRequest = ApplicationParameters.getVariable('pendingRequests') + 1;
                 ApplicationParameters.pushVariable('pendingRequests', _pendingRequest);
                 $rootScope.$broadcast('httpRequestStarted');
             }
 
             function httpRequestStopped() {
+		console.log("===== httpRequestStopped()");
                 var _pendingRequest = ApplicationParameters.getVariable('pendingRequests') - 1;
                 ApplicationParameters.pushVariable('pendingRequests', _pendingRequest);
                 $rootScope.$broadcast('httpRequestStopped');
             }
 
             function saveTimestamp(headers) {
+		console.log("====== headers : " + JSON.stringify(headers));
                 if (headers && headers('date')) {
+		    console.log("===== headers(date) : " + headers('date'));
+		    console.log("===== moment(headers('date')) : " + moment(headers('date')));
                     ApplicationParameters.pushVariable('latestTimestampFromServer', moment(headers('date')));
                 }
             }
@@ -34,7 +39,7 @@
                         $location.path('/login');
                     }
 
-                    if (config.url.indexOf('/sbg-ib') !== 0 && config.url.indexOf('/BusinessBanking') !== 0) {
+                    if (config.url.indexOf('/ebridge.payment.gateway-2.0/sbg-ib') !== 0 && config.url.indexOf('/BusinessBanking') !== 0) {
                         return $q.when(config);
                     }
 
@@ -47,7 +52,7 @@
                 'response': function (response) {
                     var OTPResentMessage = ['One-time PIN successfully re-sent.', 'Verification code successfully resent.'];
 
-                    if (response.config.url.indexOf('/sbg-ib') !== 0 && response.config.url.indexOf('/BusinessBanking') !== 0) {
+                    if (response.config.url.indexOf('/ebridge.payment.gateway-2.0/sbg-ib') !== 0 && response.config.url.indexOf('/BusinessBanking') !== 0) {
                         return $q.when(response);
                     }
 
@@ -83,7 +88,7 @@
                     }
                 },
                 'responseError': function (rejection) {
-                    if (rejection.config && rejection.config.url.indexOf('/sbg-ib') !== 0 && rejection.config.url.indexOf('/BusinessBanking') !== 0) {
+                    if (rejection.config && rejection.config.url.indexOf('/ebridge.payment.gateway-2.0/sbg-ib') !== 0 && rejection.config.url.indexOf('/BusinessBanking') !== 0) {
                         return $q.reject(rejection);
                     }
 

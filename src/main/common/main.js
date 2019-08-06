@@ -12,11 +12,11 @@ if (feature.overviewPage) {
 
                 if (overviewFeature) {
                     return '/overview';
-                } else {
+                } /* else {
                     return '/account-summary';
                 }
-
-                // return '/transaction/dashboard'
+		*/
+                return '/transaction/dashboard'
             }
         });
 
@@ -116,8 +116,9 @@ if (feature.overviewPage) {
     'refresh.accountSharing',
     'refresh.invitationMenu',
     'refresh.permissions',
-    'refresh.messenger'
-    //'refresh.dashboard'
+    'refresh.transactionDashboard'
+    //'refresh.messenger'
+    // 'refresh.dashboard'
 ]));
 
 window.Offline.options = {
