@@ -63,7 +63,7 @@
     "karma-webdriver-launcher": "^1.0.4",
     "load-grunt-configs": "^0.4.3",
     "load-grunt-tasks": "3.1.0",
-    "lodash": "3.3.0",
+    "lodash": "4.17.19",
     "moment": "2.9.0",
     "protractor": "2.5.1",
     "request": "2.33.0",
